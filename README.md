@@ -1,4 +1,4 @@
-# maag
+# MAAG
 Merilin, Annemarii, Annelise, Gerli. Aka MAAG.
 
 Tallinna Ülikooli Haapsalu kolledži 3 kursuse rakendusinformaatika üliõpilased.
