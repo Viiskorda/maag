@@ -20,6 +20,6 @@ class Week extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('week');
+		$this->load->view('pages/week');
 	}
 }
