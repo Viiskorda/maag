@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -49,7 +49,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'calendar';
+$route['default_controller'] = 'calendar/view';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['week'] = 'week';
+
+// $route['default_controller'] = 'pages/view';
+$route['(:any)'] = 'pages/view/$1';

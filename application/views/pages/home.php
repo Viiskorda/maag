@@ -80,12 +80,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<h1>Pärnu Linna Sport</h1>
 
 		<div id="body">
-			<p>See on avaleht</p>
-
-			Siia tuleb otsinguleht
-
-			<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
-		</div>
+			HALLOOO	</div>
 
 		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 	</div>

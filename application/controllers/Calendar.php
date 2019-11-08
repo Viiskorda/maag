@@ -1,41 +1,29 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Calendar extends CI_Controller {
+class Calendar extends CI_Controller
+{
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function index()
+	//indexit võiks ära kustutada ja asendada alumise funtksiooniga. sama tee ka Week.php kontrolleris
+	// public function index()
+	// {
+	// 	$this->load->view('templates/header');
+	// 	$this->load->view('pages/calendar');
+	// 	$this->load->view('templates/footer');
+	// }
+
+
+	public function view($page = 'calendar') //pääseb ligi: https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/calendar/home
 	{
-		$this->load->view('pages/calendar');
-	}
-	public function week($page = 'week')
-	{
-			if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
-			{
-					// Whoops, we don't have a page for that!
-					show_404();
-			}
-	
-			$data['title'] = ucfirst($page); // Capitalize the first letter
-	
-			$this->load->view('templates/header', $data);
-			$this->load->view('pages/'.$page, $data);
-			$this->load->view('templates/footer', $data);
-	}
+		if (!file_exists(APPPATH . 'views/pages/' . $page . '.php')) {
+			// Whoops, we don't have a page for that!
+			show_404();
+		}
 
-	
+		$data['title'] = ucfirst($page); // Capitalize the first letter
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/' . $page, $data);
+		$this->load->view('templates/footer', $data);
+	}
 }
