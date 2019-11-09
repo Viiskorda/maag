@@ -8,6 +8,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
 
+
+
+
 	<style type="text/css">
 		::selection {
 			background-color: #E13300;
@@ -82,7 +85,54 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<div id="body">
 			<p>See on avaleht</p>
 
-			Siia tuleb otsinguleht
+			Linn
+
+			<form action="/action_page.php" method="get">
+				<input list="city" name="city">
+				<datalist id="city">
+					<option value="Pärnu linn">
+					<option value="Audru">
+					<option value="Paikuse">
+					<option value="Tõstamaa">
+
+				</datalist>
+
+				<br><br>
+				Asutus<br>
+				<input list="asutus" name="asutus">
+				<datalist id="asutus">
+					<option value="Internet Explorer">
+					<option value="Firefox">
+					<option value="Chrome">
+					<option value="Opera">
+					<option value="Internet Explorer">
+					<option value="Firefox">
+					<option value="Chrome">
+					<option value="Opera">
+					<option value="Internet Explorer">
+					<option value="Firefox">
+					<option value="Chrome">
+					<option value="Opera">
+					<option value="Internet Explorer">
+					<option value="Firefox">
+					<option value="Chrome">
+					<option value="Opera">
+				</datalist>
+				<br><br>
+				Saal<br>
+				<input list="saal" name="saal">
+				<datalist id="saal">
+					<option value="Roheline">
+					<option value="Sinine">
+					<option value="Väike">
+					<option value="Suur">
+					<option value="Jõusaal">
+				</datalist> <br>
+
+				<p>Date: <br> <input type="text"></p>
+				<input type="submit">
+			</form>
+
 
 			<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
 		</div>
