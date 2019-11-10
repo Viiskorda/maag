@@ -23,8 +23,8 @@ class Fullcalendar extends CI_Controller {
 			$data[] = array(
 				'id'	=>	$row['id'],
 				'title'	=>	$row['title'],
-				'start'	=>	$row['start_event'],
-				'end'	=>	$row['end_event']
+				'start'	=>	$row['startTime'],
+				'end'	=>	$row['endTime']
 			);
 		}
 		echo json_encode($data);
@@ -36,8 +36,8 @@ class Fullcalendar extends CI_Controller {
 		{
 			$data = array(
 				'title'		=>	$this->input->post('title'),
-				'start_event'=>	$this->input->post('start'),
-				'end_event'	=>	$this->input->post('end')
+				'startTime'=>	$this->input->post('start'),
+				'endTime'	=>	$this->input->post('end')
 			);
 			$this->fullcalendar_model->insert_event($data);
 		}
@@ -49,8 +49,8 @@ class Fullcalendar extends CI_Controller {
 		{
 			$data = array(
 				'title'			=>	$this->input->post('title'),
-				'start_event'	=>	$this->input->post('start'),
-				'end_event'		=>	$this->input->post('end')
+				'startTime'	=>	$this->input->post('start'),
+				'endTime'		=>	$this->input->post('end')
 			);
 
 			$this->fullcalendar_model->update_event($data, $this->input->post('id'));

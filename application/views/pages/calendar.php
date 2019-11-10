@@ -8,6 +8,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
 
@@ -70,9 +73,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		}
 
 		#container {
-			margin
-			border: 1px solid #D0D0D0;
+			margin border: 1px solid #D0D0D0;
 			box-shadow: 0 0 8px #D0D0D0;
+		}
+
+		.box {
+			width: 100%;
+			max-width: 650px;
+			margin: 0 auto;
 		}
 	</style>
 </head>
@@ -89,57 +97,138 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<form action="fullcalendar" method="get">
 				<input list="city" name="city">
-				<datalist id="city">
-					<option value="Pärnu">
-					<option value="Audru">
-					<option value="Paikuse">
-					<option value="Tõstamaa">
+				<datalist id="city" name="city">
+					<option value="">Select State</option>
+
+					<?php foreach ($regions as $each) { ?>
+						<option value="<?php echo $each->name; ?>"><?php echo $each->name; ?></option>
+					<?php } ?>
+
+
+					<?php
+					foreach ($regions as $row) {
+						echo '<option value="' . $row->name . '">' . $row->name . '</option>';
+					}
+					?>
 
 				</datalist>
+
 
 				<br><br>
 				Asutus<br>
 				<input list="asutus" name="asutus">
-				<datalist id="asutus">
-					<option value="Spordikeskus">
-					<option value="Rannastaadion">
-					<option value="Spordikeskus">
-					<option value="Sõudebaas">
-					<option value="ParimJõusaal">
-					<option value="Firefox">
-					<option value="Chrome">
-					<option value="Opera">
-					<option value="Internet Explorer">
-					<option value="Firefox">
-					<option value="Chrome">
-					<option value="Opera">
-					<option value="Internet Explorer">
-					<option value="Firefox">
-					<option value="Chrome">
-					<option value="Opera">
+				<datalist id="asutus" name="asutus">
+
+					<?php foreach ($buildings as $each) { ?>
+						<option value="<?php echo $each->name; ?>"><?php echo $each->name; ?></option>';
+					<?php } ?>
+
 				</datalist>
 				<br><br>
 				Saal<br>
 				<input list="saal" name="saal">
-				<datalist id="saal">
-					<option value="Roheline">
-					<option value="Sinine">
-					<option value="Väike">
-					<option value="Suur">
-					<option value="Jõusaal">
+				<datalist id="saal" name="saal">
+					<?php foreach ($rooms as $each) { ?>
+						<option value="<?php echo $each->name; ?>"><?php echo $each->name; ?></option>';
+					<?php } ?>
+
 				</datalist> <br>
 
-				<p>Vali kuupäev: <br> <input name="date" type="text" value="<?php echo(date("d.m.Y"))?>"> </p>
+
+				<br>
+
+				<p>Vali kuupäev: <br> <input name="date" type="text" value="<?php echo (date("d.m.Y")) ?>"> </p>
 				<input type="submit">
 			</form>
 
 
-			<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+
+
+
+
+			<div class="form-group">
+				<select name="regions" id="regions" class="form-control input-lg">
+					<option value="">Select Country</option>
+					<?php
+					foreach ($regions as $row) {
+						echo '<option value="' . $row->id . '">' . $row->name . '</option>';
+					}
+					?>
+				</select>
+			</div>
+
+			<br />
+			<div class="form-group">
+				<select name="state" id="state" class="form-control input-lg">
+					<option value="">Select State</option>
+				</select>
+			</div>
+
+			<br />
+			<div class="form-group">
+				<select name="city" id="city" class="form-control input-lg">
+					<option value="">Select City</option>
+				</select>
+			</div>
 		</div>
 
-		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+
+
+		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+	</div>
+
+	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 	</div>
 
 </body>
 
 </html>
+
+
+<script>
+	$(document).ready(function() {
+		$('#regions').change(function() {
+			var country_id  = $('#regions').val();
+			
+			if (country_id  != '') {
+				$.ajax({
+					url: "<?php echo base_url(); ?>calendar/fetch_state",
+					method: "POST",
+					data: {
+						country_id : country_id 
+					},
+					success: function(data) {
+						
+						$('#state').html(data);
+						$('#city').html('<option value="">Vali asutus</option>');
+					
+					}
+				});
+			} else {
+				$('#state').html('<option value="">Select State</option>');
+				$('#city').html('<option value="">Select rerre</option>');
+			}
+		});
+
+		$('#state').change(function() {
+			var state_id = $('#state').val();
+			console.log(state_id);
+			if (state_id != '') {
+				
+				$.ajax({
+					url: "<?php echo base_url(); ?>calendar/fetch_city",
+					method: "POST",
+					data: {
+						state_id: state_id
+					},
+					success: function(data) {
+						$('#city').html(data);
+					}
+				});
+			} else {
+				$('#city').html('<option value="">Select ruums</option>');
+			}
+		});
+
+	});
+</script>
