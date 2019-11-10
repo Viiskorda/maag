@@ -30,7 +30,7 @@
                     }
                 },
 
-                defaultView: 'basicWeek',
+                defaultView: 'agendaWeek',
                 weekNumbers: 'true',
                 slotLabelFormat: 'H:mm',
                 slotDuration: '00:15:00',
