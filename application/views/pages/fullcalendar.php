@@ -18,9 +18,21 @@
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
-                
+                firstDay: 1,
+                dayNames: ['Pühapäev', 'Esmaspäev', 'Teisipäev', 'Kolmapäev',
+                    'Neljapäev', 'Reede', 'Laupäev'
+                ],
+                dayNamesShort: ['P', 'E', 'T', 'K', 'N', 'R', 'L'],
+                views: {
+                    week: { // name of view
+                        columnFormat: " ddd M.D"
+                        // other view-specific options here
+                    }
+                },
+
                 defaultView: 'basicWeek',
-                slotLabelFormat:'H:mm',
+                weekNumbers: 'true',
+                slotLabelFormat: 'H:mm',
                 slotDuration: '00:15:00',
                 minTime: '08:00:00',
                 maxTime: '24:00:00',
@@ -119,9 +131,9 @@
     <br />
 
     <br />
-    <div class="container">
-        <div id="calendar" ></div>
-    </div>
+    <!-- <div class="container"> -->
+    <div id="calendar"></div>
+    <!-- </div> -->
 </body>
 
 </html>

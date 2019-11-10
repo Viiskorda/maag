@@ -70,7 +70,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		}
 
 		#container {
-			margin: 10px;
+			margin
 			border: 1px solid #D0D0D0;
 			box-shadow: 0 0 8px #D0D0D0;
 		}
@@ -87,10 +87,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			Linn
 
-			<form action="/action_page.php" method="get">
+			<form action="fullcalendar" method="get">
 				<input list="city" name="city">
 				<datalist id="city">
-					<option value="Pärnu linn">
+					<option value="Pärnu">
 					<option value="Audru">
 					<option value="Paikuse">
 					<option value="Tõstamaa">
@@ -101,11 +101,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				Asutus<br>
 				<input list="asutus" name="asutus">
 				<datalist id="asutus">
-					<option value="Internet Explorer">
-					<option value="Firefox">
-					<option value="Chrome">
-					<option value="Opera">
-					<option value="Internet Explorer">
+					<option value="Spordikeskus">
+					<option value="Rannastaadion">
+					<option value="Spordikeskus">
+					<option value="Sõudebaas">
+					<option value="ParimJõusaal">
 					<option value="Firefox">
 					<option value="Chrome">
 					<option value="Opera">
@@ -129,7 +129,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<option value="Jõusaal">
 				</datalist> <br>
 
-				<p>Date: <br> <input type="text"></p>
+				<p>Vali kuupäev: <br> <input name="date" type="text" value="<?php echo(date("d.m.Y"))?>"> </p>
 				<input type="submit">
 			</form>
 
