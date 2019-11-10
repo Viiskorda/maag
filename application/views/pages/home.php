@@ -1,90 +1,212 @@
-<?php
-defined('BASEPATH') or exit('No direct script access allowed');
-?>
-<!DOCTYPE html>
-<html lang="en">
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="col-md-8 col-lg-6">
+	<a href="https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/">Avaleht</a>
+        <a href="https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/week">Nädalavaade</a>
+        <a href="https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/fullcalendar">FullCalender</a>
+        <!-- <h1><?php #echo $title; ?></h1> -->
+      <div class="login d-flex align-items-center py-5">
+		  
+        <div  id="app" class="container">
+			
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <form>
+                <div>
+                  <label for="areaSelection">Piirkond</label>
+                  <select v-for="region in regions" class="form-control" id="areaSelection">
+                    <option>{{ region.name }}</option>
+                  </select>
+                  <tr v-for="region in regions">
+                            <!-- <td><input type="checkbox" v-model="row.selected" v-on:click="checkSelectAll"></td> -->
+                            <td>{{ region.name}}</td>
+                  </tr>
+                </div>
 
-	<style type="text/css">
-		::selection {
-			background-color: #E13300;
-			color: white;
-		}
+                <div>
+                  <label for="facility">Asutus</label>
+                  <select class="form-control" id="facility">
+                    <option>Baas1</option>
+                    <option>Baas2</option>
+                    <option>Baas3</option>
+                    <option>Baas4</option>
+                    <option>Baas5</option>
+                  </select>
+                </div>
 
-		::-moz-selection {
-			background-color: #E13300;
-			color: white;
-		}
+                <div>
+                  <label for="room">Saal</label>
+                  <select class="form-control" id="room">
+                    <option>Saal1</option>
+                    <option>Saal2</option>
+                    <option>Saal3</option>
+                    <option>Saal4</option>
+                    <option>Saal5</option>
+                  </select>
+                </div>
 
-		body {
-			background-color: #fff;
-			margin: 40px;
-			font: 13px/20px normal Helvetica, Arial, sans-serif;
-			color: #4F5155;
-		}
+                <div>
+                <label for="start">Kuupäev</label>
+                <input class="form-control" type="date" id="start" min="2018-01-01" max="2021-12-31">
+                </div>
+                </br>
 
-		a {
-			color: #003399;
-			background-color: transparent;
-			font-weight: normal;
-		}
+                <button class="btn btn-lg btn-primary float-right btn-login text-uppercase font-weight-bold mb-2" type="submit">Otsi</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-		h1 {
-			color: #444;
-			background-color: transparent;
-			border-bottom: 1px solid #D0D0D0;
-			font-size: 19px;
-			font-weight: normal;
-			margin: 0 0 14px 0;
-			padding: 14px 15px 10px 15px;
-		}
+    <script src="<?php echo base_url(); ?>assets/js/vue.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/vue-router.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/axios.min.js"></script>
 
-		code {
-			font-family: Consolas, Monaco, Courier New, Courier, monospace;
-			font-size: 12px;
-			background-color: #f9f9f9;
-			border: 1px solid #D0D0D0;
-			color: #002166;
-			display: block;
-			margin: 14px 0 14px 0;
-			padding: 12px 10px 12px 10px;
-		}
+<script>
+    
+        var apiUrl = '<?php echo base_url(); ?>';                
+    // Vue.use(VeeValidate);
+    var app = new Vue({
+        el: '#app',
+        data: {
+            newItems: {
+                selected: false,
+                code: '',
+                name: ''
+            },
+            regions: [], // minu lisa
+            onEdit: false,
+            selectedAll: false,
+            delete: [],
+            loading: true,
+            message: []
+        },
+        created() {
+            this.getRegions() //minu muudatus
+        },
+        methods: {
+            validateBeforeSubmit: function() {
+                var vm = this
+                this.$validator.validateAll().then(function(isValid) {
+                    if(!isValid) return;
+                    vm.startLoading()
+                    var url = apiUrl+'home/insert'
+                    var message = 'Items added successfully'
 
-		#body {
-			margin: 0 15px 0 15px;
-		}
+                    if(vm.onEdit) {
+                        url = apiUrl+'home/update/'+vm.onEdit
+                        message = 'Items Updated successfully'
+                    } 
 
-		p.footer {
-			text-align: right;
-			font-size: 11px;
-			border-top: 1px solid #D0D0D0;
-			line-height: 32px;
-			padding: 0 10px 0 10px;
-			margin: 20px 0 0 0;
-		}
+                    axios.post(url,
+                    new FormData($('#itemsForm')[0])).then(function(response) {
+                        vm.getRegions() //minu muudatus
+                        vm.createNew()
+                        vm.showMessage(message)
+                        vm.endLoading()                        
+                    }).catch(function(e) {
+                        
+                    })
+                });
+            },
+            getRegions: function() { //minu muudatus
+                axios.get(apiUrl+'home/get_regions').then(
+                    result => {
+                        this.regions = result.data
+                        this.endLoading()
+                    }
+                );
+            },
+            createNew: function() {               
+                this.onEdit = false
+                this.newItems = {
+                    selected:false,
+                    code:'', 
+                    name:''
+                }
+            },
+            edit: function(id) {
+                this.onEdit = id
+                this.startLoading()
+                this.newItems = {
+                    selected:false,
+                    code:'', 
+                    name:''
+                }
+                axios.get(apiUrl+'home/edit/'+id).then(
+                    result => {
+                        this.newItems.code = result.data.code,
+                        this.newItems.name = result.data.name,
+                        this.endLoading()
+                    }
+                );
+            },
+            checkAll: function() {
+                if(this.selectedAll) {
+                    this.selectedAll = true;
+                    this.rows.forEach(function(row) {
+                        row.selected = true
+                    })
+                } else {
+                    this.selectedAll = false;
+                    this.rows.forEach(function(row) {
+                        row.selected = false
+                    })
+                }
+            },
+            checkSelectAll: function() {
+                var check = true;
+                this.rows.forEach(function (row) {
+                    if (row.selected == false) {
+                        check = false;
+                    } 
+                });
+                this.selectedAll = check;
+            },
+            deleteSelected: function() {
+                var conf = confirm("Are you sure to delete?");
+                if(!conf) return true;
+                var vm = this;
+                this.startLoading()
+                this.rows.forEach(function(row) {
+                    if(row.selected) {
+                        vm.delete.push({id:row.id})
+                    }
+                })
+                axios.post(apiUrl+'home/delete/',this.delete).then(function(response) {
+                        
+                    vm.getRows()
+                    vm.selectedAll = false
+                    vm.createNew()
+                    vm.showMessage('Deleted items successfully')
+                    vm.endLoading()
+                })
+                
+            },
+            startLoading: function() {
+                this.loading = true
+            },
+            endLoading: function() {
+                this.loading = false
+            },
+            showMessage: function(message, status = 'success') {
+                this.message = {text:message, status:status}
+                this.removeMessage()
+            },
+            removeMessage: function() {
+                var msg = this
+                setTimeout(function() {
+                    msg.message = {text:'', status:''}
+                }, 5000)
+            }
+        }
+    });
 
-		#container {
-			margin: 10px;
-			border: 1px solid #D0D0D0;
-			box-shadow: 0 0 8px #D0D0D0;
-		}
-	</style>
-</head>
-
-<body>
-
-	<div id="container">
-		<h1>Pärnu Linna Sport</h1>
-
-		<div id="body">
-			HALLOOO	</div>
-
-		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-	</div>
-
-</body>
-
-</html>
+    console.log(data.regions);
+    </script>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Calendar extends CI_Controller
+class Home extends CI_Controller
 {
 
 	//indexit võiks ära kustutada ja asendada alumise funtksiooniga. sama tee ka Week.php kontrolleris
@@ -25,5 +25,13 @@ class Calendar extends CI_Controller
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/' . $page, $data);
 		$this->load->view('templates/footer', $data);
+	}
+
+	Public function get_regions()
+	{
+		$data = array();
+		$data = $this->home->get_regions();
+		echo json_encode($data);
+
 	}
 }
