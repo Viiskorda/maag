@@ -4,13 +4,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Home extends CI_Controller
 {
 
-	//indexit võiks ära kustutada ja asendada alumise funtksiooniga. sama tee ka Week.php kontrolleris
-	// public function index()
-	// {
-	// 	$this->load->view('templates/header');
-	// 	$this->load->view('pages/calendar');
-	// 	$this->load->view('templates/footer');
-	// }
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('home_model');
+	}
 
 
 	public function view($page = 'home') //pääseb ligi: https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/calendar/home
@@ -22,16 +21,29 @@ class Home extends CI_Controller
 
 		$data['title'] = ucfirst($page); // Capitalize the first letter
 
+		$data['regions'] = $this->home_model->getAllRegions();
+		$data['buildings'] = $this->home_model->getAllBuildings();
+		$data['rooms'] = $this->home_model->getAllRooms();
+
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/' . $page, $data);
 		$this->load->view('templates/footer', $data);
 	}
 
-	Public function get_regions()
+	function fetch_state()
 	{
-		$data = array();
-		$data = $this->home->get_regions();
-		echo json_encode($data);
+	 if($this->input->post('country_id'))
+	 {
+	  echo $this->home_model->fetch_state($this->input->post('country_id'));
+	 }
+	}
 
+
+	function fetch_city()
+	{
+	 if($this->input->post('state_id'))
+	 {
+	  echo $this->home_model->fetch_city($this->input->post('state_id'));
+	 }
 	}
 }
