@@ -91,9 +91,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<h1>Pärnu Linna Sport</h1>
 
 		<div id="body">
-			<p>See on avaleht</p>
+			<p>See on avaleht - a</p>
 
-			Linn
+			Linn <?php echo($data['regions']); ?>
 
 			<form action="fullcalendar" method="get">
 				<input list="city" name="city">

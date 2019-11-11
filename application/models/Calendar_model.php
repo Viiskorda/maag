@@ -20,7 +20,8 @@ class Calendar_model extends CI_Model
 
     function getAllBuildings()
     {
-        $query = $this->db->query('SELECT name FROM buildings');
+        $query = $this->db->query('SELECT id, name FROM buildings');
+        echo($query);
         return $query->result();
     }
 
@@ -38,7 +39,7 @@ class Calendar_model extends CI_Model
 
     function getAllRooms()
     {
-        $query = $this->db->query('SELECT name FROM rooms');
+        $query = $this->db->query('SELECT id, name FROM rooms');
         return $query->result();
     }
 
