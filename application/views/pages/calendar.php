@@ -166,7 +166,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<br />
 			<div class="form-group">
-				<select name="city" id="city" class="form-control input-lg">
+				<select name="citys" id="citys" class="form-control input-lg">
 					<option value="">Select City</option>
 				</select>
 			</div>
@@ -200,13 +200,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					success: function(data) {
 						
 						$('#state').html(data);
-						$('#city').html('<option value="">Vali asutus</option>');
+						$('#citys').html('<option value="">Vali asutus</option>');
 					
 					}
 				});
 			} else {
 				$('#state').html('<option value="">Select State</option>');
-				$('#city').html('<option value="">Select rerre</option>');
+				$('#citys').html('<option value="">Select rerre</option>');
 			}
 		});
 
@@ -214,7 +214,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			var state_id = $('#state').val();
 			console.log(state_id);
 			if (state_id != '') {
-				
+				console.log("data");
 				$.ajax({
 					url: "<?php echo base_url(); ?>calendar/fetch_city",
 					method: "POST",
@@ -222,10 +222,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						state_id: state_id
 					},
 					success: function(data) {
-						$('#city').html(data);
-					}
+						console.log("data");
+						$('#citys').html(data);
+					},
 				});
+				
 			} else {
+				
 				$('#city').html('<option value="">Select ruums</option>');
 			}
 		});

@@ -46,7 +46,7 @@ class Calendar_model extends CI_Model
 
     function fetch_city($state_id)
     {
-        $this->db->where('builgingID', $state_id);
+        $this->db->where('buildingID', $state_id);
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get('rooms');
         $output = '<option value="">Select room</option>';
