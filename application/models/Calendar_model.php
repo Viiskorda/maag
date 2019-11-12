@@ -29,7 +29,7 @@ class Calendar_model extends CI_Model
         $this->db->where('regionID', $country_id);
         $this->db->order_by('id', 'ASC');
         $query = $this->db->get('buildings');
-        $output = '<option value="">Select Asutus</option>';
+        $output = '<option value="">Select Asutus</option>'+$query;
         foreach ($query->result() as $row) {
             $output .= '<option value="' . $row->id . '">' . $row->name . '</option>';
         }

@@ -96,28 +96,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			Linn
 
 			<form action="fullcalendar" method="get">
-				<input list="city" name="city">
-				<datalist id="city" name="city">
-					<option value="">Select State</option>
-
-					<?php foreach ($regions as $each) { ?>
-						<option value="<?php echo $each->name; ?>"><?php echo $each->name; ?></option>
-					<?php } ?>
-
-
-					<?php
+				<input  type="text" id="region" list="regions">
+				<datalist id="regions">
+				<?php
 					foreach ($regions as $row) {
 						echo '<option value="' . $row->name . '">' . $row->name . '</option>';
 					}
 					?>
-
 				</datalist>
-
 
 				<br><br>
 				Asutus<br>
-				<input list="asutus" name="asutus">
-				<datalist id="asutus" name="asutus">
+				<input  type="text" id="building" list="buildings">
+				<datalist id="buildings">
 
 					<?php foreach ($buildings as $each) { ?>
 						<option value="<?php echo $each->name; ?>"><?php echo $each->name; ?></option>';
@@ -126,8 +117,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				</datalist>
 				<br><br>
 				Saal<br>
-				<input list="saal" name="saal">
-				<datalist id="saal" name="saal">
+				<input  type="text" id="room" list="rooms">
+				<datalist id="rooms">
 					<?php foreach ($rooms as $each) { ?>
 						<option value="<?php echo $each->name; ?>"><?php echo $each->name; ?></option>';
 					<?php } ?>
@@ -147,7 +138,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 			<div class="form-group">
-				<select name="regions" id="regions" class="form-control input-lg">
+				<select name="regions1" id="regions1" class="form-control input-lg">
 					<option value="">Select Country</option>
 					<?php
 					foreach ($regions as $row) {
@@ -187,21 +178,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 <script>
 	$(document).ready(function() {
-		$('#regions').change(function() {
-			var country_id  = $('#regions').val();
-			
-			if (country_id  != '') {
+		$('#regions1').change(function() {
+			var country_id = $('#regions1').val();
+
+			if (country_id != '') {
 				$.ajax({
 					url: "<?php echo base_url(); ?>calendar/fetch_state",
 					method: "POST",
 					data: {
-						country_id : country_id 
+						country_id: country_id
 					},
 					success: function(data) {
-						
+
 						$('#state').html(data);
 						$('#citys').html('<option value="">Vali asutus</option>');
-					
+
 					}
 				});
 			} else {
@@ -226,12 +217,94 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						$('#citys').html(data);
 					},
 				});
-				
+
 			} else {
-				
+
 				$('#city').html('<option value="">Select ruums</option>');
 			}
 		});
+
+
+		$("region").on('input', function() {
+			var country_id = $('#regions').val();
+			console.log("it works!");
+			if (country_id != '') {
+				$.ajax({
+					url: "<?php echo base_url(); ?>calendar/fetch_state",
+					method: "POST",
+					data: {
+						country_id: country_id
+					},
+					success: function(data) {
+
+						$('#building').html(data);
+						$('#room').html('<option value="">Vali asutus</option>');
+
+					}
+				});
+			} else {
+				$('#building').html('<option value="">Select State</option>');
+				$('#room').html('<option value="">Select rerre</option>');
+			}
+		});
+
+		$("input").on('input', function() {
+			var state_id = $('#building').val();
+			console.log(state_id);
+			if (state_id != '') {
+				console.log("data");
+				$.ajax({
+					url: "<?php echo base_url(); ?>calendar/fetch_city",
+					method: "POST",
+					data: {
+						state_id: state_id
+					},
+					success: function(data) {
+						console.log("data");
+						$('#room').html(data);
+					},
+				});
+
+			} else {
+
+				$('#room').html('<option value="">Select ruums</option>');
+			}
+		});
+		$("#region").on('input', function() {
+			var country_id = this.value;
+
+			// if ($('#regions').find('option').filter(function() {
+			// 		console.log(inputValue);
+			// 		return this.value == inputValue;
+
+			// 	}).length) {
+			// 	//your code as per need
+
+			// 	alert(inputValue);
+
+			// }
+				console.log("it works");
+			if (country_id != '') {
+				$.ajax({
+					url: "<?php echo base_url(); ?>calendar/fetch_state",
+					method: "POST",
+					data: {
+						country_id: country_id
+					},
+					success: function(data) {
+						console.log(data);
+						$('#building').html(data);
+						$('#room').html('<option value="">Vali asutus</option>');
+
+					}
+				});
+			} else {
+				$('#building').html('<option value="">Select State</option>');
+				$('#room').html('<option value="">Select rerre</option>');
+			}
+
+		});
+
 
 	});
 </script>
