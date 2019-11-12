@@ -1,5 +1,4 @@
-application/config/config.php
-application/config/database.php
+*/config/*.php
 
 .DS_Store
 
