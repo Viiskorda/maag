@@ -14,15 +14,14 @@
 
 						<form action="fullcalendar" method="get">
 							<div class="form-label-group">
-								<label for="linn">Piirkond</label>
-								<input id="linn" list="city" name="city"  class="form-control">
-									<datalist id="city" name="city">
-										<option value="">Select State</option>
-
-										<?php foreach ($regions as $each) { ?>
-											<option value="<?php echo $each->name; ?>"><?php echo $each->name; ?></option>
-										<?php } ?>
-
+								<label for="region">Piirkond</label>
+								<input id="region" list="regions"  class="form-control">
+									<datalist id="regions">
+										<?php
+											foreach ($regions as $row) {
+												echo '<option value="' . $row->name . '">' . $row->name . '</option>';
+											}
+										?>
 									</datalist>
 							</div>
 
@@ -66,21 +65,21 @@
 <script>
 
 	$(document).ready(function() {
-		$('#regions').change(function() {
-			var country_id  = $('#regions').val();
-			
-			if (country_id  != '') {
+		$('#regions1').change(function() {
+			var country_id = $('#regions1').val();
+
+			if (country_id != '') {
 				$.ajax({
 					url: "<?php echo base_url(); ?>calendar/fetch_state",
 					method: "POST",
 					data: {
-						country_id : country_id 
+						country_id: country_id
 					},
 					success: function(data) {
-						
+
 						$('#state').html(data);
 						$('#citys').html('<option value="">Vali asutus</option>');
-					
+
 					}
 				});
 			} else {
@@ -105,12 +104,94 @@
 						$('#citys').html(data);
 					},
 				});
-				
+
 			} else {
-				
+
 				$('#city').html('<option value="">Select ruums</option>');
 			}
 		});
+
+
+		$("region").on('input', function() {
+			var country_id = $('#regions').val();
+			console.log("it works!");
+			if (country_id != '') {
+				$.ajax({
+					url: "<?php echo base_url(); ?>calendar/fetch_state",
+					method: "POST",
+					data: {
+						country_id: country_id
+					},
+					success: function(data) {
+
+						$('#building').html(data);
+						$('#room').html('<option value="">Vali asutus</option>');
+
+					}
+				});
+			} else {
+				$('#building').html('<option value="">Select State</option>');
+				$('#room').html('<option value="">Select rerre</option>');
+			}
+		});
+
+		$("input").on('input', function() {
+			var state_id = $('#building').val();
+			console.log(state_id);
+			if (state_id != '') {
+				console.log("data");
+				$.ajax({
+					url: "<?php echo base_url(); ?>calendar/fetch_city",
+					method: "POST",
+					data: {
+						state_id: state_id
+					},
+					success: function(data) {
+						console.log("data");
+						$('#room').html(data);
+					},
+				});
+
+			} else {
+
+				$('#room').html('<option value="">Select ruums</option>');
+			}
+		});
+		$("#region").on('input', function() {
+			var country_id = this.value;
+
+			// if ($('#regions').find('option').filter(function() {
+			// 		console.log(inputValue);
+			// 		return this.value == inputValue;
+
+			// 	}).length) {
+			// 	//your code as per need
+
+			// 	alert(inputValue);
+
+			// }
+				console.log("it works");
+			if (country_id != '') {
+				$.ajax({
+					url: "<?php echo base_url(); ?>calendar/fetch_state",
+					method: "POST",
+					data: {
+						country_id: country_id
+					},
+					success: function(data) {
+						console.log(data);
+						$('#building').html(data);
+						$('#room').html('<option value="">Vali asutus</option>');
+
+					}
+				});
+			} else {
+				$('#building').html('<option value="">Select State</option>');
+				$('#room').html('<option value="">Select rerre</option>');
+			}
+
+		});
+
 
 	});
 </script>
