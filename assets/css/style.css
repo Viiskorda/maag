@@ -1,19 +1,18 @@
-:root {
-    --input-padding-x: 1.5rem;
-    --input-padding-y: 0.75rem;
-  }
-  
-  .login,
-  .image {
+
+  .lookup-lg {
     min-height: 100vh;
   }
 
+  .lookup-sm {
+    min-height: 90vh;
+  }
+
   header {
-    background: lightgrey;
+    background: rgb(203, 203, 203);
   }
 
   .logo {
-    width: 50px;
+    width: 30px;
   }
   
   .bg-image {
@@ -22,38 +21,17 @@
     background-position: center;
   }
   
-  .login-heading {
-    font-weight: 300;
-  }
-  
-  .btn-login {
-    font-size: 0.9rem;
-    letter-spacing: 0.05rem;
-    padding: 0.75rem 1rem;
-    border-radius: 2rem;
-  }
-  
   .form-label-group {
-    position: relative;
+    /* position: relative; */
     margin-bottom: 1rem;
   }
   
-  .form-label-group>input,
   .form-label-group>label {
-    padding: var(--input-padding-y) var(--input-padding-x);
-    height: auto;
-    border-radius: 2rem;
-  }
-  
-  .form-label-group>label {
-    position: absolute;
-    top: 0;
-    left: 0;
     display: block;
     width: 100%;
     margin-bottom: 0;
     /* Override default `<label>` margin */
-    line-height: 1.5;
+    /* line-height: 2.5; */
     color: #495057;
     cursor: text;
     /* Match the input under the label */
