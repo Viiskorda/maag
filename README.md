@@ -6,3 +6,5 @@ Tallinna Ülikooli Haapsalu kolledži 3 kursuse rakendusinformaatika üliõpilas
 Spordiobjektide portaal ja nende ruumide broneeringud Pärnu Linnavalituse spordiga seotud allasutuste näitel. 
 
 Valikpraktika aine raames tehtud projekt.
+
+test
