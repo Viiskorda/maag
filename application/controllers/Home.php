@@ -1,18 +1,18 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Calendar extends CI_Controller
+class Home extends CI_Controller
 {
 
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('calendar_model');
+		$this->load->model('home_model');
 	}
 
 
-	public function view($page = 'calendar') //pääseb ligi: https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/calendar/home
+	public function view($page = 'home') //pääseb ligi: https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/calendar/home
 	{
 		if (!file_exists(APPPATH . 'views/pages/' . $page . '.php')) {
 			// Whoops, we don't have a page for that!
@@ -21,9 +21,9 @@ class Calendar extends CI_Controller
 
 		$data['title'] = ucfirst($page); // Capitalize the first letter
 
-		$data['regions'] = $this->calendar_model->getAllRegions();
-		$data['buildings'] = $this->calendar_model->getAllBuildings();
-		$data['rooms'] = $this->calendar_model->getAllRooms();
+		$data['regions'] = $this->home_model->getAllRegions();
+		$data['buildings'] = $this->home_model->getAllBuildings();
+		$data['rooms'] = $this->home_model->getAllRooms();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/' . $page, $data);
@@ -34,7 +34,7 @@ class Calendar extends CI_Controller
 	{
 	 if($this->input->post('country_id'))
 	 {
-	  echo $this->calendar_model->fetch_state($this->input->post('country_id'));
+	  echo $this->home_model->fetch_state($this->input->post('country_id'));
 	 }
 	}
 
@@ -43,7 +43,7 @@ class Calendar extends CI_Controller
 	{
 	 if($this->input->post('state_id'))
 	 {
-	  echo $this->calendar_model->fetch_city($this->input->post('state_id'));
+	  echo $this->home_model->fetch_city($this->input->post('state_id'));
 	 }
 	}
 }

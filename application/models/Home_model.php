@@ -1,0 +1,59 @@
+<?php
+
+
+class Home_model extends CI_Model
+{
+
+
+
+    function getAllRegions()
+    {
+        // ennem tegin nagu allpool (allikas: https://stackoverflow.com/questions/19922143/display-data-from-database-to-dropdown-codeigniter)
+        // $query = $this->db->query('SELECT name FROM regions');
+        // return $query->result();
+
+
+        $this->db->order_by('id');
+        $query = $this->db->get('regions');
+        return $query->result();
+    }
+
+    function getAllBuildings()
+    {
+        $query = $this->db->query('SELECT name FROM buildings');
+        return $query->result();
+    }
+
+    function fetch_state($country_id)
+    {
+        $this->db->where('regionID', $country_id);
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get('buildings');
+        $output = '<option value="">Select Asutus</option>';
+        foreach ($query->result() as $row) {
+            $output .= '<option value="' . $row->id . '">' . $row->name . '</option>';
+        }
+        return $output;
+    }
+
+    function getAllRooms()
+    {
+        $query = $this->db->query('SELECT name FROM rooms');
+        return $query->result();
+    }
+
+
+
+    function fetch_city($state_id)
+    {
+        $this->db->where('buildingID', $state_id);
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get('rooms');
+        $output = '<option value="">Select room</option>';
+        foreach ($query->result() as $row) {
+            $output .= '<option value="' . $row->id . '">' . $row->name . '</option>';
+        }
+        return $output;
+    }
+}
+

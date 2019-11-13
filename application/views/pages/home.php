@@ -1,90 +1,197 @@
-<?php
-defined('BASEPATH') or exit('No direct script access allowed');
-?>
-<!DOCTYPE html>
-<html lang="en">
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<div class="container">
+		<div class="row no-gutter">
 
-	<style type="text/css">
-		::selection {
-			background-color: #E13300;
-			color: white;
-		}
+			<div class="d-none d-md-flex col-md-6 col-lg-8 bg-image lookup-lg">
+				<!-- Future map -->
+			</div>
 
-		::-moz-selection {
-			background-color: #E13300;
-			color: white;
-		}
 
-		body {
-			background-color: #fff;
-			margin: 40px;
-			font: 13px/20px normal Helvetica, Arial, sans-serif;
-			color: #4F5155;
-		}
+			<div class="col-md-6 col-lg-4">
+				<div class="lookup-lg d-flex align-items-center py-5" id="body">
+					<div class="col-8 align-self center mx-auto">
 
-		a {
-			color: #003399;
-			background-color: transparent;
-			font-weight: normal;
-		}
+						<form action="fullcalendar" method="get">
+							<div class="form-label-group">
+								<label for="region">Piirkond</label>
+								<input id="region" list="regions"  class="form-control">
+									<datalist id="regions">
+										<?php
+											foreach ($regions as $row) {
+												echo '<option value="' . $row->name . '">' . $row->name . '</option>';
+											}
+										?>
+									</datalist>
+							</div>
 
-		h1 {
-			color: #444;
-			background-color: transparent;
-			border-bottom: 1px solid #D0D0D0;
-			font-size: 19px;
-			font-weight: normal;
-			margin: 0 0 14px 0;
-			padding: 14px 15px 10px 15px;
-		}
+							<div class="form-label-group">
+								<label for="facility">Asutus</label>
+								<input id="facility" list="asutus" name="asutus" class="form-control">
+									<datalist id="asutus" name="asutus">
 
-		code {
-			font-family: Consolas, Monaco, Courier New, Courier, monospace;
-			font-size: 12px;
-			background-color: #f9f9f9;
-			border: 1px solid #D0D0D0;
-			color: #002166;
-			display: block;
-			margin: 14px 0 14px 0;
-			padding: 12px 10px 12px 10px;
-		}
+										<?php foreach ($buildings as $each) { ?>
+											<option value="<?php echo $each->name; ?>"><?php echo $each->name; ?></option>';
+										<?php } ?>
 
-		#body {
-			margin: 0 15px 0 15px;
-		}
+									</datalist>
+							</div>
 
-		p.footer {
-			text-align: right;
-			font-size: 11px;
-			border-top: 1px solid #D0D0D0;
-			line-height: 32px;
-			padding: 0 10px 0 10px;
-			margin: 20px 0 0 0;
-		}
+							<div class="form-label-group">
+								<label for="room">Saal</label>
+								<input id="room" list="saal" name="saal" class="form-control">
+									<datalist id="saal" name="saal">
+										<?php foreach ($rooms as $each) { ?>
+											<option value="<?php echo $each->name; ?>"><?php echo $each->name; ?></option>';
+										<?php } ?>
 
-		#container {
-			margin: 10px;
-			border: 1px solid #D0D0D0;
-			box-shadow: 0 0 8px #D0D0D0;
-		}
-	</style>
-</head>
+									</datalist>
+							</div>
 
-<body>
+							<div class="form-label-group">
+								<label for="kp">Kuupäev</label>
+								<input id="kp" class="form-control" name="date" type="text" value="<?php echo (date("d.m.Y")) ?>"> </p>
+							</div>
 
-	<div id="container">
-		<h1>Pärnu Linna Sport</h1>
+							<input class="btn btn-primary" type="submit" value="OTSI">
+						</form>
+					</div>
+				</div>
+			</div>
 
-		<div id="body">
-			HALLOOO	</div>
-
-		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+		</div>
 	</div>
 
-</body>
+<script>
 
-</html>
+	$(document).ready(function() {
+		$('#regions1').change(function() {
+			var country_id = $('#regions1').val();
+
+			if (country_id != '') {
+				$.ajax({
+					url: "<?php echo base_url(); ?>calendar/fetch_state",
+					method: "POST",
+					data: {
+						country_id: country_id
+					},
+					success: function(data) {
+
+						$('#state').html(data);
+						$('#citys').html('<option value="">Vali asutus</option>');
+
+					}
+				});
+			} else {
+				$('#state').html('<option value="">Select State</option>');
+				$('#citys').html('<option value="">Select rerre</option>');
+			}
+		});
+
+		$('#state').change(function() {
+			var state_id = $('#state').val();
+			console.log(state_id);
+			if (state_id != '') {
+				console.log("data");
+				$.ajax({
+					url: "<?php echo base_url(); ?>calendar/fetch_city",
+					method: "POST",
+					data: {
+						state_id: state_id
+					},
+					success: function(data) {
+						console.log("data");
+						$('#citys').html(data);
+					},
+				});
+
+			} else {
+
+				$('#city').html('<option value="">Select ruums</option>');
+			}
+		});
+
+
+		$("region").on('input', function() {
+			var country_id = $('#regions').val();
+			console.log("it works!");
+			if (country_id != '') {
+				$.ajax({
+					url: "<?php echo base_url(); ?>calendar/fetch_state",
+					method: "POST",
+					data: {
+						country_id: country_id
+					},
+					success: function(data) {
+
+						$('#building').html(data);
+						$('#room').html('<option value="">Vali asutus</option>');
+
+					}
+				});
+			} else {
+				$('#building').html('<option value="">Select State</option>');
+				$('#room').html('<option value="">Select rerre</option>');
+			}
+		});
+
+		$("input").on('input', function() {
+			var state_id = $('#building').val();
+			console.log(state_id);
+			if (state_id != '') {
+				console.log("data");
+				$.ajax({
+					url: "<?php echo base_url(); ?>calendar/fetch_city",
+					method: "POST",
+					data: {
+						state_id: state_id
+					},
+					success: function(data) {
+						console.log("data");
+						$('#room').html(data);
+					},
+				});
+
+			} else {
+
+				$('#room').html('<option value="">Select ruums</option>');
+			}
+		});
+		$("#region").on('input', function() {
+			var country_id = this.value;
+
+			// if ($('#regions').find('option').filter(function() {
+			// 		console.log(inputValue);
+			// 		return this.value == inputValue;
+
+			// 	}).length) {
+			// 	//your code as per need
+
+			// 	alert(inputValue);
+
+			// }
+				console.log("it works");
+			if (country_id != '') {
+				$.ajax({
+					url: "<?php echo base_url(); ?>calendar/fetch_state",
+					method: "POST",
+					data: {
+						country_id: country_id
+					},
+					success: function(data) {
+						console.log(data);
+						$('#building').html(data);
+						$('#room').html('<option value="">Vali asutus</option>');
+
+					}
+				});
+			} else {
+				$('#building').html('<option value="">Select State</option>');
+				$('#room').html('<option value="">Select rerre</option>');
+			}
+
+		});
+
+
+	});
+</script>
