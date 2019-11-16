@@ -1,10 +1,10 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
-<div class="container">
+<div class="container-fluid">
 	<div class="row no-gutter">
 
-		<div class="d-none d-md-flex col-md-6 col-lg-8 bg-image lookup-lg">
-			<!-- Future map -->
+		<div class="d-none d-md-flex col-md-6 col-lg-7 lookup-lg p-0">
+			<iframe width="100%" height="100%" frameborder="0" title="Pärnu Linnavalitsuse spordiobjektid" src="//www.arcgis.com/apps/Embed/index.html?webmap=24c3f704a6904a1c9e19900fd6306fe5&extent=23.6259,58.0795,25.5569,58.6123&zoom=true&previewImage=false&scale=true&disable_scroll=false&theme=dark"></iframe>
 		</div>
 
 
@@ -92,11 +92,6 @@
 
 				</div>
 			</div>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> fcb7b9f90bd3d73de533e7d02759ff9ea9b0209f
 		</div>
 
 	</div>
