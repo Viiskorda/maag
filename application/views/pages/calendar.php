@@ -96,9 +96,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			Linn
 
 			<form action="fullcalendar" method="get">
-				<input  type="text" id="region" list="regions">
+				<input type="text" id="region" list="regions">
 				<datalist id="regions">
-				<?php
+					<?php
 					foreach ($regions as $row) {
 						echo '<option value="' . $row->name . '">' . $row->name . '</option>';
 					}
@@ -107,7 +107,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 				<br><br>
 				Asutus<br>
-				<input  type="text" id="building" list="buildings">
+				<input type="text" id="building" list="buildings">
 				<datalist id="buildings">
 
 					<?php foreach ($buildings as $each) { ?>
@@ -117,7 +117,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				</datalist>
 				<br><br>
 				Saal<br>
-				<input  type="text" id="room" list="rooms">
+				<input type="text" id="room" list="rooms">
 				<datalist id="rooms">
 					<?php foreach ($rooms as $each) { ?>
 						<option value="<?php echo $each->name; ?>"><?php echo $each->name; ?></option>';
@@ -213,7 +213,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						state_id: state_id
 					},
 					success: function(data) {
-						console.log("data");
+						console.log(data);
 						$('#citys').html(data);
 					},
 				});
@@ -225,52 +225,56 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		});
 
 
-		$("region").on('input', function() {
-			var country_id = $('#regions').val();
-			console.log("it works!");
-			if (country_id != '') {
-				$.ajax({
-					url: "<?php echo base_url(); ?>calendar/fetch_state",
-					method: "POST",
-					data: {
-						country_id: country_id
-					},
-					success: function(data) {
+		// $("region").on('input', function() {
+		// 	var country_id = $('#regions').val();
+		// 	console.log("it works!");
+		// 	if (country_id != '') {
+		// 		$.ajax({
+		// 			url: "<?php echo base_url(); ?>calendar/fetch_state",
+		// 			method: "POST",
+		// 			data: {
+		// 				country_id: country_id
+		// 			},
+		// 			success: function(data) {
 
-						$('#building').html(data);
-						$('#room').html('<option value="">Vali asutus</option>');
+		// 				$('#building').html(data);
+		// 				$('#room').html('<option value="">Vali asutus</option>');
 
-					}
-				});
-			} else {
-				$('#building').html('<option value="">Select State</option>');
-				$('#room').html('<option value="">Select rerre</option>');
-			}
-		});
+		// 			}
+		// 		});
+		// 	} else {
+		// 		$('#building').html('<option value="">Select State</option>');
+		// 		$('#room').html('<option value="">Select rerre</option>');
+		// 	}
+		// });
 
-		$("input").on('input', function() {
-			var state_id = $('#building').val();
-			console.log(state_id);
-			if (state_id != '') {
-				console.log("data");
-				$.ajax({
-					url: "<?php echo base_url(); ?>calendar/fetch_city",
-					method: "POST",
-					data: {
-						state_id: state_id
-					},
-					success: function(data) {
-						console.log("data");
-						$('#room').html(data);
-					},
-				});
+		// $("input").on('input', function() {
+		// 	var state_id = $('#building').val();
+		// 	console.log(state_id);
+		// 	if (state_id != '') {
+		// 		console.log("data");
+		// 		$.ajax({
+		// 			url: "<?php echo base_url(); ?>calendar/fetch_city",
+		// 			method: "POST",
+		// 			data: {
+		// 				state_id: state_id
+		// 			},
+		// 			success: function(data) {
+		// 				console.log("data");
+		// 				$('#room').html(data);
+		// 			},
+		// 		});
 
-			} else {
+		// 	} else {
 
-				$('#room').html('<option value="">Select ruums</option>');
-			}
-		});
-		$("#region").on('input', function() {
+		// 		$('#room').html('<option value="">Select ruums</option>');
+		// 	}
+		// });
+
+		$("#region").on("change keydown input paste", function() {
+			var selectedOption = $("#regions option[value='" + $(this).val() + "']");
+			var selectedPerson = parseInt(selectedOption.attr('data-empid-clean'));
+
 			var country_id = this.value;
 
 			// if ($('#regions').find('option').filter(function() {
@@ -283,7 +287,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			// 	alert(inputValue);
 
 			// }
-				console.log("it works");
+			console.log("it works " + this.value);
 			if (country_id != '') {
 				$.ajax({
 					url: "<?php echo base_url(); ?>calendar/fetch_state",
@@ -291,10 +295,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					data: {
 						country_id: country_id
 					},
+					error: function(req, err) {
+						console.log('my error message' + err);
+					},
 					success: function(data) {
-						console.log(data);
-						$('#building').html(data);
-						$('#room').html('<option value="">Vali asutus</option>');
+						console.log($("#buildings").html(data));
+						$("#buildings").empty();
+
+						for (var i = 0; i < data.length; i++) {
+							$("#buildings").append("<option value='" +
+								data[i].name + "'></option>");
+						}
+
+						// $('#building').html(data);
+						// $('#room').html('<option value="">Vali asutus</option>');
 
 					}
 				});

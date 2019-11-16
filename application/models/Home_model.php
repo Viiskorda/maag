@@ -20,7 +20,7 @@ class Home_model extends CI_Model
 
     function getAllBuildings()
     {
-        $query = $this->db->query('SELECT id, name FROM buildings');
+        $query = $this->db->query('SELECT name FROM buildings');
         return $query->result();
     }
 
@@ -31,17 +31,16 @@ class Home_model extends CI_Model
         $query = $this->db->get('buildings');
         $output = '<option value="">Select Asutus</option>';
         foreach ($query->result() as $row) {
-            $output .= '<option value="' . $row->id . '">' . $row->name . '</option>';
+            $output .= '<option  data-value="' . $row->id . '" value="' . $row->name . '">'.$row->name.'</option>';
         }
         return $output;
     }
 
     function getAllRooms()
     {
-        $query = $this->db->query('SELECT id, name FROM rooms');
+        $query = $this->db->query('SELECT name FROM rooms');
         return $query->result();
     }
-
 
 
     function fetch_city($state_id)
@@ -51,8 +50,9 @@ class Home_model extends CI_Model
         $query = $this->db->get('rooms');
         $output = '<option value="">Select room</option>';
         foreach ($query->result() as $row) {
-            $output .= '<option value="' . $row->id . '">' . $row->name . '</option>';
+            $output .= '<option  data-value="' . $row->id . '" value="' . $row->name . '">'.$row->name.'</option>';
         }
         return $output;
     }
 }
+
