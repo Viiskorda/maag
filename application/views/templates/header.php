@@ -11,6 +11,7 @@
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <script src="<?php echo base_url(); ?>assets/js/jquery-3.4.1.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/7867c1b872.js" crossorigin="anonymous"></script>
     
 </head>
 
@@ -18,21 +19,27 @@
 
 <!-- Navigation -->
     <header>
-        <nav class="navbar navbar-expand-md navbar-light p-0">
-            <div class="container p-0">
-                <div class="navbar-header  pr-5">
-                    <img class="logo navbar-brand mr-1" src="<?php echo base_url(); ?>assets/img/plv_vapp.svg" alt="logo" class="logo">
-                    <a class="navbar-brand align-middle p-0" href="#">Pärnu Linnavalitsus</a>
+        <nav class="navbar navbar-expand-md p-0 bg">
+            <div class="container-fluid p-0">
+                <div class="navbar-header pr-5 pl-2">
+                    <img class="logo navbar-brand mr-1 py-0" src="<?php echo base_url(); ?>assets/img/plv_vapp.svg" alt="logo" class="logo">
+                    <a class="navbar-brand align-middle p-0 text-white" href="#">Pärnu Linnavalitsus</a>
                 </div>
-                <ul class="navbar-nav mr-auto mt-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#">Kinnitamata ajad <span class="label label-primary">5</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Kasutajad</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Asutuse sätted</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Profiil</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item"><a class="nav-link" href="#">Logi välja</a></li>
-                </ul>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto mt-lg-0">
+                        <li class="nav-item"><a class="nav-link font-weight-light text-white" href="#">Kinnitamata ajad <span class="badge">5</span></a></li>
+                        <li class="nav-item"><a class="nav-link font-weight-light text-white" href="#">Kasutajad</a></li>
+                        <li class="nav-item"><a class="nav-link font-weight-light text-white" href="#">Asutuse sätted</a></li>
+                        <li class="nav-item"><a class="nav-link font-weight-light text-white" href="#">Profiil</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item"><a class="nav-link font-weight-light text-white" href="#">Logi välja</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>

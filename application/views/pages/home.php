@@ -1,16 +1,16 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row no-gutter">
 
-			<div class="d-none d-md-flex col-md-6 col-lg-8 bg-image lookup-lg">
+			<div class="d-none d-md-flex col-md-6 col-lg-7 lookup-lg p-0">
 				<!-- Future map -->
+				<iframe width="100%" height="100%" src="https://parnu-lv.maps.arcgis.com/apps/MapJournal/index.html?appid=137da5635d134d4e9c4812331590738b" frameborder="0" scrolling="no"></iframe>
 			</div>
 
-
-			<div class="col-md-6 col-lg-4">
+			<div class="col-md-6 col-lg-5">
 				<div class="lookup-lg d-flex align-items-center py-5" id="body">
-					<div class="col-8 align-self center mx-auto">
+					<div class="col-6 align-self center mx-auto">
 
 						<form action="fullcalendar" method="get">
 							<div class="form-label-group">
@@ -19,7 +19,7 @@
 									<datalist id="regions">
 										<?php
 											foreach ($regions as $row) {
-												echo '<option value="' . $row->name . '">' . $row->name . '</option>';
+												echo '<option data-value="' . $row->id . '">' . $row->name . '</option>';
 											}
 										?>
 									</datalist>
@@ -58,6 +58,7 @@
 					</div>
 				</div>
 			</div>
+
 
 		</div>
 	</div>

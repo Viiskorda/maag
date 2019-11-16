@@ -1,6 +1,17 @@
+footer {
+  background: grey;
+  height: 9.2vh;
+  overflow: hidden;
+}
+iframe {
+  left: -300px;
+}
 
+.bg {
+  background: rgb(10, 56, 84);
+}
   .lookup-lg {
-    min-height: 100vh;
+    min-height: 85vh;
   }
 
   .lookup-sm {
@@ -8,11 +19,24 @@
   }
 
   header {
-    background: rgb(203, 203, 203);
+    background: rgb(10, 56, 84);
+    font-style: normal !important;
+  }
+
+  .navbar {
+    position: relative;
   }
 
   .logo {
-    width: 30px;
+    position: absolute;
+    /* left: 5vw; */
+    width: 3vw;
+    z-index: 1;
+    padding: 0;
+  }
+
+  .navbar-header>a {
+    margin-left: 3.5vw;
   }
   
   .bg-image {
@@ -95,4 +119,71 @@
     .form-label-group input:-ms-input-placeholder {
       color: #777;
     }
+  }
+
+  @media screen and (min-width: 1200px) {
+    header, .navbar-brand {
+      font-size: 18px;
+    }
+  }
+
+  @media screen and (max-width: 1199px) {
+    header {
+      font-size: 16px;
+    }
+    .navbar-brand {
+      font-size: 18px !important;
+    }
+  }
+  @media screen and (max-width: 992px) {
+    header {
+      font-size: 14px;
+    }
+    .navbar-brand {
+      font-size: 16px !important;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    header {
+      font-size: 12px;
+    }
+    .navbar-brand {
+      font-size: 14px !important;
+    }
+    .navbar-toggler {
+      font-size: 16px;
+      color: white;
+    }
+    .logo {
+      min-width: 4vw !important;
+    }
+    
+    .navbar-header>a {
+      margin-left: 4.5vw;
+    }
+  }
+  @media screen and (max-width: 576px) {
+    header {
+      font-size: 10px !important;
+    }
+    .navbar-brand {
+      font-size: 12px !important;
+    }
+    .navbar-toggler {
+      font-size: 14px;
+      color: white;
+    }
+
+    .logo {
+      min-width: 5vw !important;
+    }
+    
+    .navbar-header>a {
+      margin-left: 5.5vw;
+    }
+  }
+
+  .navbar-toggler {
+    font-size: 16px;
+    color: white;
   }
