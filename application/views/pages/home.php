@@ -1,5 +1,7 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
+
+
 <div class="container-fluid">
 	<div class="row no-gutter">
 
@@ -51,9 +53,14 @@
 						</div>
 
 						<div class="form-label-group">
-							<label for="kp">Kuupäev</label>
-							<input id="kp" class="form-control" name="date" type="text" value="<?php echo (date("d.m.Y")) ?>"> </p>
+							<label for="app">Kuupäev</label>
+							<div id='app' >
+								<v-date-picker mode="single" v-model="date":popover="{ visibility: 'click' }">
+									<input id="date" slot-scope="{ inputProps, inputEvents}" :class="[`form-control`]" v-bind="inputProps" v-on="inputEvents">
+								</v-date-picker>
+							</div>
 						</div>
+
 
 						<input class="btn btn-primary" type="submit" value="OTSI">
 					</form>
@@ -87,9 +94,6 @@
 					</div>
 
 
-
-
-
 				</div>
 			</div>
 		</div>
@@ -97,7 +101,31 @@
 	</div>
 </div>
 
+
+<script src='https://unpkg.com/v-calendar@next'></script>
+  
+
 <script>
+// Datepicker app - DO NOT TOUCH xD -------------->
+	new Vue({
+			el: '#app',
+			data: {
+			// Data used by the date picker
+			mode: 'single',
+			selectedDate: null,
+			attrs: [
+			{
+				key: 'today',
+				highlight: true,
+				dates: new Date(),
+				},
+			],
+			date: new Date(),
+		}
+	})
+// <------------ Datepicker app - DO NOT TOUCH xD
+
+
 	$(document).ready(function() {
 		$('#regions1').change(function() {
 			var country_id = $('#regions1').val();
