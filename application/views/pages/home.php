@@ -17,7 +17,7 @@
 					<form action="fullcalendar" method="get">
 						<div class="form-label-group">
 							<label for="region">Piirkond</label>
-							<input id="region" list="regions" class="form-control">
+							<input id="region" list="regions"  name="regions" class="form-control" name="datalistinput1">
 							<datalist id="regions">
 								<?php
 								foreach ($regions as $row) {
@@ -54,8 +54,8 @@
 
 						<div class="form-label-group">
 							<label for="app">Kuupäev</label>
-							<div id='app' >
-								<v-date-picker mode="single" v-model="date":popover="{ visibility: 'click' }">
+							<div id='app'>
+								<v-date-picker mode="single" v-model="date" :popover="{ visibility: 'click' }">
 									<input id="date" slot-scope="{ inputProps, inputEvents}" :class="[`form-control`]" v-bind="inputProps" v-on="inputEvents">
 								</v-date-picker>
 							</div>
@@ -103,27 +103,25 @@
 
 
 <script src='https://unpkg.com/v-calendar@next'></script>
-  
+
 
 <script>
-// Datepicker app - DO NOT TOUCH xD -------------->
+	// Datepicker app - DO NOT TOUCH xD -------------->
 	new Vue({
-			el: '#app',
-			data: {
+		el: '#app',
+		data: {
 			// Data used by the date picker
 			mode: 'single',
 			selectedDate: null,
-			attrs: [
-			{
+			attrs: [{
 				key: 'today',
 				highlight: true,
 				dates: new Date(),
-				},
-			],
+			}, ],
 			date: new Date(),
 		}
 	})
-// <------------ Datepicker app - DO NOT TOUCH xD
+	// <------------ Datepicker app - DO NOT TOUCH xD
 
 
 	$(document).ready(function() {
@@ -205,9 +203,21 @@
 
 
 
+		$('input[name=regions]').focusin(function() {
+			$('input[name=regions]').val('');
+		});
+		
+		$('input[name=asutus]').focusin(function() {
+			$('input[name=asutus]').val('');
+		});
+		
+		$('input[name=saal]').focusin(function() {
+			$('input[name=saal]').val('');
+		});
+		
 
 
-		$("#region").on('input', function(e) {
+		$("#region").on('change keydown input paste', function(e) {
 
 
 			var $input = $(this),
@@ -218,7 +228,7 @@
 				});
 
 			if (match.length > 0) {
-				console.log("match")
+				console.log("match");
 
 
 				var value = $('#region').val();
@@ -238,17 +248,21 @@
 						$("#room").empty();
 						$('#asutus').html(data).appendTo("#asutus");
 
+
 					}
 				});
 
 
 			} else {
-				console.log("dismatch")
+				console.log("dismatch");
+				$('#room').val('');
+				$('#facility').val('');
+			
 			}
 		});
 
 
-		$("#facility").on('input', function(e) {
+		$("#facility").on('change keydown input paste', function(e) {
 
 
 			var $input = $(this),
@@ -259,7 +273,7 @@
 				});
 
 			if (match.length > 0) {
-
+				console.log("match");
 				var value = $('#facility').val();
 				var state_id = $('#asutus [value="' + value + '"]').data('value');
 
@@ -273,6 +287,7 @@
 
 					success: function(data) {
 						console.log("data on " + data);
+						$('#room').val('');
 						$("#saal").empty();
 						//	$('#saal').html('<option value="">Vali asutus</option>');
 						$('#saal').html(data).appendTo("#saal");
@@ -283,8 +298,11 @@
 
 			} else {
 				console.log("dismatch");
+				$('#room').val('');
 			}
 		});
+
+
 
 
 
