@@ -27,7 +27,7 @@
                 dayNamesShort: ['P', 'E', 'T', 'K', 'N', 'R', 'L'],
                 views: {
                     week: { // name of view
-                        columnFormat: " ddd M.D"
+                        columnFormat: " ddd D.M"
                         // other view-specific options here
                     }
                 },
