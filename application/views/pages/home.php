@@ -54,15 +54,9 @@
 
 						<div class="form-label-group">
 							<label for="app">Kuupäev</label>
-<<<<<<< HEAD
 							<div id='app'>
 								<v-date-picker mode="single" v-model="date" :popover="{ visibility: 'click' }">
-									<input id="date" slot-scope="{ inputProps, inputEvents}" :class="[`form-control`]" v-bind="inputProps" v-on="inputEvents">
-=======
-							<div id='app' >
-								<v-date-picker mode="single" v-model="date" :popover="{ visibility: 'click' }">
-									<input id="date" slot-scope="{ inputProps, inputEvents}" :class="[`form-control`]" v-bind="inputProps" v-on="inputEvents" name="date" value="date">
->>>>>>> 54c13184db9f52c63badefebfd44f0d2bd5c8325
+									<input id="date" slot-scope="{ inputProps, inputEvents}" :class="[`form-control`]" v-bind="inputProps" v-on="inputEvents"  name="date" value="date">
 								</v-date-picker>
 							</div>
 						</div>
@@ -119,14 +113,10 @@
 			// Data used by the date picker
 			mode: 'single',
 			selectedDate: null,
-<<<<<<< HEAD
-			attrs: [{
-=======
 			firstDayOfWeek: 2,
 			
 			attrs: [
 			{
->>>>>>> 54c13184db9f52c63badefebfd44f0d2bd5c8325
 				key: 'today',
 				highlight: true,
 				dates: new Date(),
