@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-    <title>Pärnu Linnavalitsuse spordibaasid</title>
+    <title>Pärnu Spordikeskuste Andmebaas</title>
 
     <!-- Styles -->
     
@@ -24,27 +24,29 @@
 
 <!-- Navigation -->
     <header>
-        <nav class="navbar navbar-expand-md p-0 bg">
-            <div class="container-fluid p-0">
-                <div class="navbar-header pr-5 pl-2">
-                    <img class="logo navbar-brand mr-1 py-0" src="<?php echo base_url(); ?>assets/img/plv_vapp.svg" alt="logo" class="logo">
+        <nav class="navbar navbar-expand-md p-0 nav-bg">
+            <div class="container p-0">
+                <div class="navbar-header pr-5 pl-0">
+                <a class="navbar-brand mr-1 py-1" href="<?php echo base_url(); ?>"><img class="logo" src="<?php echo base_url(); ?>assets/img/plv_vapp_blue.svg" alt="logo" class="logo"></a>
                     <a class="navbar-brand align-middle p-0 text-white" href="<?php echo base_url(); ?>">Pärnu Linnavalitsus</a>
                 </div>
 
+    <?php if (true) { ?>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto mt-lg-0">
-                        <li class="nav-item"><a class="nav-link font-weight-light text-white" href="#">Kinnitamata ajad <span class="badge badge-light">5</span></a></li>
-                        <li class="nav-item"><a class="nav-link font-weight-light text-white" href="#">Kasutajad</a></li>
-                        <li class="nav-item"><a class="nav-link font-weight-light text-white" href="#">Asutuse sätted</a></li>
-                        <li class="nav-item"><a class="nav-link font-weight-light text-white" href="#">Profiil</a></li>
+                        <li class="nav-item"><a class="nav-link font-weight-light text-white py-0 pr-5" href="#"><strong>Kinnitamata ajad</strong> <span class="badge badge-light">5</span></a></li>
+                        <li class="nav-item"><a class="nav-link font-weight-light text-white py-0 pr-5" href="#">Kasutajad</a></li>
+                        <li class="nav-item"><a class="nav-link font-weight-light text-white py-0 pr-5" href="#">Asutuse sätted</a></li>
+                        <li class="nav-item"><a class="nav-link font-weight-light text-white py-0" href="#">Profiil</a></li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a class="nav-link font-weight-light text-white" href="#">Logi välja</a></li>
+                    <ul class="nav navbar-nav navbar-right p-0">
+                        <li class="nav-item"><a class="nav-link font-weight-light text-white p-0" href="#"><u>Logi välja</u></a></li>
                     </ul>
                 </div>
+    <?php } ?>
             </div>
         </nav>
     </header>

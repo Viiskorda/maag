@@ -2,6 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
 class Fullcalendar extends CI_Controller {
 
 	public function __construct()
@@ -12,7 +13,10 @@ class Fullcalendar extends CI_Controller {
 
 	function index()
 	{
+
+		$this->load->view('templates/header');
 		$this->load->view('pages/fullcalendar');
+		$this->load->view('templates/footer');
 	}
 
 	function load()

@@ -5,19 +5,21 @@
 <div class="container-fluid">
 	<div class="row no-gutter">
 
-		<div class="d-none d-md-flex col-md-6 col-lg-7 lookup-lg p-0">
-			<iframe width="100%" height="100%" frameborder="0" title="Pärnu Linnavalitsuse spordiobjektid" src="//www.arcgis.com/apps/Embed/index.html?webmap=24c3f704a6904a1c9e19900fd6306fe5&extent=23.6259,58.0795,25.5569,58.6123&zoom=true&previewImage=false&scale=true&disable_scroll=false&theme=dark"></iframe>
+		<div class="d-none d-md-flex col-md-6 col-lg-7 lookup-lg p-0 bg-image">
+			<p class="intro"><span>Kõigi Pärnu spordikeskuste vabad ajad ühes kohas!</span></p>
+			<!-- <iframe width="100%" height="100%" frameborder="0" title="Pärnu Linnavalitsuse spordiobjektid" src="//www.arcgis.com/apps/Embed/index.html?webmap=24c3f704a6904a1c9e19900fd6306fe5&extent=23.6259,58.0795,25.5569,58.6123&zoom=true&previewImage=false&scale=true&disable_scroll=false&theme=dark"></iframe> -->
 		</div>
 
 
 		<div class="col-md-6 col-lg-4">
 			<div class="lookup-lg d-flex align-items-center py-5" id="body">
-				<div class="col-8 align-self center mx-auto">
+				<div class="col-7 align-self center mx-auto">
 
 					<form action="fullcalendar" method="get">
 						<div class="form-label-group">
 							<label for="region">Piirkond</label>
-							<input id="region" list="regions"  name="regions" class="form-control" name="datalistinput1">
+							
+							<input id="region" list="regions"  name="regions" class="form-control arrow" name="datalistinput1" type="text">
 							<datalist id="regions">
 								<?php
 								foreach ($regions as $row) {
@@ -29,7 +31,7 @@
 
 						<div class="form-label-group">
 							<label for="facility">Asutus</label>
-							<input id="facility" list="asutus" name="asutus" class="form-control">
+							<input id="facility" list="asutus" name="asutus" class="form-control arrow">
 							<datalist id="asutus" name="asutus">
 
 								<?php foreach ($buildings as $each) {
@@ -43,7 +45,7 @@
 
 						<div class="form-label-group">
 							<label for="room">Saal</label>
-							<input id="room" list="saal" name="saal" class="form-control">
+							<input id="room" list="saal" name="saal" class="form-control arrow">
 							<datalist id="saal" name="saal">
 								<?php foreach ($rooms as $each) { ?>
 									<option value="<?php echo $each->name; ?>"><?php echo $each->name; ?></option>';
@@ -62,36 +64,8 @@
 						</div>
 
 
-						<input class="btn btn-primary" type="submit" value="OTSI">
+						<input class="btn btn-custom col-12 text-white" type="submit" value="OTSI">
 					</form>
-
-
-					<br>
-
-					<div class="form-group">
-						<select name="regions1" id="regions1" class="form-control input-lg">
-							<option value="">Select Country</option>
-							<?php
-							foreach ($regions as $row) {
-								echo '<option value="' . $row->id . '">' . $row->name . '</option>';
-							}
-							?>
-						</select>
-					</div>
-
-					<br />
-					<div class="form-group">
-						<select name="state" id="state" class="form-control input-lg">
-							<option value="">Select State</option>
-						</select>
-					</div>
-
-					<br />
-					<div class="form-group">
-						<select name="citys" id="citys" class="form-control input-lg">
-							<option value="">Select City</option>
-						</select>
-					</div>
 
 
 				</div>

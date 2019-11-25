@@ -5,7 +5,6 @@ class Home_model extends CI_Model
 {
 
 
-
     function getAllRegions()
     {
         // ennem tegin nagu allpool (allikas: https://stackoverflow.com/questions/19922143/display-data-from-database-to-dropdown-codeigniter)

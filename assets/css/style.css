@@ -1,68 +1,63 @@
-footer {
-  background: grey;
-  height: 9.2vh;
-  overflow: hidden;
-}
-
-/* .embed-container {
-  position: relative; 
-  padding-bottom: 80%; 
-  height: 0;
-  max-width: 100%;
-}  */
-/* .embed-container iframe, 
-.embed-container object, 
-.embed-container iframe{
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  width: 100%; 
-  height: 100%;
-}  */
-/* small{
-  position: absolute; 
-  z-index: 40; 
-  bottom: 0;
-  margin-bottom: -15px;
-} */
-
-.bg {
-  background: rgb(10, 56, 84);
-}
-  .lookup-lg {
-    min-height: 85vh;
+  * {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
   }
 
-  .lookup-sm {
-    min-height: 90vh;
+  body {
+    background: #FBFBFB;
   }
 
-  header {
-    background: rgb(10, 56, 84);
-    font-style: normal !important;
+  footer {
+    background: grey;
+    height: 9.2vh;
+    overflow: hidden;
   }
 
-  .navbar {
-    position: relative;
+  input::-webkit-calendar-picker-indicator {
+    display: none;
   }
 
-  .logo {
-    position: absolute;
-    /* left: 5vw; */
-    width: 3vw;
-    z-index: 1;
-    padding: 0;
+  .arrow {
+    background: url('http://localhost/maag/assets/img/chevron-down-solid.svg') no-repeat 96% / 8% #fff;
   }
 
-  .navbar-header>a {
-    margin-left: 3.5vw;
+  .nav-bg {
+    background: rgb(11, 57, 84);
   }
-  
   .bg-image {
-    background-image: url('https://source.unsplash.com/WEQbe2jBg40/600x1200');
+    position: relative;
+    background-image: url('http://localhost/maag/assets/img/p2rnu_uptop.jpg');
     background-size: cover;
     background-position: center;
   }
+  .lookup-lg {
+    min-height: 95vh;
+  }
+
+  .logo {
+    /* width: 2vw; */
+    width: 25px;
+  }
+
+  .text-white {
+    color: #FBFBFB;
+  }
+  
+ .intro {
+   margin-top: 100px;
+   position: absolute;
+   background:rgba(0, 0, 0, 0.5);
+   padding-left: 20px;
+ }
+
+ .intro span {
+  font-size: 60px;
+  font-weight: 600;
+  color: #FBFBFB;
+  line-height: 1.25;
+
+ }
   
   .form-label-group {
     /* position: relative; */
@@ -73,9 +68,7 @@ footer {
     display: block;
     width: 100%;
     margin-bottom: 0;
-    /* Override default `<label>` margin */
-    /* line-height: 2.5; */
-    color: #495057;
+    color: #0B3954;
     cursor: text;
     /* Match the input under the label */
     border: 1px solid transparent;
@@ -140,13 +133,18 @@ footer {
     }
   }
 
-  @media screen and (min-width: 1200px) {
+  .btn-custom {
+    background: #1A7AB7;
+    
+  }
+
+  /* @media screen and (min-width: 1200px) {
     header, .navbar-brand {
       font-size: 18px;
     }
-  }
+  } */
 
-  @media screen and (max-width: 1199px) {
+  /* @media screen and (max-width: 1199px) {
     header {
       font-size: 16px;
     }
@@ -205,4 +203,4 @@ footer {
   .navbar-toggler {
     font-size: 16px;
     color: white;
-  }
+  } */
