@@ -19,7 +19,7 @@
   }
 
   .arrow {
-    background: url('http://localhost/maag/assets/img/chevron-down-solid.svg') no-repeat 96% / 8% #fff;
+    background: url('https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/assets/img/chevron-down-solid.svg') no-repeat 96% / 8% #fff;
   }
 
   .nav-bg {
@@ -27,7 +27,7 @@
   }
   .bg-image {
     position: relative;
-    background-image: url('http://localhost/maag/assets/img/p2rnu_uptop.jpg');
+    background-image: url('https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/assets/img/p2rnu_uptop.jpg');
     background-size: cover;
     background-position: center;
   }
