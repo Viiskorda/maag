@@ -131,7 +131,7 @@
 <body>
     <?php  echo $this->uri->segment('3');?>
     <br />
-    <?php  echo($this->input->get('saal', TRUE));?>
+    <?php  echo($this->input->get('roomId', TRUE));?>
 
     <br />
     <!-- <div class="container"> -->

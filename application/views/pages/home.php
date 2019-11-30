@@ -19,7 +19,7 @@
                         <div class="form-label-group">
                             <label for="region">Piirkond</label>
 
-                            <input id="region" list="regions" name="regions" class="form-control arrow" name="datalistinput1" type="text">
+                            <input id="region" list="regions"  class="form-control arrow"  type="text">
                             <datalist id="regions">
                                 <?php
                                 foreach ($regions as $row) {
@@ -31,8 +31,8 @@
 
                         <div class="form-label-group">
                             <label for="sport_facility">Asutus</label>
-                            <input id="sport_facility" list="asutus" name="asutus" class="form-control arrow">
-                            <datalist id="asutus" name="asutus">
+                            <input id="sport_facility" list="asutus"  class="form-control arrow">
+                            <datalist id="asutus" >
 
                                 <?php foreach ($buildings as $each) {
                                     echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
@@ -45,15 +45,15 @@
 
                         <div class="form-label-group">
                             <label for="room">Saal</label>
-                            <input id="room" list="saal" name="saal" class="form-control arrow">
-                            <datalist id="saal" name="saal">
-                                <?php foreach ($rooms as $each){
-                                    echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
+                            <input id="room" list="saal" class="form-control arrow">
+                            <datalist id="saal" >
+                                <?php foreach ($rooms as $each) {
+                                    echo '<option data-value="' . $each->id . '">' . $each->name . '</option>';
                                 }
                                 ?>
 
                             </datalist>
-                            <input type="hidden" name="answer" id="answer-hidden">
+                            <input type="hidden" id="roomId" name="roomId" value="roomId" />
                         </div>
 
                         <div class="form-label-group">
@@ -165,30 +165,18 @@
 
 
 
-
-        $('#room').on('input', function(e) {
+        $('#room[list]').on('input', function(e) {
             var $input = $(e.target),
                 $options = $('#' + $input.attr('list') + ' option'),
-                $hiddenInput = $('#' + $input.attr('id') + '-hidden'),
-                label = $input.val();
-
-            $hiddenInput.val(label);
-
+                  label = $input.val();
+                         
             for (var i = 0; i < $options.length; i++) {
                 var $option = $options.eq(i);
-
                 if ($option.text() === label) {
-                    $hiddenInput.val($option.attr('data-value'));
-                    console.log($('#answer-hidden').val());
+                   $("#roomId").val($option.attr('data-value'));
                     break;
                 }
             }
-        });
-
-        // For debugging purposes
-        $("#myForm").on('submit', function(e) {
-            $('#result').html($('#answer-hidden').val());
-            e.preventDefault();
         });
 
 
