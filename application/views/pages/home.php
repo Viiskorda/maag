@@ -99,24 +99,19 @@
 		}
 	})
 	// <------------ Datepicker app - DO NOT TOUCH xD
-
-
 	$(document).ready(function() {
 		$('#regions1').change(function() {
 			var country_id = $('#regions1').val();
-
 			if (country_id != '') {
 				$.ajax({
-					url: "<?php echo base_url(); ?>home/fetch_state",
+					url: "<?php echo base_url(); ?>home/fetch_city",
 					method: "POST",
 					data: {
 						country_id: country_id
 					},
 					success: function(data) {
-
 						$('#state').html(data);
 						$('#citys').html('<option value="">Vali asutus</option>');
-
 					}
 				});
 			} else {
@@ -124,17 +119,14 @@
 				$('#citys').html('<option value="">Select rerre</option>');
 			}
 		});
-
 		$('#state').change(function() {
-
-
 			var value = $('#state').val();
 			var state_id = $('#state [value="' + value + '"]').data('value');
 			console.log("stateid is " + state_id);
 			if (state_id != '') {
 				console.log("data");
 				$.ajax({
-					url: "<?php echo base_url(); ?>home/fetch_city",
+					url: "<?php echo base_url(); ?>home/fetch_building",
 					method: "POST",
 					data: {
 						state_id: state_id
@@ -145,16 +137,10 @@
 						$('#saal').html(data).appendTo("#saal");
 					},
 				});
-
 			} else {
-
 				$('#city').html('<option value="">Select ruums</option>');
 			}
 		});
-
-
-
-
 		// $("input").on('input', function() {
 		// 	var state_id = $('#building').val();
 		// 	console.log(state_id);
@@ -171,15 +157,10 @@
 		// 				$('#room').html(data);
 		// 			},
 		// 		});
-
 		// 	} else {
-
 		// 		$('#room').html('<option value="">Select ruums</option>');
 		// 	}
 		// });
-
-
-
 		$('input[name=regions]').focusin(function() {
 			$('input[name=regions]').val('');
 		});
@@ -192,44 +173,30 @@
 			$('input[name=saal]').val('');
 		});
 		
-
-
 		$("#region").on('change keydown input paste', function(e) {
-
-
 			var $input = $(this),
 				val = $input.val();
 			list = $input.attr('list'),
 				match = $('#' + list + ' option').filter(function() {
 					return ($(this).val() === val);
 				});
-
 			if (match.length > 0) {
 				console.log("match");
-
-
 				var value = $('#region').val();
 				var country_id = $('#regions [value="' + value + '"]').data('value');
-
-
 				$.ajax({
-					url: "<?php echo base_url(); ?>home/fetch_state",
+					url: "<?php echo base_url(); ?>home/fetch_city",
 					method: "POST",
 					data: {
 						country_id: country_id
 					},
-
 					success: function(data) {
 						console.log("data on " + data);
 						$("#asutus").empty();
 						$("#room").empty();
 						$('#asutus').html(data).appendTo("#asutus");
-
-
 					}
 				});
-
-
 			} else {
 				console.log("dismatch");
 				$('#room').val('');
@@ -237,76 +204,49 @@
 			
 			}
 		});
-
-
 		$("#facility").on('change keydown input paste', function(e) {
-
-
 			var $input = $(this),
 				val = $input.val();
 			list = $input.attr('list'),
 				match = $('#' + list + ' option').filter(function() {
 					return ($(this).val() === val);
 				});
-
 			if (match.length > 0) {
 				console.log("match");
 				var value = $('#facility').val();
 				var state_id = $('#asutus [value="' + value + '"]').data('value');
-
 				console.log(state_id);
 				$.ajax({
-					url: "<?php echo base_url(); ?>home/fetch_city",
+					url: "<?php echo base_url(); ?>home/fetch_building",
 					method: "POST",
 					data: {
 						state_id: state_id
 					},
-
 					success: function(data) {
 						console.log("data on " + data);
 						$('#room').val('');
 						$("#saal").empty();
 						//	$('#saal').html('<option value="">Vali asutus</option>');
 						$('#saal').html(data).appendTo("#saal");
-
 					}
 				});
-
-
 			} else {
 				console.log("dismatch");
 				$('#room').val('');
 			}
 		});
-
-
-
-
-
-
-
 		// $("#region").change(function() {
-
 		// 	//A solution to check if the value is in the datalist:
-
-
 		// 	var country_id = this.value;
 		// 	console.log("sdfasd " + country_id);
-
 		// 	if ($('#regions').find('option').filter(function() {
-
 		// 			return this.value == country_id;
-
 		// 		}).length) {
 		// 		console.log(country_id);
-
 		// 	}
-
-
-
 		// 	if (country_id != '') {
 		// 		$.ajax({
-		// 			url: "<?php echo base_url(); ?>home/fetch_state",
+		// 			url: "<?php echo base_url(); ?>home/fetch_city",
 		// 			method: "POST",
 		// 			data: {
 		// 				country_id: country_id
@@ -315,7 +255,6 @@
 		// 				$('#state').html(data);
 		// 				$('#saal').html(data);
 		// 				$('#room').html('<option value="">Vali asutus</option>');
-
 		// 			}
 		// 		});
 		// 	} else {
@@ -323,32 +262,17 @@
 		// 		$('#room').html('<option value="">Select rerre</option>');
 		// 	}
 		// });
-
-
-
-
-
-
-
-
 		// $("#region").change(function() {
 		// 	var country_id = this.value;
-
 		// 	if ($('#regions').find('option').filter(function() {
-
 		// 			return this.value == country_id;
-
 		// 		}).length) {
 		// 			console.log(country_id);
-
 		// 	}
-
 		// 	console.log("it works");
-
-
 		// 	// if (country_id != '') {
 		// 	// 	$.ajax({
-		// 	// 		url: "<?php echo base_url(); ?>home/fetch_state",
+		// 	// 		url: "<?php echo base_url(); ?>home/fetch_city",
 		// 	// 		method: "POST",
 		// 	// 		data: {
 		// 	// 			country_id: country_id
@@ -358,18 +282,12 @@
 		// 	// 			$('#building').html(data);
 		// 	// 			$('#asutus').html(data);
 		// 	// 			$('#room').html('<option value="">Vali asutus</option>');
-
 		// 	// 		}
 		// 	// 	});
 		// 	// } else {
 		// 	// 	$('#building').html('<option value="">Select State</option>');
 		// 	// 	$('#room').html('<option value="">Select rerre</option>');
 		// 	// }
-
 		// });
-
-
-
-
 	});
 </script>

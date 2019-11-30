@@ -21,6 +21,7 @@ class Fullcalendar extends CI_Controller {
 
 	function load()
 	{
+		$this->input->get('saal', TRUE);
 		$event_data = $this->fullcalendar_model->fetch_all_event();
 		foreach($event_data->result_array() as $row)
 		{

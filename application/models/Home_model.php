@@ -23,7 +23,7 @@ class Home_model extends CI_Model
         return $query->result();
     }
 
-    function fetch_state($country_id)
+    function fetch_city($country_id)
     {
         $this->db->where('regionID', $country_id);
         $this->db->order_by('id', 'ASC');
@@ -42,7 +42,7 @@ class Home_model extends CI_Model
     }
 
 
-    function fetch_city($state_id)
+    function fetch_building($state_id)
     {
         $this->db->where('buildingID', $state_id);
         $this->db->order_by('id', 'ASC');

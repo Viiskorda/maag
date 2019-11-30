@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
     <script>
         $(document).ready(function() {
+           
             var calendar = $('#calendar').fullCalendar({
                 editable: true,
                 header: {
@@ -128,7 +129,9 @@
 </head>
 
 <body>
+    <?php  echo $this->uri->segment('3');?>
     <br />
+    <?php  echo($this->input->get('saal', TRUE));?>
 
     <br />
     <!-- <div class="container"> -->
