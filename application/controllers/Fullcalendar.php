@@ -13,7 +13,6 @@ class Fullcalendar extends CI_Controller {
 
 	function index()
 	{
-
 		$this->load->view('templates/header');
 		$this->load->view('pages/fullcalendar');
 		$this->load->view('templates/footer');
@@ -54,6 +53,17 @@ class Fullcalendar extends CI_Controller {
 	
 	}
 
+
+	public function create()
+	{
+		$data['title']='Tee uus broneering';
+		$this->load->view('templates/header');
+		$this->load->view('pages/booking', $data);
+		$this->load->view('templates/footer');
+	
+	}
+
+
 	function update()
 	{
 		if($this->input->post('id'))
@@ -75,6 +85,11 @@ class Fullcalendar extends CI_Controller {
 			$this->fullcalendar_model->delete_event($this->input->post('id'));
 		}
 	}
+
+
+
+
+
 
 }
 
