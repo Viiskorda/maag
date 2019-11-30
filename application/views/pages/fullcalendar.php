@@ -38,7 +38,7 @@
                 minTime: '08:00:00',
                 maxTime: '24:00:00',
                 //contentHeight:"auto",
-                events: "<?php echo base_url(); ?>fullcalendar/load",
+                events: "<?php echo base_url(); ?>fullcalendar/load/",
                 selectable: true,
                 selectHelper: true,
                 select: function(start, end, allDay) {
@@ -131,7 +131,7 @@
 <body>
     <?php  echo $this->uri->segment('3');?>
     <br />
-    <?php  echo($this->input->get('roomId', TRUE));?>
+    <?php  echo($this->input->get('roomId'));?>
 
     <br />
     <!-- <div class="container"> -->

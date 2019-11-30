@@ -27,7 +27,8 @@ class Fullcalendar extends CI_Controller {
 		{
 			$data[] = array(
 				'id'	=>	$row['id'],
-				'title'	=>	$row['title'],
+				'roomID'	=>	$row['roomID'],
+				'title'	=>	$row['public_info'],
 				'start'	=>	$row['startTime'],
 				'end'	=>	$row['endTime']
 			);
@@ -46,6 +47,7 @@ class Fullcalendar extends CI_Controller {
 			);
 			$this->fullcalendar_model->insert_event($data);
 		}
+	
 	}
 
 	function update()
