@@ -19,7 +19,7 @@ class Home_model extends CI_Model
 
     function getAllBuildings()
     {
-        $query = $this->db->query('SELECT name FROM buildings');
+        $query = $this->db->get('buildings');
         return $query->result();
     }
 
@@ -37,7 +37,7 @@ class Home_model extends CI_Model
 
     function getAllRooms()
     {
-        $query = $this->db->query('SELECT name FROM rooms');
+        $query = $this->db->get('rooms');
         return $query->result();
     }
 
