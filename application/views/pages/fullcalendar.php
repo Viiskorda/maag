@@ -38,7 +38,7 @@
                 minTime: '08:00:00',
                 maxTime: '24:00:00',
                 //contentHeight:"auto",
-                events: "<?php echo base_url(); ?>fullcalendar/load/",
+                events: "<?php echo base_url(); ?>fullcalendar/load/<?php  echo($this->input->get('roomId'));?>",
                 selectable: true,
                 selectHelper: true,
                 select: function(start, end, allDay) {

@@ -19,11 +19,13 @@ class Fullcalendar extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
-	function load()
+	function load($roomId)
 	{
 		$this->input->get('saal', TRUE);
 		$event_data = $this->fullcalendar_model->fetch_all_event();
 		foreach($event_data->result_array() as $row)
+		if(	$row['roomID']==$roomId){
+			
 		{
 			$data[] = array(
 				'id'	=>	$row['id'],
@@ -33,6 +35,8 @@ class Fullcalendar extends CI_Controller {
 				'end'	=>	$row['endTime']
 			);
 		}
+	}
+		
 		echo json_encode($data);
 	}
 
