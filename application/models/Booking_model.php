@@ -4,7 +4,7 @@ class Booking_model extends CI_Model
 {
 
 public function create_booking(){
-$slug=url_title($this->input->post('title'));
+//$slug=url_title($this->input->post('title'));
 
 $data=array(
 	'public_info'=>$this->input->post('clubname'),
@@ -23,6 +23,15 @@ $data=array(
 );
 		return $this->db->insert('bookings', $data);
 
+}
+
+
+public function getAllRooms()
+{
+	
+	$this->db->order_by('id');
+	$query = $this->db->get('rooms');
+	return $query->result();
 }
 
 

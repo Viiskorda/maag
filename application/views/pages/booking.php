@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
-<h2><?= $title; ?></h2>
+<!-- <h2><?= $title; ?></h2> -->
 
 <?php echo validation_errors(); ?>
 <div class="container-fluid">
@@ -46,7 +46,14 @@
 
                     <div class="form-label-group">
                         <label>Saal</label>
-                        <input id="room">
+                        <select name="citys" id="citys" class="form-control input-lg">
+                        <option data-value=>Select option</option>'
+                        <?php foreach ($rooms as $each) {
+                                    echo '<option data-value="' . $each->id . '">' . $each->name . '</option>';
+                                }
+                                ?>
+                        </select>
+
                     </div>
 
                     <div class="form-label-group">
@@ -60,8 +67,8 @@
                         <div id="InputsWrapper">
                             <div>
                                 <input type="date" name="mytext[1]" id="field_1" value="">
-                                <input type="time" name="begin[1]"  step="900"  min="08:00" max="22:00" id="timestartfield_1" value="">
-                                <input type="time" name="end[1]"  step="900"  min="08:00" max="22:00" id="timeendfield_1" value="">
+                                <input type="time" name="begin[1]" step="900" min="08:00" max="22:00" id="timestartfield_1" value="">
+                                <input type="time" name="end[1]" step="900" min="08:00" max="22:00" id="timeendfield_1" value="">
                                 <a href="#" class="removeclass"></a></div>
                         </div>
                         <div id="AddMoreFileId">
@@ -89,17 +96,17 @@
 
 
                     <div class="form-label-group">
-                            <label>Asutussisene kommentaar</label>
-                            <input id="comment2" name="comment2">
-                        </div>
+                        <label>Asutussisene kommentaar</label>
+                        <input id="comment2" name="comment2">
+                    </div>
 
 
                     <input class="btn btn-custom col-12 text-white" type="submit" value="Sisesta">
                     </form>
 
-                 
-                    
-                
+
+
+
 
 
 
@@ -166,52 +173,50 @@
 
 
 <script>
+    $(document).ready(function() {
 
-$(document).ready(function() {
+        var MaxInputs = 10; //maximum extra input boxes allowed
+        var InputsWrapper = $("#InputsWrapper"); //Input boxes wrapper ID
+        var AddButton = $("#AddMoreFileBox"); //Add button ID
 
-var MaxInputs       = 10; //maximum extra input boxes allowed
-var InputsWrapper   = $("#InputsWrapper"); //Input boxes wrapper ID
-var AddButton       = $("#AddMoreFileBox"); //Add button ID
+        var x = InputsWrapper.length; //initlal text box count
+        var FieldCount = 1; //to keep track of text box added
 
-var x = InputsWrapper.length; //initlal text box count
-var FieldCount=1; //to keep track of text box added
+        //on add input button click
+        $(AddButton).click(function(e) {
+            //max input box allowed
+            if (x <= MaxInputs) {
+                FieldCount++; //text box added ncrement
+                //add input box
+                $(InputsWrapper).append('<div><input type="date" name="mytext[' + FieldCount + ']" id="field_' + FieldCount + '"/> <input type="time"  step="900"  min="08:00" max="22:00" name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"/>  <input type="time"  step="900"  min="08:00" max="22:00" name="end[' + FieldCount + ']" id="timeendfield_' + FieldCount + '"/> <a href="#" class="removeclass">Remove</a></div>');
+                x++; //text box increment
 
-//on add input button click
-$(AddButton).click(function (e) {
-        //max input box allowed
-        if(x <= MaxInputs) {
-            FieldCount++; //text box added ncrement
-            //add input box
-            $(InputsWrapper).append('<div><input type="date" name="mytext['+ FieldCount +']" id="field_'+ FieldCount +'"/> <input type="time"  step="900"  min="08:00" max="22:00" name="begin['+ FieldCount +']" id="timestartfield_'+ FieldCount +'"/>  <input type="time"  step="900"  min="08:00" max="22:00" name="end['+ FieldCount +']" id="timeendfield_'+ FieldCount +'"/> <a href="#" class="removeclass">Remove</a></div>');
-            x++; //text box increment
-            
-            $("#AddMoreFileId").show();
-            
-            $('AddMoreFileBox').html("Add field");
-            
-            // Delete the "add"-link if there is 3 fields.
-            if(x == MaxInputs) {
-                $("#AddMoreFileId").hide();
-             	$("#lineBreak").html("<br>");
+                $("#AddMoreFileId").show();
+
+                $('AddMoreFileBox').html("Add field");
+
+                // Delete the "add"-link if there is 3 fields.
+                if (x == MaxInputs) {
+                    $("#AddMoreFileId").hide();
+                    $("#lineBreak").html("<br>");
+                }
             }
-        }
-        return false;
-});
+            return false;
+        });
 
-$("body").on("click",".removeclass", function(e){ //user click on remove text
-        if( x > 1 ) {
+        $("body").on("click", ".removeclass", function(e) { //user click on remove text
+            if (x > 1) {
                 $(this).parent('div').remove(); //remove text box
                 x--; //decrement textbox
-            
-            	$("#AddMoreFileId").show();
-            
-            	$("#lineBreak").html("");
-            
+
+                $("#AddMoreFileId").show();
+
+                $("#lineBreak").html("");
+
                 // Adds the "add" link again when a field is removed.
                 $('AddMoreFileBox').html("Add field");
-        }
-	return false;
+            }
+            return false;
+        });
     });
-});
-
 </script>
