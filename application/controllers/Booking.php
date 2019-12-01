@@ -35,7 +35,8 @@ class Booking extends CI_Controller {
 		if ($this->form_validation->run() != FALSE)
 				{
 				   $id= $this->booking_model->create_booking($data1);
-				   
+
+
 					$data2 = array(
 					'roomID' => $this->input->post('sportrooms'),
 					'startTime' => $this->input->post('mytext[1]'),
@@ -43,7 +44,22 @@ class Booking extends CI_Controller {
 	
 					'bookingID' => $id
 				);
-					$this->booking_model->create_bookingTimes($data2);
+
+				$insert_data = array();
+				$start_data = $this->input->post('mytext');
+				$end_data = $this->input->post('begin');
+
+				for($i = 0; $i < count($start_data); $i++)
+				{
+				$insert_data[] = array(
+				'roomID' => $this->input->post('sportrooms'),
+				'startTime' => $start_data[$i],
+				'endTime' => $end_data[$i],
+				'bookingID' => $id
+				);
+				}
+
+					$this->booking_model->create_bookingTimes($insert_data);
 					$this->load->view('booking/success');
 		}
 

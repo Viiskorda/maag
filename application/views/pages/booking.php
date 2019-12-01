@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
-<!-- <h2><?= $title; ?></h2> -->
+<h2><?= $title; ?></h2>
 
 <?php echo validation_errors(); ?>
 <div class="container-fluid">
@@ -188,7 +188,7 @@
             if (x <= MaxInputs) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $(InputsWrapper).append('<div><input type="date" name="mytext[' + FieldCount + ']" id="field_' + FieldCount + '" value="<?php echo date("Y-m-d");?>"/> <input type="time"  step="900"  min="08:00" max="22:00" name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"/>  <input type="time"  step="900"  min="08:00" max="22:00" name="end[' + FieldCount + ']" id="timeendfield_' + FieldCount + '"/> <a href="#" class="removeclass">Remove</a></div>');
+                $(InputsWrapper).append('<div><input type="datetime-local" name="mytext[' + FieldCount + ']" id="field_' + FieldCount + '" value="<?php echo date("Y-m-d");?>"/>  -  <input type="datetime-local"  name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"/>   <a href="#" class="removeclass">Remove</a></div>');
                 x++; //text box increment
 
                 $("#AddMoreFileId").show();

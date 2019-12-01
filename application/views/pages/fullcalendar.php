@@ -129,11 +129,9 @@
 </head>
 
 <body>
-    <?php  echo $this->uri->segment('3');?>
-    <br />
-    <?php  echo($this->input->get('roomId'));?>
-
-    <br />
+  
+    <p align="right"><a href="https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/booking/create">Broneerima</a></p>
+  
     <!-- <div class="container"> -->
     <div id="calendar"></div>
     <!-- </div> -->
