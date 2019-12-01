@@ -46,10 +46,10 @@
 
                     <div class="form-label-group">
                         <label>Saal</label>
-                        <select name="citys" id="citys" class="form-control input-lg">
-                        <option data-value=>Select option</option>'
+                        <select name="sportrooms"  class="form-control input-lg">
+                        <option value=0>Select option</option>'
                         <?php foreach ($rooms as $each) {
-                                    echo '<option data-value="' . $each->id . '">' . $each->name . '</option>';
+                                    echo '<option value="' . $each->id . '">' . $each->name . '</option>';
                                 }
                                 ?>
                         </select>
@@ -66,19 +66,19 @@
                         <label for="app">Kuupäev</label>
                         <div id="InputsWrapper">
                             <div>
-                                <input type="date" name="mytext[1]" id="field_1" value="">
-                                <input type="time" name="begin[1]" step="900" min="08:00" max="22:00" id="timestartfield_1" value="">
-                                <input type="time" name="end[1]" step="900" min="08:00" max="22:00" id="timeendfield_1" value="">
+                                <input type="datetime-local" name="mytext[1]" id="field_1" value="<?php echo date("Y-m-d"); ?>"> - 
+                                <input type="datetime-local" name="begin[1]" step="900" min="08:00" max="22:00" id="timestartfield_1" value="">
+                                <!-- <input type="time" name="end[1]" step="900" min="08:00" max="22:00" id="timeendfield_1" value=""> -->
                                 <a href="#" class="removeclass"></a></div>
-                        </div>
+                        </div>  <div id="lineBreak"></div>
                         <div id="AddMoreFileId">
                             <a href="#" id="AddMoreFileBox" class="btn btn-info">Add field</a><br><br>
                         </div>
-                        <div id="lineBreak"></div>
-                        <input type="submit" id="submit" name="send" value="Send">
+                      
+                   
                     </div>
 
-                    <button> + Lisa veel üks kuupäev </button>
+                
 
 
 
@@ -188,7 +188,7 @@
             if (x <= MaxInputs) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $(InputsWrapper).append('<div><input type="date" name="mytext[' + FieldCount + ']" id="field_' + FieldCount + '"/> <input type="time"  step="900"  min="08:00" max="22:00" name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"/>  <input type="time"  step="900"  min="08:00" max="22:00" name="end[' + FieldCount + ']" id="timeendfield_' + FieldCount + '"/> <a href="#" class="removeclass">Remove</a></div>');
+                $(InputsWrapper).append('<div><input type="date" name="mytext[' + FieldCount + ']" id="field_' + FieldCount + '" value="<?php echo date("Y-m-d");?>"/> <input type="time"  step="900"  min="08:00" max="22:00" name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"/>  <input type="time"  step="900"  min="08:00" max="22:00" name="end[' + FieldCount + ']" id="timeendfield_' + FieldCount + '"/> <a href="#" class="removeclass">Remove</a></div>');
                 x++; //text box increment
 
                 $("#AddMoreFileId").show();
