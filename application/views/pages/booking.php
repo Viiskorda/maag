@@ -47,7 +47,7 @@
                     <div class="form-label-group">
                         <label>Saal</label>
                         <select name="sportrooms"  class="form-control input-lg">
-                        <option value=0>Select option</option>'
+                        <!-- <option value=0>Select option</option>' -->
                         <?php foreach ($rooms as $each) {
                                     echo '<option value="' . $each->id . '">' . $each->name . '</option>';
                                 }
@@ -208,7 +208,7 @@
             if (x > 1) {
                 $(this).parent('div').remove(); //remove text box
                 x--; //decrement textbox
-
+                FieldCount--;
                 $("#AddMoreFileId").show();
 
                 $("#lineBreak").html("");

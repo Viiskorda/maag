@@ -30,7 +30,7 @@ class Booking extends CI_Controller {
 		);
 		
 		$this->form_validation->set_rules('clubname', 'Klubi nimi', 'required');
-		$this->form_validation->set_rules('contactPerson', 'Kontaktisik', 'required');
+	//	$this->form_validation->set_rules('contactPerson', 'Kontaktisik', 'required');
 
 		if ($this->form_validation->run() != FALSE)
 				{
@@ -49,18 +49,19 @@ class Booking extends CI_Controller {
 				$start_data = $this->input->post('mytext');
 				$end_data = $this->input->post('begin');
 
-				for($i = 0; $i < count($start_data); $i++)
+				for($i = 1; $i <= count($start_data); $i++)
 				{
 				$insert_data[] = array(
 				'roomID' => $this->input->post('sportrooms'),
-				'startTime' => $start_data[$i],
+				'startTime' => $start_data[$i], 
 				'endTime' => $end_data[$i],
 				'bookingID' => $id
 				);
 				}
 
 					$this->booking_model->create_bookingTimes($insert_data);
-					$this->load->view('booking/success');
+				//	$this->load->view('booking/success');
+					redirect('fullcalendar?roomId=1');
 		}
 
 
@@ -74,7 +75,7 @@ class Booking extends CI_Controller {
 
 		}else{
 			$this->booking_model->create_booking();
-			$this->load->view('booking/success');//redirectib sinna peale väljade korrektselt sisestamist
+			$this->load->view('fullcalendar?roomId=1');//redirectib sinna peale väljade korrektselt sisestamist
 		}
 
 	
