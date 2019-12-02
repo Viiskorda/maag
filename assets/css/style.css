@@ -25,12 +25,14 @@
   .nav-bg {
     background: rgb(11, 57, 84);
   }
+
   .bg-image {
     position: relative;
     background-image: url('https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/assets/img/p2rnu_uptop.jpg');
     background-size: cover;
     background-position: center;
   }
+
   .lookup-lg {
     min-height: 95vh;
   }
@@ -43,27 +45,26 @@
   .text-white {
     color: #FBFBFB;
   }
-  
- .intro {
-   margin-top: 100px;
-   position: absolute;
-   background:rgba(0, 0, 0, 0.5);
-   padding-left: 20px;
- }
 
- .intro span {
-  font-size: 60px;
-  font-weight: 600;
-  color: #FBFBFB;
-  line-height: 1.25;
+  .intro {
+    margin-top: 100px;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    padding-left: 20px;
+  }
 
- }
-  
+  .intro span {
+    font-size: 60px;
+    font-weight: 600;
+    color: #FBFBFB;
+    line-height: 1.25;
+  }
+
   .form-label-group {
     /* position: relative; */
     margin-bottom: 1rem;
   }
-  
+
   .form-label-group>label {
     display: block;
     width: 100%;
@@ -75,42 +76,42 @@
     border-radius: .25rem;
     transition: all .1s ease-in-out;
   }
-  
+
   .form-label-group input::-webkit-input-placeholder {
     color: transparent;
   }
-  
+
   .form-label-group input:-ms-input-placeholder {
     color: transparent;
   }
-  
+
   .form-label-group input::-ms-input-placeholder {
     color: transparent;
   }
-  
+
   .form-label-group input::-moz-placeholder {
     color: transparent;
   }
-  
+
   .form-label-group input::placeholder {
     color: transparent;
   }
-  
+
   .form-label-group input:not(:placeholder-shown) {
     padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
     padding-bottom: calc(var(--input-padding-y) / 3);
   }
-  
+
   .form-label-group input:not(:placeholder-shown)~label {
     padding-top: calc(var(--input-padding-y) / 3);
     padding-bottom: calc(var(--input-padding-y) / 3);
     font-size: 12px;
     color: #777;
   }
-  
+
   /* Fallback for Edge
   -------------------------------------------------- */
-  
+
   @supports (-ms-ime-align: auto) {
     .form-label-group>label {
       display: none;
@@ -119,12 +120,11 @@
       color: #777;
     }
   }
-  
+
   /* Fallback for IE
   -------------------------------------------------- */
-  
-  @media all and (-ms-high-contrast: none),
-  (-ms-high-contrast: active) {
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     .form-label-group>label {
       display: none;
     }
@@ -135,7 +135,6 @@
 
   .btn-custom {
     background: #1A7AB7;
-    
   }
 
   /* @media screen and (min-width: 1200px) {
@@ -204,3 +203,36 @@
     font-size: 16px;
     color: white;
   } */
+
+  .come-from-modal.left .modal-dialog, .come-from-modal.right .modal-dialog {
+    position: fixed;
+    margin: auto;
+    width: 320px;
+    height: 100%;
+    -webkit-transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+  }
+
+  .come-from-modal.left .modal-content, .come-from-modal.right .modal-content {
+    height: 100%;
+    overflow-y: auto;
+    border-radius: 0px;
+  }
+
+  .come-from-modal.left .modal-body, .come-from-modal.right .modal-body {
+    padding: 15px 15px 80px;
+  }
+
+  .come-from-modal.right.fade .modal-dialog {
+    right: -320px;
+    -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+    transition: opacity 0.3s linear, right 0.3s ease-out;
+  }
+
+  .come-from-modal.right.fade.in .modal-dialog {
+    right: 0;
+  }

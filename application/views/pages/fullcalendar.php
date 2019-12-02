@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html>
 
 <head>
     <title>Jquery FullCalendar Integration with Codeigniter using Ajax</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+
     <script>
         $(document).ready(function() {
-           
+
             var calendar = $('#calendar').fullCalendar({
                 editable: true,
                 header: {
@@ -38,12 +31,12 @@
                 minTime: '08:00:00',
                 maxTime: '24:00:00',
                 //contentHeight:"auto",
-                events: "<?php echo base_url(); ?>fullcalendar/load/<?php  echo($this->input->get('roomId'));?>",
+                events: "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get('roomId')); ?>",
                 selectable: true,
                 selectHelper: true,
                 select: function(start, end, allDay) {
                     var public_info = prompt("Enter Event Title");
-                    var roomID=<?php  echo($this->input->get('roomId'));?>; 
+                    var roomID = <?php echo ($this->input->get('roomId')); ?>;
                     if (public_info) {
                         var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
                         var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
@@ -109,33 +102,58 @@
                         }
                     })
                 },
+                // eventClick: function(event) {
+                //     if (confirm("Are you sure you want to remove it?")) {
+                //         var id = event.id;
+                //         $.ajax({
+                //             url: "<?php echo base_url(); ?>fullcalendar/delete",
+                //             type: "POST",
+                //             data: {
+                //                 id: id
+                //             },
+                //             success: function() {
+                //                 calendar.fullCalendar('refetchEvents');
+                //                 alert('Event Removed');
+                //             }
+                //         })
+                //     }
+                // }
+
                 eventClick: function(event) {
-                    if (confirm("Are you sure you want to remove it?")) {
-                        var id = event.id;
-                        $.ajax({
-                            url: "<?php echo base_url(); ?>fullcalendar/delete",
-                            type: "POST",
-                            data: {
-                                id: id
-                            },
-                            success: function() {
-                                calendar.fullCalendar('refetchEvents');
-                                alert('Event Removed');
-                            }
-                        })
-                    }
+
+                    $("#successModal").modal("show");
+                    $("#successModal .modal-body p").text(event.title);
+
                 }
+
+
             });
         });
     </script>
 </head>
 
 <body>
-  
+
     <p align="right"><a href="https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/booking/create">Broneerima</a></p>
-  
+
     <!-- <div class="container"> -->
-    <div id="calendar"></div>
+    <div id='calendar'></div>
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    
     <!-- </div> -->
 </body>
 
