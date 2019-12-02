@@ -19,21 +19,20 @@
   }
 
   .arrow {
-    background-image: url('http://localhost/maag/assets/img/chevron-down-solid.svg');
-    background-repeat: no-repeat;
-    background-position: 98%;
-    /* background: url('http://localhost/maag/assets/img/chevron-down-solid.svg') no-repeat 96% / 8% #fff; */
+    background: url('http://localhost/maag/assets/img/chevron-down-solid.svg') no-repeat 96% / 8% #fff;
   }
 
   .nav-bg {
     background: rgb(11, 57, 84);
   }
+
   .bg-image {
     position: relative;
     background-image: url('http://localhost/maag/assets/img/p2rnu_uptop.jpg');
     background-size: cover;
     background-position: center;
   }
+
   .lookup-lg {
     min-height: 95vh;
   }
@@ -70,7 +69,7 @@
     /* position: relative; */
     margin-bottom: 1rem;
   }
-  
+
   .form-label-group>label {
     display: block;
     width: 100%;
@@ -82,42 +81,42 @@
     border-radius: .25rem;
     transition: all .1s ease-in-out;
   }
-  
+
   .form-label-group input::-webkit-input-placeholder {
     color: transparent;
   }
-  
+
   .form-label-group input:-ms-input-placeholder {
     color: transparent;
   }
-  
+
   .form-label-group input::-ms-input-placeholder {
     color: transparent;
   }
-  
+
   .form-label-group input::-moz-placeholder {
     color: transparent;
   }
-  
+
   .form-label-group input::placeholder {
     color: transparent;
   }
-  
+
   .form-label-group input:not(:placeholder-shown) {
     padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
     padding-bottom: calc(var(--input-padding-y) / 3);
   }
-  
+
   .form-label-group input:not(:placeholder-shown)~label {
     padding-top: calc(var(--input-padding-y) / 3);
     padding-bottom: calc(var(--input-padding-y) / 3);
     font-size: 12px;
     color: #777;
   }
-  
+
   /* Fallback for Edge
   -------------------------------------------------- */
-  
+
   @supports (-ms-ime-align: auto) {
     .form-label-group>label {
       display: none;
@@ -126,12 +125,11 @@
       color: #777;
     }
   }
-  
+
   /* Fallback for IE
   -------------------------------------------------- */
-  
-  @media all and (-ms-high-contrast: none),
-  (-ms-high-contrast: active) {
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     .form-label-group>label {
       display: none;
     }
@@ -142,7 +140,6 @@
 
   .btn-custom {
     background: #1A7AB7;
-    
   }
 
   /* @media screen and (min-width: 1200px) {

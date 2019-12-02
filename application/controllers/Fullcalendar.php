@@ -13,24 +13,29 @@ class Fullcalendar extends CI_Controller {
 
 	function index()
 	{
-
 		$this->load->view('templates/header');
 		$this->load->view('pages/fullcalendar');
 		$this->load->view('templates/footer');
 	}
 
-	function load()
+	function load($roomId)
 	{
+		$this->input->get('saal', TRUE);
 		$event_data = $this->fullcalendar_model->fetch_all_event();
 		foreach($event_data->result_array() as $row)
+		if(	$row['roomID']==$roomId){
+			
 		{
 			$data[] = array(
 				'id'	=>	$row['id'],
-				'title'	=>	$row['title'],
+				'roomID'	=>	$row['roomID'],
+				'title'	=>	$row['public_info'],
 				'start'	=>	$row['startTime'],
 				'end'	=>	$row['endTime']
 			);
 		}
+	}
+		
 		echo json_encode($data);
 	}
 
@@ -40,12 +45,55 @@ class Fullcalendar extends CI_Controller {
 		{
 			$data = array(
 				'title'		=>	$this->input->post('title'),
+				'roomID'	=> 	$this->input->post('roomID'),
 				'startTime'=>	$this->input->post('start'),
 				'endTime'	=>	$this->input->post('end')
 			);
 			$this->fullcalendar_model->insert_event($data);
 		}
+	
 	}
+
+
+	public function createfromcalendar()
+	{
+		if($this->input->post('public_info'))
+		{
+				$data1 = array(
+					'public_info'		=>	$this->input->post('public_info')				
+				);
+		
+				$id= $this->fullcalendar_model->create_booking($data1);
+
+
+				$insert_data = array();
+				
+				$insert_data[] = array(
+				'roomID'	=> 	$this->input->post('roomID'),
+				'startTime'=>	$this->input->post('start'),
+				'endTime'	=>	$this->input->post('end'),
+				'bookingID' => $id
+				);
+				
+
+					$this->fullcalendar_model->create_bookingTimes($insert_data);
+				
+	
+	}
+	}
+
+
+
+
+	public function create()
+	{
+		$data['title']='Tee uus broneering';
+		$this->load->view('templates/header');
+		$this->load->view('pages/booking', $data);
+		$this->load->view('templates/footer');
+	
+	}
+
 
 	function update()
 	{
@@ -68,6 +116,11 @@ class Fullcalendar extends CI_Controller {
 			$this->fullcalendar_model->delete_event($this->input->post('id'));
 		}
 	}
+
+
+
+
+
 
 }
 

@@ -19,11 +19,11 @@ class Home_model extends CI_Model
 
     function getAllBuildings()
     {
-        $query = $this->db->query('SELECT name FROM buildings');
+        $query = $this->db->get('buildings');
         return $query->result();
     }
 
-    function fetch_state($country_id)
+    function fetch_city($country_id)
     {
         $this->db->where('regionID', $country_id);
         $this->db->order_by('id', 'ASC');
@@ -37,12 +37,12 @@ class Home_model extends CI_Model
 
     function getAllRooms()
     {
-        $query = $this->db->query('SELECT name FROM rooms');
+        $query = $this->db->get('rooms');
         return $query->result();
     }
 
 
-    function fetch_city($state_id)
+    function fetch_building($state_id)
     {
         $this->db->where('buildingID', $state_id);
         $this->db->order_by('id', 'ASC');

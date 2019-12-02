@@ -32,20 +32,20 @@ class Home extends CI_Controller
 		// $logged = false;
 	}
 
-	function fetch_state()
+	function fetch_city()
 	{
 	 if($this->input->post('country_id'))
 	 {
-	  echo $this->home_model->fetch_state($this->input->post('country_id'));
+	  echo $this->home_model->fetch_city($this->input->post('country_id'));
 	 }
 	}
 
 
-	function fetch_city()
+	function fetch_building()
 	{
 	 if($this->input->post('state_id'))
 	 {
-	  echo $this->home_model->fetch_city($this->input->post('state_id'));
+	  echo $this->home_model->fetch_building($this->input->post('state_id'));
 	 }
 	}
 }
