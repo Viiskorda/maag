@@ -42,15 +42,17 @@
                 selectable: true,
                 selectHelper: true,
                 select: function(start, end, allDay) {
-                    var title = prompt("Enter Event Title");
-                    if (title) {
+                    var public_info = prompt("Enter Event Title");
+                    var roomID=<?php  echo($this->input->get('roomId'));?>; 
+                    if (public_info) {
                         var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
                         var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
                         $.ajax({
-                            url: "<?php echo base_url(); ?>fullcalendar/insert",
+                            url: "<?php echo base_url(); ?>fullcalendar/createfromcalendar",
                             type: "POST",
                             data: {
-                                title: title,
+                                roomID: roomID,
+                                public_info: public_info,
                                 start: start,
                                 end: end
                             },

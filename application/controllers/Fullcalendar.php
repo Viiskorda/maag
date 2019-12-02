@@ -45,6 +45,7 @@ class Fullcalendar extends CI_Controller {
 		{
 			$data = array(
 				'title'		=>	$this->input->post('title'),
+				'roomID'	=> 	$this->input->post('roomID'),
 				'startTime'=>	$this->input->post('start'),
 				'endTime'	=>	$this->input->post('end')
 			);
@@ -52,6 +53,36 @@ class Fullcalendar extends CI_Controller {
 		}
 	
 	}
+
+
+	public function createfromcalendar()
+	{
+		if($this->input->post('public_info'))
+		{
+				$data1 = array(
+					'public_info'		=>	$this->input->post('public_info')				
+				);
+		
+				$id= $this->fullcalendar_model->create_booking($data1);
+
+
+				$insert_data = array();
+				
+				$insert_data[] = array(
+				'roomID'	=> 	$this->input->post('roomID'),
+				'startTime'=>	$this->input->post('start'),
+				'endTime'	=>	$this->input->post('end'),
+				'bookingID' => $id
+				);
+				
+
+					$this->fullcalendar_model->create_bookingTimes($insert_data);
+				
+	
+	}
+	}
+
+
 
 
 	public function create()
