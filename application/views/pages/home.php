@@ -19,7 +19,7 @@
 						<div class="form-label-group">
 							<label for="region">Piirkond</label>
 							
-							<input id="region" list="regions"  name="regions" class="form-control arrow" name="datalistinput1" type="text">
+							<input id="region" list="regions"  name="regions" class="form-control arrow" name="datalistinput1">
 							<datalist id="regions">
 								<?php
 								foreach ($regions as $row) {
@@ -31,7 +31,7 @@
 
 						<div class="form-label-group">
 							<label for="facility">Asutus</label>
-							<input id="facility" list="asutus" name="asutus" class="form-control arrow">
+							<input id="facility" list="asutus" name="asutus" class="form-control arrow"  type="text">
 							<datalist id="asutus" name="asutus">
 
 								<?php foreach ($buildings as $each) {

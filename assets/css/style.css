@@ -19,7 +19,10 @@
   }
 
   .arrow {
-    background: url('http://localhost/maag/assets/img/chevron-down-solid.svg') no-repeat 96% / 8% #fff;
+    background-image: url('http://localhost/maag/assets/img/chevron-down-solid.svg');
+    background-repeat: no-repeat;
+    background-position: 98%;
+    /* background: url('http://localhost/maag/assets/img/chevron-down-solid.svg') no-repeat 96% / 8% #fff; */
   }
 
   .nav-bg {
@@ -42,6 +45,10 @@
 
   .text-white {
     color: #FBFBFB;
+  }
+
+  .form-control {
+    text-overflow: ellipsis;
   }
   
  .intro {
