@@ -1,0 +1,89 @@
+.fc button {
+    box-sizing: border-box;
+    margin: 0;
+    height: 2.1em;
+    padding: 0 .6em;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.fc {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.fc h2 {
+    color: #FBFBFB;
+    font-weight: 600;
+    font-size: 18px;
+
+}
+
+.fc span, .fc-title {
+    font-size: 12px;
+}
+
+.calendar-container {
+    min-height: 85vh;
+}
+
+.fc-time-grid .fc-slats td {
+    height: 1.2rem;
+}
+
+.fc-toolbar.fc-header-toolbar {
+    vertical-align: middle;
+    margin-bottom: 0;
+    padding: 5px;
+    border-width: 10px;
+    border-color: rgb(11, 57, 84);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.fc-toolbar{
+    background: rgb(11, 57, 84);
+}
+
+.fc td, .fc th {
+    border-color: rgb(134, 155, 167);
+}
+
+.fc-head {
+    background: rgb(11, 57, 84);
+}
+
+.fc-day-header, .fc-day-header span {
+    padding-top: 0.2rem !important;
+    padding-bottom: 0.2rem !important;
+    font-size: 14px;
+    font-weight: 500;
+    color: #FBFBFB;
+}
+
+.fc-highlight-container {
+    background-color: rgb(217, 234, 255);
+}
+
+/* .modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: rgb(128, 128, 128);
+    opacity:0.3;
+}
+#lefty {
+    width: 700px;
+    height: 100%;
+}
+
+.modal-full {
+    min-width: 100%;
+    margin: 0;
+}
+
+.modal-full .modal-content {
+    min-height: 100vh;
+} */
