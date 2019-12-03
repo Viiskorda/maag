@@ -94,6 +94,7 @@ var calendar = $('#calendar').fullCalendar({
     height: 'parent',
     allDaySlot: false,
     firstDay: 1,
+    
     dayNames: ['Pühapäev', 'Esmaspäev', 'Teisipäev', 'Kolmapäev', 'Neljapäev', 'Reede', 'Laupäev'],
     dayNamesShort: ['P', 'E', 'T', 'K', 'N', 'R', 'L'],
     monthNames: ['jaanuar', 'veebruar', 'märts', 'aprill', 'mai', 'juuni', 'juuli', 'august', 'september', 'oktoober', 'november', 'detsember'],
@@ -107,14 +108,16 @@ var calendar = $('#calendar').fullCalendar({
     },
 
     defaultView: 'agendaWeek',
-    weekNumbers: false,
-    slotLabelFormat: 'H:mm',
+    weekNumbers: true,
+    slotLabelFormat:'H:mm',
+    timeFormat: 'H:mm',
     slotDuration: '00:30:00',
     minTime: '08:00:00',
     maxTime: '22:00:00',
+    
     //contentHeight:"auto",
     events: "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get('roomId')); ?>",
-    selectable: false,
+    selectable: true,
     selectHelper: true,
     select: function(start, end, allDay) {
         var public_info = prompt("Enter Event Title");
