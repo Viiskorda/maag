@@ -47,10 +47,11 @@
                    
                     <div class="modal-body">
                     <div>
-                     <p>   Päring: 11.11.2019 kl 10.11</p> <hr></div>
+                     <p>   Päring:  <input type="text" class="form-control" name="created_at" id="created_at"> </p> <hr></div>
                         <h6>Broneeringu info</h6>
                         <hr>
                         <?php echo form_open(site_url("calendar/edit_event"), array("class" => "form-horizontal")) ?>
+
                         <div class="form-group">
                             <h5>Kontakt</h5>
                             <label for="p-in" class="col-md-4 label-heading">Kontaktisik</label>
@@ -61,19 +62,19 @@
                         <div class="form-group">
                             <label for="p-in" class="col-md-4 label-heading">Klubi nimi</label>
                             <div class="col-md-8 ui-front">
-                                <input type="text" class="form-control" name="description" id="description">
+                                <input type="text" class="form-control" name="clubname" id="clubname">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="p-in" class="col-md-4 label-heading">Telefoni number</label>
                             <div class="col-md-8 ui-front">
-                                <input type="text" class="form-control" name="description" id="description">
+                                <input type="text" class="form-control" name="phone" id="phone">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="p-in" class="col-md-4 label-heading">Email</label>
                             <div class="col-md-8 ui-front">
-                                <input type="text" class="form-control" name="description" id="description">
+                                <input type="text" class="form-control" name="email" id="email">
                             </div>
                         </div>
                         <h5>Asukoht ja treeningu tüüp</h5>
@@ -81,33 +82,33 @@
                         <div class="form-group">
                             <label for="p-in" class="col-md-4 label-heading">Asutus</label>
                             <div class="col-md-8 ui-front">
-                                <input type="text" class="form-control" name="description" id="description">
+                                <input type="text" class="form-control" name="building" id="building">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="p-in" class="col-md-4 label-heading">Saal</label>
                             <div class="col-md-8 ui-front">
-                                <input type="text" class="form-control" name="description" id="description">
+                                <input type="text" class="form-control" name="selectedroom" id="selectedroom">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="p-in" class="col-md-4 label-heading">Treeningu tüüp</label>
                             <div class="col-md-8 ui-front">
-                                <input type="text" class="form-control" name="description" id="description">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="p-in" class="col-md-4 label-heading">Hooaeg alates</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="start_date" id="start_date">
+                                <input type="text" class="form-control" name="workout" id="workout">
                             </div>
                         </div>
                         <h5>Kuupäev ja kellaajad</h5>
                         <div class="form-group">
+                            <label for="p-in" class="col-md-4 label-heading">Hooaeg alates</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="event_in" id="event_in">
+                            </div>
+                        </div>
+                    
+                        <div class="form-group">
                             <label for="p-in" class="col-md-4 label-heading">Hooaeg kuni</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="end_date" id="end_date">
+                                <input type="text" class="form-control" name="event_out" id="event_out">
                             </div>
                         </div>
                         Lisainfo
@@ -134,8 +135,8 @@
                             <div class="col-md-8">
                                 <input type="checkbox" name="delete" value="1">
                             </div>
-                        </div>
-                        <input type="hidden" name="eventid" id="event_id" value="0" /> -->
+                        </div>-->
+                        <input type="hidden" name="eventid" id="event_id" value="0" /> 
                     </div>
 
 
@@ -318,6 +319,27 @@
                     $('#lefty').modal('show');
                     $("#lefty .modal-header h4").text(event.title);
                     $("#lefty #time").text(event.start);
+
+                    $('#name').val(event.title);
+                    $('#clubname').val(event.clubname);
+                    if ($('#event_in').is(':empty')){
+                    $('#event_in').val('Pole hooajaline broneering');}
+                    else{
+                        $('#event_in').val(moment(event.event_in).format('DD/MM/YYYY HH:mm'));
+                    }
+                    if ($('#event_out').is(':empty')){
+                    $('#event_out').val('Pole hooajaline broneering');}
+                    else{
+                        $('#event_out').val(moment(event.event_out).format('DD/MM/YYYY HH:mm'));
+                    }
+                    $('#phone').val(event.phone);
+                    $('#selectedroom').val(event.selectedroom);
+                    $('#email').val(event.email);
+                    $('#created_at').val(event.created_at);
+                    $('#workout').val(event.workout);
+                    $('#workout').val(event.workout);
+                    $('#building').val(event.building);
+                    $('#editModal').modal();
                 }
 
 

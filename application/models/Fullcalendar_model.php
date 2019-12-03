@@ -4,7 +4,9 @@ class Fullcalendar_model extends CI_Model
 {
 	function fetch_all_event(){
 		$this->db->order_by('bookingTimes.id');
-		$this->db->join('bookings', 'bookingTimes.bookingID = bookings.id');
+		$this->db->join('bookings', 'bookingTimes.bookingID = bookings.id' , 'left');
+		$this->db->join('rooms', 'bookingTimes.roomID = rooms.id' , 'left');
+		$this->db->join('buildings', 'rooms.buildingID = buildings.id' , 'left');
 		return $this->db->get('bookingTimes');
 	}
 
