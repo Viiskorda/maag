@@ -5,7 +5,7 @@ const form_app = new Vue ({
         suletud: false,
         isActiveE: true,
         isActiveC: false,
-        loggedin: false
+        loggedin: true
     },
     methods: {
         exer: function() {
