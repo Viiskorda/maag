@@ -6,6 +6,17 @@
 
   .container-fluid, .container {
     padding: 0;
+    
+  }
+
+  .container-md {
+    /* display: grid; */
+    max-width: 680px !important;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 10px;
+    padding-left:  10px;
+    height: 100vh;
   }
 
   body {
@@ -16,10 +27,18 @@
     background: grey;
     height: 9.2vh;
     overflow: hidden;
+    left: 0;
+    bottom: 0;
   }
 
   input::-webkit-calendar-picker-indicator {
     display: none;
+  }
+
+  .form-bg {
+    background: #FFF;
+    border: 1px solid black;
+    /* border-radius: 10px; */
   }
 
   .arrow {
