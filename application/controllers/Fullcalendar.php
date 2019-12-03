@@ -13,6 +13,8 @@ class Fullcalendar extends CI_Controller {
 
 	function index()
 	{
+		
+		
 		$this->load->view('templates/header');
 		$this->load->view('pages/fullcalendar');
 		$this->load->view('templates/footer');
@@ -27,7 +29,7 @@ class Fullcalendar extends CI_Controller {
 			
 		{
 			$data[] = array(
-				'id'	=>	$row['id'],
+				'id'	=>	$row['bookingID'],
 				'roomID'	=>	$row['roomID'],
 				'title'	=>	$row['public_info'],
 				'start'	=>	$row['startTime'],
@@ -41,6 +43,7 @@ class Fullcalendar extends CI_Controller {
 				'created_at'	=>	$row['created_at'],
 				 'selectedroom'	=>	$row['name'],
 				 'building'	=>	$row['buildingName'],
+				 'bookingID'	=>	$row['bookingID'],
 
 			);
 		}
@@ -126,11 +129,6 @@ class Fullcalendar extends CI_Controller {
 			$this->fullcalendar_model->delete_event($this->input->post('id'));
 		}
 	}
-
-
-
-
-
 
 }
 
