@@ -56,7 +56,7 @@
                             <h5>Kontakt</h5>
                             <label for="p-in" class="col-md-4 label-heading">Kontaktisik</label>
                             <div class="col-md-8 ui-front">
-                                <input type="text" class="form-control" name="name" value="" id="name">
+                                <input type="text" class="form-control" name="c_name" value="" id="c_name">
                             </div>
                         </div>
                         <div class="form-group">
@@ -118,15 +118,15 @@
 
 <hr>
 <input type="checkbox" name="delete" value="1"> VALI KÕIK<hr>
+<table id="myTable">
+  <tbody>
+    <tr></tr>
+  
+  </tbody>
+</table>
     <table>
-   
-        <tr><td><input type="checkbox" name="delete" value="1"> 01.01.2019<br></td>   <td>&nbsp;&nbsp;&nbsp; 17:00-19:00</td>   <td>&nbsp;&nbsp;&nbsp;Kinnitamata </td>  </tr>
-        <tr><td><input type="checkbox" name="delete" value="1"> 15.01.2019<br></td>   <td>&nbsp;&nbsp;&nbsp; 17:00-19:00</td>   <td>&nbsp;&nbsp;&nbsp;Kinnitatud </td>   </tr>
-        <tr><td><input type="checkbox" name="delete" value="1"> 30.01.2019<br></td>    <td>&nbsp;&nbsp;&nbsp; 17:00-19:00</td>   <td>&nbsp;&nbsp;&nbsp;Kinnitamata </td>     </tr>
-        <tr><td><input type="checkbox" name="delete" value="1"> 01.02.2019<br></td>    <td>&nbsp;&nbsp;&nbsp; 17:00-19:00</td>   <td>&nbsp;&nbsp;&nbsp;Kinnitatud </td>   </tr>
-        <tr><td><input type="checkbox" name="delete" value="1"> 20.02.2019<br></td>   <td>&nbsp;&nbsp;&nbsp; 17:00-19:00</td>   <td>&nbsp;&nbsp;&nbsp;Kinnitamata </td>    </tr>
-        <tr><td><input type="checkbox" name="delete" value="1"> 01.03.2019<br></td>    <td>&nbsp;&nbsp;&nbsp; 17:00-19:00</td>   <td>&nbsp;&nbsp;&nbsp;Kinnitamata </td>    </tr>
-        <tr><td><input type="checkbox" name="delete" value="1"> 05.03.2019<br></td>   <td>&nbsp;&nbsp;&nbsp; 17:00-19:00</td>   <td>&nbsp;&nbsp;&nbsp;Kinnitamata </td>   </tr>
+  
+     
 
     </table>
 
@@ -313,14 +313,14 @@
                 // }
 
                 eventClick: function(event) {
-
+                 
                     // $("#successModal").modal("show");
                     // $("#successModal .modal-body p").text(event.title);
                     $('#lefty').modal('show');
                     $("#lefty .modal-header h4").text(event.title);
-                    $("#lefty #time").text(event.start);
+                    $("#lefty #time").text(event.created_at);
 
-                    $('#name').val(event.title);
+                    $('#c_name').val(event.title);
                     $('#clubname').val(event.clubname);
                     if ($('#event_in').is(':empty')){
                     $('#event_in').val('Pole hooajaline broneering');}
@@ -332,15 +332,56 @@
                     else{
                         $('#event_out').val(moment(event.event_out).format('DD/MM/YYYY HH:mm'));
                     }
+                   // console.log($('#calendar').fullCalendar('clientEvents'));
+                    var id = event.id;
+                    var events = $('#calendar').fullCalendar('clientEvents');
+                   
+                    for (var i = 0; i < events.length; i++) {
+                        var Bid=events[i].id;
+                      
+                        if (event.id==Bid) {
+
+                            var start_date = new Date(events[i].start._d);
+                        var end_date = '';
+                        if (events[i].end != null) {
+                            end_date = new Date(events[i].end._d);
+                        }
+                        var title = events[i].title;
+                        
+                        var st_day = start_date.getDate();
+                        var st_monthIndex = start_date.getMonth() + 1;
+                        var st_year = start_date.getFullYear();
+
+                        var en_day ='';
+                        var en_monthIndex = '';
+                        var en_year = '';
+                        if (end_date != '') {
+                            en_day = end_date.getDate()-1;
+                            en_monthIndex = end_date.getMonth()+1;
+                            en_year = end_date.getFullYear();
+                        }
+                        $('#myTable tr:last').after(' <tr><td><input type="checkbox" name="" value=""> ' + st_day + '-' + st_monthIndex + '-' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; 17:00-19:00</td>   <td>&nbsp;&nbsp;&nbsp;Kinnitamata </td>  </tr>');
+                      //  console.log('Title-'+title+', start Date-' + st_year + '-' + st_monthIndex + '-' + st_day + ' , End Date-' + en_year + '-' + en_monthIndex + '-' + en_day + ' '+Bid);
+                  
+                  
+
+                      };
+                         }
+
+
                     $('#phone').val(event.phone);
                     $('#selectedroom').val(event.selectedroom);
                     $('#email').val(event.email);
                     $('#created_at').val(event.created_at);
                     $('#workout').val(event.workout);
                     $('#workout').val(event.workout);
+                    $('#workout').val(event.workout);
+                    $('#start').val(event.start);
+                    $('#building').val(event.building);
                     $('#building').val(event.building);
                     $('#editModal').modal();
-                }
+                },
+              
 
 
             });

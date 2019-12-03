@@ -48,7 +48,7 @@
                             <input id="room" list="saal" class="form-control arrow">
                             <datalist id="saal">
                                 <?php foreach ($rooms as $each) {
-                                    echo '<option data-value="' . $each->id . '">' . $each->name . '</option>';
+                                    echo '<option data-value="' . $each->id . '">' . $each->buildingName . '</option>';
                                 }
                                 ?>
 
@@ -182,16 +182,17 @@
 
 
 
-        $('input[id=regions]').focusin(function() {
-            $('input[id=regions]').val('');
+        $('input[id=region]').focusin(function() {
+            $('input[id=region]').val('');
+           
         });
 
-        $('input[id=asutus]').focusin(function() {
-            $('input[id=asutus]').val('');
+        $('input[id=sport_facility]').focusin(function() {
+            $('input[id=sport_facility]').val('');
         });
 
-        $('input[id=saal]').focusin(function() {
-            $('input[id=saal]').val('');
+        $('input[id=room]').focusin(function() {
+            $('input[id=room]').val('');
         });
 
         $("#region").on('change keydown input paste', function(e) {

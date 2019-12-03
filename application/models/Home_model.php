@@ -49,7 +49,7 @@ class Home_model extends CI_Model
         $query = $this->db->get('rooms');
         $output = '<option value="">Select room</option>';
         foreach ($query->result() as $row) {
-            $output .= '<option  data-value="' . $row->id . '" value="' . $row->name . '">'.$row->name.'</option>';
+            $output .= '<option  data-value="' . $row->id . '" value="' . $row->buildingName . '">'.$row->buildingName.'</option>';
         }
         return $output;
     }
