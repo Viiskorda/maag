@@ -56,7 +56,7 @@
                                 <select name="sportrooms"  class="form-control input-lg">
                                 <!-- <option value=0>Select option</option>' -->
                                     <?php foreach ($rooms as $each) {
-                                                echo '<option value="' . $each->id . '">' . $each->name . '</option>';
+                                                echo '<option value="' . $each->id . '">' . $each->buildingName . '</option>';
                                             } ?>
                                 </select>
                             </div>
@@ -110,7 +110,13 @@
                             <div class="form-label-group col-6 pl-0">
                                 <label for="contact">Saal</label>
 
-                                <input class="form-control p-0" id="room2" type="text">
+                                <!-- <input class="form-control p-0" id="room2" type="text"> -->
+                                <select name="sportrooms"  class="form-control p-0" id="room2">
+                                <!-- <option value=0>Select option</option>' -->
+                                    <?php foreach ($rooms as $each) {
+                                                echo '<option value="' . $each->id . '">' . $each->buildingName . '</option>';
+                                            } ?>
+                                </select>
                                 <!-- <button>Lisa veel üks saal </button> -->
                                 
                             </div>
