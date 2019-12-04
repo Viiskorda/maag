@@ -14,6 +14,7 @@ class Booking extends CI_Controller {
 	{
 		$data['title']='Tee uus broneering';
 		$data['rooms'] = $this->booking_model->getAllRooms();
+		$data['buildings'] = $this->booking_model->getAllBuildings();
 
 		$data1 = array(
 			'public_info'=>$this->input->post('clubname'),

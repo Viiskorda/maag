@@ -47,7 +47,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto mt-lg-0">
-                        <li class="nav-item"><a class="nav-link font-weight-light text-white py-0 pr-5" href="#"><strong>Kinnitamata ajad</strong> <span class="badge badge-danger">5</span></a></li>
+                        <li class="nav-item"><a class="nav-link font-weight-light text-white py-0 pr-5" href="#"><strong>Broneeringud</strong> <span class="badge badge-danger">5</span></a></li>
                         <li class="nav-item"><a class="nav-link font-weight-light text-white py-0 pr-5" href="#">Kasutajad</a></li>
                         <li class="nav-item"><a class="nav-link font-weight-light text-white py-0 pr-5" href="#">Asutuse sätted</a></li>
                         <li class="nav-item"><a class="nav-link font-weight-light text-white py-0" href="#">Profiil</a></li>

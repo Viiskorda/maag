@@ -26,6 +26,12 @@ public function getAllRooms()
 	return $query->result();
 }
 
+public function getAllBuildings()
+    {
+        $query = $this->db->get('buildings');
+        return $query->result();
+	}
+
 
 }
 

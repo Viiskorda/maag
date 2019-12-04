@@ -8,9 +8,9 @@
         <div class="mt-5 px-1 form-bg">
             <div class="d-flex">
                 <ul class="nav nav-tabs nav-justified col-12">
-                    <li class="nav-item"><a class="nav-link" v-bind:class="{ active: isActiveE }" href="#" @click="exer">Ühekordne borneering</a></li>
+                    <li class="nav-item"><a class="nav-link" v-bind:class="{ active: isActiveE }" href="#" @click="tabSwitch">Ühekordne borneering</a></li>
                     <!-- <li class="nav-item"><a class="nav-link" href="#">Hooajaline broneering</a></li> -->
-                    <li class="nav-item"><a class="nav-link" v-bind:class="{ active: isActiveC }" href="#" @click="closed">Suletud</a></li>
+                    <li class="nav-item"><a class="nav-link" v-bind:class="{ active: isActiveC }" href="#" @click="tabSwitch">Suletud</a></li>
                 </ul>
             </div>
             <!-- <div class="lookup-lg d-flex align-items-center py-5" id="body"> -->
@@ -47,18 +47,26 @@
                         <h4>Asukoht ja treeningu tüüp</h4>
                         <div class="d-flex">
                             <div class="form-label-group col-6">
-                                <label>Asutus</label>
-                                <input class="form-control" id="building">
+                                <label for="sport_facility">Asutus</label>
+                                <input id="sport_facility" class="form-control" list="asutus" id="building">
+                                <datalist id="asutus">
+                                <?php foreach ($buildings as $each) {
+                                    echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
+                                }
+                                ?>
+                                </datalist>
                             </div>
 
                             <div class="form-label-group col-6">
-                                <label>Saal</label>
-                                <select name="sportrooms"  class="form-control input-lg">
+                                <label for="room">Saal</label>
+                                <select id="room" list="saal" name="sportrooms" class="form-control">
                                 <!-- <option value=0>Select option</option>' -->
                                     <?php foreach ($rooms as $each) {
                                                 echo '<option value="' . $each->id . '">' . $each->buildingName . '</option>';
                                             } ?>
                                 </select>
+
+
                             </div>
                         </div>
                         <div>
@@ -216,5 +224,6 @@
             }
             return false;
         });
+
     });
 </script>
