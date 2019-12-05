@@ -48,7 +48,7 @@
                             <input id="room" list="saal" class="form-control arrow">
                             <datalist id="saal">
                                 <?php foreach ($rooms as $each) {
-                                    echo '<option data-value="' . $each->id . '">' . $each->buildingName . '</option>';
+                                    echo '<option data-value="' . $each->id . '">' . $each->roomName . '</option>';
                                 }
                                 ?>
 
