@@ -47,6 +47,7 @@ class Fullcalendar extends CI_Controller {
 				 'roomName'	=>	$row['roomName'],
 				 'bookingID'	=>	$row['bookingID'],
 				 'takesPlace'	=>	$row['takes_place'],
+				 'approved'	=>	$row['approved'],
 
 			);
 		}

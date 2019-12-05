@@ -341,14 +341,22 @@
                         var BTimesid=events[i].timeID;
                        
                        
-                      console.log("event.id="+event.id+" Bookingtimes="+BTimesid+" Bid="+Bid);
+                 //    console.log("event.id="+event.id+" Bookingtimes="+BTimesid+" Bid="+Bid);
                         if (event.id==Bid) {
+                        var approved = events[i].approved;
+                        if(approved==1){
+                            approved="Kinnitatud";
+                        }
+                       else if(approved==0){
+                            approved="Kinnitamata";
+                        };
+
                         var takesPlace = events[i].takesPlace;
                         if(takesPlace==1){
-                            takesPlace="Kinnitatud";
-                        };
-                        if(takesPlace==2){
-                            takesPlace="Kinnitamata";
+                            takesPlace="";
+                        }
+                        else if(takesPlace==0){
+                            takesPlace="Ei toimu";
                         };
                         var start_date = new Date(events[i].start._d);
                         var end_date = '';
@@ -394,7 +402,7 @@
                             }
                         
                         }
-                        $('#myTable > tbody:last-child').append(' <tr><td><input type="checkbox" class="abc" name="choices" id="'+BTimesid+'"> ' + st_day + '-' + st_monthIndex + '-' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>  </tr>');
+                        $('#myTable > tbody:last-child').append(' <tr><td><input type="checkbox" class="abc" name="choices" id="'+BTimesid+'"> ' + st_day + '-' + st_monthIndex + '-' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+approved+' </td></td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>   </tr>');
                       //  console.log('Title-'+title+', start Date-' + st_year + '-' + st_monthIndex + '-' + st_day + ' , End Date-' + en_year + '-' + en_monthIndex + '-' + en_day + ' '+Bid + ' time ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes);
                   
                   
