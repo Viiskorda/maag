@@ -31,6 +31,7 @@ class Fullcalendar extends CI_Controller {
 			$data[] = array(
 				'id'	=>	$row['bookingID'],
 				'roomID'	=>	$row['roomID'],
+				'timeID'=>	$row['timeID'],
 				'title'	=>	$row['public_info'],
 				'start'	=>	$row['startTime'],
 				'end'	=>	$row['endTime'],
@@ -42,7 +43,8 @@ class Fullcalendar extends CI_Controller {
 				'workout'	=>	$row['workout'],
 				'created_at'	=>	$row['created_at'],
 				 'selectedroom'	=>	$row['name'],
-				 'building'	=>	$row['buildingName'],
+				 //'building'	=>	$row['buildingName'],
+				 'roomName'	=>	$row['roomName'],
 				 'bookingID'	=>	$row['bookingID'],
 				 'takesPlace'	=>	$row['takes_place'],
 
@@ -125,9 +127,9 @@ class Fullcalendar extends CI_Controller {
 
 	function delete()
 	{
-		if($this->input->post('id'))
+		if($this->input->post('timeID'))
 		{
-			$this->fullcalendar_model->delete_event($this->input->post('id'));
+			$this->fullcalendar_model->delete_event($this->input->post('timeID'));
 		}
 	}
 

@@ -124,11 +124,7 @@
   
   </tbody>
 </table>
-    <table>
-  
-     
 
-    </table>
 
                         <!-- <div class="form-group">
                             <label for="p-in" class="col-md-4 label-heading">Delete Event</label>
@@ -136,6 +132,8 @@
                                 <input type="checkbox" name="delete" value="1">
                             </div>
                         </div>-->
+
+                        <?php echo form_close() ?>
                         <input type="hidden" name="eventid" id="event_id" value="0" /> 
                     </div>
 
@@ -144,14 +142,15 @@
 
                         <input type="submit" class="btn btn-primary" value="Kinnita">
                         <input type="submit" class="btn btn-dark" value="Muuda">
-                     
-                        <input type="submit" class="btn btn-danger" value="Kustuta">
+                        <form id="delete">
+                        <input type="submit" class="btn btn-danger" value="Kustuta" id="deleteChecked" name="deleteChecked">
+                    </form >
                         <input type="submit"  class="btn btn-secondary" value="Ei toimu">
 
                        
                       
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <?php echo form_close() ?>
+                       
                     </div>
                     <p id="time"></p>
 
@@ -338,17 +337,20 @@
                     var events = $('#calendar').fullCalendar('clientEvents');
                    
                     for (var i = 0; i < events.length; i++) {
-                        var Bid=events[i].id;
+                        var Bid=events[i].bookingID;
+                        var BTimesid=events[i].timeID;
+                       
+                       
+                          //  console.log("event.id="+event.id+" Bookingtimes="+BTimesid+" Bid="+Bid);
+                        if (event.id==Bid) {
                         var takesPlace = events[i].takesPlace;
                         if(takesPlace==1){
                             takesPlace="Kinnitatud";
-                        }
+                        };
                         if(takesPlace==2){
                             takesPlace="Kinnitamata";
-                        }
-                        if (event.id==Bid) {
-
-                            var start_date = new Date(events[i].start._d);
+                        };
+                        var start_date = new Date(events[i].start._d);
                         var end_date = '';
                         if (events[i].end != null) {
                             end_date = new Date(events[i].end._d);
@@ -392,8 +394,8 @@
                             }
                         
                         }
-                        $('#myTable > tbody:last-child').append(' <tr><td><input type="checkbox" name="" value=""> ' + st_day + '-' + st_monthIndex + '-' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>  </tr>');
-                        console.log('Title-'+title+', start Date-' + st_year + '-' + st_monthIndex + '-' + st_day + ' , End Date-' + en_year + '-' + en_monthIndex + '-' + en_day + ' '+Bid + ' time ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes);
+                        $('#myTable > tbody:last-child').append(' <tr><td><input type="checkbox" class="abc" name="choices" id="'+BTimesid+'"> ' + st_day + '-' + st_monthIndex + '-' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>  </tr>');
+                      //  console.log('Title-'+title+', start Date-' + st_year + '-' + st_monthIndex + '-' + st_day + ' , End Date-' + en_year + '-' + en_monthIndex + '-' + en_day + ' '+Bid + ' time ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes);
                   
                   
 
@@ -409,13 +411,66 @@
                     $('#workout').val(event.workout);
                     $('#workout').val(event.workout);
                     $('#start').val(event.start);
-                    $('#building').val(event.building);
-                    $('#building').val(event.building);
+                 //   $('#building').val(event.building);
+                    $('#selectedroom').val(event.roomName);
                     $('#editModal').modal();
                 },
-              
+               
+                                
 
 
             });
+
+            $("#delete").submit(function( event ) {
+                 
+                      if (confirm("Are you sure you want to remove it?")) {
+                    event.preventDefault();
+
+                    if ($('.abc:checked').length == $('.abc').length) 
+                        {
+                          console.log("kõik on ckeckitud, tuleb ka bookings ab-st ära kustutada")
+                        }
+                       else if ($('.abc:checked').length <$('.abc').length && $('.abc:checked').length>0) 
+                        {
+                        
+                $("input:checkbox").each(function(){
+                    var $this = $(this);
+
+                    if($this.is(":checked")){
+                        var id = $this.attr("id");
+                      console.log("going to delete " +id);// $this.attr("id");
+
+                       
+                        // $.ajax({
+                        //     url: "<?php //echo base_url(); ?>fullcalendar/delete",
+                        //     type: "POST",
+                        //     data: {
+                        //         timeID: id
+                        //     },
+                        //     success: function() {
+                        //         calendar.fullCalendar('refetchEvents');
+                              
+                        //         jQuery('input:checkbox:checked').parents("tr").remove();
+                        //         alert('Event Removed');
+                        //     }, 
+                        //     error: function(returnval) {
+                        //         $(".message").text(returnval + " failure");
+                        //         $(".message").fadeIn("slow");
+                        //         $(".message").delay(2000).fadeOut(1000);
+                        //     },
+                        // })
+                    }
+                });
+                        }
+                        else{
+                            console.log("vali midagigi!");
+                        };
+
+
+                   }
+                    });
+
+
+
         });
     </script>

@@ -62,7 +62,7 @@
                                 <select id="room" list="saal" name="sportrooms" class="form-control">
                                 <!-- <option value=0>Select option</option>' -->
                                     <?php foreach ($rooms as $each) {
-                                                echo '<option value="' . $each->id . '">' . $each->buildingName . '</option>';
+                                                echo '<option value="' . $each->id . '">' . $each->roomName . '</option>';
                                             } ?>
                                 </select>
 
@@ -122,7 +122,7 @@
                                 <select name="sportrooms"  class="form-control p-0" id="room2">
                                 <!-- <option value=0>Select option</option>' -->
                                     <?php foreach ($rooms as $each) {
-                                                echo '<option value="' . $each->id . '">' . $each->buildingName . '</option>';
+                                                echo '<option value="' . $each->id . '">' . $each->roomName . '</option>';
                                             } ?>
                                 </select>
                                 <!-- <button>Lisa veel üks saal </button> -->
