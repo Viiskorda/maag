@@ -10,6 +10,12 @@ class Fullcalendar_model extends CI_Model
 		return $this->db->get('bookingTimes');
 	}
 
+	function getAllRooms()
+    {
+        $query = $this->db->get('rooms');
+        return $query->result();
+    }
+
 	function insert_event($data)
 	{
 		
