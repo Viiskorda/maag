@@ -15,4 +15,4 @@ const form_app = new Vue ({
             this.isActiveC = !this.isActiveC;
         }
     }
-})
+});

@@ -33,19 +33,19 @@
 <body>
 
 <!-- Navigation -->
-    <header>
+    <header id="logged">
         <nav class="navbar navbar-expand-md p-0 nav-bg">
             <div class="container p-0">
                 <div class="navbar-header pr-5 pl-0">
                 <a class="navbar-brand mr-1 py-1" href="<?php echo base_url(); ?>"><img class="logo" src="<?php echo base_url(); ?>assets/img/plv_vapp_blue.svg" alt="logo" class="logo"></a>
                     <a class="navbar-brand align-middle p-0 text-white" href="<?php echo base_url(); ?>">Pärnu Linnavalitsus</a>
                 </div>
+                <!-- <button >"Logi sisse"</button> -->
 
-    <?php if (true) { ?>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button  v-if="loggedIn"class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="loggedIn">
                     <ul class="navbar-nav mr-auto mt-lg-0">
                         <li class="nav-item"><a class="nav-link font-weight-light text-white py-0 pr-5" href="#"><strong>Broneeringud</strong> <span class="badge badge-danger">5</span></a></li>
                         <li class="nav-item"><a class="nav-link font-weight-light text-white py-0 pr-5" href="#">Kasutajad</a></li>
@@ -53,14 +53,28 @@
                         <li class="nav-item"><a class="nav-link font-weight-light text-white py-0" href="#">Profiil</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right p-0">
-                        <li class="nav-item"><a class="nav-link font-weight-light text-white p-0" href="#"><u>Logi välja</u></a></li>
+                        <li class="nav-item"><a class="nav-link font-weight-light text-white p-0" href="#"  @click="logIn"><u>Logi välja</u></a></li>
                     </ul>
                 </div>
-    <?php } ?>
+                <a class="nav-link font-weight-light txt-drkblue p-0" href="#" @click="logIn" v-show="dspl"><u>"Logi sisse"</u></a>
             </div>
         </nav>
     </header>
 <!-- Navigation -->
-
+<script>
+new Vue ({
+    el: '#logged',
+    data: {
+        loggedIn: false,
+        dspl: true
+    },
+    methods: {
+        logIn: function() {
+            this.loggedIn = !this.loggedIn;
+            this.dspl = !this.dspl;
+        }
+    }
+})
+</script>
 <!-- Page starts -->
 
