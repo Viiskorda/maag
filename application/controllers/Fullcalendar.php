@@ -43,10 +43,11 @@ class Fullcalendar extends CI_Controller {
 				'workout'	=>	$row['workout'],
 				'created_at'	=>	$row['created_at'],
 				 'selectedroom'	=>	$row['name'],
-				 //'building'	=>	$row['buildingName'],
+				 'building'	=>	$row['name'],
 				 'roomName'	=>	$row['roomName'],
 				 'bookingID'	=>	$row['bookingID'],
 				 'takesPlace'	=>	$row['takes_place'],
+				 'approved'	=>	$row['approved'],
 
 			);
 		}
@@ -132,6 +133,15 @@ class Fullcalendar extends CI_Controller {
 			$this->fullcalendar_model->delete_event($this->input->post('timeID'));
 		}
 	}
+
+	function deleteAllConnectedBookings()
+	{
+		if($this->input->post('bookingID'))
+		{
+			$this->fullcalendar_model->deleteTImesAndBooking($this->input->post('bookingID'));
+		}
+	}
+
 
 }
 

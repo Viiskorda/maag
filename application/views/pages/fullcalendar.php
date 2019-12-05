@@ -335,20 +335,28 @@
                  // console.log($('#calendar').fullCalendar('clientEvents'));
                     var id = event.id;
                     var events = $('#calendar').fullCalendar('clientEvents');
-                   
+                    $('tbody').attr('id',id );
                     for (var i = 0; i < events.length; i++) {
                         var Bid=events[i].bookingID;
                         var BTimesid=events[i].timeID;
                        
                        
-                          //  console.log("event.id="+event.id+" Bookingtimes="+BTimesid+" Bid="+Bid);
+                 //    console.log("event.id="+event.id+" Bookingtimes="+BTimesid+" Bid="+Bid);
                         if (event.id==Bid) {
+                        var approved = events[i].approved;
+                        if(approved==1){
+                            approved="Kinnitatud";
+                        }
+                       else if(approved==0){
+                            approved="Kinnitamata";
+                        };
+
                         var takesPlace = events[i].takesPlace;
                         if(takesPlace==1){
-                            takesPlace="Kinnitatud";
-                        };
-                        if(takesPlace==2){
-                            takesPlace="Kinnitamata";
+                            takesPlace="";
+                        }
+                        else if(takesPlace==0){
+                            takesPlace="Ei toimu";
                         };
                         var start_date = new Date(events[i].start._d);
                         var end_date = '';
@@ -394,7 +402,7 @@
                             }
                         
                         }
-                        $('#myTable > tbody:last-child').append(' <tr><td><input type="checkbox" class="abc" name="choices" id="'+BTimesid+'"> ' + st_day + '-' + st_monthIndex + '-' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>  </tr>');
+                        $('#myTable > tbody:last-child').append(' <tr><td><input type="checkbox" class="abc" name="choices" id="'+BTimesid+'"> ' + st_day + '-' + st_monthIndex + '-' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+approved+' </td></td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>   </tr>');
                       //  console.log('Title-'+title+', start Date-' + st_year + '-' + st_monthIndex + '-' + st_day + ' , End Date-' + en_year + '-' + en_monthIndex + '-' + en_day + ' '+Bid + ' time ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes);
                   
                   
@@ -408,10 +416,9 @@
                     $('#email').val(event.email);
                     $('#created_at').val(event.created_at);
                     $('#workout').val(event.workout);
-                    $('#workout').val(event.workout);
-                    $('#workout').val(event.workout);
+                  
                     $('#start').val(event.start);
-                 //   $('#building').val(event.building);
+                   $('#building').val(event.building);
                     $('#selectedroom').val(event.roomName);
                     $('#editModal').modal();
                 },
@@ -422,16 +429,42 @@
             });
 
             $("#delete").submit(function( event ) {
-                 
-                      if (confirm("Are you sure you want to remove it?")) {
-                    event.preventDefault();
+            
+             
 
                     if ($('.abc:checked').length == $('.abc').length) 
                         {
-                          console.log("kõik on ckeckitud, tuleb ka bookings ab-st ära kustutada")
+                            if (confirm("Are you sure you want to remove it?")) {
+                    event.preventDefault();    };
+                           var id=  $('input:checkbox:checked').parents("tbody").attr('id')
+                          console.log("kõik on ckeckitud, tuleb ka bookings ab-st ära kustutada "+id);
+                        $.ajax({
+                            url: "<?php //echo base_url(); ?>fullcalendar/deleteAllConnectedBookings",
+                            type: "POST",
+                            data: {
+                                bookingID: id
+                            },
+                            success: function() {
+                                calendar.fullCalendar('refetchEvents');
+                              
+                                jQuery('input:checkbox:checked').parents("tr").remove();
+                                $("#lefty").modal("hide");
+                                alert('Event Removed');
+                            }, 
+                            error: function(returnval) {
+                                $(".message").text(returnval + " failure");
+                                $(".message").fadeIn("slow");
+                                $(".message").delay(2000).fadeOut(1000);
+                            },
+                        })
+
+
+
                         }
                        else if ($('.abc:checked').length <$('.abc').length && $('.abc:checked').length>0) 
                         {
+                            if (confirm("Are you sure you want to remove it?")) {
+                    event.preventDefault();    };
                         
                 $("input:checkbox").each(function(){
                     var $this = $(this);
@@ -441,33 +474,34 @@
                       console.log("going to delete " +id);// $this.attr("id");
 
                        
-                        // $.ajax({
-                        //     url: "<?php //echo base_url(); ?>fullcalendar/delete",
-                        //     type: "POST",
-                        //     data: {
-                        //         timeID: id
-                        //     },
-                        //     success: function() {
-                        //         calendar.fullCalendar('refetchEvents');
+                        $.ajax({
+                            url: "<?php //echo base_url(); ?>fullcalendar/delete",
+                            type: "POST",
+                            data: {
+                                timeID: id
+                            },
+                            success: function() {
+                                calendar.fullCalendar('refetchEvents');
                               
-                        //         jQuery('input:checkbox:checked').parents("tr").remove();
-                        //         alert('Event Removed');
-                        //     }, 
-                        //     error: function(returnval) {
-                        //         $(".message").text(returnval + " failure");
-                        //         $(".message").fadeIn("slow");
-                        //         $(".message").delay(2000).fadeOut(1000);
-                        //     },
-                        // })
+                                jQuery('input:checkbox:checked').parents("tr").remove();
+                                alert('Event Removed');
+                            }, 
+                            error: function(returnval) {
+                                $(".message").text(returnval + " failure");
+                                $(".message").fadeIn("slow");
+                                $(".message").delay(2000).fadeOut(1000);
+                            },
+                        })
                     }
                 });
                         }
                         else{
-                            console.log("vali midagigi!");
+                           alert("Sa ei valinud midagi mida kustutada");
+                            event.preventDefault(); 
                         };
 
 
-                   }
+               
                     });
 
 
