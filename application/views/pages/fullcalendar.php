@@ -316,6 +316,7 @@
                  
                     // $("#successModal").modal("show");
                     // $("#successModal .modal-body p").text(event.title);
+                    $('#myTable tr').remove();
                     $('#lefty').modal('show');
                     $("#lefty .modal-header h4").text(event.title);
                     $("#lefty #time").text(event.created_at);
@@ -332,13 +333,19 @@
                     else{
                         $('#event_out').val(moment(event.event_out).format('DD/MM/YYYY HH:mm'));
                     }
-                   // console.log($('#calendar').fullCalendar('clientEvents'));
+                 // console.log($('#calendar').fullCalendar('clientEvents'));
                     var id = event.id;
                     var events = $('#calendar').fullCalendar('clientEvents');
                    
                     for (var i = 0; i < events.length; i++) {
                         var Bid=events[i].id;
-                      
+                        var takesPlace = events[i].takesPlace;
+                        if(takesPlace==1){
+                            takesPlace="Kinnitatud";
+                        }
+                        if(takesPlace==2){
+                            takesPlace="Kinnitamata";
+                        }
                         if (event.id==Bid) {
 
                             var start_date = new Date(events[i].start._d);
@@ -348,20 +355,45 @@
                         }
                         var title = events[i].title;
                         
-                        var st_day = start_date.getDate();
-                        var st_monthIndex = start_date.getMonth() + 1;
-                        var st_year = start_date.getFullYear();
+                        var st_day = start_date.getUTCDate();
+                        if(st_day<10){
+                            st_day='0'+st_day;
+                            }
+
+                        var st_monthIndex = start_date.getUTCMonth() + 1;
+                        var st_year = start_date.getUTCFullYear();
+                        var st_hours = start_date.getUTCHours();
+                        if(st_hours==0){
+                            st_hours='00';
+                            }else if(st_hours<10){
+                                st_hours='0'+st_hours;
+                            }
+
+                        var st_minutes = start_date.getUTCMinutes();
+                        if(st_minutes==0){
+                            st_minutes='00';
+                            }
+                        
 
                         var en_day ='';
                         var en_monthIndex = '';
                         var en_year = '';
                         if (end_date != '') {
-                            en_day = end_date.getDate()-1;
-                            en_monthIndex = end_date.getMonth()+1;
-                            en_year = end_date.getFullYear();
+                            en_day = end_date.getUTCDate();
+                            en_monthIndex = end_date.getUTCMonth()+1;
+                            en_year = end_date.getUTCFullYear();
+                            var en_hours = end_date.getUTCHours();
+                             if(en_hours<10){
+                                en_hours='0'+en_hours;
+                            }
+                            var en_minutes = end_date.getUTCMinutes();
+                            if(en_minutes==0){
+                                en_minutes='00';
+                            }
+                        
                         }
-                        $('#myTable tr:last').after(' <tr><td><input type="checkbox" name="" value=""> ' + st_day + '-' + st_monthIndex + '-' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; 17:00-19:00</td>   <td>&nbsp;&nbsp;&nbsp;Kinnitamata </td>  </tr>');
-                      //  console.log('Title-'+title+', start Date-' + st_year + '-' + st_monthIndex + '-' + st_day + ' , End Date-' + en_year + '-' + en_monthIndex + '-' + en_day + ' '+Bid);
+                        $('#myTable > tbody:last-child').append(' <tr><td><input type="checkbox" name="" value=""> ' + st_day + '-' + st_monthIndex + '-' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>  </tr>');
+                        console.log('Title-'+title+', start Date-' + st_year + '-' + st_monthIndex + '-' + st_day + ' , End Date-' + en_year + '-' + en_monthIndex + '-' + en_day + ' '+Bid + ' time ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes);
                   
                   
 
