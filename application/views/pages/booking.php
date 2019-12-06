@@ -131,6 +131,7 @@
                             </div>
                             <!-- <input class="btn btn-custom col-4 text-white" type="submit" value="Sisesta"> -->
                             <input type="checkbox" name="closed" value="4" checked> Suletud (See tuleb ära peita ehk panna hidden)<br>
+                            <input type="checkbox" name="closedTitle" value="Suletud" checked> Suletud Title (See tuleb ära peita ehk panna hidden)<br>
                         </div>
 
                         <div class="d-flex m-0 p-0">
