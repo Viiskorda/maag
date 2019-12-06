@@ -214,7 +214,7 @@
             if (x > 1) {
                 $(this).parent('div').remove(); //remove text box
                 x--; //decrement textbox
-                FieldCount--;
+               // FieldCount--;
                 $("#AddMoreFileId").show();
 
                 $("#lineBreak").html("");
