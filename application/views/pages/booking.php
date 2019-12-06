@@ -82,7 +82,7 @@
                                 <label for="app">Kuupäev</label>
                                 <div id="InputsWrapper">
                                     <div>
-                                        <input class="form-control" type="datetime-local" name="mytext[1]" id="field_1" value="<?php echo date("Y-m-d"); ?>"> - 
+                                        <input class="form-control" type="datetime-local" name="mytext[1]" id="field_1" value="<?php echo date('Y-m-d\TH:i'); ?>"> - 
                                         <input class="form-control" type="datetime-local" name="begin[1]" step="900" min="08:00" max="22:00" id="timestartfield_1" value="">
                                         <!-- <input type="time" name="end[1]" step="900" min="08:00" max="22:00" id="timeendfield_1" value=""> -->
                                         <a href="#" class="removeclass"></a>
@@ -112,14 +112,15 @@
                 </div>
 
                 <div id="suletud" class="center col-12" v-if="suletud">
-                    <form class="pt-3" action="booking" method="get">
+                <?php echo form_open('booking/createClosed'); ?>
+                    <!-- <form class="pt-3" action="booking" method="get"> -->
 
                         <div class="d-flex m-0 p-0">
                             <div class="form-label-group col-6 pl-0">
                                 <label for="contact">Saal</label>
 
                                 <!-- <input class="form-control p-0" id="room2" type="text"> -->
-                                <select name="sportrooms"  class="form-control p-0" id="room2">
+                                <select name="sportrooms2"  class="form-control p-0" id="room2">
                                 <!-- <option value=0>Select option</option>' -->
                                     <?php foreach ($rooms as $each) {
                                                 echo '<option value="' . $each->id . '">' . $each->roomName . '</option>';
@@ -128,23 +129,40 @@
                                 <!-- <button>Lisa veel üks saal </button> -->
                                 
                             </div>
-                            <input class="btn btn-custom col-4 text-white" type="submit" value="Sisesta">
+                            <!-- <input class="btn btn-custom col-4 text-white" type="submit" value="Sisesta"> -->
+                            <input type="checkbox" name="closed" value="4" checked> Suletud (See tuleb ära peita ehk panna hidden)<br>
                         </div>
 
                         <div class="d-flex m-0 p-0">
                             <div class="form-label-group col-6 pl-0">
                                 <label for="sport_facility2">Nädalapäev</label>
-                                <input class="form-control p-0" id="sport_facility2">
+                                <input class="form-control p-0" id="sport_facility2" list="weekdays" name="weekday">
+                             
+                                <datalist id="weekdays">
+                                <option data-value="1" value="Esmaspäev"></option>
+                                <option data-value="2" value="Teisipäev"></option>
+                                <option data-value="3" value="Kolmapäev"></option>
+                                <option data-value="4" value="Neljapäev"></option>
+                                <option data-value="5" value="Reede"></option>
+                                <option data-value="6" value="Laupäev"></option>
+                                <option data-value="7" value="Pühapäev"></option>
+                     
+                                </datalist>
+
+
+                              
                             </div>
 
                             <div class="form-label-group col-3 pl-0">
                                 <label>Alates</label>
-                                <input class="form-control p-0" id="from2">
+                                <!-- <input class="form-control p-0" id="from2"> -->
+                                <input class="form-control p-0" type="time"  min="08:00" max="22:00" step="900"  name="timesStart" id="from' + FieldCount + '" value=""/>
                             </div>
 
                             <div class="form-label-group col-3 p-0">
                                 <label>Kuni</label>
-                                <input class="form-control p-0" id="until2">
+                                <!-- <input class="form-control p-0" id="until2"> -->
+                                <input class="form-control p-0" type="time" min="08:00" max="22:00" step="900"  name="timeTo" id="until' + FieldCount + '" value=""/>
                             </div>
                         </div>
 
@@ -152,11 +170,13 @@
                         
                             <div class="form-label-group pr-3">
                             <label>Periood</label>                               
-                                <input class="form-control pl-0" id="period">
+                                <!-- <input class="form-control pl-0" id="period"> -->
+                                <input class="form-control pl-0" id="periodStart" type="date" name="startingFrom" value="<?php echo date("Y-m-d"); ?>">
                             </div>
                             <div class="form-label-group pl-0"> 
                             <label>Periood</label>                               
-                                <input class="form-control pl-0" id="">
+                                <!-- <input class="form-control pl-0" id=""> -->
+                                <input class="form-control pl-0" id="periodEnd" type="date" name="Ending" value="<?php echo date("Y-m-d"); ?>">
                             </div>
                         </div>
 
@@ -194,7 +214,7 @@
             if (x <= MaxInputs) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $(InputsWrapper).append('<div><input type="datetime-local" name="mytext[' + FieldCount + ']" id="field_' + FieldCount + '" value="<?php echo date("Y-m-d");?>"/>  -  <input type="datetime-local"  name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"/>   <a href="#" class="removeclass">Remove</a></div>');
+                $(InputsWrapper).append('<div><input type="datetime-local" name="mytext[' + FieldCount + ']" id="field_' + FieldCount + '" value="<?php echo date('Y-m-d\TH:i');?>"/>  -  <input type="datetime-local"  name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"/>   <a href="#" class="removeclass">Remove</a></div>');
                 x++; //text box increment
 
                 $("#AddMoreFileId").show();

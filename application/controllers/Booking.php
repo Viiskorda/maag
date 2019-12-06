@@ -83,6 +83,111 @@ class Booking extends CI_Controller {
 	}
 
 
+	public function createClosed()
+	{
+		
+		$data1 = array(
+			'comment_inner' => $this ->input->post('comment2'),
+			'event_in' => $this ->input->post('startingFrom'),
+			'event_out' => $this ->input->post('Ending'),
+			'typeID' => $this ->input->post('closed'),
+
+		);
+
+		// $weekday=$this->input->post('weekday');
+		// $days=array('Esmaspäev'=>'Monday','Teisipäev' => 'Tuesday','Kolmapäev' => 'Wednesday','Neljapäev'=>'Thursday','Reede' =>'Friday','Laupäev' => 'Saturday','Pühapäev'=>'Sunday');
+		// //var_dump($days['Esmaspäev']);
+		// $formated_time = date("H:i", strtotime($this->input->post('timesStart')));
+		// var_dump($formated_time);
+		// foreach($days as $key => $value){
+		// if ($weekday==$key){
+		// 	$endDate = strtotime($this ->input->post('Ending'));
+
+		// 	$date = new DateTime($endDate);
+		// 	$time = new DateTime($formated_time);
+			
+		// 	// Solution 1, merge objects to new object:
+		// 	$merge = new DateTime($date->format('Y-m-d') .' ' .$time->format('H:i:s'));
+		// 	$date = DateTime::createFromFormat('Y-m-d', $date);
+		// 	echo $merge->format('Y-m-d H:i:s'); // Outputs '2017-03-14 13:37:42'
+		// 	echo "Format: 'Y-m-d'; " . $date->format('Y-m-d H:i:s') . "\n";
+
+		// 	var_dump($this ->input->post('Ending'));
+
+		// 	//$combinedDT = date('Y-m-d H:i:s', strtotime("$this ->input->post('Ending') $formated_time"));
+		// 	$combinedDT = date('Y-m-d H:i:s', strtotime("$endDate $formated_time"));
+		// 	//var_dump($combinedDT);
+		// 	//print_r($combinedDT->stack);
+		// //	echo $combinedDT->format('Y-m-d H:i:s');
+		// 	//json_decode( json_encode($combinedDT), true);
+		// 	// $newDate = DateTime::createFromFormat("l dS F Y", $combinedDT);
+		// 	// $newDate = $newDate->format('d/m/Y'); // for example
+		// 	 var_dump($combinedDT);
+		
+		// // for($i = strtotime($value, strtotime($this ->input->post('startingFrom'))); $i <= $endDate; $i = strtotime('+1 week', $i))
+		// // 	{var_dump(date('Y-m-d', $i));
+			
+		// }
+		// }
+		
+	
+	//	$this->form_validation->set_rules('clubname', 'Klubi nimi', 'required');
+	//	$this->form_validation->set_rules('contactPerson', 'Kontaktisik', 'required');
+
+	
+				//$id= $this->booking_model->create_booking($data1);
+
+				$data2 = array(
+					'roomID' => $this->input->post('sportrooms2'),
+					'startTime' => $this->input->post('timesStart'),
+					'endTime' => $this->input->post('timeTo'),
+	
+					//'bookingID' => $id
+				);
+
+
+				$insert_data = array();
+				$start_data = $this->input->post('timeStart');
+				$end_data = $this->input->post('timeTo');
+
+				for($i = 1; $i <= count($start_data); $i++)
+				{
+				$insert_data[] = array(
+				'roomID' => $this->input->post('sportrooms2'),
+				'startTime' => $start_data[$i], 
+				'endTime' => $end_data[$i],
+				//'bookingID' => $id
+				);
+				}
+
+				//	$this->booking_model->create_bookingTimes($insert_data);
+				//	$this->load->view('booking/success');
+				//	redirect('fullcalendar?roomId=1');
+				var_dump($data2);
+	
+
+
+
+		if($this->form_validation->run()===FALSE){
+			//var_dump($data1);
+		//	var_dump($data2);
+	
+					$this->load->view('templates/header');
+					$this->load->view('pages/booking');//see leht laeb vajalikku vaadet. ehk saab teha controllerit ka mujale, mis laeb õiget lehte
+					$this->load->view('templates/footer');
+
+
+		}else{
+			//$this->booking_model->create_booking();
+			//$this->load->view('fullcalendar?roomId=1');//redirectib sinna peale väljade korrektselt sisestamist
+			var_dump($data1);
+
+		}
+
+
+	}
+
+
 }
 
 ?>
