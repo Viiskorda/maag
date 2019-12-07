@@ -4,52 +4,25 @@
     font-size: 14px;
   }
 
-  .container-fluid, .container {
-    padding: 0;
-  }
-
-  .container-md {
-    /* display: grid; */
-    max-width: 680px !important;
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: 10px;
-    padding-left:  10px;
-    height: 100vh;
-  }
-
   body {
     background: #FBFBFB;
+    margin: 0;
+    padding: 0;
   }
 
   footer {
     background: #E0E0E2;
     padding-top: 3rem;
     padding-bottom: 1rem;
-    /* height: 9.2vh; */
     overflow: hidden;
     left: 0;
     bottom: 0;
-
   }
 
   footer a {
     display: block;
     position: relative;
     margin-top: 30px;
-  }
-
-  .link {
-    color: #0B3954;
-    text-decoration: none;
-  }
-
-  .txt-sm {
-    font-size: 12px;
-  }
-
-  .txt-drkblue {
-    color: #0B3954 !important;
   }
 
   footer a::before {
@@ -63,6 +36,28 @@
     left: 50%;
     margin-left: -15px;
     margin-top: -30px;
+  }
+
+  .container-md {
+    max-width: 680px !important;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 10px;
+    padding-left:  10px;
+    height: 100vh;
+  }
+
+  .link {
+    color: #0B3954;
+    text-decoration: none;
+  }
+
+  .txt-sm {
+    font-size: 12px;
+  }
+
+  .txt-drkblue {
+    color: #0B3954 !important;
   }
 
   input::-webkit-calendar-picker-indicator {
@@ -83,16 +78,65 @@
     background: rgb(11, 57, 84);
   }
 
-  .bg-image {
-    position: relative;
-    background-image: url('../img/welcome.jfif');
-    background-size: cover;
+  /* START - esilehe pildi container */
+
+  .img-container{
+    background:url('../img/welcome.jfif'); 
+    background-size:cover;
+    height:96vh;/*It will cover whole BODY*/
     background-position: center;
   }
 
-  .lookup-lg {
-    min-height: 95vh;
+  .img-container .content{
+    height:25%;
+    width:100%;
+    position:absolute;
+    top:40%;
+    left:0;
+    background:inherit;
+    overflow:hidden;
   }
+
+  .img-container .blur{
+    background:inherit;
+    height:95vh;
+    border: 1px solid #fff;
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    transform: translateY(-40%);
+    filter:blur(10px);
+  }
+
+  .text h1{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-40%);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin:0;
+    font-size: 5rem;
+    font-weight: 600;
+    color: #FBFBFB;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  @media (min-width:576px){.text h1{font-size: 3rem;}}
+  @media (min-width:768px){.text h1{font-size: 3.1rem;}}
+  @media (min-width:992px){.text h1{font-size: 3.8rem;}}
+  @media (min-width:1200px){.text h1{font-size: 4.4rem;}}
+  @media (min-width:1900px){.text h1{font-size: 5rem;}}
+  @media (min-width:2460px){.text h1{font-size: 7.4rem;}}
+
+  /* END - esilehe pildi container */
+
+  #form-container {
+    margin-top: 25%;
+    margin-left: 10%;
+  }
+
 
   .logo {
     /* width: 2vw; */
@@ -108,23 +152,6 @@
     border-radius: 0;
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.1);
   }
-  
- .intro {
-   padding-left:20px;
-   padding-right: 20px;
-   margin-top: 270px;
-   position: absolute;
-   background:rgba(0, 0, 0, 0.3); 
-   text-align: center;
- }
-
- .intro span {
-   font-size: 60px;
-   font-weight: 600;
-   color: #FBFBFB;
-   line-height: 1.25;
-
- }
 
  .btn {
    border-radius: 0;

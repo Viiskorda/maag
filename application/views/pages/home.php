@@ -5,15 +5,20 @@
 <div class="container-fluid">
     <div class="d-flex">
 
-        <div class="d-none d-md-flex col-md-6 col-lg-8 lookup-lg p-0 bg-image">
-            <p class="intro"><span>Kõigi Pärnu spordikeskuste vabad ajad ühes kohas!</span></p>
-            <!-- <iframe width="100%" height="100%" frameborder="0" title="Pärnu Linnavalitsuse spordiobjektid" src="//www.arcgis.com/apps/Embed/index.html?webmap=24c3f704a6904a1c9e19900fd6306fe5&extent=23.6259,58.0795,25.5569,58.6123&zoom=true&previewImage=false&scale=true&disable_scroll=false&theme=dark"></iframe> -->
+        <div class="d-none d-md-flex col-md-6 col-lg-8 p-0 img-container">
+            <div class="content">
+                <div class="blur"></div>                
+                <!-- <p class="intro"><span></span></p> -->
+            </div>
+            <div class="text">
+		            <h1>Kõigi Pärnu spordikeskuste vabad ajad ühes kohas!</h1>
+                </div>
         </div>
 
 
         <div class="col-md-6 col-lg-4">
-            <div class="lookup-lg d-flex align-items-center" id="body">
-                <div class="col-7 align-self center mx-auto">
+            <div class="d-flex align-items-center">
+                <div class="col-7"  id="form-container">
 
                     <form action="fullcalendar" method="get">
                         <div class="form-label-group">
