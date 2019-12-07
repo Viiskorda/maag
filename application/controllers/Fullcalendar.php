@@ -21,6 +21,16 @@ class Fullcalendar extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+
+	function edit()
+	{
+		
+		$this->load->view('templates/header');
+		$this->load->view('pages/edit' ,$_POST);
+		$this->load->view('templates/footer');
+	}
+
+
 	function load($roomId)
 	{
 		$this->input->get('saal', TRUE);

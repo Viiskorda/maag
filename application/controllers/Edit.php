@@ -10,21 +10,14 @@ class Edit extends CI_Controller {
 		$this->load->model('edit_model');
     }
 
-    function index()
-	{
-		
-		$this->load->view('templates/header');
-       $this->load->view('pages/edit');
-      
-		$this->load->view('templates/footer');
-	}
+   
 
-	function load()
+	function load($roomId)
 	{
-		$this->input->get('saal', TRUE);
-		$event_data = $this->fullcalendar_model->fetch_all_event();
+	//	$this->input->get('saal', TRUE);
+		$event_data = $this->edit_model->fetch_all_event();
 		foreach($event_data->result_array() as $row)
-		
+		if(	$row['bookingID']==$roomId){
 			
 		{
 			$data[] = array(
@@ -50,11 +43,10 @@ class Edit extends CI_Controller {
 
 			);
 		}
-	
+	}
 		
 		echo json_encode($data);
 	}
-
     
     
 
@@ -68,7 +60,7 @@ class Edit extends CI_Controller {
 				'endTime'		=>	$this->input->post('end')
 			);
 
-			$this->fullcalendar_model->update_event($data, $this->input->post('id'));
+			$this->edit_model->update_event($data, $this->input->post('id'));
 		}
 	}
 

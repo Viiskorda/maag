@@ -142,8 +142,9 @@
                     <form id="approveCheck">
                         <input type="submit" class="btn btn-primary" value="Kinnita">
                         </form >
-                        <form id="change">
-                        <input type="submit" class="btn btn-dark" value="Muuda">
+                        <form id="change" method="post" action="<?php echo base_url(); ?>fullcalendar/edit">
+
+                        <input type="submit" id="changeTimes" class="btn btn-dark" value="Muuda">
                         </form >  
                         <form id="delete">
                         <input type="submit" class="btn btn-danger" value="Kustuta" id="deleteChecked" name="deleteChecked">
@@ -437,7 +438,7 @@
                         {
                             if (confirm("Are you sure you want to remove it?")) {
                     event.preventDefault();    };
-                           var id=  $('input:checkbox:checked').parents("tbody").attr('id')
+                           var id=  $('input:checkbox:checked').parents("tbody").attr('id');
                           console.log("kõik on ckeckitud, tuleb ka bookings ab-st ära kustutada "+id);
                         $.ajax({
                             url: "<?php echo base_url(); ?>fullcalendar/deleteAllConnectedBookings",
@@ -599,6 +600,91 @@
 
                
             });
+
+            
+
+
+            $("#changeTimes").on('click',function( event ) {
+              if ($('.abc:checked').length <= $('.abc').length && $('.abc:checked').length>0) 
+                        {   var timesIdArray = [];
+                            var id= '';
+                            if (confirm("Muudan valitud aegasid?")) {
+                             event.preventDefault();    };
+                            
+                            $("input:checkbox").each(function(){
+                            var $this = $(this);
+
+                            if($this.is(":checked")){
+                                id=  $('input:checkbox:checked').parents("tbody").attr('id');
+                                var timesId = $this.attr("id");
+                                timesIdArray.push(timesId);
+
+                                $("#change").children().not(':first').remove();
+
+                                //$.post("<?php //echo base_url(); ?>/edit", { bookingID: id });
+
+
+                              
+
+
+
+
+                                // $.ajax({
+                                //     url: "<?php //echo base_url(); ?>fullcalendar/takesPlace",
+                                //     type: "POST",
+                                //     data: {
+                                //         timeID: id, 
+                                //         takesPlace: 0
+
+                                //     },
+                                //     success: function() {
+                                //         calendar.fullCalendar('refetchEvents');
+                                //         //siia tule teha panna kinnitatud olekuks modalis  
+                                //        // jQuery('input:checkbox:checked').parents("tr");
+                                //     //    ​$('input:checkbox:checked').parents("tr").text(function () {
+                                //     //         return $(this).text().replace("Ei toimu", ""); 
+                                //     //     });​​​​​
+                                //     $('input:checkbox:checked').parents("tr").children("td:contains('Ei toimu')").html("New");
+                                //         alert('Ei toimu');
+                                //     }, 
+                                //     error: function(returnval) {
+                                //         alert('Midagi läks valesti');
+                                //         $(".message").text(returnval + " failure");
+                                //         $(".message").fadeIn("slow");
+                                //         $(".message").delay(2000).fadeOut(1000);
+                                //     },
+                                //     })
+                                }
+
+                              
+                            });
+                            console.log("kõik on ckeckitud, tuleb ka bookings ab-st ära kustutada "+id + ' ' +timesIdArray);
+                            timesIdArray.unshift(id);
+                                    var myForm = document.getElementById('change');
+
+                                    timesIdArray.forEach(function (value) {
+                                    var hiddenInput = document.createElement('input');
+
+                                    hiddenInput.type = 'hidden';
+                                    hiddenInput.name = 'timesIdArray[]';
+                                    hiddenInput.value = value;
+
+                                    myForm.appendChild(hiddenInput);
+                                    });
+
+                                  $('#change').submit();
+                                
+                        }
+                else{
+                    alert("Sa ei märgistanud ühtegi ruutu");
+                    event.preventDefault(); 
+                };
+
+
+               
+            });
+
+
 
         });
     </script>
