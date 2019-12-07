@@ -1,4 +1,6 @@
-    <div class="container">
+Siia tuleb broneeringu muutmise vaade
+
+<div class="container">
         <div class="d-flex pt-4 pb-2">
             <form class="d-flex flex-row col-10 p-0" action="fullcalendar" method="get">
                 <div class="form-label-group col-4 p-0">
@@ -227,7 +229,7 @@
                 maxTime: '22:00:00',
 
                 //contentHeight:"auto",
-                events: "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get('roomId')); ?>",
+                events: "<?php echo base_url(); ?>fullcalendar/load/1",
                 selectable: true,
                 selectHelper: true,
                 select: function(start, end, allDay) {

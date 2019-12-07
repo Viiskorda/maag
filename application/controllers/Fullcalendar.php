@@ -144,6 +144,31 @@ class Fullcalendar extends CI_Controller {
 	}
 
 
+	function approveEvents()
+	{
+		if($this->input->post('timeID'))
+		{
+			$data = array(
+				'approved'			=>	$this->input->post('approved'),
+				);
+
+			$this->fullcalendar_model->update_event($data, $this->input->post('timeID'));
+		}
+	}
+
+
+	function takesPlace()
+	{
+		if($this->input->post('timeID'))
+		{
+			$data = array(
+				'takes_place'			=>	$this->input->post('takesPlace'),
+				);
+
+			$this->fullcalendar_model->update_event($data, $this->input->post('timeID'));
+		}
+	}
+
 }
 
 ?>
