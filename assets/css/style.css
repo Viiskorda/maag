@@ -39,12 +39,17 @@
   }
 
   .container-md {
-    max-width: 680px !important;
+    max-width: 800px !important;
     margin-right: auto;
     margin-left: auto;
     padding-right: 10px;
     padding-left:  10px;
-    height: 100vh;
+    min-height: 89vh;
+  }
+
+  .bg-grey {
+    background-color: #E0E0E2;
+    width: 150%;
   }
 
   .link {
@@ -52,13 +57,36 @@
     text-decoration: none;
   }
 
+  .link-deco {
+    color: #0B3954;
+    text-decoration: underline;
+  }
+
   .txt-sm {
     font-size: 12px;
   }
 
-  .txt-drkblue {
+  .txt-lg {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .txt-xl {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .text-white {
+    color: #FBFBFB;
+  }
+
+  .text-darkblue {
     color: #0B3954 !important;
   }
+
+  .txt-drkblue-test {
+    color: rgb(23, 83, 117) !important;
+  } /* Test - hiljem kustutada */
 
   input::-webkit-calendar-picker-indicator {
     display: none;
@@ -66,12 +94,35 @@
 
   .form-bg {
     background: #FFF;
-    border: 1px solid black;
+    border: 1px solid #C7C7C7;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
     /* border-radius: 10px; */
   }
 
   .arrow {
     background: url('../img/chevron-down-solid.svg') no-repeat 96% / 8% #fff;
+  }
+
+  a p::before {
+    display: inline-block;
+    content: '';
+    background-image: url('../img/plus-solid.svg');
+    background-size: cover;
+    height: 16px;
+    width: 15px;
+    margin-right: 15px;
+    opacity: 0.5;
+    margin-bottom: -2px;
+    
+  }
+
+  .icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: black;
   }
 
   .nav-bg {
@@ -143,14 +194,11 @@
     width: 25px;
   }
 
-  .text-white {
-    color: #FBFBFB;
-  }
-
   .form-control {
     text-overflow: ellipsis;
     border-radius: 0;
-    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 4px #E1E1E1;
+    /* box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.1); */
   }
 
  .btn {

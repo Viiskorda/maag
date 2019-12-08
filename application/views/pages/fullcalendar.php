@@ -1,7 +1,32 @@
-    <div class="container">
+    <div class="container" id="logged">
         <div class="d-flex pt-4 pb-2">
-            <form class="d-flex flex-row col-10 p-0" action="fullcalendar" method="get">
-                <div class="form-label-group col-4 p-0">
+            <form class="d-flex flex-row vol-md-11 col-lg-10 p-0" action="fullcalendar" method="get">
+                <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2" v-if="loggedIn">
+                    <label for="region">Piirkond</label>
+                    <input id="region" list="regions" class="form-control arrow" type="text">
+                    <datalist id="regions">
+                        <?php
+                        foreach ($regions as $row) {
+                            echo '<option  data-value="' . $row->id . '" value="' . $row->name . '"></option>';
+                        }
+                        ?>
+                    </datalist>
+                    <input type="hidden" id="roomId" name="roomId" value="roomId" />
+                </div>
+
+                <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2">
+                    <label for="sport_facility">Asutus</label>
+                    <input id="sport_facility" list="asutus" class="form-control arrow">
+                    <datalist id="asutus">
+                        <?php foreach ($buildings as $each) {
+                            echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
+                        }
+                        ?>
+                    </datalist>
+                    <input type="hidden" id="roomId" name="roomId" value="roomId" />
+                </div>
+
+                <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2">
                     <label for="room">Saal</label>
                     <input id="room" list="saal" class="form-control arrow">
                     <datalist id="saal">
@@ -9,12 +34,11 @@
                             echo '<option data-value="' . $each->id . '">' . $each->roomName . '</option>';
                         }
                         ?>
-
                     </datalist>
                     <input type="hidden" id="roomId" name="roomId" value="roomId" />
                 </div>
 
-                <div class="form-label-group col-2">
+                <div class="form-label-group col-2 p-0">
                     <label for="app">Kuupäev</label>
                     <div id='app'>
                         <v-date-picker mode="single" v-model="date" :popover="{ visibility: 'click' }">
@@ -23,7 +47,9 @@
                     </div>
                 </div>
             </form>
-            <a class="btn btn-custom col-2 text-white mr-auto p-0 mb-4 text-center align-middle" href="<?php echo base_url(); ?>booking/create">Broneerima</a>
+            <div class="col-2 mr-auto p-0">
+                <a class="btn btn-custom text-white text-center py-2 px-5 float-right pluss" href="<?php echo base_url(); ?>booking/create"><p class="m-0 txt-lg text-center">Lisa uus</p></a>
+            </div>
         </div>
 
         <!-- ekfjwkejfkwejÄ -->
@@ -174,7 +200,6 @@
     </body>
 
     <script src='https://unpkg.com/v-calendar@next'></script>
-
     <script>
         new Vue({
             el: '#app',

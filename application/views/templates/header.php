@@ -42,7 +42,7 @@
                 </div>
                 <!-- <button >"Logi sisse"</button> -->
 
-                <button  v-if="loggedIn"class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button  v-if="loggedIn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="loggedIn">
@@ -56,12 +56,14 @@
                         <li class="nav-item"><a class="nav-link font-weight-light text-white p-0" href="#"  @click="logIn"><u>Logi välja</u></a></li>
                     </ul>
                 </div>
-                <a class="nav-link font-weight-light txt-drkblue p-0" href="#" @click="logIn" v-show="dspl"><u>"Logi sisse"</u></a>
+                <a class="nav-link font-weight-light txt-drkblue-test p-0" href="#" @click="logIn" v-show="dspl"><u>"Logi sisse"</u></a>
             </div>
         </nav>
     </header>
 <!-- Navigation -->
-<script>
+
+<script src="<?php echo base_url(); ?>assets/js/log.js"></script>
+<!-- <script>
 new Vue ({
     el: '#logged',
     data: {
@@ -75,6 +77,6 @@ new Vue ({
         }
     }
 })
-</script>
+</script> -->
 <!-- Page starts -->
 
