@@ -5,12 +5,12 @@
 <?php echo validation_errors(); ?>
 <div class="container">
     <div id="proov" class="container-md">
-        <div class="mt-5 pb-5 form-bg">
+        <div id="nav-tabs" class="mt-5 pb-5 form-bg">
             <div class="d-flex mb-5">
-                <ul class="nav nav-tabs nav-justified col-12">
-                    <li class="nav-item"><a class="nav-link" v-bind:class="{ active: isActiveE }" href="#" @click="tabSwitchT">Ühekordne borneering</a></li>
-                    <li class="nav-item"><a class="nav-link" v-bind:class="{ active: isActiveH }" href="#" @click="tabSwitchH">Hooajaline borneering</a></li>
-                    <li class="nav-item"><a class="nav-link" v-bind:class="{ active: isActiveC }" href="#" @click="tabSwitchS">Suletud borneering</a></li>
+                <ul class="bg-grey nav nav-tabs nav-justified col-12">
+                    <li class="nav-item"><a class="nav-link link txt-lg" v-bind:class="{ active: isActiveE }" href="#" @click="tabSwitchT">Ühekordne borneering</a></li>
+                    <li class="nav-item"><a class="nav-link link txt-lg" v-bind:class="{ active: isActiveH }" href="#" @click="tabSwitchH">Hooajaline borneering</a></li>
+                    <li class="nav-item"><a class="nav-link link txt-lg" v-bind:class="{ active: isActiveC }" href="#" @click="tabSwitchS">Suletud borneering</a></li>
                 </ul>
             </div>
             <!-- <div class="lookup-lg d-flex align-items-center py-5" id="body"> -->
@@ -315,8 +315,8 @@
 
 
                         <div class="d-flex justify-content-end mt-5">
-                            <a class="txt-xl link-deco align-self-center py-0 pr-5 mr-2" href="#">Sisesta</a>
-                            <input class="btn btn-custom col-3 text-white txt-xl" type="submit" value="Broneeri">
+                            <a class="txt-xl link-deco align-self-center py-0 pr-5 mr-2" href="#">Katkesta</a>
+                            <input class="btn btn-custom col-3 text-white txt-xl" type="submit" value="Sisesta">
                         </div>
                     </form>
                 </div>
