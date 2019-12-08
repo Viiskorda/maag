@@ -12,12 +12,12 @@ class Edit extends CI_Controller {
 
    
 
-	function load($roomId)
+	function load($bookingID)
 	{
 	//	$this->input->get('saal', TRUE);
 		$event_data = $this->edit_model->fetch_all_event();
 		foreach($event_data->result_array() as $row)
-		if(	$row['bookingID']==$roomId){
+		if(	$row['bookingID']==$bookingID){
 			
 		{
 			$data[] = array(
@@ -40,17 +40,39 @@ class Edit extends CI_Controller {
 				 'bookingID'	=>	$row['bookingID'],
 				 'takesPlace'	=>	$row['takes_place'],
 				 'approved'	=>	$row['approved'],
+				 'organizer'	=>	$row['organizer'],
 
-			);
+				);
+			}
+		}
+			
+			echo json_encode($data);
+	}
+	
+	function loadAllRoomBookingTimes($roomId)
+	{
+		$this->input->get('saal', TRUE);
+		$event_data = $this->edit_model->fetch_all_Booking_times();
+		foreach($event_data->result_array() as $row)
+		if(	$row['roomID']==$roomId){
+			
+		{
+			$data[] = array(
+				'id'	=>	$row['bookingID'],
+				//'building'=>	$row['building'],
+				'timeID'=>	$row['timeID'],
+				'title'	=>	$row['public_info'],
+				'start'	=>	$row['startTime'],
+				'end'	=>	$row['endTime'],
+				);
 		}
 	}
 		
 		echo json_encode($data);
 	}
     
-    
 
-	function update()
+	function updateprevtodelete()
 	{
 		if($this->input->post('id'))
 		{
@@ -64,7 +86,82 @@ class Edit extends CI_Controller {
 		}
 	}
 
+
+	public function update()
+	{	
+		// if($this->input->post('BookingID'))
+		// {
+			$data1 = array(
+				'public_info'=>$this->input->post('publicInfo'),
+				'c_name' => $this ->input->post('contactPerson'),
+				'organizer' => $this ->input->post('organizer'),
+				'c_phone' => $this ->input->post('phone'),
+				'c_email' => $this ->input->post('email'),
+				
+				//'building' => $this ->input->post('building'), //pole seda formis
+				
+				'workout' => $this ->input->post('workoutType'),
+				// 'event_in' => $this ->input->post('eventIn'),
+				// 'event_out' => $this ->input->post('phone')
+			);
+			
+			//$this->form_validation->set_rules('clubname', 'Klubi nimi', 'required');
+		//	$this->form_validation->set_rules('contactPerson', 'Kontaktisik', 'required');
 	
+				$this->edit_model->update_booking($data1, $this->input->post('BookingID'));
+				
+			
+	
+					$insert_data = array();
+					$start_data = $this->input->post('bookingtimesFrom');
+					$end_data = $this->input->post('bookingtimesTo');
+					
+	
+					for($i = 0; $i < count($start_data); $i++)
+					{
+					
+					$insert_data[] = array(
+					//'roomID' => $this->input->post('sportrooms'),
+					'startTime' => $start_data[$i], 
+					'endTime' => $end_data[$i],
+					
+					);
+					$this->edit_model->update_bookingTimes($insert_data[$i], $this->input->post('timesIdArray')[$i]);
+				}
+				//var_dump($insert_data);
+			//	$this->edit_model->update_bookingTimes($insert_data, $this->input->post('timesIdArray'));
+						//$this->booking_model->create_bookingTimes($insert_data);
+					//	$this->load->view('booking/success');
+					//	redirect('fullcalendar?roomId=1');
+				
+					//var_dump($data1);
+
+		// }
+		
+
+
+		if($this->form_validation->run()===FALSE){
+			
+				redirect(base_url('fullcalendar?roomId=1'));
+					$this->load->view('templates/header');
+					$this->load->view('pages/fullcalendar?roomId=1');//see leht laeb vajalikku vaadet. ehk saab teha controllerit ka mujale, mis laeb õiget lehte
+					echo "success!";
+					$this->load->view('templates/footer');
+
+
+		}else{
+		//	$this->booking_model->create_booking();
+			$this->load->view('fullcalendar?roomId=1');//redirectib sinna peale väljade korrektselt sisestamist
+		}
+
+	
+	}
+
+	
+
+
+
+
 
 
 }
