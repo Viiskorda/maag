@@ -213,7 +213,7 @@
                             
                         if(n){
                             console.log(i);
-                            $('#myTable > tbody:last-child').append(' <tr id="'+BTimesid+'"> <td>'+days[new Date(start).getDay()]+'&nbsp;&nbsp;</td> <td><input id="'+BTimesid+'" type="datetime-local" name="bookingtimesFrom['+counter+']" value="'+start+'"> </td> <td>  -  <input id="'+BTimesid+'" type="datetime-local" name="bookingtimesTo['+counter+']" value="'+end+'"></td>  </td>   <td>&nbsp;&nbsp;&nbsp; </td>   </tr>');
+                            $('#myTable > tbody:last-child').append(' <tr id="'+BTimesid+'"> <td>'+days[new Date(start).getDay()]+'&nbsp;&nbsp;</td> <td><input id="'+BTimesid+'" type="datetime-local" name="bookingtimesFrom['+counter+']" value="'+start+'"> </td><td>  - </td>  <td>   <input id="'+BTimesid+'" type="datetime-local" name="bookingtimesTo['+counter+']" value="'+end+'"></td>  </td>   <td>&nbsp;&nbsp;&nbsp; </td>   </tr>');
                         resConflicts.push(start.replace('T',' ').substring(0, 16));
                         res2Conflicts.push(end.replace('T',' ').substring(0, 16));
                         ConflictID.push(obj.timeID);
@@ -263,7 +263,7 @@
                                 var checkDateTime2 = toDate(res2Conflicts[t]); //magic date
                                
                                     if(ConflictID[t]!==timeIDofConflict){
-                                    if (isBetween(checkDateTime,startDateTime,endDateTime) || isBetween(checkDateTime2,startDateTime,endDateTime) ){
+                                        if (isBetween(startDateTime,checkDateTime,checkDateTime2) || isBetween(endDateTime,checkDateTime,checkDateTime2) ){
                                      //   console.log(checkDateTime +" - "+ checkDateTime2 + " nende vastu "+ startDateTime+ " " +endDateTime);// 
                                      //   console.log("tingumus on täidetud " + resConflicts[t] + " või "+res2Conflicts[t]);
                                         $('#myTable #'+ConflictID[t]).append( "Konflikt: "+titleIDofConflict + " ("+conflicts2.start.substring(0, 16) +" - "+ conflicts2.end.substring(0, 16) + "); ");
