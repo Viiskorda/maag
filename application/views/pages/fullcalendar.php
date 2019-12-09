@@ -366,12 +366,57 @@
                     var id = event.id;
                     var events = $('#calendar').fullCalendar('clientEvents');
                     $('tbody').attr('id',id );
+
+
+                    var startDateTime=[];
+                    var endDateTime=[];
+                    var arrayOfIDs=[];
+
+                    for(var i = 0; i < events.length; i++){
+                        var Bid=events[i].bookingID;
+                        var BTimesid=events[i].timeID;
+                       
+                       
+                     var roomID = <?php echo ($this->input->get('roomId')); ?>;
+                    // console.log("event.id="+event.id+" Bookingtimes="+BTimesid+" Bid="+Bid+" "+roomID+ " "+events[i].roomID);
+                      
+                         
+                        if(events[i].start != null && events[i].end != null ){
+                            startDateTime.push(events[i].start._i.substring(0, 16));
+                            arrayOfIDs.push(events[i].timeID);
+                            endDateTime.push(events[i].end._i.substring(0, 16));
+                       //  console.log((events[i].start._i.substring(0, 16))+" "+ events[i].end._i.substring(0, 16));
+                        }
+                       
+
+                       
+                  
+                    };
+                   
+                    // console.log(startDateTime);
+                    // console.log(endDateTime);
+                    function isBetween(checkDateTime, startDateTime, endDateTime) {
+
+                    return (checkDateTime >= startDateTime && checkDateTime <= endDateTime);
+
+                    }
+
+                    function toDate(str){
+                        
+                            var [ yyyy, MM,dd,  hh, mm ] = str.split(/[- :]/g);
+                            return new Date(`${MM}/${dd}/${yyyy} ${hh}:${mm}`);
+                    }
+
+
+                  
+                      
+
                     for (var i = 0; i < events.length; i++) {
                         var Bid=events[i].bookingID;
                         var BTimesid=events[i].timeID;
                        
                        
-                 //    console.log("event.id="+event.id+" Bookingtimes="+BTimesid+" Bid="+Bid);
+                  //   console.log("event.id="+event.id+" Bookingtimes="+BTimesid+" Bid="+Bid);
                         if (event.id==Bid) {
                         var approved = events[i].approved;
                         if(approved==1){
@@ -396,11 +441,15 @@
                         var title = events[i].title;
                         
                         var st_day = start_date.getUTCDate();
+                        
                         if(st_day<10){
                             st_day='0'+st_day;
                             }
 
                         var st_monthIndex = start_date.getUTCMonth() + 1;
+                        if(st_monthIndex<10){
+                            st_monthIndex='0'+st_monthIndex;
+                            };
                         var st_year = start_date.getUTCFullYear();
                         var st_hours = start_date.getUTCHours();
                         if(st_hours==0){
@@ -420,7 +469,14 @@
                         var en_year = '';
                         if (end_date != '') {
                             en_day = end_date.getUTCDate();
+                            if(en_day<10){
+                                en_day='0'+en_day;
+                            }
+
                             en_monthIndex = end_date.getUTCMonth()+1;
+                            if(en_monthIndex<10){
+                                en_monthIndex='0'+en_monthIndex;
+                            };
                             en_year = end_date.getUTCFullYear();
                             var en_hours = end_date.getUTCHours();
                              if(en_hours<10){
@@ -432,8 +488,25 @@
                             }
                         
                         }
-                        $('#myTable > tbody:last-child').append(' <tr><td><input type="checkbox" class="abc" name="choices" id="'+BTimesid+'"> ' + st_day + '-' + st_monthIndex + '-' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+approved+' </td></td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>   </tr>');
-                      //  console.log('Title-'+title+', start Date-' + st_year + '-' + st_monthIndex + '-' + st_day + ' , End Date-' + en_year + '-' + en_monthIndex + '-' + en_day + ' '+Bid + ' time ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes);
+                        var checkDateTime = st_year+'-'+st_monthIndex+'-'+st_day+" "+st_hours+':'+st_minutes;
+                        var checkDateTime2 = en_year+'-'+en_monthIndex+'-'+en_day+" "+en_hours+':'+en_minutes;
+                        $('#myTable > tbody:last-child').append(' <tr class="red'+i+'"><td><input type="checkbox" class="abc" name="choices" id="'+BTimesid+'"> ' + st_day + '-' + st_monthIndex + '-' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+approved+' </td></td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>   </tr>');
+                 
+                        for(var t = 0; t < startDateTime.length; t++){
+                            if(arrayOfIDs[t] != BTimesid){
+                           
+                               
+                            if (isBetween(startDateTime[t],checkDateTime, checkDateTime2 ) || isBetween(endDateTime[t],checkDateTime, checkDateTime2) ){
+                                console.log(isBetween(startDateTime[t],checkDateTime, checkDateTime2 ) || isBetween(endDateTime[t],checkDateTime, checkDateTime2));
+                              console.log("konflikt:"+ startDateTime[t] +": "+endDateTime[t]);
+                              $(".red"+i).css("color", "red");
+                          
+                            }
+                        }
+                        };
+                      //  console.log(startDateTime);
+                    //console.log(endDateTime);
+                         //  console.log('Title-'+title+', start Date-' + st_year + '-' + st_monthIndex + '-' + st_day + ' , End Date-' + en_year + '-' + en_monthIndex + '-' + en_day + ' '+Bid + ' time ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes);
                   
                   
 
