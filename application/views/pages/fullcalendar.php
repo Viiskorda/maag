@@ -48,13 +48,13 @@
                 </div>
             </form>
             <div class="col-2 mr-auto p-0">
-                <a class="btn btn-custom text-white text-center py-2 px-5 float-right pluss" href="<?php echo base_url(); ?>booking/create"><p class="m-0 txt-lg text-center">Lisa uus</p></a>
+                <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" href="<?php echo base_url(); ?>booking/create"><p class="m-0 txt-lg text-center">Lisa uus</p></a>
             </div>
         </div>
 
         <!-- ekfjwkejfkwejÄ -->
 
-        <div class="calendar-container">
+        <div id="calendar-container">
             <div id='calendar'></div>
         </div>
 
@@ -229,6 +229,8 @@
                     right: ''
                 },
                 height: 'parent',
+                // contentHeight: 600,
+                // aspectRatio: 2.2,
                 allDaySlot: false,
                 firstDay: 1,
 
@@ -256,6 +258,8 @@
                 events: "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get('roomId')); ?>",
                 selectable: true,
                 selectHelper: true,
+                eventRender: function (event, element) {
+                element.find('.fc-title').before("<span>Päring: "+moment(event.created_at).format("DD.MM.YYYY HH:mm")+"</span>")},
                 select: function(start, end, allDay) {
                     var public_info = prompt("Enter Event Title");
                     var roomID = <?php echo ($this->input->get('roomId')); ?>;
@@ -781,6 +785,18 @@
 
                
             });
+
+            var calHeight = $( ".fc-body" ).height();
+            var calRows = $( ".fc-slats tr" ).length;
+            console.log(calHeight);
+            console.log(calRows);
+            var rowHeightRaw = calHeight / calRows;
+            var rowHeight = rowHeightRaw.toString().match(/^-?\d+(?:\.\d{0,1})?/)[0];
+            $('.fc-slats tr').css('height', rowHeight+'px');
+            $(window).trigger('resize');
+            console.log(rowHeightRaw);
+            console.log(rowHeight);
+            
 
 
 

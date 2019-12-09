@@ -12,7 +12,7 @@
 }
 
 .fc h2 {
-    color: #FBFBFB;
+    color: rgb(11, 57, 84);
     font-weight: 600;
     font-size: 18px;
 
@@ -22,34 +22,27 @@
     font-size: 12px;
 }
 
-.calendar-container {
+#calendar-container {
     min-height: 85vh;
-}
-
-.fc-time-grid .fc-slats td {
-    height: 1.2rem;
 }
 
 .fc-toolbar.fc-header-toolbar {
     vertical-align: middle;
-    margin-bottom: 0;
+    margin: 0;
     padding: 5px;
-    border-width: 10px;
-    border-color: rgb(11, 57, 84);
+    border-top: 1px solid rgba(11, 57, 84,0.3);
+    border-left: 1px solid rgba(11, 57, 84,0.3);
+    border-right: 1px solid rgba(11, 57, 84,0.3);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
 .fc-toolbar{
-    background: rgb(11, 57, 84);
-}
-
-.fc td, .fc th {
-    border-color: rgb(134, 155, 167);
+    background: #FFF;
 }
 
 .fc-head {
-    background: rgb(11, 57, 84);
+    background: rgba(11, 57, 84, 0.1);
 }
 
 .fc-day-header, .fc-day-header span {
@@ -57,12 +50,60 @@
     padding-bottom: 0.2rem !important;
     font-size: 14px;
     font-weight: 500;
-    color: #FBFBFB;
+    color: rgb(11, 57, 84);
 }
 
 .fc-highlight-container {
     background-color: rgb(217, 234, 255);
 }
+
+.fc-divider {
+    display: none !important;
+}
+
+.fc-bg { /* kogu tabeli tausta värvus */
+    background-color: #FFF;
+}
+
+.fc-event { /* sündmuse kujundus */
+    border: none;
+    background-color: #FBFBFB;
+    padding: 0;
+    border-radius: 0;
+    border-top: 4px solid darkgrey;
+    padding-top: 2px;
+}
+
+.fc-today {
+    background-color: rgb(11, 57, 84);
+}
+
+.fc-today span {
+    color: #FBFBFB !important;
+}
+
+.fc-state-highlight {
+    background-color: rgba(11, 57, 84, 0.1) !important;
+}
+
+.fc-content {
+    display:flex;
+    flex-flow: column;
+    text-align: center;
+}
+
+.fc-content span {
+    font-size: 10px;
+}
+
+.fc-content div, .fc-time span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.fc-content :nth-child(1) { order: 3; }
+.fc-content :nth-child(2) { order: 1; }
+.fc-content :nth-child(3) { order: 2; }
 
 /* .modal-backdrop {
     position: fixed;
