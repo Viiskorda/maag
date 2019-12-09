@@ -7,17 +7,17 @@
     <div id="proov" class="container-md">
         <div id="nav-tabs" class="mt-5 pb-5 form-bg">
             <div class="d-flex mb-5">
-                <ul class="bg-grey nav nav-tabs nav-justified col-12">
-                    <li class="nav-item"><a class="nav-link link txt-lg" v-bind:class="{ active: isActiveE }" href="#" @click="tabSwitchT">Ühekordne borneering</a></li>
-                    <li class="nav-item"><a class="nav-link link txt-lg" v-bind:class="{ active: isActiveH }" href="#" @click="tabSwitchH">Hooajaline borneering</a></li>
-                    <li class="nav-item"><a class="nav-link link txt-lg" v-bind:class="{ active: isActiveC }" href="#" @click="tabSwitchS">Suletud borneering</a></li>
+                <ul class="nav nav-tabs nav-justified col-12 bg-grey">
+                    <li class="nav-item"><a  class="nav-link link txt-lg  active" href="#mitmekordne" data-toggle="tab">Ühekordne borneering</a></li>
+                    <li class="nav-item"><a  class="nav-link link txt-lg" href="#hooajaline" data-toggle="tab">Hooajaline borneering</a></li>
+                    <li class="nav-item"><a  class="nav-link link txt-lg" href="#suletud" data-toggle="tab">Suletud borneering</a></li>
                 </ul>
             </div>
             <!-- <div class="lookup-lg d-flex align-items-center py-5" id="body"> -->
 
                 <!-- <div class="col-9 align-self center mx-auto"> -->
-
-                <div id="mitmekordne" class="center px-5 mx-5" v-if="trenn">
+            <div class="tab-content">
+                <div id="mitmekordne" class="tab-pane center px-5 mx-5 active">
                     <?php echo form_open('booking/create'); ?>
 
                         <h4 class="pt-2 txt-xl">Kontakt</h4>
@@ -86,7 +86,7 @@
                                         <p class="align-middle m-0 p-0" style="height: 20px;">–</p> 
                                         <input class="form-control col-5.5 p-0" type="datetime-local" name="begin[1]" step="900" min="08:00" max="22:00" id="timestartfield_1" value="">
                                         <!-- <input type="time" name="end[1]" step="900" min="08:00" max="22:00" id="timeendfield_1" value=""> -->
-                                        <a href="#" class="removeclass"></a>
+                                        <a href="#" class="removeclass">Remove</a>
                                     </div>
                                     <div id="AddMoreFileId" class="flex"><a href="#" id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 px-5 pluss"><p class="m-0 txt-lg text-center align-items-center">Lisa veel üks kuupäev</p></a></div>
                                 </div>
@@ -102,7 +102,7 @@
                                 <input class="form-control" id="additional" name="additionalComment">
                             </div>
 
-                            <div class="form-label-group col-6 p-0 pl-5" v-if="loggedin">
+                            <div class="form-label-group col-6 p-0 pl-5">
                                 <label>Asutusesisene kommentaar</label>
                                 <input class="form-control" id="comment2" name="comment2">
                             </div>
@@ -116,7 +116,7 @@
                     </form>
                 </div>
 
-                <div id="hooajaline" class="center px-5 mx-5" v-if="hooajaline">
+                <div id="hooajaline" class="tab-pane center px-5 mx-5">
                     <?php echo form_open('booking/create'); ?>
 
                         <h4 class="pt-2 txt-xl">Kontakt</h4>
@@ -177,7 +177,7 @@
 
                         <h4 class="mt-5 txt-xl">Kuupäev ja kellaaeg</h4>
                         <div class="d-flex mb-2 mt-4">
-                            <div class="form-label-group col-6 py-0 pl-0 pr-5">
+                            <div class="form-label-group col-6 py-0 pl-0 pr-5"  id="InputsWrapper1">
                                 <label for="sport_facility2">Nädalapäev</label>
                                 <input class="form-control" id="sport_facility2" list="weekdays" name="weekday">
                              
@@ -236,7 +236,7 @@
                     </form>
                 </div>
 
-                <div id="suletud" class="center px-5 mx-5" v-if="suletud">
+                <div id="suletud" class="tab-pane center px-5 mx-5">
                 <?php echo form_open('booking/createClosed'); ?>
                     <!-- <form class="pt-3" action="booking" method="get"> -->
 
@@ -320,13 +320,14 @@
                         </div>
                     </form>
                 </div>
+                                        </div>
 
         </div>
     </div>
 </div>
 </br>
 
-<script src="<?php echo base_url(); ?>assets/js/cus_vue.js"></script>
+
 <script>
     $(document).ready(function() {
 
@@ -343,12 +344,12 @@
             if (x <= MaxInputs) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $(InputsWrapper).append('<div class="d-flex align-items-center mb-3"><input class="form-control col-5.5 p-0"  type="datetime-local" name="mytext[' + FieldCount + ']" id="field_' + FieldCount + '" value="<?php echo date('Y-m-d\TH:i');?>"/> <p class="align-middle m-0 p-0" style="height: 20px;">–</p> <input class="form-control col-5.5 p-0"  type="datetime-local"  name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"/>   <a href="#" class="removeclass">Remove</a></div>');
+                $(AddButton).before('<div class="d-flex align-items-center mb-3"><input class="form-control col-5.5 p-0"  type="datetime-local" name="mytext[' + FieldCount + ']" id="field_' + FieldCount + '" value="<?php echo date('Y-m-d\TH:i');?>"/> <p class="align-middle m-0 p-0" style="height: 20px;">–</p> <input class="form-control col-5.5 p-0"  type="datetime-local"  name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"/>   <a href="#" class="removeclass">Remove</a></div>');
                 x++; //text box increment
 
                 $("#AddMoreFileId").show();
 
-                $('AddMoreFileBox').html("Add field");
+                // $('AddMoreFileBox').html("Add field");
 
                 // Delete the "add"-link if there is 3 fields.
                 if (x == MaxInputs) {
@@ -366,13 +367,18 @@
                // FieldCount--;
                 $("#AddMoreFileId").show();
 
-                $("#lineBreak").html("");
+                // $("#lineBreak").html("");
 
                 // Adds the "add" link again when a field is removed.
-                $('AddMoreFileBox').html("Add field");
+                // $('AddMoreFileBox').html("Add field");
             }
             return false;
         });
 
+    });
+
+    $(".nav a").on("click", function() { // TAB'i active klassi toggle
+        $(".nav a").removeClass("active");
+        $(this).addClass("active");
     });
 </script>

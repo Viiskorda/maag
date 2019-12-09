@@ -799,12 +799,13 @@
 
             var calHeight = $( ".fc-body" ).height();
             var calRows = $( ".fc-slats tr" ).length;
-            console.log(calHeight);
-            console.log(calRows);
             var rowHeightRaw = calHeight / calRows;
             var rowHeight = rowHeightRaw.toString().match(/^-?\d+(?:\.\d{0,1})?/)[0];
             $('.fc-slats tr').css('height', rowHeight+'px');
             $(window).trigger('resize');
+            
+            console.log(calHeight);
+            console.log(calRows);
             console.log(rowHeightRaw);
             console.log(rowHeight);
             
