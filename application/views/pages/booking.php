@@ -86,7 +86,7 @@
                                         <p class="align-middle m-0 p-0" style="height: 20px;">–</p> 
                                         <input class="form-control col-5.5 p-0" type="datetime-local" name="begin[1]" step="900" min="08:00" max="22:00" id="timestartfield_1" value="">
                                         <!-- <input type="time" name="end[1]" step="900" min="08:00" max="22:00" id="timeendfield_1" value=""> -->
-                                        <a href="#" class="removeclass"></a>
+                                        <a href="#" class="removeclass">Remove</a>
                                     </div>
                                     <div id="AddMoreFileId" class="flex"><a href="#" id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 px-5 pluss"><p class="m-0 txt-lg text-center align-items-center">Lisa veel üks kuupäev</p></a></div>
                                 </div>
@@ -344,12 +344,12 @@
             if (x <= MaxInputs) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $(InputsWrapper).append('<div class="d-flex align-items-center mb-3"><input class="form-control col-5.5 p-0"  type="datetime-local" name="mytext[' + FieldCount + ']" id="field_' + FieldCount + '" value="<?php echo date('Y-m-d\TH:i');?>"/> <p class="align-middle m-0 p-0" style="height: 20px;">–</p> <input class="form-control col-5.5 p-0"  type="datetime-local"  name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"/>   <a href="#" class="removeclass">Remove</a></div>');
+                $(AddButton).before('<div class="d-flex align-items-center mb-3"><input class="form-control col-5.5 p-0"  type="datetime-local" name="mytext[' + FieldCount + ']" id="field_' + FieldCount + '" value="<?php echo date('Y-m-d\TH:i');?>"/> <p class="align-middle m-0 p-0" style="height: 20px;">–</p> <input class="form-control col-5.5 p-0"  type="datetime-local"  name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"/>   <a href="#" class="removeclass">Remove</a></div>');
                 x++; //text box increment
 
                 $("#AddMoreFileId").show();
 
-                $('AddMoreFileBox').html("Add field");
+                // $('AddMoreFileBox').html("Add field");
 
                 // Delete the "add"-link if there is 3 fields.
                 if (x == MaxInputs) {
@@ -367,10 +367,10 @@
                // FieldCount--;
                 $("#AddMoreFileId").show();
 
-                $("#lineBreak").html("");
+                // $("#lineBreak").html("");
 
                 // Adds the "add" link again when a field is removed.
-                $('AddMoreFileBox').html("Add field");
+                // $('AddMoreFileBox').html("Add field");
             }
             return false;
         });
