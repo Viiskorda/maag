@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
-
+<a href="<?php echo site_url('login/logout');?>">Sign Out</a>
 
 <div class="container-fluid">
     <div class="d-flex">

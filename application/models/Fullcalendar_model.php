@@ -64,6 +64,45 @@ class Fullcalendar_model extends CI_Model
 
 	}
 
+	function fetch_city($country_id)
+    {
+        $this->db->where('regionID', $country_id);
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get('buildings');
+        $output = '<option value="">Select Asutus</option>';
+        foreach ($query->result() as $row) {
+            $output .= '<option  data-value="' . $row->id . '" value="' . $row->name . '">'.$row->name.'</option>';
+        }
+        return $output;
+    }
+
+
+    function fetch_building($state_id)
+    {
+        $this->db->where('buildingID', $state_id);
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get('rooms');
+        $output = '<option value="">Select room</option>';
+        foreach ($query->result() as $row) {
+            $output .= '<option  data-value="' . $row->id . '" value="' . $row->roomName . '">'.$row->roomName.'</option>';
+        }
+        return $output;
+    }
+
+
+
+
+    function getAllRegions()
+    {
+        $this->db->order_by('id');
+        $query = $this->db->get('regions');
+        return $query->result();
+    }
+	function getAllBuildings()
+    {
+        $query = $this->db->get('buildings');
+        return $query->result();
+    }
 
 
 }
