@@ -1,66 +1,41 @@
-<?php print_r($_POST['timesIdArray'][0])?>
 
-<?php foreach ($_POST['timesIdArray'] as $each) {
-                            echo ( $each );
-                        }
-                        ?>
-<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get('roomId')); ?>
+
+
+
 
 <div class="container">
-        <div class="d-flex pt-4 pb-2">
-            <form class="d-flex flex-row col-10 p-0" action="fullcalendar" method="get">
-                <div class="form-label-group col-4 p-0">
-                    <label for="room">Saal</label>
-                    <input id="room" list="saal" class="form-control arrow">
-                    <datalist id="saal">
-                    
-
-                    </datalist>
-                    <input type="hidden" id="roomId" name="roomId" value="roomId" />
-                </div>
-
-                <div class="form-label-group col-2">
-                    <label for="app">Kuupäev</label>
-                    <div id='app'>
-                        <v-date-picker mode="single" v-model="date" :popover="{ visibility: 'click' }">
-                            <input id="date" slot-scope="{ inputProps, inputEvents}" :class="[`form-control`]" v-bind="inputProps" v-on="inputEvents" name="date" value="date">
-                        </v-date-picker>
-                    </div>
-                </div>
-            </form>
-            <a class="btn btn-custom col-2 text-white mr-auto p-0 mb-4 text-center align-middle" href="<?php echo base_url(); ?>booking/create">Broneerima</a>
-        </div>
-
-        <!-- ekfjwkejfkwejÄ -->
-
      
+            <a class="btn btn-custom col-2 text-white mr-auto p-0 mb-4 text-center align-middle" href="<?php echo base_url(); ?>booking/create">Tee uus broneering</a>
 
-        </br>
-
-     
-                        <h4 class="modal-title" id="myModalLabel">Siia tuleb avalik info</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                       
+           </br>
                     </div>
                    
                     <div class="modal-body">
-                        <div>
-                     <p>   Päring:  <input type="text" class="form-control" name="created_at" id="created_at"> </p> <hr></div>
-                        <h6>Broneeringu info</h6>
-                        <hr>
-                        <?php echo form_open(site_url("calendar/edit_event"), array("class" => "form-horizontal")) ?>
+                        <!-- <div>
+                     <p>   Päring:  <input type="text" class="form-control" name="created_at" id="created_at"> </p> <hr>
+                    </div> -->
+                      
+                     
+                    <form id="change" method="post" action="<?php echo base_url(); ?>edit/update">
+                    <div id="change"></div>
 
                                 <div class="form-group">
                                     <h5>Kontakt</h5>
-                                    <label for="p-in" class="col-md-4 label-heading">Kontaktisik</label>
+                                    <label for="p-in" class="col-md-4 label-heading">Avalik info (kuvatakse kõigile)</label>
                                     <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="c_name" value="" id="c_name">
+                                        <input type="text" class="form-control" name="publicInfo" value="" id="publicInfo">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">Klubi nimi</label>
+                                    <label for="p-in" class="col-md-4 label-heading">Kontaktisik</label>
                                     <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="clubname" id="clubname">
+                                        <input type="text" class="form-control" name="contactPerson" id="contactPerson">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="p-in" class="col-md-4 label-heading">Korraldaja</label>
+                                    <div class="col-md-8 ui-front">
+                                        <input type="text" class="form-control" name="organizer" id="organizer">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -77,49 +52,50 @@
                                 </div>
                                 <h5>Asukoht ja treeningu tüüp</h5>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="p-in" class="col-md-4 label-heading">Asutus</label>
                                     <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="building" id="building">
+                                        <input type="text" class="form-control"  id="building" disabled>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label for="p-in" class="col-md-4 label-heading">Saal</label>
                                     <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="selectedroom" id="selectedroom">
+                                        <input type="text" class="form-control" name="selectedroom" id="selectedroom" value="">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="p-in" class="col-md-4 label-heading">Treeningu tüüp</label>
                                     <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="workout" id="workout">
+                                        <input type="text" class="form-control" name="workoutType" id="workoutType">
                                     </div>
                                 </div>
                                 <h5>Kuupäev ja kellaajad</h5>
                                 <div class="form-group">
                                     <label for="p-in" class="col-md-4 label-heading">Hooaeg alates</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="event_in" id="event_in">
+                                        <input type="text" class="form-control"  id="eventIn" disabled>
                                     </div>
                                 </div>
                             
                                 <div class="form-group">
                                     <label for="p-in" class="col-md-4 label-heading">Hooaeg kuni</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="event_out" id="event_out">
+                                        <input type="text" class="form-control"  id="eventOut" disabled>
                                     </div>
                                 </div>
-                        Lisainfo
-
+                    
                                     <hr>
                     <h6>Kõik ajad</6>
 
-                    <hr>
-                    <input type="checkbox" name="delete" value="1"> VALI KÕIK<hr>
+               
+                 
                     <table id="myTable">
                     <tbody>
-                        <tr></tr>
-                    
+                       
+                 
+
+                  
                     </tbody>
                     </table>
 
@@ -131,131 +107,232 @@
                             </div>
                         </div>-->
 
-                        <?php echo form_close() ?>
-                        <input type="hidden" name="eventid" id="event_id" value="0" /> 
+                    
                     </div>
 
 
-                    <div class="modal-footer">
-                    <form id="approveCheck">
-                        <input type="submit" class="btn btn-primary" value="Kinnita">
-                        </form >
-                        <form id="change">
-                        <input type="submit" class="btn btn-dark" value="Muuda">
-                        </form >  
-                        <form id="delete">
-                        <input type="submit" class="btn btn-danger" value="Kustuta" id="deleteChecked" name="deleteChecked">
-                    </form >
-                    <form id="takesPlaceCheck">
-                        <input type="submit"  class="btn btn-secondary" value="Ei toimu">
-                        </form >
-                       
-                      
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                       
-                    </div>
+                  
                     <p id="time"></p>
 
-
-             
+                    <input type="submit" id="changeTimes" class="btn btn-dark" value="Muuda">
     </div>
+
+    </form>
+
     </body>
 
-
-
+  
+                        <?php $arr2 = array(); foreach (array_slice($_POST['timesIdArray'], 1) as $key=>$value) {   $arr2[] = $value;}?>;
+   
 
     <script>
       
 
         $(document).ready(function() {
 
-            var eventToModificate = "<?php echo base_url(); ?>edit/load/<?php print_r($_POST['timesIdArray'][0])?>";
-            console.log(eventToModificate);
+         //   var eventToModificate = "<?php echo base_url(); ?>edit/load/<?php print_r($_POST['timesIdArray'][0])?>";
+            var resConflicts =[];
+            var res2Conflicts=[];
+            var ConflictID=[];
+            var publicInfo=[];
+            var counter=0;
+           
+            // var urltoload =  "<?php echo base_url(); ?>fullcalendar/load/1";
+            // console.log(urltoload+" konfliktid");
 
             $.post("<?php echo base_url(); ?>edit/load/<?php print_r($_POST['timesIdArray'][0])?>",
                 function(data)
                 {
                     var res =  $.parseJSON(data);
-                
+                   
+                    var days = ['Pühapäev', 'Esmaspäev', 'Teisipäev', 'Kolmapäev', 'Neljapäev', 'Reede', 'Laupäev'];
+                    var conflicts = "";
+                  
+
+             
+                    function isBetween(checkDateTime, startDateTime, endDateTime) {
+
+                        return (checkDateTime >= startDateTime && checkDateTime <= endDateTime);
+
+                        }
+
+                    function toDate(str){
+                               
+                                var [ yyyy, MM,dd,  hh, mm ] = str.split(/[- :]/g);
+                                return new Date(`${MM}/${dd}/${yyyy} ${hh}:${mm}`);
+                                }
+
+
                     for (var i = 0, l = res.length; i < l; i++) {
                         var obj = res[i];
-                        console.log(obj);
-                        console.log(obj.start);
-                        $('#myTable tr').remove();
-                    $('#lefty').modal('show');
-                    $("#lefty .modal-header h4").text(obj.title);
-                    $("#lefty #time").text(obj.created_at);
+                       // console.log(obj);
+                        //console.log(obj.start);
 
-                    $('#c_name').val(obj.title);
-                    $('#clubname').val(obj.clubname);
-                  
-                    if ($('#event_in').is(':empty')){
-                    $('#event_in').val('Pole hooajaline broneering');}
-                    else{
-                        $('#event_in').val(moment(obj.event_in).format('DD/MM/YYYY HH:mm'));
-                    }
-                    if ($('#event_out').is(':empty')){
-                    $('#event_out').val('Pole hooajaline broneering');}
-                    else{
-                        $('#event_out').val(moment(obj.event_out).format('DD/MM/YYYY HH:mm'));
-                    }
-                    $('#phone').val(obj.phone);
-                    $('#selectedroom').val(obj.selectedroom);
-                    $('#email').val(obj.email);
-                    $('#created_at').val(obj.created_at);
-                    $('#workout').val(obj.workout);
-                  
-                    $('#start').val(obj.start);
-                   $('#building').val(obj.building);
-                    $('#selectedroom').val(obj.roomName);
+                      
+                        $('#lefty').modal('show');
+                        $("#lefty .modal-header h4").text(obj.title);
+                        $("#lefty #time").text(obj.created_at);
 
-                    }
-                    alert(res.values());
-                    console.log(Object.prototype.toString.call(res));
-                });
-            $("#approveCheck").submit(function( event ) {
-                     if ($('.abc:checked').length <= $('.abc').length && $('.abc:checked').length>0) 
-                        {
-                            if (confirm("Kinnatan valitud?")) {
-                             event.preventDefault();    };
+                        $('#publicInfo').val(obj.title);
+                        $('#contactPerson').val(obj.clubname);
+                        $('#organizer').val(obj.organizer);
+                        // if ($('#eventIn').is(':empty')){
+                        // $('#eventIn').val('Pole hooajaline broneering');}
+                        // else{
+                        //     $('#eventIn').val(moment(obj.event_in).format('DD/MM/YYYY HH:mm'));
+                        // }
+                        // if ($('#eventOut').is(':empty')){
+                        // $('#eventOut').val('Pole hooajaline broneering');}
+                        // else{
+                        //     $('#eventOut').val(moment(obj.event_out).format('DD/MM/YYYY HH:mm'));
+                        // }
+                        $('#phone').val(obj.phone);
+                     
+                        $('#email').val(obj.email);
+                        $('#created_at').val(obj.created_at);
+                        $('#workoutType').val(obj.workout);
+                    
+                        $('#start').val(obj.start);
+                     //   $('#building').val(obj.building);
+
+                        //$('#selectedroom').val(obj.roomName);
+                      //  $('#selectedroom').val(obj.roomID)
+                        document.getElementById("selectedroom").value = obj.roomID;
+                        
+                        console.log(obj.roomID);
+                        var BTimesid=obj.timeID;
+
+                        var start=obj.start;
+                        var end=obj.end;
+                     //   console.log(start+' '+end);
+
+
+
+                        var datafrom = ['<?=implode("', '", $arr2)?>'];
+                        var n = datafrom.includes(BTimesid);
                             
-                            $("input:checkbox").each(function(){
-                            var $this = $(this);
-
-                            if($this.is(":checked")){
-                                var id = $this.attr("id");
-                                console.log("going to kinnitama " +id);// $this.attr("id");
-                                
-                                $.ajax({
-                                    url: "<?php echo base_url(); ?>edit/<?php print_r($_POST['timesIdArray'][0])?>",
-                                    type: "POST",
-                                    data: {
-                                        timeID: id, 
-                                        approved: 1
-
-                                    },
-                                    success: function() {
-                                        calendar.fullCalendar('refetchEvents');
-                                        //siia tule teha panna kinnitatud olekuks modalis  
-                                        //jQuery('input:checkbox:checked').parents("tr").remove();
-                                        alert('Kinnitatud');
-                                    }, 
-                                    error: function(returnval) {
-                                        $(".message").text(returnval + " failure");
-                                        $(".message").fadeIn("slow");
-                                        $(".message").delay(2000).fadeOut(1000);
-                                    },
-                                    })
-                                }
-                            });
+                        if(n){
+                            console.log(i);
+                            $('#myTable > tbody:last-child').append(' <tr id="'+BTimesid+'"> <td>'+days[new Date(start).getDay()]+'&nbsp;&nbsp;</td> <td><input id="'+BTimesid+'" type="datetime-local" name="bookingtimesFrom['+counter+']" value="'+start+'"> </td><td>  - </td>  <td>   <input id="'+BTimesid+'" type="datetime-local" name="bookingtimesTo['+counter+']" value="'+end+'"></td>  </td>   <td>&nbsp;&nbsp;&nbsp; </td>   </tr>');
+                        resConflicts.push(start.replace('T',' ').substring(0, 16));
+                        res2Conflicts.push(end.replace('T',' ').substring(0, 16));
+                        ConflictID.push(obj.timeID);
+                        publicInfo.push(obj.title);
+                        counter++;
                         }
-                else{
-                    alert("Sa ei valinud midagi mida kinnitada");
-                    event.preventDefault(); 
-                };
 
+                       
+                          
+
+
+                    } 
+                  
+                      
+                        
+                        
+                        
+                        
+
+                                          
+                     
+
+
+                        $.ajax({
+                        url: "<?php echo base_url(); ?>edit/loadAllRoomBookingTimes/"+res[1].roomID,
+                        dataType: 'json',
+                        success: function(json) {
+                            // Rates are in `json.rates`
+                            // Base currency (USD) is `json.base`
+                            // UNIX Timestamp when rates were collected is in `json.timestamp`        
+                            conflicts=json;
+                            for (var i = 0, l = conflicts.length; i < l; i++) {
+                                var conflicts2 = conflicts[i];
+                               // console.log(conflicts2.start+" - "+conflicts2.end + " "+ i);
+
+                                var startDateTime = toDate(conflicts2.start.substring(0, 16)); //yyyy-mm-dd hh:tt
+                                var endDateTime = toDate(conflicts2.end.substring(0, 16));
+                                var timeIDofConflict=conflicts2.timeID;
+                                var titleIDofConflict=conflicts2.title;
+
+
+                             //   console.log(timeIDofConflict); 
+                                
+                                // iga selle aja kohta tuleb kontrollida ajaxi aega"
+                                for (var t = 0; t < resConflicts.length; t++) {
+                                var checkDateTime = toDate(resConflicts[t]); //magic date
+                                var checkDateTime2 = toDate(res2Conflicts[t]); //magic date
+                               
+                                    if(ConflictID[t]!==timeIDofConflict){
+                                        if (isBetween(startDateTime,checkDateTime,checkDateTime2) || isBetween(endDateTime,checkDateTime,checkDateTime2) ){
+                                     //   console.log(checkDateTime +" - "+ checkDateTime2 + " nende vastu "+ startDateTime+ " " +endDateTime);// 
+                                     //   console.log("tingumus on täidetud " + resConflicts[t] + " või "+res2Conflicts[t]);
+                                        $('#myTable #'+ConflictID[t]).append( "Konflikt: "+titleIDofConflict + " ("+conflicts2.start.substring(0, 16) +" - "+ conflicts2.end.substring(0, 16) + "); ");
+                                     //   console.log( ConflictID[t] +" ning " +timeIDofConflict);
+
+                                        }}
+
+                                    //Do something
+                                };
+
+                              //  console.log(isBetween(checkDateTime,startDateTime,endDateTime) + " esimene kord ");
+                               
+                             //   $('#myTable #'+timeIDofConflict).append("siin on konflikt");
+                            //  console.log(conflicts2.timeID + " id");
+                                }
+
+
+                        },
+                         error:function(jqXHR, textStatus, errorThrown) {
+                            //Error handling code
+                            console.log(errorThrown);
+                            alert('Oops there was an error');
+                        }
+                    });
+               
+
+
+
+                        //alert(res.values());
+                      //  console.log(Object.prototype.toString.call(res));
+                });
+
+
+
+                $("#changeTimes").on('click',function( event ) {
+                           var bookingID = '<?=$_POST['timesIdArray'][0]?>';
+                           console.log(bookingID);
+                            var datafrom = ['<?=implode("', '", $arr2)?>'];
+                            var myForm = document.getElementById('change');
+
+                            datafrom.forEach(function (value) {
+                            var hiddenInput = document.createElement('input');
+
+                            hiddenInput.type = 'hidden';
+                            hiddenInput.name = 'timesIdArray[]';
+                            hiddenInput.value = value;
+
+                            myForm.appendChild(hiddenInput);
+                            });
+
+                            var hiddenInput = document.createElement('input');
+                            hiddenInput.type = 'hidden';
+                            hiddenInput.name = 'BookingID';
+                            hiddenInput.value = bookingID;
+                            myForm.appendChild(hiddenInput);
+                            $("#changeTimes").on('click',function( event ) {
+       
+                              $('#change').submit();
 
                
-            });
+                                });
+
+                  });
+
+
+
+
+
+
+
         });
     </script>
