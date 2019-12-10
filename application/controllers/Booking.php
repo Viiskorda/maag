@@ -133,7 +133,7 @@ class Booking extends CI_Controller {
 		// var_dump(date("H:i", strtotime($this->input->post('timesStart')[1])));
 		
 		
-		for($t = 1; $t <= count($this->input->post('timesStart')); $t++)
+		for($t = 0; $t <= count($this->input->post('timesStart')); $t++)
 			{
 				if(isset($this->input->post('timesStart')[$t])){
 			$formated_timeToDb = date("H:i", strtotime($this->input->post('timesStart')[$t]));
