@@ -646,7 +646,7 @@
                                         calendar.fullCalendar('refetchEvents');
                                         //siia tule teha panna kinnitatud olekuks modalis  
                                         //jQuery('input:checkbox:checked').parents("tr").remove();
-                                        alert('Kinnitatud');
+                                       // alert('Kinnitatud');
                                     }, 
                                     error: function(returnval) {
                                         $(".message").text(returnval + " failure");
@@ -693,7 +693,7 @@
                                     //         return $(this).text().replace("Ei toimu", ""); 
                                     //     });​​​​​
                                     $('input:checkbox:checked').parents("tr").children("td:contains('Ei toimu')").html("New");
-                                        alert('Ei toimu');
+                                        //alert('Ei toimu');
                                     }, 
                                     error: function(returnval) {
                                         alert('Midagi läks valesti');

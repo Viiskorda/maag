@@ -110,20 +110,33 @@ class Booking extends CI_Controller {
 		$endDateToDb = strtotime($endDate);
 		$weekday=$this->input->post('weekday');
 		$days=array('Esmaspäev'=>'Monday','Teisipäev' => 'Tuesday','Kolmapäev' => 'Wednesday','Neljapäev'=>'Thursday','Reede' =>'Friday','Laupäev' => 'Saturday','Pühapäev'=>'Sunday');
-		 $formated_timeToDb = date("H:i", strtotime($this->input->post('timesStart')));
-		 $formated_EndtimeToDb = date("H:i", strtotime($this->input->post('timeTo')));
-		// var_dump($formated_time);
-		foreach($days as $key => $value){
-		if ($weekday==$key){
 		
+	
+		
+
+		// var_dump(date("H:i", strtotime($this->input->post('timesStart')[1])));
+		
+		
+		for($t = 1; $t <= count($this->input->post('timesStart')); $t++)
+			{
+
+			$formated_timeToDb = date("H:i", strtotime($this->input->post('timesStart')[$t]));
+			$formated_EndtimeToDb = date("H:i", strtotime($this->input->post('timeTo')[$t]));
+		
+
+			foreach($days as $key => $value){
+
+		if ($weekday[$t]==$key){
+			//var_dump($this->input->post('Ending'));
 		 for($i = strtotime($value, $startDate); $i <= $endDate; $i = strtotime('+1 week', $i))
 			 {  echo $i;
 				$dateToDb=date('Y-m-d', $i);
 				
+			//	var_dump(date('Y-m-d H:i:s', strtotime("$dateToDb $formated_timeToDb")));
 				
 				$start_data = date('Y-m-d H:i:s', strtotime("$dateToDb $formated_timeToDb"));
 				$end_data = date('Y-m-d H:i:s', strtotime("$dateToDb $formated_EndtimeToDb"));
-				//  var_dump($start_data);
+			
 				//  var_dump($end_data);
 
 
@@ -135,10 +148,10 @@ class Booking extends CI_Controller {
 					);
 
 			}
-
-			}
+		
+			}}
 		}
-				$this->booking_model->create_bookingTimes($insert_data2);
+		$this->booking_model->create_bookingTimes($insert_data2);
 				//$this->load->view('booking/success');
 				//echo('Nüüd tuleb redirect');
 					redirect('fullcalendar?roomId=1');

@@ -14,6 +14,8 @@ public function create_booking($data1){
 public function create_bookingTimes($insert_data){
 		
 	//	$this->db->insert('bookingTimes', $data2);
+//	var_dump($insert_data);
+	//	var_dump($insert_data);
 		$this->db->insert_batch('bookingTimes', $insert_data);
 		return $this->db->insert_id();
 	}

@@ -88,7 +88,7 @@
                                         <!-- <input type="time" name="end[1]" step="900" min="08:00" max="22:00" id="timeendfield_1" value=""> -->
                                         <a href="#" class="removeclass">Remove</a>
                                     </div>
-                                    <div id="AddMoreFileId" class="flex"><a href="#" id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 px-5 pluss"><p class="m-0 txt-lg text-center align-items-center">Lisa veel üks kuupäev</p></a></div>
+                                    <div id="AddMoreFileId" class="flex"><a href="" id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 px-5 pluss"><p class="m-0 txt-lg text-center align-items-center">Lisa veel üks kuupäev</p></a></div>
                                 </div>
                             </div>
                             <!-- <div class="bg-grey"></div> -->
@@ -179,7 +179,7 @@
                         <div class="d-flex mb-2 mt-4">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5"  id="InputsWrapper1">
                                 <label for="sport_facility2">Nädalapäev</label>
-                                <input class="form-control" id="sport_facility2" list="weekdays" name="weekday">
+                                <input class="form-control" id="sport_facility2" list="weekdays" name="weekday[1]">
                              
                                 <datalist id="weekdays">
                                 <option data-value="1" value="Esmaspäev"></option>
@@ -199,16 +199,20 @@
                             <div class="form-label-group col-3 p-0 pl-5">
                                 <label>Alates</label>
                                 <!-- <input class="form-control p-0" id="from2"> -->
-                                <input class="form-control" type="time"  min="08:00" max="22:00" step="900"  name="timesStart" id="from' + FieldCount + '" value=""/>
+                                <input class="form-control" type="time"  min="08:00" max="22:00" step="900"  name="timesStart[1]" id="from' + FieldCount + '" value=""/>
                             </div>
 
                             <div class="form-label-group col-3 p-0 pl-5">
                                 <label>Kuni</label>
                                 <!-- <input class="form-control p-0" id="until2"> -->
-                                <input class="form-control" type="time" min="08:00" max="22:00" step="900"  name="timeTo" id="until' + FieldCount + '" value=""/>
+                                <input class="form-control" type="time" min="08:00" max="22:00" step="900"  name="timeTo[1]" id="until' + FieldCount + '" value=""/>
                             </div>
                         </div>
-                        <div id="AddMoreFileId" class="flex"><a href="#" id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 mb-4 px-5 pluss"><p class="m-0 txt-lg text-center align-items-center">Lisa veel üks päev</p></a></div>
+                        <div id="AddMoreFileId1" class="flex"><input type="button" id="AddMoreFileBoxPeriod" value="Lisa nädalapäev" class="btn btn-custom text-white text-center py-2 mb-4 px-5 pluss">
+                        <a href="" id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 mb-4 px-5 pluss">
+                            <p class="m-0 txt-lg text-center align-items-center">Lisa veel üks päev</p>
+                        </a>
+                    </div>
 
                         <div class="d-flex">
                         
@@ -260,9 +264,9 @@
                         </div>
 
                         <div class="d-flex m-0 p-0">
-                            <div class="form-label-group col-6 pl-0">
+                            <div class="form-label-group col-6 pl-0"  id="InputsWrapper2">
                                 <label for="sport_facility2">Nädalapäev</label>
-                                <input class="form-control p-0" id="sport_facility2" list="weekdays" name="weekday">
+                                <input class="form-control p-0" id="sport_facility2" list="weekdays" name="weekday[1]">
                              
                                 <datalist id="weekdays">
                                 <option data-value="1" value="Esmaspäev"></option>
@@ -282,15 +286,19 @@
                             <div class="form-label-group col-3 pl-0">
                                 <label>Alates</label>
                                 <!-- <input class="form-control p-0" id="from2"> -->
-                                <input class="form-control p-0" type="time"  min="08:00" max="22:00" step="900"  name="timesStart" id="from' + FieldCount + '" value=""/>
+                                <input class="form-control p-0" type="time"  min="08:00" max="22:00" step="900"  name="timesStart[1]" id="from' + FieldCount + '" value=""/>
                             </div>
 
                             <div class="form-label-group col-3 p-0">
                                 <label>Kuni</label>
                                 <!-- <input class="form-control p-0" id="until2"> -->
-                                <input class="form-control p-0" type="time" min="08:00" max="22:00" step="900"  name="timeTo" id="until' + FieldCount + '" value=""/>
+                                <input class="form-control p-0" type="time" min="08:00" max="22:00" step="900"  name="timeTo[1]" id="until' + FieldCount + '" value=""/>
                             </div>
                         </div>
+                        <div id="AddMoreFileId2" class="flex"> <input type="button" id="AddMoreFileBoxClosed" value=" + Lisa nädalapäev" class="btn btn-custom text-white text-center py-2 px-5 pluss">
+
+                    </div>
+
 
                         <div class="d-flex m-0 p-0">
                         
@@ -359,6 +367,66 @@
             }
             return false;
         });
+        
+        var maxPeriod = 8;
+        var InputsWrapper1 = $("#InputsWrapper1"); //Input boxes wrapper ID
+        var AddButton1 = $("#AddMoreFileBoxPeriod"); //Add button ID
+
+        var y = InputsWrapper1.length; //initlal text box count
+        
+        $("#AddMoreFileBoxPeriod").click(function(e) {
+            //max input box allowed
+
+            if (y <= maxPeriod) {
+                FieldCount++; //text box added ncrement
+                //add input box
+               // $(AddButton1).before('<div class="d-flex align-items-center mb-3"><input class="form-control col-5.5 p-0"  type="datetime-local" name="mytext[' + FieldCount + ']" id="field_' + FieldCount + '" value="<?php // echo date('Y-m-d\TH:i'); ?>"/> <p class="align-middle m-0 p-0" style="height: 20px;">–</p> <input class="form-control col-5.5 p-0"  type="datetime-local"  name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"/><a href="" class="removeclass1">Remove</a></div>');
+                $(AddButton1).before(' <div class="d-flex mb-2 mt-4"><div class="form-label-group col-6 py-0 pl-0 pr-5"  id="InputsWrapper1"><label for="sport_facility2">Nädalapäev</label><input class="form-control" id="sport_facility2" list="weekdays" name="weekday[' + FieldCount + ']"><datalist id="weekdays"> <option data-value="1" value="Esmaspäev"></option><option data-value="2" value="Teisipäev"></option> <option data-value="3" value="Kolmapäev"></option> <option data-value="4" value="Neljapäev"></option> <option data-value="5" value="Reede"></option> <option data-value="6" value="Laupäev"></option> <option data-value="7" value="Pühapäev"></option></datalist>  </div><div class="form-label-group col-3 p-0 pl-5"> <label>Alates</label> <!-- <input class="form-control p-0" id="from2"> --> <input class="form-control" type="time"  min="08:00" max="22:00" step="900"  name="timesStart[' + FieldCount + ']" id="from' + FieldCount + '" value=""/></div><div class="form-label-group col-3 p-0 pl-5"> <label>Kuni</label> <!-- <input class="form-control p-0" id="until2"> --> <input class="form-control" type="time" min="08:00" max="22:00" step="900"  name="timeTo[' + FieldCount + ']" id="until' + FieldCount + '" value=""/><a href="" class="removeclass1">Remove</a></div> ');
+                y++; //text box increment
+
+                $("#AddMoreFileId1").show();
+
+                // $('AddMoreFileBox').html("Add field");
+
+                // Delete the "add"-link if there is 3 fields.
+                if (y == maxPeriod) {
+                    $("#AddMoreFileId1").hide();
+                    $("#lineBreak").html("<br>");
+                }
+            }
+            return false;
+        });
+
+
+        var maxClosed = 8;
+        var InputsWrapper2 = $("#InputsWrapper2"); //Input boxes wrapper ID
+        var AddButton2 = $("#AddMoreFileBoxClosed"); //Add button ID
+
+        var z = InputsWrapper2.length; //initlal text box count
+
+
+        $("#AddMoreFileBoxClosed").click(function(e) {
+            //max input box allowed
+
+            if (z <= maxClosed) {
+                FieldCount++; //text box added ncrement
+                //add input box
+               // $(AddButton1).before('<div class="d-flex align-items-center mb-3"><input class="form-control col-5.5 p-0"  type="datetime-local" name="mytext[' + FieldCount + ']" id="field_' + FieldCount + '" value="<?php // echo date('Y-m-d\TH:i'); ?>"/> <p class="align-middle m-0 p-0" style="height: 20px;">–</p> <input class="form-control col-5.5 p-0"  type="datetime-local"  name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"/><a href="" class="removeclass1">Remove</a></div>');
+                $(AddButton2).before(' <div class="d-flex mb-2 mt-4"><div class="form-label-group col-6 py-0 pl-0 pr-5"  id="InputsWrapper1"><label for="sport_facility2">Nädalapäev</label><input class="form-control" id="sport_facility2" list="weekdays" name="weekday[' + FieldCount + ']"><datalist id="weekdays"> <option data-value="1" value="Esmaspäev"></option><option data-value="2" value="Teisipäev"></option> <option data-value="3" value="Kolmapäev"></option> <option data-value="4" value="Neljapäev"></option> <option data-value="5" value="Reede"></option> <option data-value="6" value="Laupäev"></option> <option data-value="7" value="Pühapäev"></option></datalist>  </div><div class="form-label-group col-3 p-0 pl-5"> <label>Alates</label> <!-- <input class="form-control p-0" id="from2"> --> <input class="form-control" type="time"  min="08:00" max="22:00" step="900"  name="timesStart[' + FieldCount + ']" id="from' + FieldCount + '" value=""/></div><div class="form-label-group col-3 p-0 pl-5"> <label>Kuni</label> <!-- <input class="form-control p-0" id="until2"> --> <input class="form-control" type="time" min="08:00" max="22:00" step="900"  name="timeTo[' + FieldCount + ']" id="until' + FieldCount + '" value=""/><a href="" class="removeclass2">Remove</a></div> ');
+                z++; //text box increment
+
+                $("#AddMoreFileId1").show();
+
+                // $('AddMoreFileBox').html("Add field");
+
+                // Delete the "add"-link if there is 3 fields.
+                if (z == maxClosed) {
+                    $("#AddMoreFileId2").hide();
+                    $("#lineBreak").html("<br>");
+                }
+            }
+            return false;
+        });
 
         $("body").on("click", ".removeclass", function(e) { //user click on remove text
             if (x > 1) {
@@ -374,6 +442,28 @@
             }
             return false;
         });
+
+        $("body").on("click", ".removeclass1", function(e) { //user click on remove text
+            if (y > 1) {
+                $(this).parent('div').parent('div').remove(); //remove text box
+                y--; 
+                $("#AddMoreFileId1").show();
+
+               }
+            return false;
+        });
+
+        $("body").on("click", ".removeclass2", function(e) { //user click on remove text
+            if (z > 1) {
+                $(this).parent('div').parent('div').remove(); //remove text box
+                z--; 
+                $("#AddMoreFileId2").show();
+
+               }
+            return false;
+        });
+
+
 
     });
 
