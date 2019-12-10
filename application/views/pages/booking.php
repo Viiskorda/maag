@@ -18,7 +18,7 @@
                 <!-- <div class="col-9 align-self center mx-auto"> -->
             <div class="tab-content">
                 <div id="mitmekordne" class="tab-pane center px-5 mx-5 active">
-                    <?php echo form_open('booking/create'); ?>
+                    <?php echo form_open('booking/createOnce'); ?>
 
                         <h4 class="pt-2 txt-xl">Kontakt</h4>
                         <div class="d-flex p-0 mt-4">
@@ -76,23 +76,40 @@
                             </div>
                         </div>
 
+
+
+
                         <h4 class="mt-5 txt-xl">Kuupäev ja kellaaeg</h4>
                         <div class="d-flex mt-4">
                             <div class="form-label-group col-12 p-0" id="timestamp">
                                 <label for="InputsWrapper">Kuupäev</label>
-                                <div class="p-0" id="InputsWrapper">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <input class="form-control col-5.5 p-0" type="datetime-local" name="mytext[]" id="field_1" value="<?php echo date('Y-m-d\TH:i'); ?>">
-                                        <p class="align-middle m-0 p-0" style="height: 20px;">–</p> 
-                                        <input class="form-control col-5.5 p-0" type="datetime-local" name="begin[]" step="900" min="08:00" max="22:00" id="timestartfield_1" value="">
-                                        <!-- <input type="time" name="end[]" step="900" min="08:00" max="22:00" id="timeendfield_1" value=""> -->
-                                        <a href="#" class="removeclass">Remove</a>
+                                <div id="InputsWrapper" class="d-flex align-items-center mb-3 p-0">
+                                    <div id="" class="datePicker col-6 p-0">
+                                        <v-date-picker mode="single" v-model="selectedDate" locale="et-EE" value="selectedDate" :popover="{ visibility: 'click' }" :input-props="{ class: 'form-control', id: 'datefield_1', name: 'workoutDate[1]'}" :first-day-of-week="2" />
+                                        
                                     </div>
-                                    <div id="AddMoreFileId" class="flex"><a href="" id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 px-5 pluss"><p class="m-0 txt-lg text-center align-items-center">Lisa veel üks kuupäev</p></a></div>
+                                    <!-- <input id="dateTest" class="form-control col-6" data-toggle="datepicker" value="<?php echo date('d/m/Y'); ?>"> Vajalikarendan edasi -->
+
+                                    <a href="#" class="removeclass "><span class="ml-3 icon-cancel"></span></a>
+
+                                    <div class="col-3">
+                                        <input type="text" class="clock form-control" name="begin[1]" id="timestartfield_1" value="<?php echo date('H:i'); ?>">
+                                    </div>
+
+                                    <div class="col-3">
+                                        <input type="text" class="clock form-control" name="end[1]" min="08:00" max="22:00" id="timeendfield_1" value="">
+                                    </div>
+                                    
+                                </div>
+                                <div id="AddMoreFileId" class="flex"><a href="#" id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 px-5 pluss"><p class="m-0 txt-lg text-center align-items-center">Lisa veel üks kuupäev</p></a></div>
                                 </div>
                             </div>
                             <!-- <div class="bg-grey"></div> -->
-                        </div>
+                        <!-- </div> -->
+
+
+
+
 
 
                         <h4 class="mt-5 txt-xl">Lisainfo (valikuline) </h4>
@@ -336,8 +353,28 @@
 </div>
 </br>
 
-
+<script src='https://unpkg.com/v-calendar@next'></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datepicker.js"></script>
 <script>
+
+    $('#dateTest').datepicker({
+        language: 'et-EE',
+        autoHide: true,
+        date: new Date(),
+    });
+
+    $('.clock').clockTimePicker({
+        duration: true,
+        durationNegative: true,
+        precision: 15,
+        i18n: {
+            cancelButton: 'Abbrechen'
+        },
+        onAdjust: function(newVal, oldVal) {
+            //...
+        }
+    });
+    
     $(document).ready(function() {
 
         var MaxInputs = 10; //maximum extra input boxes allowed
@@ -353,7 +390,11 @@
             if (x <= MaxInputs) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $(AddButton).before('<div class="d-flex align-items-center mb-3"><input class="form-control col-5.5 p-0"  type="datetime-local" name="mytext[]" id="field_' + FieldCount + '" value="<?php echo date('Y-m-d\TH:i');?>"/> <p class="align-middle m-0 p-0" style="height: 20px;">–</p> <input class="form-control col-5.5 p-0"  type="datetime-local"  name="begin[]" id="timestartfield_' + FieldCount + '"/>   <a href="#" class="removeclass">Remove</a></div>');
+
+
+                $(AddButton).before('<div id="InputsWrapper" class="d-flex align-items-center mb-3 p-0"><div class="datePicker col-6 p-0"><v-date-picker mode="single" v-model="selectedDate" locale="et-EE" value="selectedDate" :popover="{ visibility: \'click\' }" :input-props="{ class: \'form-control\', id: \'datefield_' + FieldCount + '\', name: \'workoutDate[' + FieldCount + ']\'}" :first-day-of-week="2" /></div><a href="#" class="removeclass "><span class="ml-3 icon-cancel"></span></a><div class="col-3"><input type="text" class="clock form-control" name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-3"><input type="text" class="clock form-control" name="end[' + FieldCount + ']" min="08:00" max="22:00" id="timeendfield_' + FieldCount + '" value=""></div></div>');
+
+
                 x++; //text box increment
 
                 $("#AddMoreFileId").show();
@@ -365,6 +406,15 @@
                     $("#AddMoreFileId").hide();
                     $("#lineBreak").html("<br>");
                 }
+            }
+            return false;
+        });
+
+        $("body").on("click", ".removeclass", function(e) { //user click on remove text
+            if (x > 1) {
+                $(this).parent('div').remove(); //remove text box
+                x--; //decrement textbox
+                $("#AddMoreFileId").show();
             }
             return false;
         });
@@ -433,13 +483,7 @@
             if (x > 1) {
                 $(this).parent('div').remove(); //remove text box
                 x--; //decrement textbox
-               // FieldCount--;
                 $("#AddMoreFileId").show();
-
-                // $("#lineBreak").html("");
-
-                // Adds the "add" link again when a field is removed.
-                // $('AddMoreFileBox').html("Add field");
             }
             return false;
         });
@@ -471,5 +515,26 @@
     $(".nav a").on("click", function() { // TAB'i active klassi toggle
         $(".nav a").removeClass("active");
         $(this).addClass("active");
+    });
+
+    // let elements = document.getElementsByClassName('datePicker');
+    // for(let el of elements){
+    //     new Vue({
+    //         el: el,
+    //         data: {
+    //         // Data used by the date picker
+    //         mode: 'single',
+    //         selectedDate: new Date(),
+    //         }
+    //     });
+    // }
+
+    new Vue({
+        el: '.datePicker',
+        data: {
+            // Data used by the date picker
+            mode: 'single',
+            selectedDate: new Date(),
+        }
     });
 </script>

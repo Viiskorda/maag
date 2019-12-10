@@ -111,6 +111,17 @@
     background: url('../img/chevron-down-solid.svg') no-repeat 96% / 8% #fff;
   }
 
+  .icon-cancel {
+    background-image: url("../img/cancel.svg");
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 15px;
+    width: 15px;
+    vertical-align: -0.3em;
+    filter: opacity(50%)
+  }
+
   a p::before {
     display: inline-block;
     content: '';
