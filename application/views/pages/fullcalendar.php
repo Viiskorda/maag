@@ -4,7 +4,7 @@
                 <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2" v-if="loggedIn">
                 
                     <label for="region">Piirkond</label>
-                    <input id="region" list="regions" class="form-control arrow" type="text">
+                    <input id="region" list="regions" class="form-control arrow" type="text" >
                     <datalist id="regions">
                         <?php
                         foreach ($regions as $row) {
@@ -810,7 +810,83 @@
             console.log(rowHeight);
             
 
+            $('input[id=region]').focusin(function() {
+               
+            $('input[id=region]').val('');
+           
+        });
 
+        $('input[id=sport_facility]').focusin(function() {
+            $('input[id=sport_facility]').val('');
+        });
+
+        $('input[id=room]').focusin(function() {
+            $('input[id=room]').val('');
+        });
+
+        $("#region").on('change keydown input paste', function(e) {
+          
+            var $input = $(this),
+                val = $input.val();
+            list = $input.attr('list'),
+                match = $('#' + list + ' option').filter(function() {
+                    return ($(this).val() === val);
+                });
+            if (match.length > 0) {
+                console.log("match");
+                var value = $('#region').val();
+                var country_id = $('#regions [value="' + value + '"]').data('value');
+                $.ajax({
+                    url: "<?php echo base_url(); ?>home/fetch_city",
+                    method: "POST",
+                    data: {
+                        country_id: country_id
+                    },
+                    success: function(data) {
+                        console.log("data on " + data);
+                        $("#asutus").empty();
+                        $("#room").empty();
+                        $('#asutus').html(data).appendTo("#asutus");
+                    }
+                });
+            } else {
+                console.log("dismatch");
+                $('#room').val('');
+                $('#sport_facility').val('');
+
+            }
+        });
+        $("#sport_facility").on('change keydown input paste', function(e) {
+            var $input = $(this),
+                val = $input.val();
+            list = $input.attr('list'),
+                match = $('#' + list + ' option').filter(function() {
+                    return ($(this).val() === val);
+                });
+            if (match.length > 0) {
+                console.log("match");
+                var value = $('#sport_facility').val();
+                var state_id = $('#asutus [value="' + value + '"]').data('value');
+                console.log(state_id);
+                $.ajax({
+                    url: "<?php echo base_url(); ?>home/fetch_building",
+                    method: "POST",
+                    data: {
+                        state_id: state_id
+                    },
+                    success: function(data) {
+                        console.log("data on " + data);
+                        $('#room').val('');
+                        $("#saal").empty();
+                        //	$('#saal').html('<option value="">Vali asutus</option>');
+                        $('#saal').html(data).appendTo("#saal");
+                    }
+                });
+            } else {
+                console.log("dismatch");
+                $('#room').val('');
+            }
+        });
 
         });
     </script>
