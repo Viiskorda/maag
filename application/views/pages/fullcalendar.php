@@ -887,6 +887,27 @@
                 $('#room').val('');
             }
         });
+        $("#room").on('change keydown input paste', function(e) {
+            var $input = $(this),
+                val = $input.val();
+            list = $input.attr('list'),
+                match = $('#' + list + ' option').filter(function() {
+                    return ($(this).val() === val);
+                });
+              
+
+            if (match.length > 0) {
+                var val = $('#room').val();
+                var xyz = $('#saal   option').filter(function() {
+                    return this.value == val;
+                }).data('value');
+                console.log(xyz);
+                window.location.href = 'https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/fullcalendar?roomId='+xyz;
+            } else {
+                console.log("dismatch");
+               
+            }
+        });
 
         });
     </script>
