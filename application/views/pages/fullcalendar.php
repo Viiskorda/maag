@@ -2,6 +2,7 @@
         <div class="d-flex pt-4 pb-2">
             <form class="d-flex flex-row vol-md-11 col-lg-10 p-0" action="fullcalendar" method="get">
                 <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2" v-if="loggedIn">
+                
                     <label for="region">Piirkond</label>
                     <input id="region" list="regions" class="form-control arrow" type="text">
                     <datalist id="regions">
@@ -140,10 +141,10 @@
                         Lisainfo
 
                    <hr>
-<h6>Kõik ajad</6>
+<h6>Kõik ajad</h6>
 
 <hr>
-<input type="checkbox" name="delete" value="1"> VALI KÕIK<hr>
+<input type="checkbox" name="selectAll" value="1"> VALI KÕIK<hr>
 <table id="myTable">
   <tbody>
     <tr></tr>
@@ -221,6 +222,10 @@
 
         $(document).ready(function() {
 
+            $(':checkbox[name=selectAll]').click (function () {
+                $(':checkbox[name=choices]').prop('checked', this.checked);
+            });
+
             var calendar = $('#calendar').fullCalendar({
                 editable: false,
                 header: {
@@ -290,6 +295,7 @@
                     var title = event.title;
 
                     var id = event.id;
+                   
 
                     $.ajax({
                         url: "<?php echo base_url(); ?>fullcalendar/update",
@@ -346,6 +352,7 @@
                 // }
 
                 eventClick: function(event) {
+                    $(':checkbox[name=selectAll]').prop('checked', false);
                  
                     // $("#successModal").modal("show");
                     // $("#successModal .modal-body p").text(event.title);
@@ -368,6 +375,7 @@
                     }
                  // console.log($('#calendar').fullCalendar('clientEvents'));
                     var id = event.id;
+                  //  console.log(id +" " +  event.timeID);
                     var events = $('#calendar').fullCalendar('clientEvents');
                     $('tbody').attr('id',id );
 
@@ -495,14 +503,17 @@
                         var checkDateTime = st_year+'-'+st_monthIndex+'-'+st_day+" "+st_hours+':'+st_minutes;
                         var checkDateTime2 = en_year+'-'+en_monthIndex+'-'+en_day+" "+en_hours+':'+en_minutes;
                         $('#myTable > tbody:last-child').append(' <tr class="red'+i+'"><td><input type="checkbox" class="abc" name="choices" id="'+BTimesid+'"> ' + st_day + '-' + st_monthIndex + '-' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+approved+' </td></td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>   </tr>');
-                 
+                       if(event.timeID==BTimesid){  
+                           console.log("klikk");
+                           $("#"+BTimesid).prop('checked', true);}
+                      
                         for(var t = 0; t < startDateTime.length; t++){
                             if(arrayOfIDs[t] != BTimesid){
                            
                                
                             if (isBetween(startDateTime[t],checkDateTime, checkDateTime2 ) || isBetween(endDateTime[t],checkDateTime, checkDateTime2) ){
-                                console.log(isBetween(startDateTime[t],checkDateTime, checkDateTime2 ) || isBetween(endDateTime[t],checkDateTime, checkDateTime2));
-                              console.log("konflikt:"+ startDateTime[t] +": "+endDateTime[t]);
+                            //     console.log(isBetween(startDateTime[t],checkDateTime, checkDateTime2 ) || isBetween(endDateTime[t],checkDateTime, checkDateTime2));
+                            //   console.log("konflikt:"+ startDateTime[t] +": "+endDateTime[t]);
                               $(".red"+i).css("color", "red");
                           
                             }
@@ -635,7 +646,7 @@
                                         calendar.fullCalendar('refetchEvents');
                                         //siia tule teha panna kinnitatud olekuks modalis  
                                         //jQuery('input:checkbox:checked').parents("tr").remove();
-                                        alert('Kinnitatud');
+                                       // alert('Kinnitatud');
                                     }, 
                                     error: function(returnval) {
                                         $(".message").text(returnval + " failure");
@@ -682,7 +693,7 @@
                                     //         return $(this).text().replace("Ei toimu", ""); 
                                     //     });​​​​​
                                     $('input:checkbox:checked').parents("tr").children("td:contains('Ei toimu')").html("New");
-                                        alert('Ei toimu');
+                                        //alert('Ei toimu');
                                     }, 
                                     error: function(returnval) {
                                         alert('Midagi läks valesti');

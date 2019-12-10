@@ -6,14 +6,19 @@ class Edit extends CI_Controller {
 
 	public function __construct()
 	{
+	// 	  if($this->session->userdata('logged_in') !== TRUE){
+    //  			 redirect('calendar');
+    // }
 		parent::__construct();
 		$this->load->model('edit_model');
+		
     }
 
    
 
 	function load($bookingID)
 	{
+		
 	//	$this->input->get('saal', TRUE);
 		$event_data = $this->edit_model->fetch_all_event();
 		foreach($event_data->result_array() as $row)

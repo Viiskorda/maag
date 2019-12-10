@@ -12,13 +12,15 @@ class Fullcalendar extends CI_Controller {
 	}
 
 	function index()
-	{
+	{//	$data['title'] = "Hello Everyone!";
 		$data['rooms'] = $this->fullcalendar_model->getAllRooms();
+		$data['regions'] = $this->fullcalendar_model->getAllRegions();
+		$data['buildings'] = $this->fullcalendar_model->getAllBuildings();
+
 		
-		
-		$this->load->view('templates/header');
-		$this->load->view('pages/fullcalendar');
-		$this->load->view('templates/footer');
+		$this->load->view('templates/header',$data);
+		$this->load->view('pages/fullcalendar',$data);
+		$this->load->view('templates/footer',$data);
 	}
 
 
@@ -179,6 +181,27 @@ class Fullcalendar extends CI_Controller {
 			$this->fullcalendar_model->update_event($data, $this->input->post('timeID'));
 		}
 	}
+
+
+
+
+	function fetch_city()
+	{
+	 if($this->input->post('country_id'))
+	 {
+	  echo $this->home_model->fetch_city($this->input->post('country_id'));
+	 }
+	}
+
+
+	function fetch_building()
+	{
+	 if($this->input->post('state_id'))
+	 {
+	  echo $this->home_model->fetch_building($this->input->post('state_id'));
+	 }
+	}
+
 
 }
 
