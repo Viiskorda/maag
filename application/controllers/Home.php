@@ -10,7 +10,18 @@ class Home extends CI_Controller
 		parent::__construct();
 		$this->load->model('home_model');
 	}
+	
+	function index()
+	{//	$data['title'] = "Hello Everyone!";
+		$data['rooms'] = $this->fullcalendar_model->getAllRooms();
+		$data['regions'] = $this->fullcalendar_model->getAllRegions();
+		$data['buildings'] = $this->fullcalendar_model->getAllBuildings();
 
+		
+		$this->load->view('templates/header',$data);
+		$this->load->view('pages/fullcalendar',$data);
+		$this->load->view('templates/footer',$data);
+	}
 
 	public function view($page = 'home') //pääseb ligi: https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/calendar/home
 	{

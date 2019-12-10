@@ -1,4 +1,4 @@
-    <div class="container" id="logged">
+<div class="container" id="logged">
         <div class="d-flex pt-4 pb-2">
             <form class="d-flex flex-row vol-md-11 col-lg-10 p-0" action="fullcalendar" method="get">
                 <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2" v-if="loggedIn">

@@ -1,6 +1,12 @@
 <?php
 class Pages extends CI_Controller
 {
+        public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('pages_model');
+	}
+
         public function view($page = 'home')
         {
                 if (!file_exists(APPPATH . 'views/pages/' . $page . '.php')) {
@@ -10,6 +16,10 @@ class Pages extends CI_Controller
 
                 $data['title'] = ucfirst($page); // Capitalize the first letter
 
+                $data['rooms'] = $this->pages_model->getAllRooms();
+		$data['regions'] = $this->pages_model->getAllRegions();
+                $data['buildings'] = $this->pages_model->getAllBuildings();
+                
                 $this->load->view('templates/header', $data);
                 $this->load->view('pages/' . $page, $data);
                 $this->load->view('templates/footer', $data);
