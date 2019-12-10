@@ -2,6 +2,8 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
+
 class Booking extends CI_Controller {
 
 	public function __construct()
@@ -197,7 +199,56 @@ class Booking extends CI_Controller {
 
 	}
 
+	public function createOnce()
+	{
 
+		$data['rooms'] = $this->booking_model->getAllRooms();
+		$data['buildings'] = $this->booking_model->getAllBuildings();
+		
+		$data1 = array(
+			'public_info'=>$this->input->post('clubname'),
+			'c_name' => $this ->input->post('contactPerson'),
+			'c_phone' => $this ->input->post('phone'),
+			'c_email' => $this ->input->post('email'),
+			'comment' => $this ->input->post('additionalComment'),
+			'comment_inner' => $this ->input->post('comment2'),
+			'workout' => $this ->input->post('workoutType')
+
+		);
+	
+		$id= $this->booking_model->create_booking($data1);
+				
+		$insert_data2 = array();
+
+		for($t = 1; $t <= count($this->input->post('workoutDate')); $t++) {
+			$formated_startTime = date("H:i:s", strtotime($this->input->post('begin')[$t]));
+			$formated_endTime = date("H:i:s", strtotime($this->input->post('end')[$t]));
+			$formated_date = date("Y-m-d", strtotime($this->input->post('workoutDate')[$t]));
+
+			$start_date = date('Y-m-d H:i:s', strtotime("$formated_date $formated_startTime"));
+			$end_date = date('Y-m-d H:i:s', strtotime("$formated_date $formated_endTime"));
+
+			$insert_data2[] = array(
+				'roomID' => $this->input->post('sportrooms'),
+				'startTime' => $start_date,
+				'endTime' => $end_date,
+				'bookingID' => $id
+			);
+		}	
+
+		$this->booking_model->create_bookingTimes($insert_data2);
+		redirect('fullcalendar?roomId=1');
+
+		if($this->form_validation->run()===FALSE){
+	
+			$this->load->view('templates/header');
+			$this->load->view('pages/booking');//see leht laeb vajalikku vaadet. ehk saab teha controllerit ka mujale, mis laeb õiget lehte
+			$this->load->view('templates/footer');
+
+		}else{
+			$this->load->view('fullcalendar?roomId=1');
+		}
+	}
 }
 
 ?>
