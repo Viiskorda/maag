@@ -80,19 +80,31 @@
                         <div class="d-flex mt-4">
                             <div class="form-label-group col-12 p-0" id="timestamp">
                                 <label for="InputsWrapper">Kuupäev</label>
-                                <div class="p-0" id="InputsWrapper">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <input class="form-control col-5.5 p-0" type="datetime-local" name="mytext[1]" id="field_1" value="<?php echo date('Y-m-d\TH:i'); ?>">
-                                        <p class="align-middle m-0 p-0" style="height: 20px;">–</p> 
-                                        <input class="form-control col-5.5 p-0" type="datetime-local" name="begin[1]" step="900" min="08:00" max="22:00" id="timestartfield_1" value="">
-                                        <!-- <input type="time" name="end[1]" step="900" min="08:00" max="22:00" id="timeendfield_1" value=""> -->
-                                        <a href="#" class="removeclass">Remove</a>
+                                <div id="InputsWrapper" class="d-flex align-items-center mb-3 p-0">
+                                    <div id='datePicker' class="col-6 p-0">
+                                        <v-date-picker mode='single' v-model='selectedDate' locale="et-EE" value="selectedDate" :popover="{ visibility: 'click' }" :input-props='{ class: "form-control", id: "data"}' :first-day-of-week="2" :masks="{ input: ['DD/MM/YYYY', 'DD-MM-YYYY'] }"/>
                                     </div>
-                                    <div id="AddMoreFileId" class="flex"><a href="#" id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 px-5 pluss"><p class="m-0 txt-lg text-center align-items-center">Lisa veel üks kuupäev</p></a></div>
+
+
+
+                                    <div id="startTime" class="input-group clockpicker">
+                                        <input type="text" class="form-control" value="">
+                                        <!-- <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span> -->
+                                    </div>
+                                        <!-- <input class="form-control col-5.5 p-0" type="datetime-local" name="mytext[1]" id="field_1" value="<?php echo date('Y-m-d\TH:i'); ?>"> -->
+
+                                    <!-- <p class="align-middle m-0 p-0" style="height: 20px;">–</p>  -->
+                                    <!-- <input class="form-control col-5.5 p-0" type="datetime-local" name="begin[1]" step="900" min="08:00" max="22:00" id="timestartfield_1" value=""> -->
+                                        <!-- <input type="time" name="end[1]" step="900" min="08:00" max="22:00" id="timeendfield_1" value=""> -->
+                                    <a href="#" class="removeclass "><span class="ml-3 icon-cancel"></span></a>
+                                </div>
+                                <div id="AddMoreFileId" class="flex"><a href="#" id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 px-5 pluss"><p class="m-0 txt-lg text-center align-items-center">Lisa veel üks kuupäev</p></a></div>
                                 </div>
                             </div>
                             <!-- <div class="bg-grey"></div> -->
-                        </div>
+                        <!-- </div> -->
 
 
                         <h4 class="mt-5 txt-xl">Lisainfo (valikuline) </h4>
@@ -327,8 +339,24 @@
 </div>
 </br>
 
-
+<script src='https://unpkg.com/v-calendar@next'></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap-clockpicker.min.js"></script>
 <script>
+
+    var now = new Date();
+    var nowH = now.getHours();
+    var nowM = now.getMinutes();
+    console.log(nowH, nowM);
+
+    $("#startTime").val(nowH + ":" + nowM);
+
+    $('.clockpicker').clockpicker({
+        placement: 'bottom',
+        align: 'left',
+        autoclose: true,
+        default: 'now',
+    });
+    
     $(document).ready(function() {
 
         var MaxInputs = 10; //maximum extra input boxes allowed
@@ -381,4 +409,13 @@
         $(".nav a").removeClass("active");
         $(this).addClass("active");
     });
+
+    new Vue({
+        el: '#datePicker',
+        data: {
+          // Data used by the date picker
+          mode: 'single',
+          selectedDate: new Date(),
+        }
+      });
 </script>
