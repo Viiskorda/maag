@@ -4,7 +4,10 @@
                 <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2" v-if="loggedIn">
                 
                     <label for="region">Piirkond</label>
-                    <input id="region" list="regions" class="form-control arrow" type="text" >
+                    <input id="region" list="regions" class="form-control arrow" type="text" value=" <?php foreach ($regions as $each) {
+                            if(($this->input->get('roomId')== $each->id)){
+                            echo '' . $each->name . '';
+                        }  } ?>">
                     <datalist id="regions">
                         <?php
                         foreach ($regions as $row) {
@@ -17,7 +20,10 @@
 
                 <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2">
                     <label for="sport_facility">Asutus</label>
-                    <input id="sport_facility" list="asutus" class="form-control arrow">
+                    <input id="sport_facility" list="asutus" class="form-control arrow" value=" <?php foreach ($buildings as $each) {
+                            if(($this->input->get('roomId')== $each->id)){
+                            echo '' . $each->name . '';
+                        }  } ?>">
                     <datalist id="asutus">
                         <?php foreach ($buildings as $each) {
                             echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
@@ -29,11 +35,15 @@
 
                 <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2">
                     <label for="room">Saal</label>
-                    <input id="room" list="saal" class="form-control arrow">
+                    <input id="room" list="saal" class="form-control arrow" value=" <?php foreach ($rooms as $each) {
+                            if(($this->input->get('roomId')== $each->id)){
+                            echo '' . $each->roomName . '';
+                        }  } ?>">
                     <datalist id="saal">
                         <?php foreach ($rooms as $each) {
-                            echo '<option data-value="' . $each->id . '">' . $each->roomName . '</option>';
-                        }
+                          
+                            echo '<option data-value="' . $each->id . '">' . $each->roomName . ' </option>';
+                        }  
                         ?>
                     </datalist>
                     <input type="hidden" id="roomId" name="roomId" value="roomId" />
@@ -221,11 +231,11 @@
         });
 
         $(document).ready(function() {
-
-            $(':checkbox[name=selectAll]').click (function () {
-                $(':checkbox[name=choices]').prop('checked', this.checked);
-            });
-
+            
+            $('input[type="date"]').change(function(){
+                console.log("kell on "+(this.value));         //Date in full format alert(new Date(this.value));
+                var inputDate = new Date(this.value);
+             });
             var calendar = $('#calendar').fullCalendar({
                 editable: false,
                 header: {

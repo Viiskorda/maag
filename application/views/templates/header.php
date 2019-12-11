@@ -45,10 +45,11 @@
                 </div>
                 <!-- <button >"Logi sisse"</button> -->
 
+                <?php if($this->session->userdata('session_id')) : ?>
                 <button  v-if="loggedIn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="loggedIn">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto mt-lg-0">
                         <li class="nav-item"><a class="nav-link font-weight-light text-white py-0 pr-5" href="#"><strong>Broneeringud</strong> <span class="badge badge-danger">5</span></a></li>
                         <li class="nav-item"><a class="nav-link font-weight-light text-white py-0 pr-5" href="#">Kasutajad</a></li>
@@ -56,30 +57,65 @@
                         <li class="nav-item"><a class="nav-link font-weight-light text-white py-0" href="#">Profiil</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right p-0">
-                        <li class="nav-item"><a class="nav-link font-weight-light text-white p-0" href="#"  @click="logIn"><u>Logi välja</u></a></li>
+                        <li class="nav-item"><a class="nav-link font-weight-light text-white p-0" href="<?php echo base_url(); ?>users/logout" ><u>Logi välja</u></a></li>
                     </ul>
                 </div>
-                <a class="nav-link font-weight-light txt-drkblue-test p-0" href="#" @click="logIn" v-show="dspl"><u>"Logi sisse"</u></a>
+                <?php endif; ?>
+                <?php if(!$this->session->userdata('session_id')) : ?>
+                <a class="nav-link font-weight-light  text-white p-0" href="<?php echo base_url(); ?>login"  v-show="dspl"><u>"Logi sisse"</u></a>
+                <?php endif; ?>
+
             </div>
         </nav>
     </header>
 <!-- Navigation -->
 
-<script src="<?php echo base_url(); ?>assets/js/log.js"></script>
-<!-- <script>
-new Vue ({
-    el: '#logged',
-    data: {
-        loggedIn: false,
-        dspl: true
-    },
-    methods: {
-        logIn: function() {
-            this.loggedIn = !this.loggedIn;
-            this.dspl = !this.dspl;
-        }
-    }
-})
-</script> -->
-<!-- Page starts -->
+<script src="<?php echo base_url(); ?>assets/js/log.js">;</script>
+<script>
+ $(document).ready(function() {
 
+                window.setTimeout(function() {
+                $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                    $(this).remove(); 
+                });
+            }, 4000);});
+ </script>
+
+
+    <?php if($this->session->flashdata('user_registered')): ?>
+            <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_registered').'</p>'; ?>
+        <?php endif; ?>
+
+      <?php if($this->session->flashdata('login_failed')): ?>
+        <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>
+      <?php endif; ?>
+
+      <?php if($this->session->flashdata('user_loggedin')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedin').'</p>'; ?>
+      <?php endif; ?>
+
+       <?php if($this->session->flashdata('user_loggedout')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
+      <?php endif; ?>
+
+
+
+      <?php if($this->session->flashdata('category_deleted')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('category_deleted').'</p>'; ?>
+      <?php endif; ?>
+
+      <?php if($this->session->flashdata('post_created')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('post_created').'</p>'; ?>
+      <?php endif; ?>
+
+      <?php if($this->session->flashdata('post_updated')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('post_updated').'</p>'; ?>
+      <?php endif; ?>
+
+      <?php if($this->session->flashdata('category_created')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('category_created').'</p>'; ?>
+      <?php endif; ?>
+
+      <?php if($this->session->flashdata('post_deleted')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('post_deleted').'</p>'; ?>
+      <?php endif; ?>
