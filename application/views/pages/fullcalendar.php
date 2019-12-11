@@ -1,8 +1,9 @@
+
 <div class="container" id="logged">
         <div class="d-flex pt-4 pb-2">
             <form class="d-flex flex-row vol-md-11 col-lg-10 p-0" action="fullcalendar" method="get">
                 <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2" v-if="loggedIn">
-                
+            
                     <label for="region">Piirkond</label>
                     <input id="region" list="regions" class="form-control arrow" type="text" value=" <?php foreach ($regions as $each) {
                             if(($this->input->get('roomId')== $each->id)){
@@ -59,7 +60,10 @@
                 </div>
             </form>
             <div class="col-2 mr-auto p-0">
+
+            <?php if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'):?>
                 <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" href="<?php echo base_url(); ?>booking/create"><p class="m-0 txt-lg text-center">Lisa uus</p></a>
+                <?php endif;?>
             </div>
         </div>
 
@@ -71,6 +75,8 @@
 
         </br>
 
+
+        <?php if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'):?>
         <!-- Modal -->
         <div class="modal left" id="lefty" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -201,7 +207,7 @@
 
             </div>
         </div>
-
+        <?php endif;?>
 
 
     </div><!-- container -->

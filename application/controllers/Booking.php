@@ -14,6 +14,7 @@ class Booking extends CI_Controller {
 
 	public function create()
 	{
+		if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'){
 		$data['title']='Tee uus broneering';
 		$data['rooms'] = $this->booking_model->getAllRooms();
 		$data['buildings'] = $this->booking_model->getAllBuildings();
@@ -90,13 +91,13 @@ class Booking extends CI_Controller {
 		// 	$this->load->view('fullcalendar?roomId=1');//redirectib sinna peale väljade korrektselt sisestamist
 		// }
 
-	
+		}else{redirect('');}
 	}
 
 
 	public function createClosed()
 	{
-		
+		if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'){
 		$data1 = array(
 			'public_info'=>$this->input->post('clubname'),
 			'comment_inner' => $this ->input->post('comment2'),
@@ -210,11 +211,12 @@ class Booking extends CI_Controller {
 
 		}
 
-
+	}else{redirect('');}
 	}
 
 	public function createOnce()
 	{
+		if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'){
 
 		$data['rooms'] = $this->booking_model->getAllRooms();
 		$data['buildings'] = $this->booking_model->getAllBuildings();
@@ -262,7 +264,15 @@ class Booking extends CI_Controller {
 		}else{
 			$this->load->view('fullcalendar?roomId=1');
 		}
-	}
+		
+
+	}else{redirect('');};
 }
+
+	
+
+
+}
+
 
 ?>

@@ -39,6 +39,7 @@
     <header id="logged">
         <nav class="navbar navbar-expand-md p-0 nav-bg">
             <div class="container p-0">
+      
                 <div class="navbar-header pr-5 pl-0">
                 <a class="navbar-brand mr-1 py-1" href="<?php echo base_url(); ?>"><img class="logo" src="<?php echo base_url(); ?>assets/img/plv_vapp_blue.svg" alt="logo" class="logo"></a>
                     <a class="navbar-brand align-middle p-0 text-white" href="<?php echo base_url(); ?>">Pärnu Linnavalitsus</a>

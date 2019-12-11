@@ -18,6 +18,7 @@ class Edit extends CI_Controller {
 
 	function load($bookingID)
 	{
+		if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'){
 		
 	//	$this->input->get('saal', TRUE);
 		$event_data = $this->edit_model->fetch_all_event();
@@ -52,10 +53,12 @@ class Edit extends CI_Controller {
 		}
 			
 			echo json_encode($data);
+	}else{redirect('');}
 	}
 	
 	function loadAllRoomBookingTimes($roomId)
 	{
+		if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'){
 		$this->input->get('saal', TRUE);
 		$event_data = $this->edit_model->fetch_all_Booking_times();
 		foreach($event_data->result_array() as $row)
@@ -74,11 +77,13 @@ class Edit extends CI_Controller {
 	}
 		
 		echo json_encode($data);
+	}else{redirect('');}
 	}
     
 
 	function updateprevtodelete()
 	{
+		if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'){
 		if($this->input->post('id'))
 		{
 			$data = array(
@@ -89,11 +94,13 @@ class Edit extends CI_Controller {
 
 			$this->edit_model->update_event($data, $this->input->post('id'));
 		}
+	}else{redirect('');}
 	}
 
 
 	public function update()
 	{	
+		if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'){
 		// if($this->input->post('BookingID'))
 		// {
 			$data1 = array(
@@ -158,7 +165,7 @@ class Edit extends CI_Controller {
 		//	$this->booking_model->create_booking();
 			$this->load->view('fullcalendar?roomId=1');//redirectib sinna peale väljade korrektselt sisestamist
 		}
-
+	}else{redirect('');}
 	
 	}
 

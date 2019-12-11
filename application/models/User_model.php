@@ -14,18 +14,12 @@
 			return $this->db->insert('users', $data);
 		}
 		// Log user in
-		public function login($email, $password){
-			// Validate
-			$this->db->where('email', $email);
-			$this->db->where('pw_hash', $password);
-            $result = $this->db->get('users');
-         
-			if($result->num_rows() == 1){
-				return $result->row(0)->id;
-			} else {
-				return false;
-			}
-		}
+		function validate($email,$password){
+			$this->db->where('email',$email);
+			$this->db->where('pw_hash',$password);
+			$result = $this->db->get('users',1);
+			return $result;
+		  }
 		// Check email exists
 		public function check_email_exists($email){
 			$query = $this->db->get_where('users', array('email' => $email));

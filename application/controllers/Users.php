@@ -38,7 +38,8 @@
             $data['title'] = 'Sign In';
            
 			$this->form_validation->set_rules('email', 'Email', 'required');
-			$this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required');
+            
 			if($this->form_validation->run() === FALSE){
              
 				$this->load->view('templates/header');
@@ -51,22 +52,41 @@
 				// Get and encrypt the password
                // $password = md5($this->input->post('password'));
                 $password = $this->input->post('password');
-                var_dump($this->user_model->login($email, $password));
-               
+               // var_dump($this->user_model->login($email, $password));
+				
 				// Login user
-				$user_id = $this->user_model->login($email, $password);
-				if($user_id){
-					// Create session
-					$user_data = array(
-						'user_id' => $user_id,
-                        'email' => $email,
-                     
-						'session_id' => true
-					);
-					$this->session->set_userdata($user_data);
-					// Set message
-					$this->session->set_flashdata('user_loggedin', 'You are now logged in');
-					redirect('fullcalendar?roomId=1');
+			
+					$email    = $this->input->post('email',TRUE);
+					//$password = md5($this->input->post('password',TRUE));
+					$password = $this->input->post('password',TRUE);
+					$validate = $this->user_model->validate($email,$password);
+					if($validate->num_rows() > 0){
+						$data  = $validate->row_array();
+						$name  = $data['name'];
+						$building  = $data['buidingID'];
+						$email = $data['email'];
+						$roleID = $data['roleID'];
+						$sesdata = array(
+							'username'  => $name,
+							'email'     => $email,
+							'building'     => $building,
+							'roleID'     => $roleID,
+							'session_id' => TRUE
+						);
+						$this->session->set_userdata($sesdata);
+						// access login for admin
+						if($roleID === '1'){
+							redirect('');
+				 
+						// access login for staff
+						}elseif($roleID === '2'){
+							redirect('');
+				 
+						// access login for author
+						}else{
+							redirect('');
+						}
+					
 				} else {
 					// Set message
 					$this->session->set_flashdata('login_failed', 'Login is invalid');
@@ -80,8 +100,10 @@
 			$this->session->unset_userdata('session_id');
 			$this->session->unset_userdata('user_id');
 			$this->session->unset_userdata('email');
+			$this->session->sess_destroy();
 			// Set message
 			$this->session->set_flashdata('user_loggedout', 'You are now logged out');
+		//	$this->session->sess_destroy();
 			redirect('');
 		}
 		// Check if email exists

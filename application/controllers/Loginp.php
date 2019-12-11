@@ -26,7 +26,7 @@ class Login extends CI_Controller{
             'username'  => $name,
             'email'     => $email,
             'roleID'     => $roleID,
-            'logged_in' => TRUE
+            'session_id' => TRUE
         );
         $this->session->set_userdata($sesdata);
         // access login for admin
