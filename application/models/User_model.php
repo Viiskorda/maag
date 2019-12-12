@@ -1,12 +1,18 @@
 <?php
 	class User_model extends CI_Model{
 
+		public function __construct(){
+			$this->load->database();
+		}
+
 		public function register($enc_password){
 			// User data array
 			$data = array(
-				'name' => $this->input->post('name'),
-                'email' => $this->input->post('email'),
-                'phone' => $this->input->post('phone'),
+				'userName' => $this->input->post('name'),
+				'email' => $this->input->post('email'),
+				'status' => $this->input->post('status'),
+				'userPhone' => $this->input->post('phone'),
+				'roleID' => $this->input->post('role'),
                'pw_hash' => $enc_password,
          
 			);
@@ -29,4 +35,58 @@
 				return false;
 			}
 		}
+
+
+		public function get_users($slug = FALSE){
+			if($slug === FALSE){
+				$this->db->order_by('users.userName');
+			$this->db->join('buildings', 'users.buildingID = buildings.id' , 'left');
+			$this->db->join('userRoles', 'users.roleID = userRoles.id' , 'left');
+			$query = $this->db->get('users');
+			return $query->result_array();
+			}
+			$this->db->join('buildings', 'users.buildingID = buildings.id' , 'left');
+			$this->db->join('userRoles', 'users.roleID = userRoles.id' , 'left');
+			$query = $this->db->get_where('users', array('userID' => $slug));
+			return $query->row_array();
+		
+		
+		}
+
+
+		public function delete_user($id){
+			$this->db->where('userID', $id);
+			$this->db->delete('users');
+			return true;
+		}
+
+
+		public function create_category(){
+			$data = array(
+				'name' => $this->input->post('name'),
+				'user_id' => $this->session->userdata('user_id')
+			);
+			return $this->db->insert('categories', $data);
+		}
+
+
+	
+		public function update_user(){
+			// $slug = url_title($this->input->post('title'));
+			$data = array(
+				'userName' => $this->input->post('userName'),
+				'email' => $this->input->post('email'),
+				'status' => $this->input->post('status'),
+				'userPhone' => $this->input->post('phone'),
+				'roleID' => $this->input->post('role'),
+				'buildingID' => $this->input->post('building'),
+			);
+			$this->db->where('userID', $this->input->post('id'));
+			return $this->db->update('users', $data);
+		}
+
+
+
+
+
 	}
