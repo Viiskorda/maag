@@ -5,6 +5,26 @@
 			$this->load->database();
 		}
 
+
+		public function registerSelfDB($enc_password){
+			// User data array
+			$data = array(
+				'userName' => $this->input->post('name'),
+				'email' => $this->input->post('email'),
+			
+				'userPhone' => $this->input->post('phone'),
+			
+               'pw_hash' => $enc_password,
+         
+			);
+			// Insert user
+			return $this->db->insert('users', $data);
+		}
+
+
+
+
+
 		public function register($enc_password){
 			// User data array
 			$data = array(
@@ -74,7 +94,7 @@
 		public function update_user(){
 			// $slug = url_title($this->input->post('title'));
 			$data = array(
-				'userName' => $this->input->post('userName'),
+				'userName' => $this->input->post('name'),
 				'email' => $this->input->post('email'),
 				'status' => $this->input->post('status'),
 				'userPhone' => $this->input->post('phone'),
