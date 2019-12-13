@@ -6,9 +6,37 @@
             parent::__construct();
             $this->load->model('user_model');
     
-        }
+		}
+		
 
-		// Register user
+		public function registerSelf(){
+			$data['title'] = 'Sign Up';
+			$this->form_validation->set_rules('name', 'Name', 'required');
+            $this->form_validation->set_rules('phone', 'Phone');
+			$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
+			$this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
+            
+			if($this->form_validation->run() === FALSE){
+              
+				$this->load->view('templates/header');
+				$this->load->view('register', $data);
+                $this->load->view('templates/footer');
+                
+			} else {
+				// Encrypt password
+              //  $enc_password = md5($this->input->post('password'));
+                $enc_password = $this->input->post('password');
+				$this->user_model->registerSelfDB($enc_password);
+				// Set message
+				$this->session->set_flashdata('user_registered', 'You are now registered and can log in');
+				redirect('fullcalendar?roomId=1');
+			}
+		}
+
+
+
+		// Register user by admin
 		public function register(){
 			$data['title'] = 'Sign Up';
 			$this->form_validation->set_rules('name', 'Name', 'required');
@@ -33,6 +61,33 @@
 				redirect('fullcalendar?roomId=1');
 			}
 		}
+
+
+		public function registerByAdmin(){
+			$data['title'] = 'Sign Up';
+			$this->form_validation->set_rules('name', 'Name', 'required');
+          //  $this->form_validation->set_rules('phone', 'Phone');
+			$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
+			$this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
+            
+			if($this->form_validation->run() === FALSE){
+              
+				$this->load->view('templates/header');
+				$this->load->view('register', $data);
+                $this->load->view('templates/footer');
+                
+			} else {
+				// Encrypt password
+              //  $enc_password = md5($this->input->post('password'));
+                $enc_password = $this->input->post('password');
+				$this->user_model->register($enc_password);
+				// Set message
+				$this->session->set_flashdata('user_registered', 'Kasutaja lisatud');
+				redirect('manageUsers');
+			}
+		}
+
 		// Log in user
 		public function login(){
             $data['title'] = 'Sign In';
@@ -117,4 +172,62 @@
 				return false;
 			}
 		}
+
+		public function index(){
+			$data['title'] = 'Users';
+			$data['manageUsers'] = $this->user_model->get_users();
+			$this->load->view('templates/header');
+			$this->load->view('pages/manageUsers', $data);
+			$this->load->view('templates/footer');
+		}
+
+
+		public function delete($id){
+			// Check login
+		
+			$this->user_model->delete_user($id);
+			// Set message
+			$this->session->set_flashdata('user_deleted', 'Your user has been deleted');
+			redirect('manageUsers');
+		}
+
+
+
+
+
+		public function edit($slug){
+			// Check login
+			// if(!$this->session->userdata('logged_in')){
+			// 	redirect('users/login');
+			// }
+			$data['manageUsers'] = $this->user_model->get_users();
+			$data['post'] = $this->user_model->get_users($slug);
+			// Check user
+			// if($this->session->userdata('user_id') != $this->post_model->get_users($slug)['user_id']){
+			// 	redirect('posts');
+			// }
+		//	$data['categories'] = $this->user_model->get_categories();
+			if(empty($data['post'])){
+				show_404();
+			}
+			$data['title'] = 'Edit Post';
+			$this->load->view('templates/header');
+			$this->load->view('pages/editUser', $data);
+			$this->load->view('templates/footer');
+			
+		}
+
+
+		public function update(){
+			// Check login
+			// if(!$this->session->userdata('logged_in')){
+			// 	redirect('users/login');
+			// }
+			$this->user_model->update_user();
+			// Set message
+			$this->session->set_flashdata('post_updated', 'Uuendasid kasutajat');
+			redirect('manageUsers');
+		}
+
+
 	}
