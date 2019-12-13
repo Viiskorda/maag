@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
-<a href="<?php echo site_url('login/logout');?>">Sign Out</a>
+<!-- <a href="<?php echo site_url('login/logout');?>">Sign Out</a> -->
 
 <div class="container-fluid">
     <div class="d-flex">
@@ -8,26 +8,22 @@
         <div class="d-none d-md-flex col-md-6 col-lg-8 p-0 img-container">
             <div class="content">
                 <div class="blur"></div>                
-                <!-- <p class="intro"><span></span></p> -->
             </div>
             <div class="text">
-		            <h1>Kõigi Pärnu spordikeskuste vabad ajad ühes kohas!</h1>
-                </div>
+                <h1>Kõigi Pärnu spordikeskuste vabad ajad ühes kohas!</h1>
+            </div>
         </div>
-
 
         <div class="col-md-6 col-lg-4">
             <div class="d-flex align-items-center">
                 <div class="col-7"  id="form-container">
-
                     <form action="fullcalendar" method="get">
+
                         <div class="form-label-group">
                             <label for="region">Piirkond</label>
-
                             <input id="region" list="regions" class="form-control arrow" type="text">
                             <datalist id="regions">
-                                <?php
-                                foreach ($regions as $row) {
+                                <?php foreach ($regions as $row) {
                                     echo '<option  data-value="' . $row->id . '" value="' . $row->name . '"></option>';
                                 }
                                 ?>
@@ -38,13 +34,10 @@
                             <label for="sport_facility">Asutus</label>
                             <input id="sport_facility" list="asutus" class="form-control arrow">
                             <datalist id="asutus">
-
                                 <?php foreach ($buildings as $each) {
                                     echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
                                 }
                                 ?>
-
-
                             </datalist>
                         </div>
 
@@ -56,25 +49,22 @@
                                     echo '<option data-value="' . $each->id . '">' . $each->roomName . '</option>';
                                 }
                                 ?>
-
                             </datalist>
                             <input type="hidden" id="roomId" name="roomId" value="roomId" />
                         </div>
 
                         <div class="form-label-group">
                             <label for="app">Kuupäev</label>
-                            <div id='app'>
-                                <v-date-picker mode="single" v-model="date" :popover="{ visibility: 'click' }">
+                            <div id='app'> <!-- SEE SIIN ASENDADA JQUERY DATEPICKERIGA!!!! -->
+                                <v-date-picker mode="single" v-model="date" :popover="{ visibility: 'click' }"><!-- SEE SIIN ASENDADA JQUERY DATEPICKERIGA!!!! -->
                                     <input id="date" slot-scope="{ inputProps, inputEvents}" :class="[`form-control`]" v-bind="inputProps" v-on="inputEvents" name="date" value="date">
-                                </v-date-picker>
-                            </div>
+                                </v-date-picker><!-- SEE SIIN ASENDADA JQUERY DATEPICKERIGA!!!! -->
+                            </div><!-- SEE SIIN ASENDADA JQUERY DATEPICKERIGA!!!! -->
                         </div>
 
-
                         <input class="btn btn-custom col-12 text-white mt-3" type="submit" value="Kuva kalender">
+
                     </form>
-
-
                 </div>
             </div>
         </div>
@@ -106,6 +96,7 @@
     })
     // <------------ Datepicker app - DO NOT TOUCH xD
     $(document).ready(function() {
+
         $('#regions1').change(function() {
             var country_id = $('#regions1').val();
             if (country_id != '') {
@@ -125,6 +116,7 @@
                 $('#citys').html('<option value="">Select rerre</option>');
             }
         });
+
         $('#state').change(function() {
             var value = $('#state').val();
             var state_id = $('#state [value="' + value + '"]').data('value');
@@ -147,29 +139,6 @@
                 $('#city').html('<option value="">Select ruums</option>');
             }
         });
-        // $("input").on('input', function() {
-        // 	var state_id = $('#building').val();
-        // 	console.log(state_id);
-        // 	if (state_id != '') {
-        // 		console.log("data");
-        // 		$.ajax({
-        // 			url: "<?php echo base_url(); ?>calendar/fetch_city",
-        // 			method: "POST",
-        // 			data: {
-        // 				state_id: state_id
-        // 			},
-        // 			success: function(data) {
-        // 				console.log("data");
-        // 				$('#room').html(data);
-        // 			},
-        // 		});
-        // 	} else {
-        // 		$('#room').html('<option value="">Select ruums</option>');
-        // 	}
-        // });
-
-
-
 
         $('#room[list]').on('input', function(e) {
             var $input = $(e.target),
@@ -185,11 +154,8 @@
             }
         });
 
-
-
         $('input[id=region]').focusin(function() {
-            $('input[id=region]').val('');
-           
+            $('input[id=region]').val('');           
         });
 
         $('input[id=sport_facility]').focusin(function() {
@@ -231,6 +197,7 @@
 
             }
         });
+
         $("#sport_facility").on('change keydown input paste', function(e) {
             var $input = $(this),
                 val = $input.val();
@@ -253,7 +220,6 @@
                         console.log("data on " + data);
                         $('#room').val('');
                         $("#saal").empty();
-                        //	$('#saal').html('<option value="">Vali asutus</option>');
                         $('#saal').html(data).appendTo("#saal");
                     }
                 });
@@ -262,59 +228,5 @@
                 $('#room').val('');
             }
         });
-        // $("#region").change(function() {
-        // 	//A solution to check if the value is in the datalist:
-        // 	var country_id = this.value;
-        // 	console.log("sdfasd " + country_id);
-        // 	if ($('#regions').find('option').filter(function() {
-        // 			return this.value == country_id;
-        // 		}).length) {
-        // 		console.log(country_id);
-        // 	}
-        // 	if (country_id != '') {
-        // 		$.ajax({
-        // 			url: "<?php echo base_url(); ?>home/fetch_city",
-        // 			method: "POST",
-        // 			data: {
-        // 				country_id: country_id
-        // 			},
-        // 			success: function(data) {
-        // 				$('#state').html(data);
-        // 				$('#saal').html(data);
-        // 				$('#room').html('<option value="">Vali asutus</option>');
-        // 			}
-        // 		});
-        // 	} else {
-        // 		$('#building').html('<option value="">Select State</option>');
-        // 		$('#room').html('<option value="">Select rerre</option>');
-        // 	}
-        // });
-        // $("#region").change(function() {
-        // 	var country_id = this.value;
-        // 	if ($('#regions').find('option').filter(function() {
-        // 			return this.value == country_id;
-        // 		}).length) {
-        // 			console.log(country_id);
-        // 	}
-        // 	console.log("it works");
-        // 	// if (country_id != '') {
-        // 	// 	$.ajax({
-        // 	// 		url: "<?php echo base_url(); ?>home/fetch_city",
-        // 	// 		method: "POST",
-        // 	// 		data: {
-        // 	// 			country_id: country_id
-        // 	// 		},
-        // 	// 		success: function(data) {
-        // 	// 			console.log(url);
-        // 	// 			$('#building').html(data);
-        // 	// 			$('#asutus').html(data);
-        // 	// 			$('#room').html('<option value="">Vali asutus</option>');
-        // 	// 		}
-        // 	// 	});
-        // 	// } else {
-        // 	// 	$('#building').html('<option value="">Select State</option>');
-        // 	// 	$('#room').html('<option value="">Select rerre</option>');
-        // 	// }
-        // });
     });
 </script>

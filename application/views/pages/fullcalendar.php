@@ -10,8 +10,7 @@
                             echo '' . $each->name . '';
                         }  } ?>">
                     <datalist id="regions">
-                        <?php
-                        foreach ($regions as $row) {
+                        <?php foreach ($regions as $row) {
                             echo '<option  data-value="' . $row->id . '" value="' . $row->name . '"></option>';
                         }
                         ?>
@@ -74,7 +73,6 @@
         </div>
 
         </br>
-
 
         <?php if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'):?>
         <!-- Modal -->
@@ -921,7 +919,6 @@
                 window.location.href = 'https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/fullcalendar?roomId='+xyz;
             } else {
                 console.log("dismatch");
-               
             }
         });
 

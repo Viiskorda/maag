@@ -4,7 +4,7 @@
 
 <?php echo validation_errors(); ?>
 <div class="container">
-    <div id="proov" class="container-md">
+    <div id="forms" class="container-md">
         <div id="nav-tabs" class="mt-5 pb-5 form-bg">
             <div class="d-flex mb-5">
                 <ul class="nav nav-tabs nav-justified col-12 bg-grey">
@@ -13,15 +13,13 @@
                     <li class="nav-item"><a  class="nav-link link txt-lg" href="#suletud" data-toggle="tab">Suletud borneering</a></li>
                 </ul>
             </div>
-            <!-- <div class="lookup-lg d-flex align-items-center py-5" id="body"> -->
 
-                <!-- <div class="col-9 align-self center mx-auto"> -->
             <div class="tab-content">
-                <div id="mitmekordne" class="tab-pane center px-5 mx-5 active">
+                <div id="mitmekordne" class="tab-pane center active">
                     <?php echo form_open('booking/createOnce'); ?>
 
-                        <h4 class="pt-2 txt-xl">Kontakt</h4>
-                        <div class="d-flex p-0 mt-4">
+                        <h4 class="pt-2 txt-xl px-5 mx-5">Kontakt</h4>
+                        <div class="d-flex p-0 mt-4 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label for="contact">Klubi nimi</label>
                                 <input class="form-control" id="clubname" type="text" name="clubname">
@@ -32,7 +30,7 @@
                                 <input class="form-control" id="contact" name="contactPerson">
                             </div>
                         </div>
-                        <div class="d-flex mt-2">
+                        <div class="d-flex mt-2 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label>Telefoni number</label>
                                 <input class="form-control" id="phone" name="phone">
@@ -44,100 +42,86 @@
                             </div>
                         </div>
 
-                        <h4 class="mt-5 txt-xl">Asukoht ja treeningu tüüp</h4>
-                        <div class="d-flex mt-4">
+                        <h4 class="mt-5 txt-xl px-5 mx-5">Asukoht ja treeningu tüüp</h4>
+                        <div class="d-flex mt-4 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label for="sport_facility">Asutus</label>
                                 <input id="sport_facility" class="form-control" list="asutus" id="building" disabled>
-                                <datalist id="asutus">
-                                <?php foreach ($buildings as $each) {
-                                    echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
-                                }
-                                ?>
-                                </datalist>
+                                    <datalist id="asutus">
+                                    <?php foreach ($buildings as $each) {
+                                        echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
+                                    }
+                                    ?>
+                                    </datalist>
                             </div>
 
                             <div class="form-label-group col-6 p-0 pl-5">
                                 <label for="room">Saal</label>
                                 <select id="room" list="saal" name="sportrooms" class="form-control">
-                                <!-- <option value=0>Select option</option>' -->
                                     <?php foreach ($rooms as $each) {
                                                 echo '<option value="' . $each->id . '">' . $each->roomName . '</option>';
                                             } ?>
                                 </select>
-
-
                             </div>
                         </div>
-                        <div>
-                            <div class="form-label-group col-6 py-0 pl-0 pr-5 mt-2">
+                        <div class="d-flex mt-2 px-5 mx-5">
+                            <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label>Treeningu tüüp</label>
                                 <input class="form-control" id="type" name="workoutType">
                             </div>
+                            <div class="form-label-group col-6 p-0 pl-5"></div>
                         </div>
 
-
-
-
-                        <h4 class="mt-5 txt-xl">Kuupäev ja kellaaeg</h4>
-                        <div class="d-flex mt-4">
-                            <div class="form-label-group col-12 p-0" id="timestamp">
+                        <h4 class="mt-5 txt-xl px-5 mx-5">Kuupäev ja kellaaeg</h4>
+                        <div class="mt-4 bg-grey py-2">
+                            <div class="form-label-group px-5 mx-5" id="timestamp">
                                 <label for="InputsWrapper">Kuupäev</label>
-                                <div id="InputsWrapper" class="d-flex align-items-center mb-3 p-0">
-                                    <div id="" class="datePicker col-6 p-0">
-                                        <v-date-picker mode="single" v-model="selectedDate" locale="et-EE" value="selectedDate" :popover="{ visibility: 'click' }" :input-props="{ class: 'form-control', id: 'datefield_1', name: 'workoutDate[1]'}" :first-day-of-week="2" />
-                                        
-                                    </div>
-                                    <!-- <input id="dateTest" class="form-control col-6" data-toggle="datepicker" value="<?php echo date('d/m/Y'); ?>"> Vajalikarendan edasi -->
+                                <div id="InputsWrapper" class="mb-3 p-0">
+                                    <div class="d-flex align-items-center mb-3 justify-content-between">
+                                        <input class="datePicker col-5 form-control" id="datefield_1" data-toggle="datepicker" name="workoutDate[1]">
 
-                                    <a href="#" class="removeclass "><span class="ml-3 icon-cancel"></span></a>
+                                        <a href="#" class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></a>
 
-                                    <div class="col-3">
-                                        <input type="text" class="clock form-control" name="begin[1]" id="timestartfield_1" value="<?php echo date('H:i'); ?>">
-                                    </div>
+                                        <div class="col-2 p-0 ml-5">
+                                            <input type="text" class="clock form-control p-0" name="begin[1]" id="timestartfield_1" value="<?php echo date('H:i'); ?>">
+                                        </div>
 
-                                    <div class="col-3">
-                                        <input type="text" class="clock form-control" name="end[1]" min="08:00" max="22:00" id="timeendfield_1" value="">
+                                        <div class="col-2 p-0">
+                                            <input type="text" class="clock form-control p-0" name="end[1]" min="08:00" max="22:00" id="timeendfield_1" value="">
+                                        </div>
                                     </div>
-                                    
                                 </div>
-                                <div id="AddMoreFileId" class="flex"><a href="#" id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 px-5 pluss"><p class="m-0 txt-lg text-center align-items-center">Lisa veel üks kuupäev</p></a></div>
+                                <div id="AddMoreFileId" class="d-flex col-5 p-0">
+                                    <a href="#" id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 px-4 pluss"><p class="m-0 px-0 txt-lg text-center align-items-center">Lisa veel üks kuupäev</p></a>
                                 </div>
                             </div>
-                            <!-- <div class="bg-grey"></div> -->
-                        <!-- </div> -->
+                        </div>
 
-
-
-
-
-
-                        <h4 class="mt-5 txt-xl">Lisainfo (valikuline) </h4>
-                        <div class="d-flex mt-4">
-                            <div class="form-label-group col-6  py-0 pl-0 pr-5">
+                        <h4 class="mt-5 txt-xl px-5 mx-5">Lisainfo (valikuline) </h4>
+                        <div class="mt-4 px-5 mx-5">
+                            <div class="form-label-group pb-2 px-0">
                                 <label>Lisainfo</label>
-                                <input class="form-control" id="additional" name="additionalComment">
+                                <textarea class="form-control" id="additional" name="additionalComment" rows="5"></textarea>
                             </div>
 
-                            <div class="form-label-group col-6 p-0 pl-5">
+                            <div class="form-label-group px-0">
                                 <label>Asutusesisene kommentaar</label>
                                 <input class="form-control" id="comment2" name="comment2">
                             </div>
                         </div>
 
-
-                        <div class="d-flex justify-content-end mt-5">
+                        <div class="d-flex justify-content-end mt-5 px-5 mx-5">
                             <a class="txt-xl link-deco align-self-center py-0 pr-5 mr-2" href="#">Katkesta</a>
                             <input class="btn btn-custom col-3 text-white txt-xl" type="submit" value="Broneeri">
                         </div>
                     </form>
                 </div>
 
-                <div id="hooajaline" class="tab-pane center px-5 mx-5">
+                <div id="hooajaline" class="tab-pane center">
                     <?php echo form_open('booking/createClosed'); ?>
 
-                        <h4 class="pt-2 txt-xl">Kontakt</h4>
-                        <div class="d-flex p-0 mt-4">
+                        <h4 class="pt-2 txt-xl px-5 mx-5">Kontakt</h4>
+                        <div class="d-flex px-5 mx-5 mt-4">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label for="contact">Klubi nimi</label>
                                 <input class="form-control" id="clubname" type="text" name="clubname">
@@ -148,7 +132,7 @@
                                 <input class="form-control" id="contact" name="contactPerson">
                             </div>
                         </div>
-                        <div class="d-flex mt-2">
+                        <div class="d-flex mt-2 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label>Telefoni number</label>
                                 <input class="form-control" id="phone" name="phone">
@@ -160,99 +144,99 @@
                             </div>
                         </div>
 
-                        <h4 class="mt-5 txt-xl">Asukoht ja treeningu tüüp</h4>
-                        <div class="d-flex mt-4">
+                        <h4 class="mt-5 txt-xl px-5 mx-5">Asukoht ja treeningu tüüp</h4>
+                        <div class="d-flex mt-4 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label for="sport_facility">Asutus</label>
                                 <input id="sport_facility" class="form-control" list="asutus" id="building" disabled>
-                                <datalist id="asutus">
-                                <?php foreach ($buildings as $each) {
-                                    echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
-                                }
-                                ?>
-                                </datalist>
+                                    <datalist id="asutus">
+                                    <?php foreach ($buildings as $each) {
+                                        echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
+                                    }
+                                    ?>
+                                    </datalist>
                             </div>
 
                             <div class="form-label-group col-6 p-0 pl-5">
                                 <label for="room">Saal</label>
                                 <select id="room" list="saal" name="sportrooms" class="form-control">
-                                <!-- <option value=0>Select option</option>' -->
                                     <?php foreach ($rooms as $each) {
                                                 echo '<option value="' . $each->id . '">' . $each->roomName . '</option>';
                                             } ?>
                                 </select>
-
-
                             </div>
                         </div>
-                        <div>
-                            <div class="form-label-group col-6 py-0 pl-0 pr-5 mt-2">
+
+                        <div class="d-flex mt-2 px-5 mx-5">
+                            <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label>Treeningu tüüp</label>
                                 <input class="form-control" id="type" name="workoutType">
                             </div>
-                        </div>
-                        <input class="d-none" type="checkbox" name="type" value="4" checked> <!-- Suletud (See tuleb ära peita ehk panna hidden)<br> -->
+                            <div class="form-label-group col-6 p-0 pl-5">
+                                <input class="d-none" type="checkbox" name="type" value="4" checked>
+                            </div>
+                        </div>                        
                            
-                        <h4 class="mt-5 txt-xl">Kuupäev ja kellaaeg</h4>
-                        <div class="d-flex mb-2 mt-4">
-                            <div class="form-label-group col-6 py-0 pl-0 pr-5"  id="InputsWrapper1">
-                                <label for="sport_facility2">Nädalapäev</label>
-                                <input class="form-control" id="sport_facility2" list="weekdays" name="weekday[]">
-                             
-                                <datalist id="weekdays">
-                                <option data-value="1" value="Esmaspäev"></option>
-                                <option data-value="2" value="Teisipäev"></option>
-                                <option data-value="3" value="Kolmapäev"></option>
-                                <option data-value="4" value="Neljapäev"></option>
-                                <option data-value="5" value="Reede"></option>
-                                <option data-value="6" value="Laupäev"></option>
-                                <option data-value="7" value="Pühapäev"></option>
-                     
-                                </datalist>
+                        <h4 class="mt-5 txt-xl px-5 mx-5">Kuupäev ja kellaaeg</h4>
+                        <div class="mt-4 bg-grey py-2">
+                            <div class="form-label-group px-5 mx-5"  id="InputsWrapper1">
+                                <div class="d-flex justify-content-between m-0 px-0 pt-0 pb-1">
+                                    <label class="col-5 m-0 p-0" for="sport_facility2">Nädalapäev</label>
+                                    <label class="d-hidden col-1 mr-1 p-0"></label>
+                                    <label class="col-2 m-0 pl-3" for="from1">Alates</label>
+                                    <label class="col-2 m-0 p-0" for="until1">Kuni</label>
+                                </div>
+                                <div id="dateContainer">
+                                    <div class="d-flex align-items-center mb-3 justify-content-between">
+                                        <input class="form-control col-5 arrow" id="sport_facility2" list="weekdays" name="weekday[]">                                
+                                            <datalist id="weekdays">
+                                                <option data-value="1" value="Esmaspäev"></option>
+                                                <option data-value="2" value="Teisipäev"></option>
+                                                <option data-value="3" value="Kolmapäev"></option>
+                                                <option data-value="4" value="Neljapäev"></option>
+                                                <option data-value="5" value="Reede"></option>
+                                                <option data-value="6" value="Laupäev"></option>
+                                                <option data-value="7" value="Pühapäev"></option>       
+                                            </datalist>
 
+                                        <a href="#" class="removeclass1 col-1 pl-1 pr-5"><span class="icon-cancel"></span></a>
 
-                              
-                            </div>
+                                        <div class="col-2 p-0 ml-5">
+                                            <input type="text" class="clock form-control p-0" name="timesStart[]" id="from1" value="<?php echo date('H:i'); ?>">
+                                        </div>
 
-                            <div class="form-label-group col-3 p-0 pl-5">
-                                <label>Alates</label>
-                                <!-- <input class="form-control p-0" id="from2"> -->
-                                <input class="form-control" type="time"  min="08:00" max="22:00" step="900"  name="timesStart[]" id="from' + FieldCount + '" value=""/>
-                            </div>
+                                        <div class="col-2 p-0">
+                                            <input type="text" class="clock form-control p-0" name="timeTo[]" id="until1" value="">
+                                        </div>                                    
+                                    </div>
+                                </div>
 
-                            <div class="form-label-group col-3 p-0 pl-5">
-                                <label>Kuni</label>
-                                <!-- <input class="form-control p-0" id="until2"> -->
-                                <input class="form-control" type="time" min="08:00" max="22:00" step="900"  name="timeTo[]" id="until' + FieldCount + '" value=""/>
-                            </div>
-                        </div>
-                        <div id="AddMoreFileId1" class="flex"><input type="button" id="AddMoreFileBoxPeriod" value="Lisa nädalapäev" class="btn btn-custom text-white text-center py-2 mb-4 px-5 pluss">
-                        <a href="" id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 mb-4 px-5 pluss">
-                            <p class="m-0 txt-lg text-center align-items-center">Lisa veel üks päev</p>
-                        </a>
-                    </div>
-
-                        <div class="d-flex">
-                        
-                            <div class="form-label-group pr-3">
-                                <label>Periood</label>                               
-                                <input class="form-control" id="periodStart" type="date" name="startingFrom" value="<?php echo date("Y-m-d"); ?>">
-                            </div>
-                            <div class="form-label-group">  
-                                <label class="invisible">Periood</label>                              
-                                <input class="form-control" id="periodEnd" type="date" name="Ending" value="<?php echo date("Y-m-d"); ?>">
+                                <div id="AddMoreFileId1" class="flex col-5 p-0">
+                                    <a href="" id="AddMoreFileBoxPeriod" class="btn btn-custom text-white text-center py-2 px-4 pluss"><p class="m-0 px-0 txt-lg text-center align-items-center">Lisa veel üks päev</p></a>
+                                </div>
                             </div>
                         </div>
 
+                        <div class="d-flex px-5 mx-5 mt-5">                        
+                            <div class="form-label-group m-0 pl-0 pr-3 col-3">
+                                <label>Periood</label>
+                                <input class="datePicker form-control" id="periodStart" data-toggle="datepicker" name="startingFrom">
+                            </div>
+                            <div class="form-label-group m-0 pl-0 col-3">  
+                                <label class="invisible">Periood</label> 
+                                <input class="datePicker form-control" id="periodEnd" data-toggle="datepicker" name="Ending">
+                            </div>
+                        </div>
 
-                        <h4 class="mt-5 txt-xl">Lisainfo (asutusesisene)</h4>
-                        <div class="form-label-group mb-2 mt-4">
+
+                        <h4 class="mt-5 txt-xl px-5 mx-5">Lisainfo (asutusesisene)</h4>
+                        <div class="form-label-group mb-2 mt-4 px-5 mx-5">
                             <label>Kommentaar</label>
                             <textarea class="form-control" id="comment2" name="comment2" ></textarea> <!-- formi alla panna formi name -->
                         </div>
 
-                        <div class="d-flex justify-content-end mt-5">
-                            <a class="txt-xl link-deco align-self-center py-0 pr-5 mr-2" href="#">Katkesta</a>
+                        <div class="d-flex justify-content-end mt-5 px-5 mx-5">
+                            <a class="txt-xl link-deco align-self-center py-0 pr-5 mr-2" href="">Katkesta</a>
                             <input class="btn btn-custom col-3 text-white txt-xl" type="submit" value="Broneeri">
                         </div>
                     </form>
@@ -353,14 +337,14 @@
 </div>
 </br>
 
-<script src='https://unpkg.com/v-calendar@next'></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datepicker.js"></script>
 <script>
 
-    $('#dateTest').datepicker({
-        language: 'et-EE',
+    $(".datePicker").datepicker({
+        language: "et-EE",
         autoHide: true,
         date: new Date(),
+        autoPick: true,
     });
 
     $('.clock').clockTimePicker({
@@ -390,15 +374,30 @@
             if (x <= MaxInputs) {
                 FieldCount++; //text box added ncrement
                 //add input box
+                $('#InputsWrapper').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="datePicker col-5 form-control" id="datefield_' + FieldCount + '" data-toggle="datepicker" name="workoutDate[' + FieldCount + ']"><a href="#" class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></a><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="end[' + FieldCount + ']" min="08:00" max="22:00" id="timeendfield_' + FieldCount + '" value=""></div></div>');
 
+                $(".datePicker").datepicker({
+                    language: "et-EE", 
+                    autoHide: true, 
+                    date: new Date(), 
+                    autoPick: true
+                });
 
-                $(AddButton).before('<div id="InputsWrapper" class="d-flex align-items-center mb-3 p-0"><div class="datePicker col-6 p-0"><v-date-picker mode="single" v-model="selectedDate" locale="et-EE" value="selectedDate" :popover="{ visibility: \'click\' }" :input-props="{ class: \'form-control\', id: \'datefield_' + FieldCount + '\', name: \'workoutDate[' + FieldCount + ']\'}" :first-day-of-week="2" /></div><a href="#" class="removeclass "><span class="ml-3 icon-cancel"></span></a><div class="col-3"><input type="text" class="clock form-control" name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-3"><input type="text" class="clock form-control" name="end[' + FieldCount + ']" min="08:00" max="22:00" id="timeendfield_' + FieldCount + '" value=""></div></div>');
-
+                $('.clock').clockTimePicker({
+                    duration: true,
+                    durationNegative: true,
+                    precision: 15,
+                    i18n: {
+                        cancelButton: 'Abbrechen'
+                    },
+                    onAdjust: function(newVal, oldVal) {
+                        //...
+                    }
+                });
 
                 x++; //text box increment
 
                 $("#AddMoreFileId").show();
-
                 // $('AddMoreFileBox').html("Add field");
 
                 // Delete the "add"-link if there is 3 fields.
@@ -410,11 +409,13 @@
             return false;
         });
 
-        $("body").on("click", ".removeclass", function(e) { //user click on remove text
+        $("#timestamp").on("click", ".removeclass", function(e) { //user click on remove text
             if (x > 1) {
                 $(this).parent('div').remove(); //remove text box
                 x--; //decrement textbox
                 $("#AddMoreFileId").show();
+                console.log(x);
+                return x;
             }
             return false;
         });
@@ -431,8 +432,20 @@
             if (y <= maxPeriod) {
                 FieldCount++; //text box added ncrement
                 //add input box
-               // $(AddButton1).before('<div class="d-flex align-items-center mb-3"><input class="form-control col-5.5 p-0"  type="datetime-local" name="mytext[' + FieldCount + ']" id="field_' + FieldCount + '" value="<?php // echo date('Y-m-d\TH:i'); ?>"/> <p class="align-middle m-0 p-0" style="height: 20px;">–</p> <input class="form-control col-5.5 p-0"  type="datetime-local"  name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"/><a href="" class="removeclass1">Remove</a></div>');
-                $(AddButton1).before(' <div class="d-flex mb-2 mt-4"><div class="form-label-group col-6 py-0 pl-0 pr-5"  id="InputsWrapper1"><label for="sport_facility2">Nädalapäev</label><input class="form-control" id="sport_facility2" list="weekdays" name="weekday[]"><datalist id="weekdays"> <option data-value="1" value="Esmaspäev"></option><option data-value="2" value="Teisipäev"></option> <option data-value="3" value="Kolmapäev"></option> <option data-value="4" value="Neljapäev"></option> <option data-value="5" value="Reede"></option> <option data-value="6" value="Laupäev"></option> <option data-value="7" value="Pühapäev"></option></datalist>  </div><div class="form-label-group col-3 p-0 pl-5"> <label>Alates</label> <!-- <input class="form-control p-0" id="from2"> --> <input class="form-control" type="time"  min="08:00" max="22:00" step="900"  name="timesStart[]" id="from' + FieldCount + '" value=""/></div><div class="form-label-group col-3 p-0 pl-5"> <label>Kuni</label> <!-- <input class="form-control p-0" id="until2"> --> <input class="form-control" type="time" min="08:00" max="22:00" step="900"  name="timeTo[]" id="until' + FieldCount + '" value=""/><a href="" class="removeclass1">Remove</a></div> ');
+                $('#dateContainer').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="form-control col-5 arrow" id="sport_facility2" list="weekdays" name="weekday[]"><datalist id="weekdays"><option data-value="1" value="Esmaspäev"></option><option data-value="2" value="Teisipäev"></option><option data-value="3" value="Kolmapäev"></option><option data-value="4" value="Neljapäev"></option><option data-value="5" value="Reede"></option><option data-value="6" value="Laupäev"></option><option data-value="7" value="Pühapäev"></option></datalist><a href="#" class="removeclass1 col-1 pl-1 pr-5"><span class="icon-cancel"></span></a><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control p-0" name="timesStart[]" id="from' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control p-0" name="timeTo[]" id="until' + FieldCount + '" value=""></div></div>');
+
+                $('.clock').clockTimePicker({
+                    duration: true,
+                    durationNegative: true,
+                    precision: 15,
+                    i18n: {
+                        cancelButton: 'Abbrechen'
+                    },
+                    onAdjust: function(newVal, oldVal) {
+                        //...
+                    }
+                });
+
                 y++; //text box increment
 
                 $("#AddMoreFileId1").show();
@@ -445,6 +458,16 @@
                     $("#lineBreak").html("<br>");
                 }
             }
+            return false;
+        });
+
+        $("#dateContainer").on("click", ".removeclass1", function(e) { //user click on remove text
+            if (y > 1) {
+                $(this).parent('div').remove(); //remove text box
+                y--; 
+                $("#AddMoreFileId1").show();
+
+               }
             return false;
         });
 
@@ -479,25 +502,6 @@
             return false;
         });
 
-        $("body").on("click", ".removeclass", function(e) { //user click on remove text
-            if (x > 1) {
-                $(this).parent('div').remove(); //remove text box
-                x--; //decrement textbox
-                $("#AddMoreFileId").show();
-            }
-            return false;
-        });
-
-        $("body").on("click", ".removeclass1", function(e) { //user click on remove text
-            if (y > 1) {
-                $(this).parent('div').parent('div').remove(); //remove text box
-                y--; 
-                $("#AddMoreFileId1").show();
-
-               }
-            return false;
-        });
-
         $("body").on("click", ".removeclass2", function(e) { //user click on remove text
             if (z > 1) {
                 $(this).parent('div').parent('div').remove(); //remove text box
@@ -517,24 +521,6 @@
         $(this).addClass("active");
     });
 
-    // let elements = document.getElementsByClassName('datePicker');
-    // for(let el of elements){
-    //     new Vue({
-    //         el: el,
-    //         data: {
-    //         // Data used by the date picker
-    //         mode: 'single',
-    //         selectedDate: new Date(),
-    //         }
-    //     });
-    // }
-
-    new Vue({
-        el: '.datePicker',
-        data: {
-            // Data used by the date picker
-            mode: 'single',
-            selectedDate: new Date(),
-        }
-    });
+    
+    
 </script>

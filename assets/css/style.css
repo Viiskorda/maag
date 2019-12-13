@@ -55,9 +55,16 @@
     z-index: 10034;
   }
 
+  .nav-tabs .nav-link.active{
+    background-color: #FBFBFB;
+    border-color: #C7C7C7 #C7C7C7 #FBFBFB;
+  }
+
+  .nav-tabs .nav-link:hover{
+    border-color:#C7C7C7 #C7C7C7 #FBFBFB}
+
   .bg-grey {
     background-color: #E0E0E2;
-    width: 150%;
   }
 
   .link {
@@ -101,14 +108,14 @@
   }
 
   .form-bg {
-    background: #FFF;
+    background: #FBFBFB;
     border: 1px solid #C7C7C7;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
     /* border-radius: 10px; */
   }
 
   .arrow {
-    background: url('../img/chevron-down-solid.svg') no-repeat 96% / 8% #fff;
+    background: url('../img/chevron-down-solid.svg') no-repeat 96% / 5% #fff;
   }
 
   .icon-cancel {
