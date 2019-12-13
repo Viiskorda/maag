@@ -362,7 +362,7 @@
             if (x <= MaxInputs) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $('#InputsWrapper').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="datePicker col-5 form-control" id="datefield_' + FieldCount + '" data-toggle="datepicker" name="workoutDate[' + FieldCount + ']"><a href="#" class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></a><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="end[' + FieldCount + ']" min="08:00" max="22:00" id="timeendfield_' + FieldCount + '" value=""></div></div>');
+                $('#InputsWrapper').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="datePicker col-5 form-control" id="datefield_' + FieldCount + '" data-toggle="datepicker" name="workoutDate[]"><a href="#" class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></a><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="begin[]" id="timestartfield_' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="end[]" min="08:00" max="22:00" id="timeendfield_' + FieldCount + '" value=""></div></div>');
 
                 $(".datePicker").datepicker({
                     language: "et-EE", 
