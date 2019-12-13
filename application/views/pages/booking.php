@@ -262,7 +262,7 @@
                             </div>
                             <!-- <input class="btn btn-custom col-4 text-white" type="submit" value="Sisesta"> -->
                             <input class="d-none" type="checkbox" name="type" value="2" checked> <!-- Suletud (See tuleb ära peita ehk panna hidden)<br> -->
-                            <input class="d-none" type="checkbox" name="clubname" value="Hooajaline" checked> <!-- Suletud Title (See tuleb ära peita ehk panna hidden)<br> -->
+                            <input class="d-none" type="checkbox" name="clubname" value="Suletud" checked> <!-- Suletud Title (See tuleb ära peita ehk panna hidden)<br> -->
                         </div>
 
                         <div class="d-flex m-0 p-0">
@@ -374,7 +374,7 @@
             if (x <= MaxInputs) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $('#InputsWrapper').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="datePicker col-5 form-control" id="datefield_' + FieldCount + '" data-toggle="datepicker" name="workoutDate[' + FieldCount + ']"><a href="#" class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></a><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="begin[' + FieldCount + ']" id="timestartfield_' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="end[' + FieldCount + ']" min="08:00" max="22:00" id="timeendfield_' + FieldCount + '" value=""></div></div>');
+                $('#InputsWrapper').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="datePicker col-5 form-control" id="datefield_' + FieldCount + '" data-toggle="datepicker" name="workoutDate[]"><a href="#" class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></a><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="begin[]" id="timestartfield_' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="end[]" min="08:00" max="22:00" id="timeendfield_' + FieldCount + '" value=""></div></div>');
 
                 $(".datePicker").datepicker({
                     language: "et-EE", 
