@@ -235,6 +235,13 @@
         });
 
         $(document).ready(function() {
+            $("#selectAll").click(function(){
+                console.log("vlokk");
+      
+        var c = this.checked;
+    $(':checkbox').prop('checked',c);
+
+        });
             
             $('input[type="date"]').change(function(){
                 console.log("kell on "+(this.value));         //Date in full format alert(new Date(this.value));
