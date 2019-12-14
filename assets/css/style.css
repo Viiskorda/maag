@@ -47,6 +47,10 @@
     min-height: 89vh;
   }
 
+  .table-container {
+    min-height: 89vh;
+  }
+
   #nav-tabs::before {
     margin-left: -50px;
     width: 20px;
@@ -88,6 +92,10 @@
 
   .txt-xl {
     font-size: 18px;
+    font-weight: 500;
+  }
+
+  .txt-strong {
     font-weight: 500;
   }
 
@@ -242,6 +250,16 @@
  .btn {
    border-radius: 0;
  }
+
+ .btn-custom {
+  background: #1A7AB7;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+ .btn-second {
+  background: #0B3954;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+ }
   
   .form-label-group {
     /* position: relative; */
@@ -316,8 +334,15 @@
     }
   }
 
-  .btn-custom {
-    background: #1A7AB7;
+  tbody {
+    background: #FBFBFB;
+    border: 1px solid #B8B8B8;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  th {
+    background: #E0E0E2;
+    border-top: 1px solid #B8B8B8;
   }
 
   /* @media screen and (min-width: 1200px) {
