@@ -329,7 +329,6 @@
 <script>
 
     $(".datePicker").datepicker({
-        language: "et-EE",
         autoHide: true,
         date: new Date(),
         autoPick: true,

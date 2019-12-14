@@ -146,7 +146,7 @@ class Booking extends CI_Controller {
 		if ($weekday[$t]==$key){
 			//var_dump($this->input->post('Ending'));
 		 for($i = strtotime($value, $startDate); $i <= $endDate; $i = strtotime('+1 week', $i))
-			 {  echo $i;
+			{  //  echo $i;
 				$dateToDb=date('Y-m-d', $i);
 				
 			//	var_dump(date('Y-m-d H:i:s', strtotime("$dateToDb $formated_timeToDb")));
