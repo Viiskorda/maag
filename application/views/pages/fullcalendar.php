@@ -158,7 +158,7 @@
 <h6>Kõik ajad</h6>
 
 <hr>
-<input type="checkbox" name="selectAll" value="1"> VALI KÕIK<hr>
+<input type="checkbox" name="selectAll" id="selectAll" value="1"> VALI KÕIK<hr>
 <table id="myTable">
   <tbody>
     <tr></tr>
@@ -279,13 +279,71 @@
                 slotDuration: '00:30:00',
                 minTime: '08:00:00',
                 maxTime: '22:00:00',
-
+     
                 //contentHeight:"auto",
-                events: "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get('roomId')); ?>",
+               
+                rendering: 'background',
+                eventSources: [
+
+// your event source
+{
+  url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get('roomId')); ?>", // use the `url` property
+ 
+ // rendering : 'background'
+},
+// {
+//   url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get('roomId')); ?>", // use the `url` property
+//             //  color: 'yellow',    // an option!
+//             // textColor: 'black'  // an option!
+// }
+
+// any other sources...
+
+],
+
+    //             eventSources: [
+    // {
+    //     events: [
+    //         {
+    //             title: 'Event 1',
+    //             start: '2013-11-04'
+    //         },
+    //         {
+    //             title: 'Event 2',
+    //             start: '2013-11-25'
+    //         }
+    //         ],
+    //     color: 'yellow',
+    //     textColor: 'black'
+    // },
+    // {
+    //     events: [
+    //         {
+    //             title: 'Event 3',
+    //             start: '2013-11-11'
+    //         },
+    //         {
+    //             title: 'Event 4',
+    //             start: '2013-11-20'
+    //         }
+    //         ],
+    //     color: 'blue',
+    //     textColor: 'white'
+    // }
+    // ],
+
+
                 selectable: true,
                 selectHelper: true,
                 eventRender: function (event, element) {
-                element.find('.fc-title').before("<span>Päring: "+moment(event.created_at).format("DD.MM.YYYY HH:mm")+"</span>")},
+                element.find('.fc-title').before("<span>Päring: "+moment(event.created_at).format("DD.MM.YYYY HH:mm")+"</span>");
+                if(event.typeID == 4) {
+                    element.css('background-color', '#000');
+                 //   event.rendering = 'background';
+                    
+                }
+                
+                },
                 select: function(start, end, allDay) {
                     var public_info = prompt("Enter Event Title");
                     var roomID = <?php echo ($this->input->get('roomId')); ?>;
@@ -329,7 +387,7 @@
                         },
                         success: function() {
                             calendar.fullCalendar('refetchEvents');
-                            alert("Event Update");
+                            //alert("Event Update");
                         }
                     })
                 },
@@ -351,7 +409,7 @@
                         },
                         success: function() {
                             calendar.fullCalendar('refetchEvents');
-                            alert("Event Updated");
+                            alert("Tõstsid korraks trenni eest ära, see läheb tagasi oma kohale peale OK nupule vajutamist");
                         }
                     })
                 },
@@ -742,8 +800,8 @@
               if ($('.abc:checked').length <= $('.abc').length && $('.abc:checked').length>0) 
                         {   var timesIdArray = [];
                             var id= '';
-                            if (confirm("Muudan valitud aegasid?")) {
-                             event.preventDefault();    };
+                            // if (confirm("Muudan valitud aegasid?")) {
+                            //  event.preventDefault();    };
                             
                             $("input:checkbox").each(function(){
                             var $this = $(this);

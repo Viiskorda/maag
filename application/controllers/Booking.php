@@ -72,8 +72,9 @@ class Booking extends CI_Controller {
 				}
 
 					$this->booking_model->create_bookingTimes($insert_data);
+					var_dump($insert_data);
 				//	$this->load->view('booking/success');
-					redirect('fullcalendar?roomId='.$this->input->post('sportrooms'));
+				//	redirect('fullcalendar?roomId='.$this->input->post('sportrooms'));
 		}
 
 

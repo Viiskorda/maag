@@ -16,7 +16,7 @@
 
             <div class="tab-content">
                 <div id="mitmekordne" class="tab-pane center active">
-                    <?php echo form_open('booking/createOnce'); ?>
+                    <?php echo form_open('booking/create'); ?>
 
                         <h4 class="pt-2 txt-xl px-5 mx-5">Kontakt</h4>
                         <div class="d-flex p-0 mt-4 px-5 mx-5">
@@ -78,16 +78,16 @@
                                 <label for="InputsWrapper">Kuupäev</label>
                                 <div id="InputsWrapper" class="mb-3 p-0">
                                     <div class="d-flex align-items-center mb-3 justify-content-between">
-                                        <input class="datePicker col-5 form-control" id="datefield_1" data-toggle="datepicker" name="workoutDate[1]">
+                                        <input class="datePicker col-5 form-control" id="datefield_1" data-toggle="datepicker" name="workoutDate[]">
 
                                         <a href="#" class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></a>
 
                                         <div class="col-2 p-0 ml-5">
-                                            <input type="text" class="clock form-control" name="begin[1]" id="timestartfield_1" value="<?php echo date('H:i'); ?>">
+                                            <input type="text" class="clock form-control" name="begin[]" id="timestartfield_1" value="<?php echo date('H:i'); ?>">
                                         </div>
 
                                         <div class="col-2 p-0">
-                                            <input type="text" class="clock form-control" name="end[1]" min="08:00" max="22:00" id="timeendfield_1" value="">
+                                            <input type="text" class="clock form-control" name="end[]" min="08:00" max="22:00" id="timeendfield_1" value="">
                                         </div>
                                     </div>
                                 </div>
