@@ -87,7 +87,7 @@
                                         </div>
 
                                         <div class="col-2 p-0">
-                                            <input type="text" class="clock form-control" name="end[]" min="08:00" max="22:00" id="timeendfield_1" value="">
+                                            <input type="text" class="clock form-control" name="end[]" min="08:00" max="22:00" id="timeendfield_1" value="<?php echo date("H:i", strtotime('+90 minutes')); ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +202,7 @@
                                         </div>
 
                                         <div class="col-2 p-0">
-                                            <input type="text" class="clock form-control" name="timeTo[]" id="until1" value="">
+                                            <input type="text" class="clock form-control" name="timeTo[]" id="until1" value="<?php echo date("H:i", strtotime('+90 minutes')); ?>">
                                         </div>                                    
                                     </div>
                                 </div>
@@ -220,7 +220,7 @@
                             </div>
                             <div class="form-label-group m-0 pl-0 col-3">  
                                 <label class="invisible">Periood</label> 
-                                <input class="datePicker form-control" id="periodEnd" data-toggle="datepicker" name="Ending">
+                                <input class="datepickerUntil form-control" id="periodEnd" data-toggle="datepickerUntil" name="Ending">
                             </div>
                         </div>
 
@@ -289,7 +289,7 @@
                                         </div>
 
                                         <div class="col-2 p-0">
-                                            <input type="text" class="clock form-control" name="timeTo[]" id="until1" value="">
+                                            <input type="text" class="clock form-control" name="timeTo[]" id="until1" value="<?php echo date("H:i", strtotime('+90 minutes')); ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -308,7 +308,7 @@
                             </div>
                             <div class="form-label-group m-0 pl-0 col-3">  
                                 <label class="invisible">Periood</label> 
-                                <input class="datePicker form-control" id="periodEnd" data-toggle="datepicker" name="Ending">
+                                <input class="datePicker form-control" id="periodEnd" data-toggle="datePicker" name="Ending">
                             </div>
                         </div>
 
@@ -328,6 +328,28 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datepicker.js"></script>
 <script>
 
+
+    $(document).ready(function() {
+
+        var today=new Date();
+        var endOfPeriond=new Date('05/31/'+ new Date().getFullYear()); 
+       
+        var dateToShow='';
+        if (today<endOfPeriond){
+            dateToShow=endOfPeriond;
+
+        }else{
+            dateToShow=new Date(endOfPeriond.setFullYear(endOfPeriond.getFullYear() + 1));  ;
+        };
+       
+
+        $(".datepickerUntil").datepicker({
+        language: "et-EE",
+        autoHide: true,
+        date: dateToShow,
+        autoPick: true,
+    });
+
     $(".datePicker").datepicker({
         language: "et-EE",
         autoHide: true,
@@ -346,8 +368,6 @@
             //...
         }
     });
-    
-    $(document).ready(function() {
 
         var MaxInputs = 10; //maximum extra input boxes allowed
         var InputsWrapper = $("#InputsWrapper"); //Input boxes wrapper ID
