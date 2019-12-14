@@ -16,7 +16,7 @@
 
             <div class="tab-content">
                 <div id="mitmekordne" class="tab-pane center active">
-                    <?php echo form_open('booking/create'); ?>
+                    <?php echo form_open('booking/createOnce'); ?>
 
                         <h4 class="pt-2 txt-xl px-5 mx-5">Kontakt</h4>
                         <div class="d-flex p-0 mt-4 px-5 mx-5">
@@ -168,7 +168,7 @@
                                 <input class="form-control" id="type" name="workoutType">
                             </div>
                             <div class="form-label-group col-6 p-0 pl-5">
-                                <input class="d-none" type="checkbox" name="type" value="4" checked>
+                                <input class="d-none" type="checkbox" name="type" value="2" checked>
                             </div>
                         </div>                        
                            
@@ -254,7 +254,7 @@
                             </div>
 
                             <div class="d-flex mt-2 px-5 mx-5">
-                                <input class="d-none" type="checkbox" name="type" value="2" checked> <!-- Suletud (See tuleb ära peita ehk panna hidden)<br> -->
+                                <input class="d-none" type="checkbox" name="type" value="4" checked> <!-- Suletud (See tuleb ära peita ehk panna hidden)<br> -->
                                 <input class="d-none" type="checkbox" name="clubname" value="Suletud" checked> <!-- Suletud Title (See tuleb ära peita ehk panna hidden)<br> -->
                             </div>
                         </div>
@@ -329,6 +329,7 @@
 <script>
 
     $(".datePicker").datepicker({
+        language: "et-EE",
         autoHide: true,
         date: new Date(),
         autoPick: true,
