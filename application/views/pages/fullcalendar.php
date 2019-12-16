@@ -336,10 +336,12 @@
                 selectable: true,
                 selectHelper: true,
                 eventRender: function (event, element) {
-                element.find('.fc-title').before("<span>Päring: "+moment(event.created_at).format("DD.MM.YYYY HH:mm")+"</span>");
-                if(event.typeID == 4) {
-                    element.css('background-color', '#000');
-                 //   event.rendering = 'background';
+                    if(event.typeID == 1 || event.typeID == 2) {
+                    element.find('.fc-title').before("<span>Päring: "+moment(event.created_at).format("DD.MM.YYYY HH:mm")+"</span>");
+                }
+                    if(event.typeID == 4) {
+                        element.css('background-image', 'linear-gradient(45deg, #ebebeb 25%, #e0e0e0 25%, #e0e0e0 50%, #ebebeb 50%, #ebebeb 75%, #e0e0e0 75%, #e0e0e0 100%)');
+                    //   event.rendering = 'background'; 'background-color', '#000'
                     
                 }
                 

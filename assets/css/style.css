@@ -260,6 +260,19 @@
   background: #0B3954;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
  }
+
+ .btn-delete {
+  background: #9E3253;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+ }
+
+ .btn-width {
+   width: 76px;
+ }
+
+ .border {
+   border-top: 1px solid black !important;
+ }
   
   .form-label-group {
     /* position: relative; */
@@ -334,13 +347,13 @@
     }
   }
 
-  tbody {
+  .table-users {
     background: #FBFBFB;
     border: 1px solid #B8B8B8;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
   }
 
-  th {
+  .table-users th {
     background: #E0E0E2;
     border-top: 1px solid #B8B8B8;
   }
