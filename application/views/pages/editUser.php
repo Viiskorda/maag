@@ -1,48 +1,57 @@
-<form id="change" method="post" action="<?php echo base_url(); ?>users/update">
-                    <div id="change"></div>
-                    <input type="hidden" name="id" value="<?php echo $post['userID']; ?>">
-                                <div class="form-group">
-                                    <h5>Konto info</h5>
-                                    <label for="p-in" class="col-md-4 label-heading">E-mail</label>
-                                    <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="email" id="publicInfo" value=" <?php echo $post['email']; ?>">
-                                       
-                                    </div>
-                                </div>
-                                <label>Staatus</label>
-                                <select name=status>
-                                
-         
-                                <option value="1" <?php if ($post['status']==1) echo ' selected'?>>Aktiivne</option>
-                                <option value="0" <?php if ($post['status']==0) echo ' selected'?>>Mitteaktiivne</option>
+<div class="container text-darkblue">
+    <form id="change" class="mt-5 container-md" method="post" action="<?php echo base_url(); ?>users/update">
+        <div class="form-bg">
+            <div class="mx-auto" style="width: 44%;">
+                
+                <h4 class="mt-5 txt-xl">Konto info</h4>
+                <div class="form-label-group mt-4">
+                    <label for="publicInfo">E-mail</label>
+                    <p class="txt-strong" name="email"><?php echo $post['email']; ?></p>
+                    <input name="email" type="text" class="d-none" value="<?php echo $post['email']; ?>">
+                </div>
 
-                                </select>
+                <div class="form-label-group mt-3">
+                    <label for="status">Staatus</label>
+                    <select id="status" name="status" class="form-control arrow">
+                        <option value="1" <?php if ($post['status']==1) echo ' selected'?>>Aktiivne</option>
+                        <option value="0" <?php if ($post['status']==0) echo ' selected'?>>Mitteaktiivne</option>
+                    </select>
+                </div>
+                
+                <div class="d-flex justify-content-between p-0 m-0">
+                    <div class="form-label-group mt-3 pr-5">
+                        <label for="building">Asutus</label>
+                        <p id="building" class="txt-strong"><?php echo $post['name']; ?></p>
+                        <input type="text" class="d-none" name="building" value="<?php echo $post['buildingID']; ?>">
+                    </div>
+                    <div class="form-label-group mt-3 pl-5">
+                        <label for="role">Roll</label>
+                        
+                        <p id="role" class="txt-strong"><?php echo $post['role']; ?></p>
+                        <input type="text" class="d-none" name="role" id="role" value="<?php echo $post['roleID']; ?>">
+                    </div>
+                </div>
 
-                                                           <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">Asutus</label>
-                                    <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="building" id="organizer" disabled  value=" <?php echo $post['name']; ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">Roll</label>
-                                    <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="role" id="phone" disabled  value=" <?php echo $post['role']; ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">Nimi</label>
-                                    <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="userName" id="email"  value=" <?php echo $post['userName']; ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">Telefon</label>
-                                    <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="phone" id="phone"  value=" <?php echo $post['userPhone']; ?>">
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                <h4 class="mt-4 txt-xl">Kasutaja info</h4>
+                <div class="form-label-group mt-3">
+                    <label for="name">Nimi</label>
+                    <input id="name" name="name" type="text" class="form-control" value="<?php echo $post['userName']; ?>">
+                </div>
+                <div class="form-label-group mt-3">
+                    <label for="phone">Telefon</label>
+                    <input id="phone" name="phone" type="text" class="form-control" value="<?php echo $post['userPhone']; ?>">
+                </div>
 
+                <div class="d-flex justify-content-end mt-4 mb-5">
+                    <a class="txt-xl link-deco align-self-center py-0 pr-5 mr-2" href="<?php echo base_url(); ?>manageUsers">Katkesta</a>
+                    <button type="submit" class="btn btn-custom text-white txt-xl">Salvesta muudatused</button>
+                </div>
 
-</form>
+                <div class="d-none" id="change"></div>
+                <input class="d-none" type="hidden" name="id" value="<?php echo $post['userID']; ?>">
+                
+
+            </div>
+        </div>
+    </form>
+</div>

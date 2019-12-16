@@ -27,7 +27,7 @@
                     <td class="p-1 text-darkblue border-bottom-light"><?php echo $singleUser['name']; ?></td>
                     <td class="p-1 text-darkblue border-bottom-light"><?php echo $singleUser['role']; ?> &nbsp; &nbsp;</td>
                     <td class="p-1 text-darkblue border-bottom-light"><?php if( $singleUser['status']==1){ echo "Aktiivne";} else {echo "Mitteakviivne";} ?></td>
-                    <td class="d-flex justify-content-end p-1">
+                    <td class="d-flex justify-content-end p-1 pr-3">
                         <form class="cat-delete" action="users/edit/<?php echo $singleUser['userID']; ?>" method="POST">
                             <button type="submit" class="btn btn-second btn-width text-white text-center py-1 px-2 txt-strong ">Muuda</button>
                         </form>

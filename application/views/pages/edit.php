@@ -1,8 +1,3 @@
-
-
-
-
-
 <div class="container">
      
             <a class="btn btn-custom col-2 text-white mr-auto p-0 mb-4 text-center align-middle" href="<?php echo base_url(); ?>booking/create">Tee uus broneering</a>

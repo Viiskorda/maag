@@ -38,6 +38,10 @@
     margin-top: -30px;
   }
 
+  input, select {
+    color: #0B3954 !important;
+  }
+
   .container-md {
     max-width: 800px !important;
     margin-right: auto;
@@ -45,6 +49,12 @@
     padding-right: 10px;
     padding-left:  10px;
     min-height: 89vh;
+  }
+
+  .container-settings {
+    max-width: 600px !important;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .table-container {
