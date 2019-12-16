@@ -263,7 +263,7 @@
                                 var checkDateTime2 = toDate(res2Conflicts[t]); //magic date
                                
                                     if(ConflictID[t]!==timeIDofConflict){
-                                        if (isBetween(startDateTime,checkDateTime,checkDateTime2) || isBetween(endDateTime,checkDateTime,checkDateTime2) ){
+                                        if (isBetween(startDateTime,checkDateTime,checkDateTime2) || isBetween(endDateTime,checkDateTime,checkDateTime2) || isBetween(checkDateTime,startDateTime,endDateTime) || isBetween(checkDateTime2,startDateTime,endDateTime) ){
                                      //   console.log(checkDateTime +" - "+ checkDateTime2 + " nende vastu "+ startDateTime+ " " +endDateTime);// 
                                      //   console.log("tingumus on täidetud " + resConflicts[t] + " või "+res2Conflicts[t]);
                                         $('#myTable #'+ConflictID[t]).append( "Konflikt: "+titleIDofConflict + " ("+conflicts2.start.substring(0, 16) +" - "+ conflicts2.end.substring(0, 16) + "); ");

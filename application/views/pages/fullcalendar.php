@@ -543,7 +543,7 @@
                             if(arrayOfIDs[t] != BTimesid){
                            
                                
-                            if (isBetween(startDateTime[t],checkDateTime, checkDateTime2 ) || isBetween(endDateTime[t],checkDateTime, checkDateTime2) ){
+                            if (isBetween(startDateTime[t],checkDateTime, checkDateTime2 ) || isBetween(checkDateTime2, startDateTime[t],endDateTime[t]) || isBetween(checkDateTime, startDateTime[t], endDateTime[t] ) || isBetween(checkDateTime2, startDateTime[t], endDateTime[t] ) ){
                             //     console.log(isBetween(startDateTime[t],checkDateTime, checkDateTime2 ) || isBetween(endDateTime[t],checkDateTime, checkDateTime2));
                             //   console.log("konflikt:"+ startDateTime[t] +": "+endDateTime[t]);
                               $(".red"+i).css("color", "red");
