@@ -7,7 +7,7 @@ class Edit_model extends CI_Model
 	$this->db->select("*");
 	$this->db->select("DATE_FORMAT(bookingTimes.startTime, '%Y-%m-%dT%H:%i') AS startTime", FALSE);
 	$this->db->select("DATE_FORMAT(bookingTimes.endTime, '%Y-%m-%dT%H:%i') AS endTime", FALSE);
-		$this->db->order_by('bookingTimes.timeID');
+		$this->db->order_by('bookingTimes.startTime');
 		$this->db->join('bookings', 'bookingTimes.bookingID = bookings.id' , 'left');
 		$this->db->join('rooms', 'bookingTimes.roomID = rooms.id' , 'left');
 		$this->db->join('buildings', 'rooms.buildingID = buildings.id' , 'left');
