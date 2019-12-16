@@ -43,36 +43,27 @@ class Booking extends CI_Controller {
 				   $id= $this->booking_model->create_booking($data1);
 
 
-					$data2 = array(
-					'roomID' => $this->input->post('sportrooms'),
-					'startTime' => $this->input->post('mytext[1]'),
-					'endTime' => $this->input->post('begin[1]'),
-	
-					'bookingID' => $id
-				);
-
 				$insert_data = array();
-				$start_data = $this->input->post('mytext');
+				$start_data = $this->input->post('end');
 				$end_data = $this->input->post('begin');
 
 				
 
 				for($i = 0; $i <= count($start_data); $i++)
 				{
-					if(isset($start_data[$i])){
+
+				if(isset($start_data[$i])){
 				$insert_data[] = array(
 				'roomID' => $this->input->post('sportrooms'),
-			
 				'startTime'=>isset($start_data[$i]) ? $start_data[$i] : '',
 				'endTime'=>isset($end_data[$i]) ? $end_data[$i] : '',
-
 				'bookingID' => $id
 				);}
 			
 				}
-
+				var_dump($insert_data);
 					$this->booking_model->create_bookingTimes($insert_data);
-					var_dump($insert_data);
+					
 				//	$this->load->view('booking/success');
 				//	redirect('fullcalendar?roomId='.$this->input->post('sportrooms'));
 		}
@@ -147,7 +138,7 @@ class Booking extends CI_Controller {
 		if ($weekday[$t]==$key){
 			//var_dump($this->input->post('Ending'));
 		 for($i = strtotime($value, $startDate); $i <= $endDate; $i = strtotime('+1 week', $i))
-			{  //  echo $i;
+			 {  echo $i;
 				$dateToDb=date('Y-m-d', $i);
 				
 			//	var_dump(date('Y-m-d H:i:s', strtotime("$dateToDb $formated_timeToDb")));
@@ -215,6 +206,10 @@ class Booking extends CI_Controller {
 	}else{redirect('');}
 	}
 
+
+
+
+
 	public function createOnce()
 	{
 		if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'){
@@ -237,7 +232,8 @@ class Booking extends CI_Controller {
 				
 		$insert_data2 = array();
 
-		for($t = 1; $t <= count($this->input->post('workoutDate')); $t++) {
+		for($t = 0; $t <= count($this->input->post('workoutDate')); $t++) {
+			if(isset($this->input->post('workoutDate')[$t])){
 			$formated_startTime = date("H:i:s", strtotime($this->input->post('begin')[$t]));
 			$formated_endTime = date("H:i:s", strtotime($this->input->post('end')[$t]));
 			$formated_date = date("Y-m-d", strtotime($this->input->post('workoutDate')[$t]));
@@ -251,10 +247,10 @@ class Booking extends CI_Controller {
 				'endTime' => $end_date,
 				'bookingID' => $id
 			);
-		}	
-
+		}	}
+			
 		$this->booking_model->create_bookingTimes($insert_data2);
-		redirect('fullcalendar?roomId=1');
+		redirect('fullcalendar?roomId='.$this->input->post('sportrooms'));
 
 		if($this->form_validation->run()===FALSE){
 	
@@ -263,17 +259,20 @@ class Booking extends CI_Controller {
 			$this->load->view('templates/footer');
 
 		}else{
-			$this->load->view('fullcalendar?roomId=1');
+			$this->load->view('fullcalendar?roomId='.$this->input->post('sportrooms'));
 		}
 		
 
-	}else{redirect('');};
+	}
+	// else{
+	// //	redirect('');
+	// };
 }
-
+	}
 	
 
 
-}
+
 
 
 ?>

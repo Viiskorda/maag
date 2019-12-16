@@ -16,7 +16,7 @@
 
             <div class="tab-content">
                 <div id="mitmekordne" class="tab-pane center active">
-                    <?php echo form_open('booking/create'); ?>
+                    <?php echo form_open('booking/createOnce'); ?>
 
                         <h4 class="pt-2 txt-xl px-5 mx-5">Kontakt</h4>
                         <div class="d-flex p-0 mt-4 px-5 mx-5">
@@ -87,7 +87,7 @@
                                         </div>
 
                                         <div class="col-2 p-0">
-                                            <input type="text" class="clock form-control" name="end[]" min="08:00" max="22:00" id="timeendfield_1" value="">
+                                            <input type="text" class="clock form-control" name="end[]" min="08:00" max="22:00" id="timeendfield_1" value="<?php echo date("H:i", strtotime('+90 minutes')); ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -168,7 +168,7 @@
                                 <input class="form-control" id="type" name="workoutType">
                             </div>
                             <div class="form-label-group col-6 p-0 pl-5">
-                                <input class="d-none" type="checkbox" name="type" value="4" checked>
+                                <input class="d-none" type="checkbox" name="type" value="2" checked>
                             </div>
                         </div>                        
                            
@@ -202,7 +202,7 @@
                                         </div>
 
                                         <div class="col-2 p-0">
-                                            <input type="text" class="clock form-control" name="timeTo[]" id="until1" value="">
+                                            <input type="text" class="clock form-control" name="timeTo[]" id="until1" value="<?php echo date("H:i", strtotime('+90 minutes')); ?>">
                                         </div>                                    
                                     </div>
                                 </div>
@@ -220,7 +220,7 @@
                             </div>
                             <div class="form-label-group m-0 pl-0 col-3">  
                                 <label class="invisible">Periood</label> 
-                                <input class="datePicker form-control" id="periodEnd" data-toggle="datepicker" name="Ending">
+                                <input class="datepickerUntil form-control" id="periodEnd" data-toggle="datepickerUntil" name="Ending">
                             </div>
                         </div>
 
@@ -254,7 +254,7 @@
                             </div>
 
                             <div class="d-flex mt-2 px-5 mx-5">
-                                <input class="d-none" type="checkbox" name="type" value="2" checked> <!-- Suletud (See tuleb ära peita ehk panna hidden)<br> -->
+                                <input class="d-none" type="checkbox" name="type" value="4" checked> <!-- Suletud (See tuleb ära peita ehk panna hidden)<br> -->
                                 <input class="d-none" type="checkbox" name="clubname" value="Suletud" checked> <!-- Suletud Title (See tuleb ära peita ehk panna hidden)<br> -->
                             </div>
                         </div>
@@ -289,7 +289,7 @@
                                         </div>
 
                                         <div class="col-2 p-0">
-                                            <input type="text" class="clock form-control" name="timeTo[]" id="until1" value="">
+                                            <input type="text" class="clock form-control" name="timeTo[]" id="until1" value="<?php echo date("H:i", strtotime('+90 minutes')); ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -308,7 +308,7 @@
                             </div>
                             <div class="form-label-group m-0 pl-0 col-3">  
                                 <label class="invisible">Periood</label> 
-                                <input class="datePicker form-control" id="periodEnd" data-toggle="datepicker" name="Ending">
+                                <input class="datePicker form-control" id="periodEnd" data-toggle="datePicker" name="Ending">
                             </div>
                         </div>
 
@@ -328,7 +328,30 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datepicker.js"></script>
 <script>
 
+
+    $(document).ready(function() {
+
+        var today=new Date();
+        var endOfPeriond=new Date('05/31/'+ new Date().getFullYear()); 
+       
+        var dateToShow='';
+        if (today<endOfPeriond){
+            dateToShow=endOfPeriond;
+
+        }else{
+            dateToShow=new Date(endOfPeriond.setFullYear(endOfPeriond.getFullYear() + 1));  ;
+        };
+       
+
+        $(".datepickerUntil").datepicker({
+        language: "et-EE",
+        autoHide: true,
+        date: dateToShow,
+        autoPick: true,
+    });
+
     $(".datePicker").datepicker({
+        language: "et-EE",
         autoHide: true,
         date: new Date(),
         autoPick: true,
@@ -345,8 +368,6 @@
             //...
         }
     });
-    
-    $(document).ready(function() {
 
         var MaxInputs = 10; //maximum extra input boxes allowed
         var InputsWrapper = $("#InputsWrapper"); //Input boxes wrapper ID

@@ -52,10 +52,12 @@
                 <div class="form-label-group col-2 p-0">
                     <label for="app">Kuupäev</label>
                     <div id='app'>
-                        <v-date-picker mode="single" v-model="date" :popover="{ visibility: 'click' }">
-                            <input id="date" slot-scope="{ inputProps, inputEvents}" :class="[`form-control`]" v-bind="inputProps" v-on="inputEvents" name="date" value="date">
-                        </v-date-picker>
+                        <!-- <v-date-picker mode="single" v-model="date" :popover="{ visibility: 'click' }"> -->
+                            <!-- <input id="date" slot-scope="{ inputProps, inputEvents}" :class="[`form-control`]" v-bind="inputProps" v-on="inputEvents" name="date" value="date"> -->
+                        <!-- </v-date-picker> -->
                     </div>
+                    <!-- <input class="datePicker col-5 form-control" id="datefield_1" data-toggle="datepicker" name="date" id="datepicker"> -->
+                    <input id="datepicker" type="datepicker" name="date" placeholder="Date" class="datePicker col-6 form-control" id="datefield_1" />
                 </div>
             </form>
             <div class="col-2 mr-auto p-0">
@@ -214,7 +216,7 @@
 
     </div>
     </body>
-
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datepicker.js"></script>
     <script src='https://unpkg.com/v-calendar@next'></script>
     <script>
         new Vue({
@@ -235,18 +237,23 @@
         });
 
         $(document).ready(function() {
+
+            $(".datePicker").datepicker({
+                language: "et-EE",
+                autoHide: true,
+                date: new Date(),
+                autoPick: true,
+            });
+
             $("#selectAll").click(function(){
-                console.log("vlokk");
-      
-        var c = this.checked;
-    $(':checkbox').prop('checked',c);
+        
+            var c = this.checked;
+            $(':checkbox').prop('checked',c);
 
         });
+
             
-            $('input[type="date"]').change(function(){
-                console.log("kell on "+(this.value));         //Date in full format alert(new Date(this.value));
-                var inputDate = new Date(this.value);
-             });
+     
             var calendar = $('#calendar').fullCalendar({
                 editable: false,
                 header: {
@@ -292,7 +299,7 @@
  // rendering : 'background'
 },
 // {
-//   url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get('roomId')); ?>", // use the `url` property
+//   url:  "<?php //echo base_url(); ?>fullcalendar/load/<?php // echo ($this->input->get('roomId')); ?>", // use the `url` property
 //             //  color: 'yellow',    // an option!
 //             // textColor: 'black'  // an option!
 // }
@@ -346,6 +353,7 @@
                 }
                 
                 },
+               
                 select: function(start, end, allDay) {
                     var public_info = prompt("Enter Event Title");
                     var roomID = <?php echo ($this->input->get('roomId')); ?>;
@@ -585,7 +593,7 @@
                         var checkDateTime2 = en_year+'-'+en_monthIndex+'-'+en_day+" "+en_hours+':'+en_minutes;
                         $('#myTable > tbody:last-child').append(' <tr class="red'+i+'"><td><input type="checkbox" class="abc" name="choices" id="'+BTimesid+'"> ' + st_day + '-' + st_monthIndex + '-' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+approved+' </td></td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>   </tr>');
                        if(event.timeID==BTimesid){  
-                           console.log("klikk");
+                         //  console.log("klikk");
                            $("#"+BTimesid).prop('checked', true);}
                       
                         for(var t = 0; t < startDateTime.length; t++){
@@ -633,7 +641,7 @@
                             if (confirm("Are you sure you want to remove it?")) {
                     event.preventDefault();    };
                            var id=  $('input:checkbox:checked').parents("tbody").attr('id');
-                          console.log("kõik on ckeckitud, tuleb ka bookings ab-st ära kustutada "+id);
+                         // console.log("kõik on ckeckitud, tuleb ka bookings ab-st ära kustutada "+id);
                         $.ajax({
                             url: "<?php echo base_url(); ?>fullcalendar/deleteAllConnectedBookings",
                             type: "POST",
@@ -667,7 +675,7 @@
 
                             if($this.is(":checked")){
                                 var id = $this.attr("id");
-                                console.log("going to delete " +id);// $this.attr("id");
+                               // console.log("going to delete " +id);// $this.attr("id");
 
                                 
                                 $.ajax({
@@ -712,7 +720,7 @@
 
                             if($this.is(":checked")){
                                 var id = $this.attr("id");
-                                console.log("going to kinnitama " +id);// $this.attr("id");
+                          //      console.log("going to kinnitama " +id);// $this.attr("id");
 
                                 
                                 $.ajax({
@@ -852,7 +860,7 @@
 
                               
                             });
-                            console.log("kõik on ckeckitud, tuleb ka bookings ab-st ära kustutada "+id + ' ' +timesIdArray);
+                         //   console.log("kõik on ckeckitud, tuleb ka bookings ab-st ära kustutada "+id + ' ' +timesIdArray);
                             timesIdArray.unshift(id);
                                     var myForm = document.getElementById('change');
 
@@ -914,7 +922,7 @@
                     return ($(this).val() === val);
                 });
             if (match.length > 0) {
-                console.log("match");
+            //    console.log("match");
                 var value = $('#region').val();
                 var country_id = $('#regions [value="' + value + '"]').data('value');
                 $.ajax({
@@ -924,7 +932,7 @@
                         country_id: country_id
                     },
                     success: function(data) {
-                        console.log("data on " + data);
+                     //   console.log("data on " + data);
                         $("#asutus").empty();
                         $("#room").empty();
                         $('#asutus').html(data).appendTo("#asutus");
@@ -945,10 +953,10 @@
                     return ($(this).val() === val);
                 });
             if (match.length > 0) {
-                console.log("match");
+            //    console.log("match");
                 var value = $('#sport_facility').val();
                 var state_id = $('#asutus [value="' + value + '"]').data('value');
-                console.log(state_id);
+           //     console.log(state_id);
                 $.ajax({
                     url: "<?php echo base_url(); ?>home/fetch_building",
                     method: "POST",
@@ -964,7 +972,7 @@
                     }
                 });
             } else {
-                console.log("dismatch");
+            //    console.log("dismatch");
                 $('#room').val('');
             }
         });
@@ -982,12 +990,55 @@
                 var xyz = $('#saal   option').filter(function() {
                     return this.value == val;
                 }).data('value');
-                console.log(xyz);
-                window.location.href = 'https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/fullcalendar?roomId='+xyz;
+         //       console.log(xyz);
+                window.location.href = 'https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/fullcalendar?roomId='+xyz+'&date='+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY');
             } else {
-                console.log("dismatch");
+            //    console.log("dismatch");
             }
         });
 
+
+
+      
+       
+     
+        $("#datepicker").val('<?php echo ($this->input->get('date')); ?>');
+        // $("#date").change( function(){
+        //   //  window.location.href = 'https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/fullcalendar?roomId=<?php //echo ($this->input->get('date'));?>&date='+$(this);
+        //   console.log('https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date='+$(this));
+        //   console.log("tavakas teskt");
+        // });
+
+  
+        $('#datepicker').datepicker()
+            .on("input change", function (e) {
+                date = moment(e.target.value, "DD.MM-YYYY");
+            $("#calendar").fullCalendar( 'gotoDate', date );
+         //   console.log("Date changed: ", e.target.value);
+         // $('#calendar').fullCalendar( 'gotoDate', e.target.value )
+          //  window.location.href = '<?php echo site_url('');?>fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date='+ e.target.value;
+         // window.history.replaceState("", "", "fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date="+ e.target.value);
         });
+  
+        
+        $('body').on('click', 'button.fc-prev-button', function() {
+            window.history.replaceState("", "", "fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date="+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
+            //kas alumist on vaja? see muudab input datepickeri väärtust vastavalt kuupäevadele
+        //    $('#datepicker').val($('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
+        });
+
+        $('body').on('click', 'button.fc-next-button', function() {
+            window.history.replaceState("", "", "fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date="+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
+           
+            //$('#datepicker').val($('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
+            
+        });
+
+        date = moment('<?php echo ($this->input->get('date')); ?>', "DD-MM-YYYY");
+      
+        if ('<?php echo ($this->input->get('date')); ?>'){ $("#calendar").fullCalendar( 'gotoDate', date )};
+        });
+
+       
     </script>
+    
