@@ -351,6 +351,7 @@
                 }
                 
                 },
+               
                 select: function(start, end, allDay) {
                     var public_info = prompt("Enter Event Title");
                     var roomID = <?php echo ($this->input->get('roomId')); ?>;
@@ -988,16 +989,16 @@
                     return this.value == val;
                 }).data('value');
          //       console.log(xyz);
-                window.location.href = 'https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/fullcalendar?roomId='+xyz;
+                window.location.href = 'https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/fullcalendar?roomId='+xyz+'&date='+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY');
             } else {
             //    console.log("dismatch");
             }
         });
 
 
-        date = moment('<?php echo ($this->input->get('date')); ?>', "DD-MM-YYYY");
+
       
-        $("#calendar").fullCalendar( 'gotoDate', date );
+       
      
         $("#datepicker").val('<?php echo ($this->input->get('date')); ?>');
         // $("#date").change( function(){
@@ -1009,8 +1010,31 @@
   
         $('#datepicker').datepicker()
             .on("input change", function (e) {
-          //  console.log("Date changed: ", e.target.value);
-            window.location.href = 'https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date='+ e.target.value;
+                date = moment(e.target.value, "DD.MM-YYYY");
+            $("#calendar").fullCalendar( 'gotoDate', date );
+         //   console.log("Date changed: ", e.target.value);
+         // $('#calendar').fullCalendar( 'gotoDate', e.target.value )
+          //  window.location.href = '<?php echo site_url('');?>fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date='+ e.target.value;
+         // window.history.replaceState("", "", "fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date="+ e.target.value);
         });
+  
+        
+        $('body').on('click', 'button.fc-prev-button', function() {
+            window.history.replaceState("", "", "fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date="+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
+            //kas alumist on vaja? see muudab input datepickeri väärtust vastavalt kuupäevadele
+          //  $('#datepicker').val($('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
         });
+
+        $('body').on('click', 'button.fc-next-button', function() {
+            window.history.replaceState("", "", "fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date="+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
+        //    $('#datepicker').val($('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
+        });
+
+        date = moment('<?php echo ($this->input->get('date')); ?>', "DD-MM-YYYY");
+      
+        if ('<?php echo ($this->input->get('date')); ?>'){ $("#calendar").fullCalendar( 'gotoDate', date )};
+        });
+
+       
     </script>
+    
