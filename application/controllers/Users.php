@@ -20,7 +20,7 @@
 			if($this->form_validation->run() === FALSE){
               
 				$this->load->view('templates/header');
-				$this->load->view('register', $data);
+				$this->load->view('pages/register', $data);
                 $this->load->view('templates/footer');
                 
 			} else {
@@ -48,7 +48,7 @@
 			if($this->form_validation->run() === FALSE){
               
 				$this->load->view('templates/header');
-				$this->load->view('register', $data);
+				$this->load->view('pages/register', $data);
                 $this->load->view('templates/footer');
                 
 			} else {
@@ -74,7 +74,7 @@
 			if($this->form_validation->run() === FALSE){
               
 				$this->load->view('templates/header');
-				$this->load->view('register', $data);
+				$this->load->view('pages/register', $data);
                 $this->load->view('templates/footer');
                 
 			} else {
