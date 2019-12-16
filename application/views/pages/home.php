@@ -55,11 +55,8 @@
 
                         <div class="form-label-group">
                             <label for="app">Kuupäev</label>
-                            <div id='app'> <!-- SEE SIIN ASENDADA JQUERY DATEPICKERIGA!!!! -->
-                                <v-date-picker mode="single" v-model="date" :popover="{ visibility: 'click' }"><!-- SEE SIIN ASENDADA JQUERY DATEPICKERIGA!!!! -->
-                                    <input id="date" slot-scope="{ inputProps, inputEvents}" :class="[`form-control`]" v-bind="inputProps" v-on="inputEvents" name="date" value="date">
-                                </v-date-picker><!-- SEE SIIN ASENDADA JQUERY DATEPICKERIGA!!!! -->
-                            </div><!-- SEE SIIN ASENDADA JQUERY DATEPICKERIGA!!!! -->
+     
+                            <input id="datepicker" type="datepicker" name="date" placeholder="Date" class="datePicker col-6 form-control" id="datefield_1" />
                         </div>
 
                         <input class="btn btn-custom col-12 text-white mt-3" type="submit" value="Kuva kalender">
@@ -75,7 +72,7 @@
 
 <script src='https://unpkg.com/v-calendar@next'></script>
 
-
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datepicker.js"></script>
 <script>
     // Datepicker app - DO NOT TOUCH xD -------------->
     new Vue({
@@ -96,6 +93,12 @@
     })
     // <------------ Datepicker app - DO NOT TOUCH xD
     $(document).ready(function() {
+        $(".datePicker").datepicker({
+                language: "et-EE",
+                autoHide: true,
+                date: new Date(),
+                autoPick: true,
+            });
 
         $('#regions1').change(function() {
             var country_id = $('#regions1').val();
