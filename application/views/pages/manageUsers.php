@@ -6,27 +6,27 @@
             </a>
         </div>
 
-        <table class="table mt-3">
-            <thead class="table-users">
-            <tr class="tr-top justify-content-between">
-                <th scope="col">Nimi</th>
-                <th scope="col">Email</th>
-                <th scope="col">Telefon</th>
-                <th scope="col">Asutus</th>
-                <th scope="col">Roll</th>
-                <th scope="col">Staatus</th>
-                <th scope="col"></th>
+        <table class="table-borderless table-users mt-3">
+            <thead class="bg-grey border-bottom ">
+            <tr>
+                <th class="pl-3 py-2 txt-strong text-darkblue" scope="col">Nimi</th>
+                <th class="py-2 txt-strong text-darkblue" scope="col">Email</th>
+                <th class="py-2 txt-strong text-darkblue" scope="col">Telefon</th>
+                <th class="py-2 txt-strong text-darkblue" scope="col">Asutus</th>
+                <th class="py-2 txt-strong text-darkblue" scope="col">Roll</th>
+                <th class="py-2 txt-strong text-darkblue" scope="col">Staatus</th>
+                <th class="py-2 txt-strong text-darkblue" scope="col"></th>
             </tr>
             </thead>
-            <tbody class="table-users">
+            <tbody class="">
             <?php foreach($manageUsers as $singleUser) : ?>
-                <tr scope="row" class="">
-                    <td class="p-1"><?php echo $singleUser['userName']; ?></td>
-                    <td class="p-1"><?php echo $singleUser['email']; ?></td>
-                    <td class="p-1"><?php echo $singleUser['userPhone']; ?></td>
-                    <td class="p-1"><?php echo $singleUser['name']; ?></td>
-                    <td class="p-1"><?php echo $singleUser['role']; ?> &nbsp; &nbsp;</td>
-                    <td class="p-1"><?php if( $singleUser['status']==1){ echo "Aktiivne";} else {echo "Mitteakviivne";} ?></td>
+                <tr>
+                    <td class="pl-3 p-1 text-darkblue border-bottom-light"><?php echo $singleUser['userName']; ?></td>
+                    <td class="p-1 text-darkblue border-bottom-light"><?php echo $singleUser['email']; ?></td>
+                    <td class="p-1 text-darkblue border-bottom-light"><?php echo $singleUser['userPhone']; ?></td>
+                    <td class="p-1 text-darkblue border-bottom-light"><?php echo $singleUser['name']; ?></td>
+                    <td class="p-1 text-darkblue border-bottom-light"><?php echo $singleUser['role']; ?> &nbsp; &nbsp;</td>
+                    <td class="p-1 text-darkblue border-bottom-light"><?php if( $singleUser['status']==1){ echo "Aktiivne";} else {echo "Mitteakviivne";} ?></td>
                     <td class="d-flex justify-content-end p-1">
                         <form class="cat-delete" action="users/edit/<?php echo $singleUser['userID']; ?>" method="POST">
                             <button type="submit" class="btn btn-second btn-width text-white text-center py-1 px-2 txt-strong ">Muuda</button>

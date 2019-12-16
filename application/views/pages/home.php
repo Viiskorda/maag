@@ -54,9 +54,8 @@
                         </div>
 
                         <div class="form-label-group">
-                            <label for="app">Kuupäev</label>
-     
-                            <input id="datepicker" type="datepicker" name="date" placeholder="Date" class="datePicker col-6 form-control" id="datefield_1" />
+                            <label for="datepicker">Kuupäev</label>     
+                            <input id="datepicker" class="datePicker form-control" data-toggle="datepicker" name="date"/>
                         </div>
 
                         <input class="btn btn-custom col-12 text-white mt-3" type="submit" value="Kuva kalender">
@@ -70,28 +69,10 @@
 </div>
 
 
-<script src='https://unpkg.com/v-calendar@next'></script>
+<!-- <script src='https://unpkg.com/v-calendar@next'></script> -->
 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datepicker.js"></script>
 <script>
-    // Datepicker app - DO NOT TOUCH xD -------------->
-    new Vue({
-        el: '#app',
-        data: {
-            // Data used by the date picker
-            mode: 'single',
-            selectedDate: null,
-            firstDayOfWeek: 2,
-
-            attrs: [{
-                key: 'today',
-                highlight: true,
-                dates: new Date(),
-            }, ],
-            date: new Date(),
-        }
-    })
-    // <------------ Datepicker app - DO NOT TOUCH xD
     $(document).ready(function() {
         $(".datePicker").datepicker({
                 language: "et-EE",

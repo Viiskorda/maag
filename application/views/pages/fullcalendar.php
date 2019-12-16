@@ -50,14 +50,8 @@
                 </div>
 
                 <div class="form-label-group col-2 p-0">
-                    <label for="app">Kuupäev</label>
-                    <div id='app'>
-                        <!-- <v-date-picker mode="single" v-model="date" :popover="{ visibility: 'click' }"> -->
-                            <!-- <input id="date" slot-scope="{ inputProps, inputEvents}" :class="[`form-control`]" v-bind="inputProps" v-on="inputEvents" name="date" value="date"> -->
-                        <!-- </v-date-picker> -->
-                    </div>
-                    <!-- <input class="datePicker col-5 form-control" id="datefield_1" data-toggle="datepicker" name="date" id="datepicker"> -->
-                    <input id="datepicker" type="datepicker" name="date" placeholder="Date" class="datePicker col-6 form-control" id="datefield_1" />
+                    <label for="datepicker">Kuupäev</label>
+                    <input id="datepicker" class="datePicker form-control" data-toggle="datepicker" name="date"/>
                 </div>
             </form>
             <div class="col-2 mr-auto p-0">
@@ -217,25 +211,7 @@
     </div>
     </body>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datepicker.js"></script>
-    <script src='https://unpkg.com/v-calendar@next'></script>
     <script>
-        new Vue({
-            el: '#app',
-            data: {
-                // Data used by the date picker
-                mode: 'single',
-                selectedDate: null,
-                firstDayOfWeek: 2,
-
-                attrs: [{
-                    key: 'today',
-                    highlight: true,
-                    dates: new Date(),
-                }, ],
-                date: new Date(),
-            }
-        });
-
         $(document).ready(function() {
 
             $(".datePicker").datepicker({
@@ -306,51 +282,18 @@
 
 // any other sources...
 
-],
-
-    //             eventSources: [
-    // {
-    //     events: [
-    //         {
-    //             title: 'Event 1',
-    //             start: '2013-11-04'
-    //         },
-    //         {
-    //             title: 'Event 2',
-    //             start: '2013-11-25'
-    //         }
-    //         ],
-    //     color: 'yellow',
-    //     textColor: 'black'
-    // },
-    // {
-    //     events: [
-    //         {
-    //             title: 'Event 3',
-    //             start: '2013-11-11'
-    //         },
-    //         {
-    //             title: 'Event 4',
-    //             start: '2013-11-20'
-    //         }
-    //         ],
-    //     color: 'blue',
-    //     textColor: 'white'
-    // }
-    // ],
-
-
+                ],
                 selectable: true,
                 selectHelper: true,
                 eventRender: function (event, element) {
-                    if(event.typeID == 1 || event.typeID == 2) {
-                    element.find('.fc-title').before("<span>Päring: "+moment(event.created_at).format("DD.MM.YYYY HH:mm")+"</span>");
-                }
-                    if(event.typeID == 4) {
-                        element.css('background-image', 'linear-gradient(45deg, #ebebeb 25%, #e0e0e0 25%, #e0e0e0 50%, #ebebeb 50%, #ebebeb 75%, #e0e0e0 75%, #e0e0e0 100%)');
-                    //   event.rendering = 'background'; 'background-color', '#000'
-                    
-                }
+                        if(event.typeID == 1 || event.typeID == 2) {
+                        element.find('.fc-title').before("<span>Päring: "+moment(event.created_at).format("DD.MM.YYYY HH:mm")+"</span>");
+                    }
+                        if(event.typeID == 4) {
+                            element.css('background-image', 'linear-gradient(45deg, #ebebeb 25%, #e0e0e0 25%, #e0e0e0 50%, #ebebeb 50%, #ebebeb 75%, #e0e0e0 75%, #e0e0e0 100%)');
+                        //   event.rendering = 'background'; 'background-color', '#000'
+                        
+                    }
                 
                 },
                
@@ -892,6 +835,7 @@
             var rowHeight = rowHeightRaw.toString().match(/^-?\d+(?:\.\d{0,1})?/)[0];
             $('.fc-slats tr').css('height', rowHeight+'px');
             $(window).trigger('resize');
+            $(".fc-body").trigger('reload');
             
             console.log(calHeight);
             console.log(calRows);
@@ -996,6 +940,13 @@
             //    console.log("dismatch");
             }
         });
+
+        $('#calendar').fullCalendar({
+   dayClick: function (date, jsEvent, view) {
+        $(".fc-state-highlight").removeClass("fc-state-highlight");
+        $("td[data-date="+date.format('YYYY-MM-DD')+"]").addClass("fc-state-highlight");
+   }
+});
 
 
 

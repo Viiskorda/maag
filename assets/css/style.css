@@ -347,15 +347,29 @@
     }
   }
 
+
+
+
+
+
+
+
+
+  .border-bottom {    
+    border-bottom: 1px solid #B8B8B8 !important;
+  }
+
+  .border-bottom-light {    
+    border-bottom: 1px solid #E0E0E2 !important;
+  }
+
+  
+
   .table-users {
+    width: 100%;
     background: #FBFBFB;
     border: 1px solid #B8B8B8;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
-  }
-
-  .table-users th {
-    background: #E0E0E2;
-    border-top: 1px solid #B8B8B8;
   }
 
   /* @media screen and (min-width: 1200px) {
