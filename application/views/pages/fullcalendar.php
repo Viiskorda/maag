@@ -1022,12 +1022,14 @@
         $('body').on('click', 'button.fc-prev-button', function() {
             window.history.replaceState("", "", "fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date="+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
             //kas alumist on vaja? see muudab input datepickeri väärtust vastavalt kuupäevadele
-          //  $('#datepicker').val($('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
+        //    $('#datepicker').val($('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
         });
 
         $('body').on('click', 'button.fc-next-button', function() {
             window.history.replaceState("", "", "fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date="+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
-        //    $('#datepicker').val($('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
+           
+            //$('#datepicker').val($('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
+            
         });
 
         date = moment('<?php echo ($this->input->get('date')); ?>', "DD-MM-YYYY");
