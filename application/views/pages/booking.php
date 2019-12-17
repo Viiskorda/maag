@@ -344,30 +344,30 @@
        
 
         $(".datepickerUntil").datepicker({
-        language: "et-EE",
-        autoHide: true,
-        date: dateToShow,
-        autoPick: true,
-    });
+            language: "et-EE",
+            autoHide: true,
+            date: dateToShow,
+            autoPick: true,
+        });
 
-    $(".datePicker").datepicker({
-        language: "et-EE",
-        autoHide: true,
-        date: new Date(),
-        autoPick: true,
-    });
+        $(".datePicker").datepicker({
+            language: "et-EE",
+            autoHide: true,
+            date: new Date(),
+            autoPick: true,
+        });
 
-    $('.clock').clockTimePicker({
-        duration: true,
-        durationNegative: true,
-        precision: 15,
-        i18n: {
-            cancelButton: 'Abbrechen'
-        },
-        onAdjust: function(newVal, oldVal) {
-            //...
-        }
-    });
+        $('.clock').clockTimePicker({
+            duration: true,
+            durationNegative: true,
+            precision: 15,
+            i18n: {
+                cancelButton: 'Abbrechen'
+            },
+            onAdjust: function(newVal, oldVal) {
+                //...
+            }
+        });
 
         var MaxInputs = 10; //maximum extra input boxes allowed
         var InputsWrapper = $("#InputsWrapper"); //Input boxes wrapper ID
@@ -389,6 +389,13 @@
                     autoHide: true, 
                     date: new Date(), 
                     autoPick: true
+                });
+
+                $(".datepickerUntil").datepicker({
+                    language: "et-EE",
+                    autoHide: true,
+                    date: dateToShow,
+                    autoPick: true,
                 });
 
                 $('.clock').clockTimePicker({
