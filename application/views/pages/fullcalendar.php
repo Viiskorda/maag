@@ -596,7 +596,7 @@
                               
                                 jQuery('input:checkbox:checked').parents("tr").remove();
                                 $("#lefty").modal("hide");
-                                alert('Event Removed');
+                              //  alert('Event Removed');
                             }, 
                             error: function(returnval) {
                                 $(".message").text(returnval + " failure");
@@ -652,32 +652,47 @@
             });
 
 
-            $("#approveCheck").submit(function( event ) {
+            $("#approveCheck").click(function( event ) {
                      if ($('.abc:checked').length <= $('.abc').length && $('.abc:checked').length>0) 
                         {
                             if (confirm("Kinnatan valitud?")) {
-                             event.preventDefault();    };
+                             event.preventDefault()    }else{return false};
                             
                             $("input:checkbox").each(function(){
                             var $this = $(this);
 
                             if($this.is(":checked")){
                                 var id = $this.attr("id");
+                              //  console.log($this);
                           //      console.log("going to kinnitama " +id);// $this.attr("id");
+                            var approvedOrNot=$this.parents("tr").children("td:nth-child(3)");
+                            console.log($.trim(approvedOrNot.text()));
+                                var approvedOrNotToDB;
+                                if($.trim(approvedOrNot.text())=="Kinnitatud"){
+                                    approvedOrNotToDB=0
+                                }else{
+                                    approvedOrNotToDB=1
+                                };
 
-                                
+
+
                                 $.ajax({
                                     url: "<?php echo base_url(); ?>fullcalendar/approveEvents",
                                     type: "POST",
                                     data: {
                                         timeID: id, 
-                                        approved: 1
+                                        approved: approvedOrNotToDB
 
                                     },
                                     success: function() {
                                         calendar.fullCalendar('refetchEvents');
                                         //siia tule teha panna kinnitatud olekuks modalis  
-                                        //jQuery('input:checkbox:checked').parents("tr").remove();
+                                        if(approvedOrNotToDB==1){
+                                            jQuery('input:checkbox:checked').parents("tr").children("td:nth-child(3)").html("&nbsp;&nbsp;&nbsp;Kinnitatud");
+                                        }else{
+                                            jQuery('input:checkbox:checked').parents("tr").children("td:nth-child(3)").html("&nbsp;&nbsp;&nbsp;Kinnitamata");
+                                        }
+                                       
                                        // alert('Kinnitatud');
                                     }, 
                                     error: function(returnval) {
@@ -702,10 +717,19 @@
               if ($('.abc:checked').length <= $('.abc').length && $('.abc:checked').length>0) 
                         {
                             if (confirm("Valitud trennid ei toimu?")) {
-                             event.preventDefault();    };
+                             event.preventDefault();    }else{return false};
                             
                             $("input:checkbox").each(function(){
                             var $this = $(this);
+
+                            var approvedOrNot=$this.parents("tr").children("td:nth-child(4)");
+                            console.log($.trim(approvedOrNot.text())=="Ei toimu");
+                                var approvedOrNotToDB;
+                                if($.trim(approvedOrNot.text())=="Ei toimu"){
+                                    approvedOrNotToDB=1
+                                }else{
+                                    approvedOrNotToDB=0
+                                };
 
                             if($this.is(":checked")){
                                 var id = $this.attr("id");
@@ -714,17 +738,17 @@
                                     type: "POST",
                                     data: {
                                         timeID: id, 
-                                        takesPlace: 0
+                                        takesPlace: approvedOrNotToDB
 
                                     },
                                     success: function() {
                                         calendar.fullCalendar('refetchEvents');
-                                        //siia tule teha panna kinnitatud olekuks modalis  
-                                       // jQuery('input:checkbox:checked').parents("tr");
-                                    //    ​$('input:checkbox:checked').parents("tr").text(function () {
-                                    //         return $(this).text().replace("Ei toimu", ""); 
-                                    //     });​​​​​
-                                    $('input:checkbox:checked').parents("tr").children("td:contains('Ei toimu')").html("New");
+                                        if(approvedOrNotToDB==0){
+                                            jQuery('input:checkbox:checked').parents("tr").children("td:nth-child(4)").html("&nbsp;&nbsp;&nbsp;Ei toimu");
+                                        }else{
+                                            jQuery('input:checkbox:checked').parents("tr").children("td:nth-child(4)").html("&nbsp;&nbsp;&nbsp;");
+                                        }
+                                  //  $('input:checkbox:checked').parents("tr").children("td:contains('Ei toimu')").html("");
                                         //alert('Ei toimu');
                                     }, 
                                     error: function(returnval) {
