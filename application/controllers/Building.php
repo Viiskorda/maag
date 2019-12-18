@@ -9,7 +9,10 @@
 		}
 		
 
+		public function createRoom(){
 
+			$this->building_model->createNewRoom();
+		}
 
 		public function edit($slug){
 	
@@ -39,6 +42,9 @@
 			$this->session->set_flashdata('building_deleted', 'Your building has been deleted');
 			redirect('editBuildings');
 		}
+
+
+
 
 
 

@@ -213,9 +213,9 @@
                 <form id="takesPlaceCheck">
                     <input type="submit"  class="btn btn-second text-white txt-xl" value="Ei toimu">
                 </form >
-                    
+                  
                 </div>
-
+                <br>  <br>
             </div>
 
         </div>
@@ -441,6 +441,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                 var startDateTime=[];
                 var endDateTime=[];
                 var arrayOfIDs=[];
+                var arrayOfTitles=[];
 
                 for(var i = 0; i < events.length; i++){
                     var Bid=events[i].bookingID;
@@ -455,6 +456,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                         startDateTime.push(events[i].start._i.substring(0, 16));
                         arrayOfIDs.push(events[i].timeID);
                         endDateTime.push(events[i].end._i.substring(0, 16));
+                        arrayOfTitles.push(events[i].title);
                     //  console.log((events[i].start._i.substring(0, 16))+" "+ events[i].end._i.substring(0, 16));
                     }
                     
@@ -560,7 +562,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                     }
                     var checkDateTime = st_year+'-'+st_monthIndex+'-'+st_day+" "+st_hours+':'+st_minutes;
                     var checkDateTime2 = en_year+'-'+en_monthIndex+'-'+en_day+" "+en_hours+':'+en_minutes;
-                    $('#myTable > tbody:last-child').append(' <tr class="red'+i+'"><td><input type="checkbox" class="abc" name="choices" id="'+BTimesid+'"> ' + st_day + '-' + st_monthIndex + '-' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+approved+' </td></td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>   </tr>');
+                    $('#myTable > tbody:last-child').append(' <tr class="red'+i+'"><td><input type="checkbox" class="abc" name="choices" id="'+BTimesid+'"> ' + st_day + '.' + st_monthIndex + '.' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+approved+' </td></td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>   </tr>');
                     if(event.timeID==BTimesid){  
                         //  console.log("klikk");
                         $("#"+BTimesid).prop('checked', true);}
@@ -573,7 +575,16 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                         //     console.log(isBetween(startDateTime[t],checkDateTime, checkDateTime2 ) || isBetween(endDateTime[t],checkDateTime, checkDateTime2));
                         //   console.log("konflikt:"+ startDateTime[t] +": "+endDateTime[t]);
                             $(".red"+i).css("color", "red");
-                        
+                            if( $("table").find(".red"+i+":first td").length <5     ){
+                                (arrayOfTitles[i].length>15) ? arrayOfTitles[i]=arrayOfTitles[i].substring(0, 18)+"..." : arrayOfTitles[i]=arrayOfTitles[i];
+                                console.log(arrayOfTitles[i]);
+                                $(".red"+i).append('<td> &nbsp;'+arrayOfTitles[i]+'</td>');
+                            }
+                         
+                     
+                                             
+
+                           
                         }
                     }
                     };

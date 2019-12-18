@@ -4,14 +4,22 @@
                     <div class="form-group">
                                     <label for="p-in" class="col-md-4 label-heading">Asutuse nimi</label>
                                     <div class="col-md-8 ui-front">
-                                      <p>  <?php echo $editBuildings['name']; ?></p>
+                                  
+
+                                      <?php foreach ($editBuildings as $value) {
+                                   echo $value['name'];
+                                      break;}?>
+                                      
                                     </div>
                                 </div>
                                 <div class="form-group">
                                  
                                     <label for="p-in" class="col-md-4 label-heading">E-mail</label>
                                     <div class="col-md-8 ui-front">
-                                    <p>   <?php echo $editBuildings['contact_email']; ?></p>
+                                    <p>  
+                                    <?php foreach ($editBuildings as $value) {
+                                   echo $value['contact_email'];
+                                      break;}?></p>
                                        
                                     </div>
                                 </div>
@@ -19,20 +27,40 @@
 
                              
                                 <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">teavituste telefon</label>
+                                    <label for="p-in" class="col-md-4 label-heading">Teavituste telefon</label>
                                     <div class="col-md-8 ui-front">
-                                        <?php echo $editBuildings['notify_email']; ?>
+                                     
+                                        <p>  
+                                    <?php foreach ($editBuildings as $value) {
+                                   echo $value['notify_email'];
+                                      break;}?></p>
                                     </div>
                                 </div>
                             
                                 <div class="form-group">
                                     <label for="p-in" class="col-md-4 label-heading">telefon</label>
                                     <div class="col-md-8 ui-front">
-                                       <?php echo $editBuildings['phone']; ?>
+                                    
+                                       <?php foreach ($editBuildings as $value) {
+                                   echo $value['phone'];
+                                      break;}?>
                                     </div>
                                 </div>
-                                <a class="btn btn-default pull-left" href="<?php echo base_url(); ?>building/edit/<?php echo $editBuildings['id']; ?>">Muuda</a>
-                          
+
+
+                                <div class="form-group">
+                                    <label for="p-in" class="col-md-4 label-heading">Asutuse saalid</label>
+                                    <div class="col-md-8 ui-front">
+                                    
+                                       <?php foreach ($editBuildings as $value) {
+                                   echo $value['roomName'].'<br>';
+                                     }?></p>
+                                    </div>
+                                </div>
+
+
+                                <a class="btn btn-default pull-left" href="<?php echo base_url(); ?>building/edit/<?php foreach ($editBuildings as $value) {echo $value['buildingID'];break;}?>">Muuda</a>
+                               
 
 
 </form>

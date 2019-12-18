@@ -10,7 +10,7 @@
                 <div class="blur"></div>                
             </div>
             <div class="text">
-                <h1>Kõigi Pärnu spordikeskuste vabad ajad ühes kohas!</h1>
+                <h1>Pärnu linna spordiobjektide vabad ajad ühes kohas!</h1>
             </div>
         </div>
 

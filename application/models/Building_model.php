@@ -13,9 +13,9 @@
 			$query = $this->db->get('buildings');
 			return $query->result_array();
 			}
-			
+			$this->db->join('rooms', ' buildings.id = rooms.buildingID' , 'left');
 			$query = $this->db->get_where('buildings', array('.buildings.id' => $slug));
-			return $query->row_array();
+			return $query->result_array();
 		
 		
 		}
@@ -52,6 +52,17 @@
 		}
 
 
+
+
+		public function createNewRoom(){
+
+			$data = array(
+				'roomName' => $this->input->post('roomName'),
+				'buildingID' => $this->input->post('id'),
+		   );
+			// Insert room
+			return $this->db->insert('rooms', $data);
+		}
 
 
 
