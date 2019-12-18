@@ -90,11 +90,16 @@ class Booking extends CI_Controller {
 	public function createClosed()
 	{
 		if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'){
+			$event_in = strtotime($this ->input->post('startingFrom'));
+			$event_in = date('Y-m-d H:i:s', $event_in);
+			$event_out = strtotime($this ->input->post('Ending'));
+			$event_out = date('Y-m-d H:i:s', $event_out);
+
 		$data1 = array(
 			'public_info'=>$this->input->post('clubname'),
 			'comment_inner' => $this ->input->post('comment2'),
-			'event_in' => $this ->input->post('startingFrom'),
-			'event_out' => $this ->input->post('Ending'),
+			'event_in' => $event_in,
+			'event_out' => $event_out,
 			'typeID' => $this ->input->post('type'),
 			'c_name' => $this ->input->post('contactPerson'),
 			'c_phone' => $this ->input->post('phone'),
@@ -203,7 +208,9 @@ class Booking extends CI_Controller {
 
 		}
 
-	}else{redirect('');}
+	}else{
+		redirect('');
+	}
 	}
 
 

@@ -46,6 +46,7 @@ class Fullcalendar extends CI_Controller {
 				'roomID'	=>	$row['roomID'],
 				'timeID'=>	$row['timeID'],
 				'title'	=>	$row['public_info'],
+				'comment' => $row['comment'],
 				'start'	=>	$row['startTime'],
 				'end'	=>	$row['endTime'],
 				'event_in'	=>	$row['event_in'],
