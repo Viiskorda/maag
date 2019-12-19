@@ -7,9 +7,9 @@
 
 		public function get_building($slug = FALSE){
 			if($slug === FALSE){
-				$this->db->order_by('buildings.buildingName');
-			$this->db->join('buildings', 'buildings.buildingID = buildings.id' , 'left');
-			$this->db->join('buildingRoles', 'buildings.roleID = buildingRoles.id' , 'left');
+			$this->db->order_by('buildings.id');
+			//$this->db->join('rooms', ' buildings.id = rooms.buildingID' , 'left');
+			
 			$query = $this->db->get('buildings');
 			return $query->result_array();
 			}
@@ -17,12 +17,22 @@
 			$query = $this->db->get_where('buildings', array('.buildings.id' => $slug));
 			return $query->result_array();
 		
+		}
+
+
+		public function get_rooms(){
+		
+			$this->db->order_by('buildingID');
+			
+			$query = $this->db->get('rooms');
+			return $query->result_array();
+				
 		
 		}
 
 
 		public function delete_building($id){
-			$this->db->where('buildingID', $id);
+			$this->db->where('id', $id);
 			$this->db->delete('buildings');
 			return true;
 		}
@@ -35,6 +45,23 @@
 			);
 			return $this->db->insert('categories', $data);
 		}
+
+
+
+		public function registerBuilding(){
+		
+			$data = array(
+				'name' => $this->input->post('name'),
+				'contact_email' => $this->input->post('email'),
+				'phone' => $this->input->post('phone'),
+				'notify_email' => $this->input->post('notifyEmail'),
+				
+			);
+		
+			return $this->db->insert('buildings', $data);
+		}
+
+
 
 
 	

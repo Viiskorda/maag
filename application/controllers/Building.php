@@ -28,7 +28,8 @@
 		public function view($slug){
 	
 			$data['editBuildings'] = $this->building_model->get_building($slug);
-		
+			$data['editAllBuildings'] = $this->building_model->get_building();
+			$data['editAllRooms'] = $this->building_model->get_rooms();
 			$this->load->view('templates/header');
 			$this->load->view('pages/viewBuilding', $data);
 			$this->load->view('templates/footer');
@@ -40,7 +41,7 @@
 			$this->building_model->delete_building($id);
 			// Set message
 			$this->session->set_flashdata('building_deleted', 'Your building has been deleted');
-			redirect('editBuildings');
+			redirect('building/view/');
 		}
 
 
@@ -83,6 +84,33 @@
 			$this->session->set_flashdata('post_updated', 'Uuendasid asutuse infot');
 			redirect('building/view/'.$this->input->post('id'));
 		}
+
+
+		public function register(){
+			
+			$this->form_validation->set_rules('name', 'Name', 'required');
+          //  $this->form_validation->set_rules('phone', 'Phone');
+			//$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
+		
+			if($this->form_validation->run() === FALSE){
+              
+				$this->load->view('templates/header');
+				$this->load->view('pages/createBuilding');
+                $this->load->view('templates/footer');
+                
+			} else {
+				
+				$this->building_model->registerBuilding();
+				$this->session->set_flashdata('user_registered', 'Asutus lisatud');
+				redirect('viewBuilding');
+			}
+		}
+
+
+
+
+
+
 
 
 	}
