@@ -11,7 +11,7 @@
                     </div> -->
                       
                      
-                    <form id="change" method="post" action="<?php echo base_url(); ?>edit/update">
+                    <form id="change" method="post" action="<?php echo base_url();?>edit/update">
                     <div id="change"></div>
 
                                 <div class="form-group">
@@ -93,40 +93,22 @@
                   
                     </tbody>
                     </table>
-                    <input type="submit" id="changeTimes" class="btn btn-dark" value="Muuda">
-                    <div class="mt-4 bg-grey py-2">    Lisa puuduolevad trenniajad: <br>  <br>  
-                            <div class="form-label-group px-5 mx-5" id="timestamp">
-                                <label for="InputsWrapper">Kuupäev</label>
-                                <div id="InputsWrapper" class="mb-3 p-0">
-                                    <div class="d-flex align-items-center mb-3 justify-content-between">
-                                        <input class="datePicker col-5 form-control" id="datefield_1" data-toggle="datepicker" name="workoutDate">
+                    <br>
+                    <div class="form-label-group px-5 mx-5" id="timestamp">
+                    <div id="InputsWrapper" class="mb-3 p-0">
+                    </div>  </div>
 
-                                        <a href="#" class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></a>
+                    <input class="d-none" type="hidden" name="id" id="bookid" value="<?php print_r($_POST['timesIdArray'][0])?>">
+                    <input class="d-none" type="hidden" name="roomID" id="roomID" value="">
 
-                                        <div class="col-2 p-0 ml-5">
-                                            <input type="text" class="clock form-control" name="begin" id="timestartfield_1" value="<?php echo date('H:i'); ?>">
-                                        </div>
+                    <input type="button" id="addTimes" class="btn btn-green" value="Lisa aeg">
+                    <input type="submit" id="changeTimes" class="btn btn-blue" value="Muuda">
+                  
+                                    
+                                      
+                                            </form>
 
-                                        <div class="col-2 p-0">
-                                            <input type="text" class="clock form-control" name="end" min="08:00" max="22:00" id="timeendfield_1" value="<?php echo date("H:i", strtotime('+90 minutes')); ?>">
-                                        </div>
-                                        <input class="d-none" type="hidden" name="id" id="bookid" value="<?php print_r($_POST['timesIdArray'][0])?>">
-                                        <input class="d-none" type="hidden" name="roomID" id="roomID" value="">
-                                       
-                                    </div>
-                                </div>
-                               
-                            </div>
-                        </div>
-                                   <button type="submit" class="btn btn-success" name="openModal" id="openModal"  value="+ Lisa"></form>
-
-                        <!-- <div class="form-group">
-                            <label for="p-in" class="col-md-4 label-heading">Delete Event</label>
-                            <div class="col-md-8">
-                                <input type="checkbox" name="delete" value="1">
-                            </div>
-                        </div>-->
-
+                      
                     
                     </div>
 
@@ -144,14 +126,38 @@
     </body>
 
   
-                        <?php $arr2 = array(); foreach (array_slice($_POST['timesIdArray'], 1) as $key=>$value) {   $arr2[] = $value; print_r($_POST['timesIdArray']);}?>
+                        <?php $arr2 = array(); foreach (array_slice($_POST['timesIdArray'], 1) as $key=>$value) {   $arr2[] = $value; }?>
    
 
-                        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datepicker.js"></script>
+                        <script type="text/javascript" src="<?php echo base_url();?>assets/js/datepicker.js"></script>
     <script>
       
 
         $(document).ready(function() {
+            
+            $('#addTimes').click(function(e) {
+            //max input box allowed
+           
+                //add input box
+                $('#InputsWrapper').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="datePicker col-5 form-control" id="datefield_" data-toggle="datepicker" name="workoutDate[]"><span class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></span><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="begin[]" id="timestartfield_" value="<?php echo date('H:i');?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="end[]" min="08:00" max="22:00" id="timeendfield_" value="<?php echo date("H:i", strtotime('+90 minutes'));?>"></div></div>');
+                $(".datePicker").datepicker({
+                    language: "et-EE", 
+                    autoHide: true, 
+                    date: new Date(), 
+                    autoPick: true
+                });
+          
+          
+            });
+
+            $("#timestamp").on("click", ".removeclass", function(e) { //user click on remove text
+           
+                $(this).parent('div').remove(); //remove text box
+               
+        });
+
+
+
             var today=new Date();
         var endOfPeriond=new Date('05/31/'+ new Date().getFullYear()); 
        
@@ -239,16 +245,14 @@
                         $('#email').val(obj.email);
                         $('#created_at').val(obj.created_at);
                         $('#workoutType').val(obj.workout);
-                    
+                        document.getElementById("selectedroom").value = obj.roomID;
+                        document.getElementById("roomID").value = obj.roomID;
                         $('#start').val(obj.start);
                      //   $('#building').val(obj.building);
 
                         //$('#selectedroom').val(obj.roomName);
                       //  $('#selectedroom').val(obj.roomID)
-                        document.getElementById("selectedroom").value = obj.roomID;
-                        document.getElementById("roomID").value = obj.roomID;
-                        
-                        console.log(obj.roomID);
+                     
                         var BTimesid=obj.timeID;
 
                         var start=obj.start;
@@ -271,21 +275,8 @@
                         }
 
                        
-                          
-
-
                     } 
                   
-                      
-                        
-                        
-                        
-                        
-
-                                          
-                     
-
-
                         $.ajax({
                         url: "<?php echo base_url(); ?>edit/loadAllRoomBookingTimes/"+res[1].roomID,
                         dataType: 'json',
