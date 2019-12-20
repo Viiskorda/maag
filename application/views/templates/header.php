@@ -47,19 +47,20 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto mt-lg-0 pl-lg-5 pl-md-3 pl-sm-1">
-                        <li class="nav-item"><a class="nav-link font-weight-light text-white py-0 pr-lg-5 pr-md-3 pr-sm-1 mr-lg-5 mr-md-3 mr-sm-0" href="<?php echo base_url(); ?>fullcalendar?roomId=1"><strong>Broneeringud</strong> <span class="badge badge-danger">5</span></a></li>
-                        <li class="nav-item"><a class="nav-link font-weight-light text-white py-0 pr-lg-5 pr-md-3 pr-sm-1 mr-lg-5 mr-md-3 mr-sm-0" href="<?php echo base_url(); ?>manageUsers">Kasutajad</a></li>
-                        <li class="nav-item"><a class="nav-link font-weight-light text-white py-0 pr-lg-5 pr-md-3 pr-sm-1 mr-lg-5 mr-md-3 mr-sm-0" href="<?php echo base_url(); ?>building/view/1">Asutuse sätted</a></li>
-                        <li class="nav-item"><a class="nav-link font-weight-light text-white py-0" href="#">Profiil</a></li>
+                    <ul class="navbar-nav mr-auto mt-lg-0 pl-lg-3 pl-md-2 pl-sm-1">
+                        <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="#"><strong>Kõik saalid</strong></a></li>
+                        <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="<?php echo base_url(); ?>fullcalendar?roomId=1"><strong>Broneeringud</strong> <span class="badge badge-danger">5</span></a></li>
+                        <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="<?php echo base_url(); ?>manageUsers">Kasutajad</a></li>
+                        <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="<?php echo base_url(); ?>building/view/1">Asutuse sätted</a></li>
+                        <li class="nav-item"><a class="nav-link text-white py-0" href="#">Profiil</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right p-0">
-                        <li class="nav-item"><a class="nav-link font-weight-light text-white p-0" href="<?php echo base_url(); ?>users/logout" ><u>Logi välja</u></a></li>
+                        <li class="nav-item"><a class="nav-link text-white p-0" href="<?php echo base_url(); ?>users/logout" ><u>Logi välja</u></a></li>
                     </ul>
                 </div>
                 <?php endif; ?>
                 <?php if(!$this->session->userdata('session_id')) : ?>
-                <a class="nav-link font-weight-light text-white p-0" href="<?php echo base_url(); ?>login"><u>Logi sisse</u></a>
+                <a class="nav-link text-white p-0" href="<?php echo base_url(); ?>login"><u>Logi sisse</u></a>
                 <?php endif; ?>
 
             </div>

@@ -57,7 +57,7 @@
 
         <div class="col-2 mr-auto p-0">
             <?php if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'):?>
-            <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" href="<?php echo base_url(); ?>booking/create"><p class="m-0 txt-lg text-center">Lisa uus</p></a>
+            <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" href="<?php echo base_url(); ?>booking/create"><p class="m-0 txt-lg text-center">Uus broneering</p></a>
             <?php endif;?>
         </div>
     </div>
@@ -79,14 +79,14 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
 
-                <div id="modal-header" class="modal-header d-flex justify-content-between pl-3 pb-0 m-0">
+                <div id="modal-header" class="modal-header d-flex justify-content-between pl-4 py-0 m-0 bg-grey border-bottom">
                     <div>
-                        <h4 class="modal-title txt-darkblue txt-xl" id="myModalLabel">
+                        <h4 class="modal-title text-darkblue txt-xl m-0 py-3" id="myModalLabel">
                             <input type="text" class="d-none" name="c_name" value="" id="c_name">
                         </h4>
                     </div>
                     <div>
-                        <p class="modal-time txt-darkblue txt-xl"></p>
+                        <p class="modal-time text-darkblue txt-xl m-0 py-3"></p>
                     </div>
                     <div>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -95,26 +95,33 @@
 
 
                 
-                <div class="modal-body m-0 p-0 txt-darkblue">
+                <div class="modal-body m-0 p-0">
                     <?php echo form_open(site_url("calendar/edit_event"), array("class" => "form-horizontal")) ?>
-                    <div class="d-flex pl-3 pt-2">
-                        <p class="pr-2">Päring:</p>
-                        <p class="" id="time"></p>
-                        <input type="text" class="form-control d-none" name="created_at" id="created_at">
+                    <div class="d-flex pl-4 py-2 bg-grey border-bottom">
+                        <p class="pr-2 m-0 text-darkblue">Päring:</p>
+                        <p class="m-0 text-darkblue" id="time"></p>
+                        <input type="text" class="form-control d-none m-0" name="created_at" id="created_at">
                     </div>
-                    <div class="accordion px-3">
+                    <div class="accordion px-4">
                         <div class="accordion-item">
-                            <a class="txt-xl txt-darkblue active">Broneeringu info</a>
-                            <div id="contact" class="content active">                            
-                                <p style="font-weight: 400;">Kontakt</p>
-                                <div class="d-flex justify-content-between">
+                            <a class="txt-xl text-darkblue active py-2">Broneeringu info</a>
+                            <div id="contact" class="content active p-0 m-0">                            
+                                <p class="pt-2 txt-regular">Kontakt</p>
+                                <div class="d-flex justify-content-between p-0 m-0">
                                     <div class="col-6 p-0 m-0"><p>Kontaktisik</p></div>
                                     <div class="col-6 p-0 m-0">
                                         <p id="c_name"></p>
                                         <input type="text" class="d-none" name="clubname" id="clubname">
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-between p-0 m-0">
+                                    <div class="col-6 p-0 m-0"><p>Klubi nimi</p></div>
+                                    <div class="col-6 p-0 m-0">
+                                        <p id="c_name"></p>
+                                        <input type="text" class="d-none" name="c_name" id="c_name">
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between p-0 m-0">
                                     <div class="col-6 p-0 m-0"><p>Telefoni number</p></div>
                                     <div class="col-6 p-0 m-0">
                                         <p id="phone"></p>
@@ -129,7 +136,7 @@
                                     </div>
                                 </div>
 
-                                <p style="font-weight: 400;">Asukoht ja treeningu tüüp</p>
+                                <p class="pt-3 txt-regular">Asukoht ja treeningu tüüp</p>
                                 <div class="d-flex justify-content-between">
                                     <div class="col-6 p-0 m-0"><p>Asutus</p></div>
                                     <div class="col-6 p-0 m-0">
@@ -153,7 +160,7 @@
                                 </div>
 
                                 <div id="ajad">
-                                    <p style="font-weight: 400;">Kuupäev ja kellaajad</p>
+                                    <p  class="pt-3 txt-regular">Kuupäev ja kellaajad</p>
                                     <div class="d-flex justify-content-between">
                                         <div class="col-6 p-0 m-0"><p>Hooaeg alates</p></div>
                                         <div class="col-6 p-0 m-0">
@@ -170,23 +177,23 @@
                                     </div>
                                 </div>
 
-                                <p style="font-weight: 400;">Lisainfo</p>
-                                <p id="comment"></p>
+                                <p id="info" class="pt-3 txt-regular">Lisainfo</p>
+                                <p id="comment" class="pb-4"></p>
                                 <input type="text" class="d-none" name="comment" id="comment">
 
                             </div>
                         </div>
                     </div>
 
-                    <div class="accordion px-3 pt-3">
+                    <div class="accordion px-4">
                         <div class="accordion-item">
-                            <a class="txt-xl txt-darkblue">Kõik ajad</a>
+                            <a id="countNr" class="txt-xl text-darkblue py-2">Kõik ajad</a>
                             <div id="contact" class="content">
                                 
-                                <input type="checkbox" name="selectAll" id="selectAll" value="1"> VALI KÕIK<hr>
-                                <table id="myTable">
-                                    <tbody>
-                                    <tr></tr>
+                                <label><input type="checkbox" name="selectAll" id="selectAll" value="1"><span></span></label> VALI KÕIK<hr>
+                                <table id="myTable" >
+                                    <tbody >
+                                    <tr class="myTable"></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -197,26 +204,26 @@
                 <input type="hidden" name="eventid" id="event_id" value="0" /> 
             </div>
 
-            <div class="modal-footer">
+            <div class="modal-footer d-block m-0 py-2 float-center">
                 <form id="approveCheck">
-                    <input type="submit" class="btn btn-custom text-white txt-xl" value="Kinnita">
+                    <input type="submit" class="btn btn-custom text-white txt-strong btn-width" value="Kinnita">
                 </form >
 
-                <form id="change" method="post" action="<?php echo base_url(); ?>fullcalendar/edit">
-                    <input type="submit" id="changeTimes" class="btn btn-second text-white txt-xl" value="Muuda">
+                <form id="change" method="post" action="<?php echo base_url(); ?>fullcalendar/edit" class="m-0 pt-2">
+                    <input type="submit" id="changeTimes" class="btn btn-second text-white txt-strong btn-width" value="Muuda">
                 </form >  
 
-                <form id="delete">
-                    <input type="submit" class="btn btn-delete text-white txt-xl" value="Kustuta" id="deleteChecked" name="deleteChecked">
+                <form id="delete" class=" m-0 py-2 btn-width">
+                    <input type="submit" class="btn btn-delete text-white txt-strong btn-width" value="Kustuta" id="deleteChecked" name="deleteChecked">
                 </form >
 
-                <form id="takesPlaceCheck">
-                    <input type="submit"  class="btn btn-second text-white txt-xl" value="Ei toimu">
+                <form id="takesPlaceCheck" class=" m-0">
+                    <input type="submit"  class="btn btn-second text-white txt-strong btn-width" value="Ei toimu">
                 </form >
                   
                 </div>
                 <br>  <br>
-            </div>
+            <!-- </div> -->
 
         </div>
     </div>
@@ -562,7 +569,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                     }
                     var checkDateTime = st_year+'-'+st_monthIndex+'-'+st_day+" "+st_hours+':'+st_minutes;
                     var checkDateTime2 = en_year+'-'+en_monthIndex+'-'+en_day+" "+en_hours+':'+en_minutes;
-                    $('#myTable > tbody:last-child').append(' <tr class="red'+i+'"><td><input type="checkbox" class="abc" name="choices" id="'+BTimesid+'"> ' + st_day + '.' + st_monthIndex + '.' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+approved+' </td></td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>   </tr>');
+                    $('#myTable > tbody:last-child').append(' <tr class="red'+i+'"><td><label><input type="checkbox" class="abc brdr" name="choices" id="'+BTimesid+'"><span></span></label> ' + st_day + '.' + st_monthIndex + '.' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+approved+' </td></td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>   </tr>');
                     if(event.timeID==BTimesid){  
                         //  console.log("klikk");
                         $("#"+BTimesid).prop('checked', true);}
@@ -1066,5 +1073,14 @@ dayClick: function (date, jsEvent, view) {
     }
 
     items.forEach(item => item.addEventListener('click', toggleAccordion));
+
+
+    $('#calendar').click( function() {
+        
+        var length = $('#myTable tr').length;
+        $('#countNr').text('Kõik ajad ('+length+')');
+    });
+    
+
     
 </script>

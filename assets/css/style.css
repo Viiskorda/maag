@@ -16,6 +16,11 @@
     padding: 0;
   }
 
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
   footer {
     background: #E0E0E2;
     padding-top: 3rem;
@@ -36,7 +41,7 @@
   }
 
   .container-md {
-    max-width: 800px !important;
+    max-width: 860px !important;
     margin-right: auto;
     margin-left: auto;
     padding-right: 10px;
@@ -119,6 +124,10 @@
 
   .txt-strong {
     font-weight: 500;
+  }
+
+  .txt-regular {
+    font-weight: 400 !important;
   }
 
   .text-white {
@@ -461,21 +470,22 @@
     border: 1px solid #03b5d2;
   } */
   
-  .accordion a.active {
-    /* color: #03b5d2; */
-    /* border-bottom: 1px solid #03b5d2; */
-  }
+  /* .accordion a.active {
+    color: #03b5d2;
+    border-bottom: 1px solid #03b5d2;
+  } */
   
   .accordion a::after {
     /* font-family: 'Ionicons'; */
     content: '';
     background-image: url('../img/chevron-down-solid.svg');
+    transform: rotate(-0.25turn);
     /* background-size:contain;
     height: 30px;
     width: 30px; */
     position: absolute;
-    float: right;
-    right: 1rem;
+    /* float: right; */
+    left: 10rem;
     font-size: 1rem;
     color: #7288a2;
     padding: 5px;
@@ -486,7 +496,20 @@
     border-radius: 50%;
     border: 1px solid #7288a2; */
     text-align: center;
+    
   }
+
+  /* .brdr {
+    -moz-appearance:none;
+-webkit-appearance:none;
+-o-appearance:none;
+    width: 15px;
+    height: 15px;
+    font-size:25px;
+    color:#FF0084;
+    outline: 2px solid #1e5180
+    
+  } */
   
   .accordion a.active::after {
     /* font-family: 'Ionicons';
@@ -499,14 +522,14 @@
     height: 30px;
     width: 30px; */
     position: absolute;
-    float: right;
-    right: 1rem;
+    /* float: right; */
+    left: 10rem;
     font-size: 1rem;
     color: #7288a2;
     padding: 5px;
     width: 27px;
     height: 30px;
-    transform: rotate(-0.25turn);
+    transform: rotate(0turn);
   }
   
   .accordion .content {
@@ -608,3 +631,27 @@
     font-size: 16px;
     color: white;
   } */
+
+  label input {
+    display: none; /* Hide the default checkbox */
+  }
+  
+  /* Style the artificial checkbox */
+  label span {
+    height: 16px;
+    width: 16px;
+    border: 2px solid rgba(11, 57, 84, 0.7);
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    margin-right: 7px;
+    transform: translate(0px, 3px);
+  }
+  
+  /* Style its checked state...with a ticked icon */
+  [type=checkbox]:checked + span:before {
+    content: '\2714';
+    position: absolute;
+    top: -5px;
+    left: 1px;
+  }
