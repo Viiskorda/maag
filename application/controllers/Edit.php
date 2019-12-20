@@ -189,18 +189,73 @@ class Edit extends CI_Controller {
 
 		if($this->form_validation->run()===FALSE){
 			
-				redirect(base_url('fullcalendar?roomId=1'));
+
+
+
+			if(null !== $this->input->post('end')){
+				$formated_startTime = date("H:i:s", strtotime($this->input->post('begin')));
+				$formated_endTime = date("H:i:s", strtotime($this->input->post('end')));
+				$formated_date = date("Y-m-d", strtotime($this->input->post('workoutDate')));
+		
+				$start_date = date('Y-m-d H:i:s', strtotime("$formated_date $formated_startTime"));
+				$end_date = date('Y-m-d H:i:s', strtotime("$formated_date $formated_endTime"));
+		
+				$addtimes = array(
+					'roomID' => $this->input->post('roomID'),
+					'startTime' => $start_date,
+					'endTime' => $end_date,
+					'bookingID' =>$this ->input->post('id'),
+				);
+				//print_r($addtimes);
+		
+			
+		
+				// $timesIdArray=$this->input->post('');
+				// $this->session->set_flashdata('timesIdArray', $timesIdArray);
+		
+				// $this->session->set_userdata('referred_from', current_url());
+				// $referred_from = $this->session->userdata('referred_from');
+				
+				// $this->load->view('templates/header');
+				// $this->load->view('pages/edit' ,$_POST);//see leht laeb vajalikku vaadet. ehk saab teha controllerit ka mujale, mis laeb õiget lehte
+				// echo "success!";
+				// $this->load->view('templates/footer');
+
+				//redirect($referred_from, 'refresh');
+				$id=$this->edit_model->insert($addtimes, $this->input->post('id'));
+				print_r($id);
+				array_push($_POST['bookingtimesFrom'], $start_date);
+				array_push($_POST['bookingtimesTo'], $end_date);
+				array_push($_POST['timesIdArray'], $id);
+			
+				print_r($_POST);
+		
+				redirect(base_url('fullcalendar/edit'  ,$_POST));
+
+
+
+			}else{
+
+
+
+
+					redirect(base_url('fullcalendar?roomId=1'));
 					$this->load->view('templates/header');
 					$this->load->view('pages/fullcalendar?roomId=1');//see leht laeb vajalikku vaadet. ehk saab teha controllerit ka mujale, mis laeb õiget lehte
 					echo "success!";
 					$this->load->view('templates/footer');
+
+				}
+
+
 
 
 		}else{
 		//	$this->booking_model->create_booking();
 			$this->load->view('fullcalendar?roomId=1');//redirectib sinna peale väljade korrektselt sisestamist
 		}
-	}else{redirect('');}
+	}else{
+		redirect('');}
 	
 	}
 

@@ -93,9 +93,7 @@
                   
                     </tbody>
                     </table>
-                    <input type="submit" id="changeTimes" class="btn btn-dark" value="Muuda"></form>
-                  
-                    <form id="change" method="post" action="<?php echo base_url(); ?>edit/insertAdditionalDateTime">
+                    <input type="submit" id="changeTimes" class="btn btn-dark" value="Muuda">
                     <div class="mt-4 bg-grey py-2">    Lisa puuduolevad trenniajad: <br>  <br>  
                             <div class="form-label-group px-5 mx-5" id="timestamp">
                                 <label for="InputsWrapper">Kuupäev</label>
@@ -114,6 +112,7 @@
                                         </div>
                                         <input class="d-none" type="hidden" name="id" id="bookid" value="<?php print_r($_POST['timesIdArray'][0])?>">
                                         <input class="d-none" type="hidden" name="roomID" id="roomID" value="">
+                                       
                                     </div>
                                 </div>
                                
@@ -145,7 +144,7 @@
     </body>
 
   
-                        <?php $arr2 = array(); foreach (array_slice($_POST['timesIdArray'], 1) as $key=>$value) {   $arr2[] = $value;}?>
+                        <?php $arr2 = array(); foreach (array_slice($_POST['timesIdArray'], 1) as $key=>$value) {   $arr2[] = $value; print_r($_POST['timesIdArray']);}?>
    
 
                         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datepicker.js"></script>
@@ -260,7 +259,7 @@
 
                         var datafrom = ['<?=implode("', '", $arr2)?>'];
                         var n = datafrom.includes(BTimesid);
-                            
+                            console.log(n);
                         if(n){
                             console.log(i);
                             $('#myTable > tbody:last-child').append(' <tr id="'+BTimesid+'"> <td>'+days[new Date(start).getDay()]+'&nbsp;&nbsp;</td> <td><input id="'+BTimesid+'" type="datetime-local" name="bookingtimesFrom['+counter+']" value="'+start+'"> </td><td>  - </td>  <td>   <input id="'+BTimesid+'" type="datetime-local" name="bookingtimesTo['+counter+']" value="'+end+'"></td>  </td>   <td>&nbsp;&nbsp;&nbsp; </td>   </tr>');
