@@ -93,7 +93,33 @@
                   
                     </tbody>
                     </table>
+                    <input type="submit" id="changeTimes" class="btn btn-dark" value="Muuda"></form>
+                  
+                    <form id="change" method="post" action="<?php echo base_url(); ?>edit/insertAdditionalDateTime">
+                    <div class="mt-4 bg-grey py-2">    Lisa puuduolevad trenniajad: <br>  <br>  
+                            <div class="form-label-group px-5 mx-5" id="timestamp">
+                                <label for="InputsWrapper">Kuupäev</label>
+                                <div id="InputsWrapper" class="mb-3 p-0">
+                                    <div class="d-flex align-items-center mb-3 justify-content-between">
+                                        <input class="datePicker col-5 form-control" id="datefield_1" data-toggle="datepicker" name="workoutDate">
 
+                                        <a href="#" class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></a>
+
+                                        <div class="col-2 p-0 ml-5">
+                                            <input type="text" class="clock form-control" name="begin" id="timestartfield_1" value="<?php echo date('H:i'); ?>">
+                                        </div>
+
+                                        <div class="col-2 p-0">
+                                            <input type="text" class="clock form-control" name="end" min="08:00" max="22:00" id="timeendfield_1" value="<?php echo date("H:i", strtotime('+90 minutes')); ?>">
+                                        </div>
+                                        <input class="d-none" type="hidden" name="id" id="bookid" value="<?php print_r($_POST['timesIdArray'][0])?>">
+                                        <input class="d-none" type="hidden" name="roomID" id="roomID" value="">
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                                   <button type="submit" class="btn btn-success" name="openModal" id="openModal"  value="+ Lisa"></form>
 
                         <!-- <div class="form-group">
                             <label for="p-in" class="col-md-4 label-heading">Delete Event</label>
@@ -107,23 +133,51 @@
 
 
                   
-                    <p id="time"></p>
+                
 
-                    <input type="submit" id="changeTimes" class="btn btn-dark" value="Muuda">
+                  
     </div>
 
-    </form>
+    
+
+    
 
     </body>
 
   
-                        <?php $arr2 = array(); foreach (array_slice($_POST['timesIdArray'], 1) as $key=>$value) {   $arr2[] = $value;}?>;
+                        <?php $arr2 = array(); foreach (array_slice($_POST['timesIdArray'], 1) as $key=>$value) {   $arr2[] = $value;}?>
    
 
+                        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datepicker.js"></script>
     <script>
       
 
         $(document).ready(function() {
+            var today=new Date();
+        var endOfPeriond=new Date('05/31/'+ new Date().getFullYear()); 
+       
+        var dateToShow='';
+        if (today<endOfPeriond){
+            dateToShow=endOfPeriond;
+
+        }else{
+            dateToShow=new Date(endOfPeriond.setFullYear(endOfPeriond.getFullYear() + 1));  ;
+        };
+       
+
+        $(".datepickerUntil").datepicker({
+            language: "et-EE",
+            autoHide: true,
+            date: dateToShow,
+            autoPick: true,
+        });
+
+        $(".datePicker").datepicker({
+            language: "et-EE",
+            autoHide: true,
+            date: new Date(),
+            autoPick: true,
+        });
 
          //   var eventToModificate = "<?php echo base_url(); ?>edit/load/<?php print_r($_POST['timesIdArray'][0])?>";
             var resConflicts =[];
@@ -164,9 +218,9 @@
                         //console.log(obj.start);
 
                       
-                        $('#lefty').modal('show');
-                        $("#lefty .modal-header h4").text(obj.title);
-                        $("#lefty #time").text(obj.created_at);
+                      //  $('#lefty').modal('show');
+                      //  $("#lefty .modal-header h4").text(obj.title);
+                      //  $("#lefty #time").text(obj.created_at);
 
                         $('#publicInfo').val(obj.title);
                         $('#contactPerson').val(obj.clubname);
@@ -193,6 +247,7 @@
                         //$('#selectedroom').val(obj.roomName);
                       //  $('#selectedroom').val(obj.roomID)
                         document.getElementById("selectedroom").value = obj.roomID;
+                        document.getElementById("roomID").value = obj.roomID;
                         
                         console.log(obj.roomID);
                         var BTimesid=obj.timeID;

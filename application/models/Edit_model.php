@@ -40,6 +40,15 @@ class Edit_model extends CI_Model
 		}
 
 
+	function insert($insert_data, $id){
+		
+		$this->db->where('bookingID', $id);
+		$this->db->insert('bookingTimes', $insert_data);
+	
+		}
+	
+
+
 }
 
 ?>

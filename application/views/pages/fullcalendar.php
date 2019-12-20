@@ -234,8 +234,12 @@
 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datepicker.js"></script>
 <script>
+  var counter=0;
     $(document).ready(function() {
 
+
+        var monthNamesForModal= ['Jaanuar', 'Veebruar', 'Märts', 'Aprill', 'Mai', 'Juuni', 'Juuli', 'August', 'September', 'Oktoober', 'November', 'Detsember'];
+      
         $(".datePicker").datepicker({
             language: "et-EE",
             autoHide: true,
@@ -406,16 +410,17 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
             // }
 
             eventClick: function(event) {
+                counter=0;
                 $(':checkbox[name=selectAll]').prop('checked', false);
                 
                 // $("#successModal").modal("show");
                 // $("#successModal .modal-body p").text(event.title);
-                $('#myTable tr').remove();
+                $('#myTable tbody').empty();
                 $('#lefty').modal('show');
                 $("#lefty .modal-header h4").text(event.title);
                 $("#lefty .modal-header p").text(moment(event.start).format('DD.MM.YYYY'));
                 $("#lefty #time").text(moment(event.created_at).format('DD.MM.YYYY HH:mm:ss'));
-
+              //  $('.modal-dialog').draggable();
                 $('#c_name').val(event.title);
                 $('#clubname').val(event.clubname);
                 $("#contact #c_name").text(event.clubname);
@@ -449,6 +454,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                 var endDateTime=[];
                 var arrayOfIDs=[];
                 var arrayOfTitles=[];
+                var monthCheckbox='';
 
                 for(var i = 0; i < events.length; i++){
                     var Bid=events[i].bookingID;
@@ -569,6 +575,16 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                     }
                     var checkDateTime = st_year+'-'+st_monthIndex+'-'+st_day+" "+st_hours+':'+st_minutes;
                     var checkDateTime2 = en_year+'-'+en_monthIndex+'-'+en_day+" "+en_hours+':'+en_minutes;
+                    
+                    if(monthCheckbox!=st_monthIndex){
+                        
+                        $('#myTable > tbody:last-child').append('<tr id="monthRow'+start_date.getUTCMonth()+'"><th><label><input type="checkbox"  id="selectMonth['+start_date.getUTCMonth()+']" value="1"><span></span></label> '+monthNamesForModal[start_date.getUTCMonth()]+' </th></tr>');
+                    }
+                    monthCheckbox=st_monthIndex;
+                  
+                   
+                    counter++;
+                  
                     $('#myTable > tbody:last-child').append(' <tr class="red'+i+'"><td><label><input type="checkbox" class="abc brdr" name="choices" id="'+BTimesid+'"><span></span></label> ' + st_day + '.' + st_monthIndex + '.' + st_year + ' <br></td>   <td>&nbsp;&nbsp;&nbsp; ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes+'</td>   <td>&nbsp;&nbsp;&nbsp;'+approved+' </td></td>   <td>&nbsp;&nbsp;&nbsp;'+takesPlace+' </td>   </tr>');
                     if(event.timeID==BTimesid){  
                         //  console.log("klikk");
@@ -583,9 +599,9 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                         //   console.log("konflikt:"+ startDateTime[t] +": "+endDateTime[t]);
                             $(".red"+i).css("color", "red");
                             if( $("table").find(".red"+i+":first td").length <5     ){
-                                (arrayOfTitles[i].length>15) ? arrayOfTitles[i]=arrayOfTitles[i].substring(0, 18)+"..." : arrayOfTitles[i]=arrayOfTitles[i];
-                                console.log(arrayOfTitles[i]);
-                                $(".red"+i).append('<td> &nbsp;'+arrayOfTitles[i]+'</td>');
+                                (arrayOfTitles[t].length>15) ? arrayOfTitles[t]=arrayOfTitles[t].substring(0, 18)+"..." : arrayOfTitles[i]=arrayOfTitles[i];
+                                console.log(arrayOfTitles[i]+" "+  arrayOfTitles[t]);
+                                $(".red"+i).append('<td> &nbsp;'+arrayOfTitles[t]+'</td>');
                             }
                          
                      
@@ -595,6 +611,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                         }
                     }
                     };
+                  
                     //  console.log(startDateTime);
                 //console.log(endDateTime);
                         //  console.log('Title-'+title+', start Date-' + st_year + '-' + st_monthIndex + '-' + st_day + ' , End Date-' + en_year + '-' + en_monthIndex + '-' + en_day + ' '+Bid + ' time ' +st_hours +':' +st_minutes+'-'+ en_hours+':'+en_minutes);
@@ -622,6 +639,15 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                 $('#comment').val(event.comment);
                 $("#contact #comment").text(event.comment);
                 $('#editModal').modal();
+
+
+
+                $("input[id*='selectMonth']").each(function (i, el) {
+                    $(this).parent().parent().css( "text-decoration", "underline" );
+                
+                });
+
+
             },
             
                             
@@ -632,8 +658,8 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
         $("#delete").submit(function( event ) {
                 if ($('.abc:checked').length == $('.abc').length) 
                     {
-                        if (confirm("Are you sure you want to remove it?")) {
-                event.preventDefault();    };
+                        if (confirm("Oled kindel kustutada KÕIK ajad?")) {
+                event.preventDefault();    }else{return false};
                         var id=  $('input:checkbox:checked').parents("tbody").attr('id');
                         // console.log("kõik on ckeckitud, tuleb ka bookings ab-st ära kustutada "+id);
                     $.ajax({
@@ -661,8 +687,9 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                     }
                     else if ($('.abc:checked').length <$('.abc').length && $('.abc:checked').length>0) 
                     {
-                        if (confirm("Are you sure you want to remove it?")) {
-                            event.preventDefault();    };
+                        if (confirm("Oled kindel, et soovid kustutada?"+$('.abc:checked'))) {
+                           // console.log($('.abc:checked'));
+                            event.preventDefault();    }else{return false};
                         
                         $("input:checkbox").each(function(){
                         var $this = $(this);
@@ -682,7 +709,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                                     calendar.fullCalendar('refetchEvents');
                                     
                                     jQuery('input:checkbox:checked').parents("tr").remove();
-                                    alert('Event Removed');
+                                   
                                 }, 
                                 error: function(returnval) {
                                     $(".message").text(returnval + " failure");
@@ -1078,9 +1105,11 @@ dayClick: function (date, jsEvent, view) {
     $('#calendar').click( function() {
         
         var length = $('#myTable tr').length;
-        $('#countNr').text('Kõik ajad ('+length+')');
+        $('#countNr').text('Kõik ajad ('+counter+')');
     });
     
+ 
+   
 
     
 </script>

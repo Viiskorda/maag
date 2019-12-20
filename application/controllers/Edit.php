@@ -6,15 +6,50 @@ class Edit extends CI_Controller {
 
 	public function __construct()
 	{
-	// 	  if($this->session->userdata('logged_in') !== TRUE){
-    //  			 redirect('calendar');
-    // }
+
 		parent::__construct();
 		$this->load->model('edit_model');
 		
     }
 
-   
+	function insertAdditionalDateTime()
+	{
+		
+		
+		$formated_startTime = date("H:i:s", strtotime($this->input->post('begin')));
+		$formated_endTime = date("H:i:s", strtotime($this->input->post('end')));
+		$formated_date = date("Y-m-d", strtotime($this->input->post('workoutDate')));
+
+		$start_date = date('Y-m-d H:i:s', strtotime("$formated_date $formated_startTime"));
+		$end_date = date('Y-m-d H:i:s', strtotime("$formated_date $formated_endTime"));
+
+		$data = array(
+			'roomID' => $this->input->post('roomID'),
+			'startTime' => $start_date,
+			'endTime' => $end_date,
+			'bookingID' =>$this ->input->post('id'),
+		);
+		print_r($data);
+
+		$this->edit_model->insert($data, $this->input->post('id'));
+
+
+		$MyVariable=$_POST['timesIdArray'];
+		$this->session->set_flashdata('timesIdArray', $MyVariable);
+
+		$this->session->set_userdata('referred_from', current_url());
+		$referred_from = $this->session->userdata('referred_from');
+	//	redirect($referred_from, 'refresh');
+	
+			}
+	
+
+
+
+	
+
+
+
 
 	function load($bookingID)
 	{
