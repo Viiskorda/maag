@@ -24,7 +24,7 @@
                             <input id="region" list="regions" class="form-control arrow" type="text">
                             <datalist id="regions">
                                 <?php foreach ($regions as $row) {
-                                    echo '<option  data-value="' . $row->id . '" value="' . $row->name . '"></option>';
+                                    echo '<option  data-value="' . $row->regionID . '" value="' . $row->regionName . '"></option>';
                                 }
                                 ?>
                             </datalist>

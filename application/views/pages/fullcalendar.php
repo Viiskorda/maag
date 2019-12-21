@@ -5,13 +5,10 @@
             <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2" v-if="loggedIn">
         
                 <label for="region">Piirkond</label>
-                <input id="region" list="regions" class="form-control arrow" type="text" value=" <?php foreach ($regions as $each) {
-                        if(($this->input->get('roomId')== $each->id)){
-                        echo '' . $each->name . '';
-                    }  } ?>">
+                <input id="region" list="regions" class="form-control arrow" type="text" value="<?php  echo $rooms['regionName']; ?>">
                 <datalist id="regions">
-                    <?php foreach ($regions as $row) {
-                        echo '<option  data-value="' . $row->id . '" value="' . $row->name . '"></option>';
+                    <?php foreach ($rooms as $row) {
+                        echo '<option  data-value="' . $row->regionID . '" value="' . $row->regionName . '"></option>';
                     }
                     ?>
                 </datalist>
@@ -20,12 +17,9 @@
 
             <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2">
                 <label for="sport_facility">Asutus</label>
-                <input id="sport_facility" list="asutus" class="form-control arrow" value=" <?php foreach ($buildings as $each) {
-                        if(($this->input->get('roomId')== $each->id)){
-                        echo '' . $each->name . '';
-                    }  } ?>">
+                <input id="sport_facility" list="asutus" class="form-control arrow" value="<?php  echo $rooms['name']; ?> ">
                 <datalist id="asutus">
-                    <?php foreach ($buildings as $each) {
+                    <?php foreach ($rooms as $each) {
                         echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
                     }
                     ?>
@@ -35,10 +29,7 @@
 
             <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2">
                 <label for="room">Saal</label>
-                <input id="room" list="saal" class="form-control arrow" value=" <?php foreach ($rooms as $each) {
-                        if(($this->input->get('roomId')== $each->id)){
-                        echo '' . $each->roomName . '';
-                    }  } ?>">
+                <input id="room" list="saal" class="form-control arrow" value="<?php  echo $rooms['roomName']; ?>">
                 <datalist id="saal">
                     <?php foreach ($rooms as $each) {
                         
@@ -56,8 +47,8 @@
         </form>
 
         <div class="col-2 mr-auto p-0">
-            <?php if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'):?>
-            <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" href="<?php echo base_url(); ?>booking/create"><p class="m-0 txt-lg text-center">Uus broneering</p></a>
+            <?php if($this->session->userdata('session_id')===TRUE):?>
+            <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" href="<?php echo base_url(); ?>booking/create/<?php echo ($this->input->get('roomId'));?>"><p class="m-0 txt-lg text-center">Uus broneering</p></a>
             <?php endif;?>
         </div>
     </div>
