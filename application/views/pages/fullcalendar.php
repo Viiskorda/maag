@@ -57,7 +57,7 @@
 
         <div class="col-2 mr-auto p-0">
             <?php if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'):?>
-            <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" href="<?php echo base_url(); ?>booking/create"><p class="m-0 txt-lg text-center">Uus broneering</p></a>
+            <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" href="<?php echo base_url(); ?>booking"><p class="m-0 txt-lg text-center">Uus broneering</p></a>
             <?php endif;?>
         </div>
     </div>
@@ -313,12 +313,24 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
             selectHelper: true,
             eventRender: function (event, element) {
                     if(event.typeID == 1 || event.typeID == 2) {
-                    element.find('.fc-title').before("<span>Päring: "+moment(event.created_at).format("DD.MM.YYYY HH:mm")+"</span>");
-                }
+                        element.find('.fc-time').before("<span class='timequery'>Päring: "+moment(event.created_at).format("DD.MM.YYYY HH:mm")+"</span>"); // Päringu kirje broneeringu lahtris
+
+                        if (event.approved == true) {
+                            element.css('border-left', '7px solid #1A7AB7');
+                        } else {
+                            element.find('.fc-content').after('<span class="notice notice-error">Kinnitamata</span>');
+                            element.css({ 'background': 'repeating-linear-gradient(-45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1) 10px, rgba(245, 245, 245, 1) 10px, rgba(245, 245, 245, 1) 20px)'});
+                        }
+                    }
+                    if (event.takesPlace == false) {
+                        element.find('.fc-content').after('<span class="notice notice-error">Ei toimu</span>')
+                    }
+
                     if(event.typeID == 4) {
-                        element.css('background-image', 'linear-gradient(45deg, #ebebeb 25%, #e0e0e0 25%, #e0e0e0 50%, #ebebeb 50%, #ebebeb 75%, #e0e0e0 75%, #e0e0e0 100%)');
-                    //   event.rendering = 'background'; 'background-color', '#000'
-                    
+                        element.find('.fc-time').addClass('d-none');
+                        element.find('.fc-title').text('Asutus suletud');
+                        element.css({ 'background': 'repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 55px, rgba(0, 0, 0, 0.07) 55px, rgba(0, 0, 0, 0.07) 110px)', 'border-left': 'none'});
+                        element.find('.fc-content').css({'text-align': 'center'}); 
                 }
             
             },

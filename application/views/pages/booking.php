@@ -24,7 +24,7 @@
                                 <label for="contact">Klubi nimi</label>
                                 <input class="form-control" id="clubname" type="text" name="clubname">
                             </div>
-                            <input class="d-none" type="checkbox" name="type" value="1" checked>
+                            <input class="d-none" type="checkbox" id="type" name="type" value="1" checked>
                             <div class="form-label-group col-6 p-0 pl-5">
                                 <label>Kontaktisik</label>
                                 <input class="form-control" id="contact" name="contactPerson">
