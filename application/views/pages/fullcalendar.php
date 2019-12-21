@@ -162,15 +162,11 @@
                                 <div id="ajad">
                                     <p  class="pt-3 txt-regular">Kuupäev ja kellaajad</p>
                                     <div class="d-flex justify-content-between">
-                                        <div class="col-6 p-0 m-0"><p>Hooaeg alates</p></div>
-                                        <div class="col-6 p-0 m-0">
+                                        <div class="col-6 p-0 m-0"><p>Periood</p></div>
+                                        <div class="col-6 p-0 m-0 d-flex">
                                             <p id="event_in"></p>
                                             <input type="text" class="d-none" name="event_in" id="event_in">
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="col-6 p-0 m-0"><p>Hooaeg kuni</p></div>
-                                        <div class="col-6 p-0 m-0">
+                                            <p>–</p>
                                             <p id="event_out"></p>
                                             <input type="text" class="d-none" name="event_out" id="event_out">
                                         </div>

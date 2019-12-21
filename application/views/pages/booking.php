@@ -101,7 +101,7 @@
                         <div class="mt-4 px-5 mx-5">
                             <div class="form-label-group pb-2 px-0">
                                 <label>Lisainfo</label>
-                                <textarea class="form-control" id="additional" name="additionalComment" rows="5"></textarea>
+                                <textarea class="form-control" id="additional" name="additionalComment" rows="3"></textarea>
                             </div>
                         </div>
 
@@ -228,7 +228,7 @@
                         <div class="mt-4 px-5 mx-5">
                             <div class="form-label-group pb-2 px-0">
                                 <label>Lisainfo</label>
-                                <textarea class="form-control" id="comment2" name="comment2" rows="5"></textarea>
+                                <textarea class="form-control" id="comment2" name="comment2" rows="3"></textarea>
                             </div>
                         </div>
 
@@ -312,13 +312,21 @@
                             </div>
                         </div>
 
+                        <h4 class="mt-5 txt-xl px-5 mx-5">Lisainfo (valikuline) </h4>
+                        <div class="mt-4 px-5 mx-5">
+                            <div class="form-label-group pb-2 px-0">
+                                <label>Lisainfo</label>
+                                <textarea class="form-control" id="comment2" name="comment2" rows="3"></textarea>
+                            </div>
+                        </div>
+
                         <div class="d-flex justify-content-end mt-5 px-5 mx-5">
                             <a class="txt-xl link-deco align-self-center py-0 pr-5 mr-2" href="">Katkesta</a>
                             <input class="btn btn-custom col-3 text-white txt-xl" type="submit" value="Broneeri">
                         </div>
                     </form>
                 </div>
-                                        </div>
+            </div>
 
         </div>
     </div>
