@@ -153,15 +153,11 @@
                                 <div id="ajad">
                                     <p  class="pt-3 txt-regular">Kuupäev ja kellaajad</p>
                                     <div class="d-flex justify-content-between">
-                                        <div class="col-6 p-0 m-0"><p>Hooaeg alates</p></div>
-                                        <div class="col-6 p-0 m-0">
+                                        <div class="col-6 p-0 m-0"><p>Periood</p></div>
+                                        <div class="col-6 p-0 m-0 d-flex">
                                             <p id="event_in"></p>
                                             <input type="text" class="d-none" name="event_in" id="event_in">
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="col-6 p-0 m-0"><p>Hooaeg kuni</p></div>
-                                        <div class="col-6 p-0 m-0">
+                                            <p>–</p>
                                             <p id="event_out"></p>
                                             <input type="text" class="d-none" name="event_out" id="event_out">
                                         </div>
@@ -304,12 +300,24 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
             selectHelper: true,
             eventRender: function (event, element) {
                     if(event.typeID == 1 || event.typeID == 2) {
-                    element.find('.fc-title').before("<span>Päring: "+moment(event.created_at).format("DD.MM.YYYY HH:mm")+"</span>");
-                }
+                        element.find('.fc-time').before("<span class='timequery'>Päring: "+moment(event.created_at).format("DD.MM.YYYY HH:mm")+"</span>"); // Päringu kirje broneeringu lahtris
+
+                        if (event.approved == true) {
+                            element.css('border-left', '7px solid #1A7AB7');
+                        } else {
+                            element.find('.fc-content').after('<span class="notice notice-error">Kinnitamata</span>');
+                            element.css({ 'background': 'repeating-linear-gradient(-45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1) 10px, rgba(245, 245, 245, 1) 10px, rgba(245, 245, 245, 1) 20px)'});
+                        }
+                    }
+                    if (event.takesPlace == false) {
+                        element.find('.fc-content').after('<span class="notice notice-error">Ei toimu</span>')
+                    }
+
                     if(event.typeID == 4) {
-                        element.css('background-image', 'linear-gradient(45deg, #ebebeb 25%, #e0e0e0 25%, #e0e0e0 50%, #ebebeb 50%, #ebebeb 75%, #e0e0e0 75%, #e0e0e0 100%)');
-                    //   event.rendering = 'background'; 'background-color', '#000'
-                    
+                        element.find('.fc-time').addClass('d-none');
+                        element.find('.fc-title').text('Asutus suletud');
+                        element.css({ 'background': 'repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) 55px, rgba(0, 0, 0, 0.07) 55px, rgba(0, 0, 0, 0.07) 110px)', 'border-left': 'none'});
+                        element.find('.fc-content').css({'text-align': 'center'}); 
                 }
             
             },
