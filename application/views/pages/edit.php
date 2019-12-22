@@ -159,19 +159,23 @@
         };
        
 
-        // $(".datepickerUntil").datepicker({
-        //     language: "et-EE",
-        //     autoHide: true,
-        //     date: dateToShow,
-        //     autoPick: true,
-        // });
-
-        // $(".datePicker").datepicker({
-        //     language: "et-EE",
-        //     autoHide: true,
-        //     date: new Date(),
-        //     autoPick: true,
-        // });
+        $(".datePicker").datepicker({
+                                language: "et-EE", 
+                                autoHide: true, 
+                                date: new Date(), 
+                                autoPick: false
+                            });
+                            $('.clock').clockTimePicker({
+                                duration: true,
+                                durationNegative: true,
+                                precision: 15,
+                                i18n: {
+                                    cancelButton: 'Abbrechen'
+                                },
+                                onAdjust: function(newVal, oldVal) {
+                                    //...
+                                }
+                            });
 
          //   var eventToModificate = "<?php echo base_url(); ?>edit/load/<?php print_r($_POST['timesIdArray'][0])?>";
             var resConflicts =[];
@@ -183,6 +187,8 @@
             // var urltoload =  "<?php echo base_url(); ?>fullcalendar/load/1";
             // console.log(urltoload+" konfliktid");
             var datafrom = ['<?=implode("', '", $arr2)?>'];
+          
+                  
             $.post("<?php echo base_url(); ?>edit/load/<?php print_r($_POST['timesIdArray'][0])?>",
                 function(data)
                 {
@@ -263,28 +269,12 @@
                             ConflictID.push(obj.timeID);
                             publicInfo.push(obj.title);
                             counter++;
-                            $(".datePicker").datepicker({
-                                language: "et-EE", 
-                                autoHide: true, 
-                                date: new Date(), 
-                                autoPick: false
-                            });
-                            $('.clock').clockTimePicker({
-                                duration: true,
-                                durationNegative: true,
-                                precision: 15,
-                                i18n: {
-                                    cancelButton: 'Abbrechen'
-                                },
-                                onAdjust: function(newVal, oldVal) {
-                                    //...
-                                }
-                            });
+                        
                         }
 
                        
                     } 
-                  
+                   
                         $.ajax({
                         url: "<?php echo base_url(); ?>edit/loadAllRoomBookingTimes/"+res[1].roomID,
                         dataType: 'json',
