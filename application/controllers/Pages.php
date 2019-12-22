@@ -15,9 +15,9 @@ class Pages extends CI_Controller
                 }
 
                 $data['title'] = ucfirst($page); // Capitalize the first letter
-
-               	$roomid=$this->input->get('roomID');
-                $data['rooms'] = $this->pages_model->getAllRooms();
+                $roomid=$this->input->get('roomId');
+                $data['rooms'] = $this->pages_model->getAllRooms($roomid);
+                $data['regions'] = $this->pages_model->getAllRegions();
                 //print_r($data['rooms']);
                 $this->load->view('templates/header', $data);
                 $this->load->view('pages/' . $page, $data);

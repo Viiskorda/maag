@@ -18,15 +18,26 @@ class Pages_model extends CI_Model
         }
         return $output;
     }
-	function getAllRooms()
+	function getAllRooms($roomid)
     {
-	
+      
+        $this->db->where('rooms.id', $roomid);
 		$this->db->join('buildings', 'rooms.buildingID = buildings.id' , 'left');
-		$this->db->join('regions', 'buildings.id = regions.regionID' , 'left');
+		$this->db->join('regions', 'buildings.regionID = regions.regionID' , 'left');
 		$query = $this->db->get('rooms');
 		return $query->row_array();
       
 	}
+
+    function getAllRegions()
+    {
+        // ennem tegin nagu allpool (allikas: https://stackoverflow.com/questions/19922143/display-data-from-database-to-dropdown-codeigniter)
+        // $query = $this->db->query('SELECT name FROM regions');
+        // return $query->result();
+        $this->db->order_by('regionID');
+        $query = $this->db->get('regions');
+        return $query->result();
+    }
 
     function fetch_building($state_id)
     {
