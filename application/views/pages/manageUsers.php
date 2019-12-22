@@ -8,15 +8,15 @@
 
         <table class="table-borderless table-users mt-3">
             <thead class="bg-grey border-bottom ">
-            <tr>
-                <th class="pl-3 py-2 txt-strong text-darkblue" scope="col">Nimi</th>
-                <th class="py-2 txt-strong text-darkblue" scope="col">Email</th>
-                <th class="py-2 txt-strong text-darkblue" scope="col">Telefon</th>
-                <th class="py-2 txt-strong text-darkblue" scope="col">Asutus</th>
-                <th class="py-2 txt-strong text-darkblue" scope="col">Roll</th>
-                <th class="py-2 txt-strong text-darkblue" scope="col">Staatus</th>
-                <th class="py-2 txt-strong text-darkblue" scope="col"></th>
-            </tr>
+                <tr>
+                    <th class="pl-3 py-2 txt-strong text-darkblue" scope="col">Nimi</th>
+                    <th class="py-2 txt-strong text-darkblue" scope="col">Email</th>
+                    <th class="py-2 txt-strong text-darkblue" scope="col">Telefon</th>
+                    <th class="py-2 txt-strong text-darkblue" scope="col">Asutus</th>
+                    <th class="py-2 txt-strong text-darkblue" scope="col">Roll</th>
+                    <th class="py-2 txt-strong text-darkblue" scope="col">Staatus</th>
+                    <th class="py-2 txt-strong text-darkblue" scope="col"></th>
+                </tr>
             </thead>
             <tbody class="">
             <?php foreach($manageUsers as $singleUser) : ?>

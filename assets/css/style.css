@@ -74,6 +74,11 @@
     border-color: #C7C7C7 #C7C7C7 #FBFBFB;
   }
 
+  .nav-tabs .single-tab.active{
+    background-color: #FBFBFB;
+    border-color: #C7C7C7 #C7C7C7 #FBFBFB #FBFBFB !important;
+  }
+
   .nav-tabs .nav-link:hover{
     border-color:#C7C7C7 #C7C7C7 #FBFBFB;
   }
@@ -83,6 +88,10 @@
   /* TAUSTAD */
   .bg-grey {
     background-color: #E0E0E2;
+  }
+
+  .bg-blue {
+    background-color: #1A7AB7;
   }
 
   .form-bg {
@@ -134,11 +143,37 @@
     color: #FBFBFB;
   }
 
+  .text-red {
+    color: #9E3253 !important;
+  }
+
   .text-darkblue {
     color: #0B3954 !important;
   }
   /* TEXT AND LINK */
 
+  #myTable.table td.conflict {
+    /* margin-top: -10px; */
+    color: #9E3253;
+  }
+
+  #myTable.table td,.table th{
+    padding:0;
+    padding-bottom: 9px;
+    vertical-align: middle;
+    border: none;}
+
+  .td-width-s {
+    width: 15%;
+  }
+
+  .td-width-s {
+    width: 20%;
+  }
+
+  .td-width-l {
+    width: 25%x;
+  }
 
 /* BROWSERI DEFAULT NOOLEKESE NULLIMINE */
   input::-webkit-calendar-picker-indicator {
@@ -405,14 +440,14 @@
     left: 0;
     z-index: 1030;
     background-color: rgb(128, 128, 128);
-    opacity:0.3;
+    opacity:0.2;
 }
 
   .modal.left .modal-dialog {
     top:37px;
 		position: fixed;
 		margin: auto;
-		width: 50%;
+		width: 460px;
 		height: 100%;
 		-webkit-transform: translate3d(0%, 0, 0);
 		-ms-transform: translate3d(0%, 0, 0);
@@ -476,59 +511,30 @@
   } */
   
   .accordion a::after {
-    /* font-family: 'Ionicons'; */
     content: '';
     background-image: url('../img/chevron-down-solid.svg');
-    transform: rotate(-0.25turn);
-    /* background-size:contain;
-    height: 30px;
-    width: 30px; */
+    background-size:contain;
+    background-repeat: no-repeat;
+    height: 25px;
+    width: 25px;
     position: absolute;
-    /* float: right; */
     left: 10rem;
-    font-size: 1rem;
-    color: #7288a2;
-    padding: 5px;
-    width: 27px;
-    height: 30px;
-    /* -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    border: 1px solid #7288a2; */
-    text-align: center;
-    
+    margin: 0;
+    padding: 0;
+    transform: rotate(-0.25turn);
   }
-
-  /* .brdr {
-    -moz-appearance:none;
--webkit-appearance:none;
--o-appearance:none;
-    width: 15px;
-    height: 15px;
-    font-size:25px;
-    color:#FF0084;
-    outline: 2px solid #1e5180
-    
-  } */
   
   .accordion a.active::after {
-    /* font-family: 'Ionicons';
-    content: '\f209';
-    color: #03b5d2;
-    border: 1px solid #03b5d2; */
     content: '';
     background-image: url('../img/chevron-down-solid.svg');
-    /* background-size:contain;
-    height: 30px;
-    width: 30px; */
+    background-size:contain;
+    background-repeat: no-repeat;
+    height: 25px;
+    width: 25px;
     position: absolute;
-    /* float: right; */
     left: 10rem;
-    font-size: 1rem;
-    color: #7288a2;
-    padding: 5px;
-    width: 27px;
-    height: 30px;
+    margin: 0;
+    padding: 0;
     transform: rotate(0turn);
   }
   
