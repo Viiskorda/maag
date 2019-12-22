@@ -138,13 +138,12 @@
           
           
             });
-
-        $("removeclass").click(function(e) { //user click on remove text
-            console.log("click");
+            $(document).on('click', '.removeclass', function (e) {
+    
            
-                $(this).parent('tr').remove(); //remove text box
-               
-        });
+           $(this).parent().parent().remove(); //remove text box
+            });
+      
 
 
 
@@ -183,7 +182,7 @@
            
             // var urltoload =  "<?php echo base_url(); ?>fullcalendar/load/1";
             // console.log(urltoload+" konfliktid");
-
+            var datafrom = ['<?=implode("', '", $arr2)?>'];
             $.post("<?php echo base_url(); ?>edit/load/<?php print_r($_POST['timesIdArray'][0])?>",
                 function(data)
                 {
@@ -206,7 +205,7 @@
                                 return new Date(`${MM}/${dd}/${yyyy} ${hh}:${mm}`);
                      };
 
-                    var datafrom = ['<?=implode("', '", $arr2)?>'];
+                   
                     console.log(datafrom);
                     for (var i = 0, l = res.length; i < l; i++) {
                         var obj = res[i];
@@ -255,10 +254,10 @@
 
                         
                         var n = datafrom.includes(BTimesid);
-                            console.log(n);
+                            console.log(BTimesid);
                         if(n){
                             console.log(i);
-                            $('#myTable > tbody').append(' <tr id="'+BTimesid+'"> <td class="td-width-l">'+days[new Date(start).getDay()]+', '+moment(start).format("DD.MM.YYYY")+'</td><td class="td-width-m">'+moment(start).format("HH.mm")+'–'+moment(end).format("HH.mm")+'</td><td class="td-width-s pl-3"><input class="datePicker form-control p" id="time_'+BTimesid+'" data-toggle="datepicker" name="bookingtimesFrom['+counter+']"  value="'+moment(start).format("DD.MM.YYYY")+'"></td><td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeStart[]" id="timestartfield" value="'+moment(start).format("HH.mm")+'"></td>  <td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeEnd[]" id="timeendfield_1" value="'+moment(end).format("HH.mm")+'"></td></tr>');
+                            $('#myTable > tbody').append(' <tr id="'+BTimesid+'"> <td class="td-width-l">'+days[new Date(start).getDay()]+', '+moment(start).format("DD.MM.YYYY")+'</td><td class="td-width-m">'+moment(start).format("HH.mm")+'–'+moment(end).format("HH.mm")+'</td><td class="td-width-s pl-3"><input class="datePicker form-control p" id="time_'+BTimesid+'" data-toggle="datepicker" name="bookingtimesFrom['+counter+']"  value="'+moment(start).format("DD.MM.YYYY")+'"></td><td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeStart[]" id="timestartfield'+i+'" value="'+moment(start).format("HH.mm")+'"></td>  <td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeEnd[]" id="timeendfield_'+i+'" value="'+moment(end).format("HH.mm")+'"></td></tr>');
                             resConflicts.push(start.replace('T',' ').substring(0, 16));
                             res2Conflicts.push(end.replace('T',' ').substring(0, 16));
                             ConflictID.push(obj.timeID);
