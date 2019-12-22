@@ -128,14 +128,32 @@
             //max input box allowed
                 FieldCount++;
                 //add input box
-                $('#myTable > tbody').append('<tr> <td class="td-width-l"></td><td class="td-width-m"><span class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></span></td><td class="td-width-s pl-3"><input class="datePicker form-control p" id="date_' + FieldCount + '" data-toggle="datepicker" name="bookingtimesFrom[' + FieldCount + ']"  value=""></td><td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeStart[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"value="<?php echo date("H:i"); ?>"></td>  <td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeEnd[' + FieldCount + ']" id="timeendfield_' + FieldCount + '"value="<?php echo date("H:i", strtotime('+90 minutes')); ?>"></td></tr>');
-                $(".datePicker").datepicker({
+                $('#myTable > tbody').append('<tr> <td class="td-width-l"></td><td class="td-width-m"><span class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></span></td><td class="td-width-s pl-3"><input class="datePicker form-control p" id="date_' + FieldCount + '" data-toggle="datepicker" name="bookingtimesFrom[' + FieldCount + ']"  value="<?php echo date("d.m.Y"); ?>"></td><td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeStart[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"value="<?php echo date("H:i"); ?>"></td>  <td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeEnd[' + FieldCount + ']" id="timeendfield_' + FieldCount + '"value="<?php echo date("H:i", strtotime('+90 minutes')); ?>"></td></tr>');
+                var once=false;
+                $('.datePicker, .clock').focusin(function () {
+                    if (once==false){
+                    $(".datePicker").datepicker({
                     language: "et-EE", 
                     autoHide: true, 
                     date: new Date(), 
                     autoPick: true
                 });
-          
+         
+                    $('.clock').clockTimePicker({
+                        duration: true,
+                        durationNegative: true,
+                        precision: 15,
+                        i18n: {
+                            cancelButton: 'Abbrechen'
+                        },
+                        onAdjust: function(newVal, oldVal) {
+                            //...
+                        }
+                    });
+                }
+                        once=true;
+                    }); 
+                    
           
             });
             $(document).on('click', '.removeclass', function (e) {
@@ -159,23 +177,7 @@
         };
        
 
-        $(".datePicker").datepicker({
-                                language: "et-EE", 
-                                autoHide: true, 
-                                date: new Date(), 
-                                autoPick: false
-                            });
-                            $('.clock').clockTimePicker({
-                                duration: true,
-                                durationNegative: true,
-                                precision: 15,
-                                i18n: {
-                                    cancelButton: 'Abbrechen'
-                                },
-                                onAdjust: function(newVal, oldVal) {
-                                    //...
-                                }
-                            });
+      
 
          //   var eventToModificate = "<?php echo base_url(); ?>edit/load/<?php print_r($_POST['timesIdArray'][0])?>";
             var resConflicts =[];
@@ -297,6 +299,7 @@
                                 
                                 // iga selle aja kohta tuleb kontrollida ajaxi aega"
                                 for (var t = 0; t < resConflicts.length; t++) {
+                                    
                                 var checkDateTime = toDate(resConflicts[t]); //magic date
                                 var checkDateTime2 = toDate(res2Conflicts[t]); //magic date
                                
@@ -313,6 +316,8 @@
                                     //Do something
                                 };
 
+                                
+
                               //  console.log(isBetween(checkDateTime,startDateTime,endDateTime) + " esimene kord ");
                                
                              //   $('#myTable #'+timeIDofConflict).append("siin on konflikt");
@@ -327,9 +332,31 @@
                             alert('Oops there was an error');
                         }
                     });
-               
+                    var once=false;
+                    $('.datePicker, .clock').focusin(function () {
+                        if (once==false){
+                        $(".datePicker").datepicker({
+                                language: "et-EE", 
+                                autoHide: true, 
+                                date: new Date(), 
+                                autoPick: false
+                            });
+                            $('.clock').clockTimePicker({
+                                duration: true,
+                                durationNegative: true,
+                                precision: 15,
+                                i18n: {
+                                    cancelButton: 'Abbrechen'
+                                },
+                                onAdjust: function(newVal, oldVal) {
+                                    //...
+                                }
+                            });
+                        }
+                        once=true;
 
-
+                    }); 
+                  
 
                         //alert(res.values());
                       //  console.log(Object.prototype.toString.call(res));
