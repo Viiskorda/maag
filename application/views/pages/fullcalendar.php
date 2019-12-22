@@ -910,13 +910,16 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                                 var myForm = document.getElementById('change');
 
                                 timesIdArray.forEach(function (value) {
-                                var hiddenInput = document.createElement('input');
+                                    if(!isNaN(value)){
+                                        var hiddenInput = document.createElement('input');
 
-                                hiddenInput.type = 'hidden';
-                                hiddenInput.name = 'timesIdArray[]';
-                                hiddenInput.value = value;
+                                    hiddenInput.type = 'hidden';
+                                    hiddenInput.name = 'timesIdArray[]';
+                                    hiddenInput.value = value;
 
-                                myForm.appendChild(hiddenInput);
+                                    myForm.appendChild(hiddenInput);
+                                    };
+                            
                                 });
 
                                 $('#change').submit();
@@ -1037,7 +1040,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                 return this.value == val;
             }).data('value');
         //       console.log(xyz);
-            window.location.href = 'https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/fullcalendar?roomId='+xyz+'&date='+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY');
+            window.location.href =  '<?php echo base_url(); ?>fullcalendar?roomId='+xyz+'&date='+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY');
         } else {
         //    console.log("dismatch");
         }
@@ -1056,11 +1059,7 @@ dayClick: function (date, jsEvent, view) {
     
     
     $("#datepicker").val('<?php echo ($this->input->get('date')); ?>');
-    // $("#date").change( function(){
-    //   //  window.location.href = 'https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/fullcalendar?roomId=<?php //echo ($this->input->get('date'));?>&date='+$(this);
-    //   console.log('https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date='+$(this));
-    //   console.log("tavakas teskt");
-    // });
+   
 
 
     $('#datepicker').datepicker()

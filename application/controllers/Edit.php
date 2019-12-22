@@ -75,7 +75,7 @@ class Edit extends CI_Controller {
 				'email'	=>	$row['c_email'],
 				'workout'	=>	$row['workout'],
 				'created_at'	=>	$row['created_at'],
-				 'selectedroom'	=>	$row['name'],
+				 'comment'	=>	$row['comment'],
 				 'building'	=>	$row['name'],
 				 'roomName'	=>	$row['roomName'],
 				 'bookingID'	=>	$row['bookingID'],
@@ -144,6 +144,7 @@ class Edit extends CI_Controller {
 				'organizer' => $this ->input->post('organizer'),
 				'c_phone' => $this ->input->post('phone'),
 				'c_email' => $this ->input->post('email'),
+				'comment' => $this ->input->post('additionalComment'),
 				
 				//'building' => $this ->input->post('building'), //pole seda formis
 				

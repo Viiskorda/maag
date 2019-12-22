@@ -1,4 +1,5 @@
 <div class="container">
+
     <div id="forms" class="container-md pb-5">
         <div id="nav-tabs" class="mt-5 pb-5 form-bg">
             <div class="d-flex mb-5">
@@ -37,18 +38,18 @@
                 <div class="d-flex mt-4 px-5 mx-5">
                     <div class="form-label-group col-6 py-0 pl-0 pr-5">
                         <label for="sport_facility">Asutus</label>
-                        <input id="sport_facility" class="form-control" list="asutus" id="building" disabled>
-                            <datalist id="asutus">
-                            <?php foreach ($buildings as $each) {
-                                echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
-                            }
+                        <input id="sport_facility" class="form-control" list="asutus" disabled  value="">
+                            <!-- <datalist id="asutus">
+                            <?php //foreach ($buildings as $each) {
+                               // echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
+                            //}
                             ?>
-                            </datalist>
+                            </datalist> -->
                     </div>
 
                     <div class="form-label-group col-6 p-0 pl-5">
                         <label for="room">Saal</label>
-                        <input type="text" class="form-control" name="selectedroom" id="selectedroom" value="">
+                        <input type="text" class="form-control" name="selectedroom" id="selectedroom" value="" disabled>
                     </div>
                 </div>
 
@@ -113,7 +114,6 @@
 </div>
 
 
-  
 <?php $arr2 = array(); foreach (array_slice($_POST['timesIdArray'], 1) as $key=>$value) {   $arr2[] = $value; }?>
    
 
@@ -217,7 +217,7 @@
                      };
 
                    
-                    console.log(datafrom);
+                 //   console.log(datafrom);
                     for (var i = 0, l = res.length; i < l; i++) {
                         var obj = res[i];
                        // console.log(obj);
@@ -242,12 +242,16 @@
                         //     $('#eventOut').val(moment(obj.event_out).format('DD/MM/YYYY HH:mm'));
                         // }
                         $('#phone').val(obj.phone);
-                     
+                        $('#additional').val(obj.comment);
+                   
                         $('#email').val(obj.email);
                         $('#created_at').val(obj.created_at);
                         $('#workoutType').val(obj.workout);
-                        document.getElementById("selectedroom").value = obj.roomID;
+                        document.getElementById("selectedroom").value = obj.roomName;
+                   //     document.getElementById("building").value = obj.roomName;
+                        $('#sport_facility').val(obj.building);
                         document.getElementById("roomID").value = obj.roomID;
+                        
                         // $('#start').val(obj.start);
                         // $('#timestartfield').val(obj.start);
                      //   $('#building').val(obj.building);
@@ -265,9 +269,9 @@
 
                         
                         var n = datafrom.includes(BTimesid);
-                            console.log(BTimesid);
+                        //    console.log(BTimesid);
                         if(n){
-                            console.log(i);
+                       //     console.log(i);
                             $('#myTable > tbody').append(' <tr id="'+BTimesid+'"> <td class="td-width-l"><b>'+days[new Date(start).getDay()]+'</b>, '+moment(start).format("DD.MM.YYYY")+'</td><td class="td-width-m">'+moment(start).format("HH.mm")+'–'+moment(end).format("HH.mm")+'</td><td class="td-width-s pl-3"><input class="datePicker form-control p" id="time_'+BTimesid+'" data-toggle="datepicker" name="bookingtimesFrom['+counter+']"  value="'+moment(start).format("DD.MM.YYYY")+'"></td><td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeStart[]" id="timestartfield'+i+'" value="'+moment(start).format("HH.mm")+'"></td>  <td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeEnd[]" id="timeendfield_'+i+'" value="'+moment(end).format("HH.mm")+'"></td></tr>');
                             resConflicts.push(start.replace('T',' ').substring(0, 16));
                             res2Conflicts.push(end.replace('T',' ').substring(0, 16));
@@ -279,9 +283,9 @@
 
                        
                     } 
-                   
+               
                         $.ajax({
-                        url: "<?php echo base_url(); ?>edit/loadAllRoomBookingTimes/"+res[1].roomID,
+                        url: "<?php echo base_url(); ?>edit/loadAllRoomBookingTimes/"+res[0].roomID,
                         dataType: 'json',
                         success: function(json) {
                             // Rates are in `json.rates`
