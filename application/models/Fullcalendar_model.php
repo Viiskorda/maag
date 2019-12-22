@@ -10,11 +10,19 @@ class Fullcalendar_model extends CI_Model
 		return $this->db->get('bookingTimes');
 	}
 
-	function getAllRooms()
+	function getAllRooms($id)
     {
-        $query = $this->db->get('rooms');
-        return $query->result();
-    }
+		$this->db->where('id', $id);
+		$this->db->join('buildings', 'rooms.buildingID = buildings.id' , 'left');
+		$this->db->join('regions', 'buildings.id = regions.regionID' , 'left');
+		$query = $this->db->get('rooms');
+		return $query->result();
+      
+	}
+
+  
+
+
 
 	function insert_event($data)
 	{
@@ -91,18 +99,6 @@ class Fullcalendar_model extends CI_Model
 
 
 
-
-    function getAllRegions()
-    {
-        $this->db->order_by('id');
-        $query = $this->db->get('regions');
-        return $query->result();
-    }
-	function getAllBuildings()
-    {
-        $query = $this->db->get('buildings');
-        return $query->result();
-    }
 
 
 }

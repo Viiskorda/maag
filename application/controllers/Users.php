@@ -117,12 +117,14 @@
 					$validate = $this->user_model->validate($email,$password);
 					if($validate->num_rows() > 0){
 						$data  = $validate->row_array();
-						$name  = $data['name'];
+						$name  = $data['userName'];
+						$phone  = $data['userPhone'];
 						$building  = $data['buidingID'];
 						$email = $data['email'];
 						$roleID = $data['roleID'];
 						$sesdata = array(
-							'username'  => $name,
+							'userName'  => $name,
+							'phone'  => $phone,
 							'email'     => $email,
 							'building'     => $building,
 							'roleID'     => $roleID,

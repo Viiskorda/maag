@@ -27,6 +27,15 @@ public function getAllRooms()
 	return $query->result();
 }
 
+
+public function getTheRoom($id)
+{
+	$this->db->where('rooms.id',$id);
+	$this->db->join('buildings', 'rooms.buildingID = buildings.id' , 'left');
+	$query = $this->db->get('rooms');
+	return $query->result();
+}
+
 public function getAllBuildings()
     {
         $query = $this->db->get('buildings');

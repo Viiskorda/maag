@@ -10,7 +10,9 @@
                 <ul class="nav nav-tabs nav-justified col-12 bg-grey">
                     <li class="nav-item"><a  class="nav-link link txt-lg  active" href="#mitmekordne" data-toggle="tab">Ühekordne borneering</a></li>
                     <li class="nav-item"><a  class="nav-link link txt-lg" href="#hooajaline" data-toggle="tab">Hooajaline borneering</a></li>
+                    <?php if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'):?>
                     <li class="nav-item"><a  class="nav-link link txt-lg" href="#suletud" data-toggle="tab">Suletud borneering</a></li>
+                    <?php endif;?>
                 </ul>
             </div>
 
@@ -21,24 +23,24 @@
                         <h4 class="pt-2 txt-xl px-5 mx-5">Kontakt</h4>
                         <div class="d-flex p-0 mt-4 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
-                                <label for="contact">Klubi nimi</label>
+                                <label for="contact">Klubi nimi (Avalik info)</label>
                                 <input class="form-control" id="clubname" type="text" name="clubname">
                             </div>
                             <input class="d-none" type="checkbox" id="type" name="type" value="1" checked>
                             <div class="form-label-group col-6 p-0 pl-5">
                                 <label>Kontaktisik</label>
-                                <input class="form-control" id="contact" name="contactPerson">
+                                <input class="form-control" id="contact" name="contactPerson" value="<?php echo $this->session->userdata('userName');?>">
                             </div>
                         </div>
                         <div class="d-flex mt-2 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label>Telefoni number</label>
-                                <input class="form-control" id="phone" name="phone">
+                                <input class="form-control" id="phone" name="phone" value="<?php echo $this->session->userdata('phone');?>">
                             </div>
 
                             <div class="form-label-group col-6 p-0 pl-5">
                                 <label>Email</label>
-                                <input class="form-control" id="email" name="email">
+                                <input class="form-control" id="email" name="email" value="<?php echo $this->session->userdata('email');?>">
                             </div>
                         </div>
 
@@ -46,7 +48,7 @@
                         <div class="d-flex mt-4 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label for="sport_facility">Asutus</label>
-                                <input id="sport_facility" class="form-control" list="asutus" id="building" disabled>
+                                <input id="sport_facility" class="form-control" list="asutus" id="building" disabled value="<?php echo $selectedRoom[0]->name;?>">
                                     <datalist id="asutus">
                                     <?php foreach ($buildings as $each) {
                                         echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
@@ -57,7 +59,7 @@
 
                             <div class="form-label-group col-6 p-0 pl-5">
                                 <label for="room">Saal</label>
-                                <select id="room" list="saal" name="sportrooms" class="form-control arrow">
+                                <select id="room" list="saal" name="sportrooms" class="form-control arrow" value="<?php echo $selectedRoom[0]->roomName;?>">
                                     <?php foreach ($rooms as $each) {
                                                 echo '<option value="' . $each->id . '">' . $each->roomName . '</option>';
                                             } ?>
@@ -118,7 +120,7 @@
                         <h4 class="pt-2 txt-xl px-5 mx-5">Kontakt</h4>
                         <div class="d-flex px-5 mx-5 mt-4">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
-                                <label for="contact">Klubi nimi</label>
+                                <label for="contact">Klubi nimi (Avalik info)</label>
                                 <input class="form-control" id="clubname" type="text" name="clubname">
                             </div>
 
@@ -390,7 +392,7 @@
             if (x <= MaxInputs) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $('#InputsWrapper').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="datePicker col-5 form-control" id="datefield_' + FieldCount + '" data-toggle="datepicker" name="workoutDate[]"><a href="#" class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></a><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="begin[]" id="timestartfield_' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="end[]" min="08:00" max="22:00" id="timeendfield_' + FieldCount + '" value=""></div></div>');
+                $('#InputsWrapper').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="datePicker col-5 form-control" id="datefield_' + FieldCount + '" data-toggle="datepicker" name="workoutDate[]"><a href="#" class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></a><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="begin[]" id="timestartfield_' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="end[]" min="08:00" max="22:00" id="timeendfield_' + FieldCount + '" value="<?php echo date("H:i", strtotime('+90 minutes'));?>"></div></div>');
 
                 $(".datePicker").datepicker({
                     language: "et-EE", 
@@ -455,7 +457,7 @@
             if (y <= maxPeriod) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $('#dateContainer').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="form-control col-5 arrow" id="sport_facility2" list="weekdays" name="weekday[]"><datalist id="weekdays"><option data-value="1" value="Esmaspäev"></option><option data-value="2" value="Teisipäev"></option><option data-value="3" value="Kolmapäev"></option><option data-value="4" value="Neljapäev"></option><option data-value="5" value="Reede"></option><option data-value="6" value="Laupäev"></option><option data-value="7" value="Pühapäev"></option></datalist><a href="#" class="removeclass1 col-1 pl-1 pr-5"><span class="icon-cancel"></span></a><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="timesStart[]" id="from' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="timeTo[]" id="until' + FieldCount + '" value=""></div></div>');
+                $('#dateContainer').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="form-control col-5 arrow" id="sport_facility2" list="weekdays" name="weekday[]"><datalist id="weekdays"><option data-value="1" value="Esmaspäev"></option><option data-value="2" value="Teisipäev"></option><option data-value="3" value="Kolmapäev"></option><option data-value="4" value="Neljapäev"></option><option data-value="5" value="Reede"></option><option data-value="6" value="Laupäev"></option><option data-value="7" value="Pühapäev"></option></datalist><a href="#" class="removeclass1 col-1 pl-1 pr-5"><span class="icon-cancel"></span></a><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="timesStart[]" id="from' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="timeTo[]" id="until' + FieldCount + '" value="<?php echo date("H:i", strtotime('+90 minutes'));?>"></div></div>');
 
                 $('.clock').clockTimePicker({
                     duration: true,
@@ -508,7 +510,7 @@
             if (z <= maxClosed) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $('#closeContainer').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="form-control col-5 arrow" id="sport_facility2" list="weekdays" name="weekday[]"><datalist id="weekdays"><option data-value="1" value="Esmaspäev"></option><option data-value="2" value="Teisipäev"></option><option data-value="3" value="Kolmapäev"></option><option data-value="4" value="Neljapäev"></option><option data-value="5" value="Reede"></option><option data-value="6" value="Laupäev"></option><option data-value="7" value="Pühapäev"></option></datalist><a href="#" class="removeclass2 col-1 pl-1 pr-5"><span class="icon-cancel"></span></a><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="timesStart[]" id="from' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="timeTo[]" id="until' + FieldCount + '" value=""></div></div>');
+                $('#closeContainer').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="form-control col-5 arrow" id="sport_facility2" list="weekdays" name="weekday[]"><datalist id="weekdays"><option data-value="1" value="Esmaspäev"></option><option data-value="2" value="Teisipäev"></option><option data-value="3" value="Kolmapäev"></option><option data-value="4" value="Neljapäev"></option><option data-value="5" value="Reede"></option><option data-value="6" value="Laupäev"></option><option data-value="7" value="Pühapäev"></option></datalist><a href="#" class="removeclass2 col-1 pl-1 pr-5"><span class="icon-cancel"></span></a><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="timesStart[]" id="from' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="timeTo[]" id="until' + FieldCount + '" value="<?php echo date("H:i", strtotime('+90 minutes'));?>"></div></div>');
 
                 $('.clock').clockTimePicker({
                     duration: true,

@@ -13,10 +13,9 @@ class Fullcalendar extends CI_Controller {
 
 	function index()
 	{//	$data['title'] = "Hello Everyone!";
-		$data['rooms'] = $this->fullcalendar_model->getAllRooms();
-		$data['regions'] = $this->fullcalendar_model->getAllRegions();
-		$data['buildings'] = $this->fullcalendar_model->getAllBuildings();
-
+		$roomid=$this->input->get('roomID');
+		$data['rooms'] = $this->fullcalendar_model->getAllRooms($roomid);
+	
 		
 		$this->load->view('templates/header',$data);
 		$this->load->view('pages/fullcalendar',$data);

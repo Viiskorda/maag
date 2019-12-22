@@ -12,7 +12,7 @@ class Home_model extends CI_Model
         // return $query->result();
 
 
-        $this->db->order_by('id');
+        $this->db->order_by('regionID');
         $query = $this->db->get('regions');
         return $query->result();
     }
