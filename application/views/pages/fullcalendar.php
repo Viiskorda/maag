@@ -3,11 +3,11 @@
     <div class="d-flex pt-4 pb-2" id="widthToggle">
         <form class="d-flex flex-row vol-md-11 col-lg-10 p-0" action="fullcalendar" method="get">
             <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2">
-        
+  
                 <label for="region">Piirkond</label>
-                <input id="region" list="regions" class="form-control arrow" type="text" value="<?php  echo $rooms['regionName']; ?>">
+                <input id="region" list="regions" class="form-control arrow" type="text" value="<?php echo $rooms['regionName']; ?>">
                 <datalist id="regions">
-                    <?php foreach ($rooms as $row) {
+                    <?php foreach ($regions as $row) {
                         echo '<option  data-value="' . $row->regionID . '" value="' . $row->regionName . '"></option>';
                     }
                     ?>
@@ -17,7 +17,7 @@
 
             <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2">
                 <label for="sport_facility">Asutus</label>
-                <input id="sport_facility" list="asutus" class="form-control arrow" value="<?php  echo $rooms['name']; ?> ">
+                <input id="sport_facility" list="asutus" class="form-control arrow" value="<?php echo $rooms['name']; ?> ">
                 <datalist id="asutus">
                     <?php foreach ($rooms as $each) {
                         echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
