@@ -1,4 +1,5 @@
-  <div class="modal fade" id="myModal" role="dialog">
+ <!-- seda modalit siin oleks vaja selleks, et kujundada alerti juhul, kui saali kustutamisel peaks olema aktiivseid broneeringuid. Kahjuks ma ei saanud seda tööle :(  ) -->
+ <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -22,6 +23,7 @@
   <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Launch
     Modal Login Form</a>
 </div>
+
 
 
 <form id="change" method="post" action="<?php echo base_url(); ?>building/update">
@@ -63,13 +65,21 @@
                                 <div class="form-group">
                                   
                                   <div class="col-md-12 ui-front"  id="wrapper">
-
-                                <?php foreach ($editBuildings as $value) {
-                                  echo  '<input type="button" class="btn btn-outline-secondary"   value="'. $value['roomName'].'"> ';}?>
+                                <p>Saalid</p>
+                                <?php foreach ($editBuildings as $value) {?>
+                                <input type="text" class="col-md-3" name="rooms[]"  value="<?php echo $value['roomName'];?>"> 
+                              
+                                  <input type="button" id="active<?php echo $value['id'];?>" class="btn btn-primary" value="Aktiivne"> 
+                               
+                                  <form class="cat-delete pl-1" action="buildings/deleteRoom/<?php echo $value['id']; ?>" method="POST">
+                                   <input type="button" id="delete<?php echo $value['id'];?>" class="btn btn-danger" value="Kustuta"></button><br> <?php }; ?>
+                                   </form>
 
                                    <input type="text" class="btn btn-outline-secondary" name="addRoomForm" id="addRoomForm" value=""/>
+                            
                                    <input type="button" class="btn btn-success" name="openModal" id="openModal"  value="+ Lisa saal">
-                                </div>    </div>
+                                </div>   
+                               </div>
                               
 
 
@@ -116,27 +126,7 @@ $( "#openModal" ).click(function(e) {
 
 });
 
-$("#insertNewRoom").click(function(e) {
-    e.preventDefault();
-    $(this).data('clicked', true);
-    console.log( 'tere <?php foreach ($editBuildings as $value) {echo $value['buildingID'];break;}?>');
-    $.ajax({
-        type: "POST",
-        url: "/pages/test/",
-        data: { 
-            id: '<?php foreach ($editBuildings as $value) {echo $value['buildingID'];break;}?>',
-            roomName: $("#addRoomForm").val() 
-        },
-        success: function(result) {
-          console.log("veel");
-       
-          $( this ).remove();
-        },
-        error: function(result) {
-            alert('error');
-        }
-    });
-});
+
 
 
 </script>

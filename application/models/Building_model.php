@@ -75,6 +75,15 @@
 				
 			);
 			$this->db->where('id', $this->input->post('id'));
+
+			$data2 = array(
+				'name' => $this->input->post('building'),
+				'contact_email' => $this->input->post('email'),
+				'phone' => $this->input->post('phone'),
+				'notify_email' => $this->input->post('notifyEmail'),
+				
+			);
+
 			return $this->db->update('buildings', $data);
 		}
 
