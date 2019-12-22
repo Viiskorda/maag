@@ -26,9 +26,49 @@
                     </div>
                     <div class="form-label-group mt-3 pl-5">
                         <label for="role">Roll</label>
-                        
-                        <p id="role" class="txt-strong"><?php echo $post['role']; ?></p>
+                      
+                       
                         <input type="text" class="d-none" name="role" id="role" value="<?php echo $post['roleID']; ?>">
+                        
+                       
+                            <?php if($this->session->userdata('roleID')==='2' && $post['roleID']!=1):?>
+                                <select id="roleID" name="roleID" class="form-control arrow">
+                                    <option value="2" <?php if ($post['roleID']==2) echo ' selected'?>>Juht</option>
+                                    <option value="3" <?php if ($post['roleID']==3) echo ' selected'?>>Haldur</option>
+                                    <option value="4" <?php if ($post['roleID']==0) echo ' selected'?>>Tavakasutaja</option>
+                                    </select>
+                             <?php endif;?>
+    
+                            <?php if($post['roleID']==1 && $this->session->userdata('roleID')=='1'):?>
+                                <select id="roleID" name="roleID" class="form-control arrow">
+                                <option value="1" <?php if ($post['roleID']==1) echo ' selected'?>>Admin</option>
+                                <option value="2" <?php if ($post['roleID']==2) echo ' selected'?>>Juht</option>
+                                <option value="3" <?php if ($post['roleID']==3) echo ' selected'?>>Haldur</option>
+                                <option value="4" <?php if ($post['roleID']==0) echo ' selected'?>>Tavakasutaja</option>
+                                </select>
+                            <?php endif;?>
+                            
+                     
+                      
+                        <?php if($post['roleID']==1&&$this->session->userdata('roleID')!=='1'):?>
+                        <p id="role" class="txt-strong"><?php echo $post['role']; ?></p>
+                        <?php endif;?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
 

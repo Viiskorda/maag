@@ -31,10 +31,11 @@
                         <form class="cat-delete" action="users/edit/<?php echo $singleUser['userID']; ?>" method="POST">
                             <button type="submit" class="btn btn-second btn-width text-white text-center py-1 px-2 txt-strong ">Muuda</button>
                         </form>
+                        <?php if($this->session->userdata('roleID')==='1'):?>
                         <form class="cat-delete pl-1" action="users/delete/<?php echo $singleUser['userID']; ?>" method="POST">
-                            <!-- <input type="submit" class="" value="Kustuta"> -->
                             <button type="submit" class="btn btn-delete btn-width text-white text-center py-1 px-2 txt-strong ">Kustuta</button>
                         </form>
+                        <?php endif;?>
                     </td>
                 </tr>                
             <?php endforeach; ?>
