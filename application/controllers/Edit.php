@@ -97,7 +97,7 @@ class Edit extends CI_Controller {
 		$this->input->get('saal', TRUE);
 		$event_data = $this->edit_model->fetch_all_Booking_times();
 		foreach($event_data->result_array() as $row)
-		if(	$row['roomID']==$roomId){
+		if(	$row['roomID']==$roomId &&	$row['endTime']< date("Y-m-d")){
 			
 		{
 			$data[] = array(

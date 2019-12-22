@@ -84,6 +84,7 @@
                                 <!-- Genereerib automaatselt -->
                             </tbody>
                         </table>
+                        <input type="button" id="addTimes" class="btn btn-secondary col-2 text-white" value="Lisa aeg">
                     </div>
                 </div>
 
@@ -99,7 +100,6 @@
                 <input class="d-none" type="hidden" name="roomID" id="roomID" value="">
 
                 <div class="d-flex justify-content-end mt-5 px-5 mx-5">
-                    <!-- <input type="button" id="addTimes" class="btn btn-green" value="Lisa aeg"> -->
                     <a class="txt-xl link-deco align-self-center py-0 pr-5 mr-2" href="#">Katkesta</a>
                     <input type="submit" id="changeTimes" class="btn btn-custom col-3 text-white txt-xl" value="Salvesta muudatused">
                 </div>
@@ -122,13 +122,13 @@
 
             var FieldCount = $('#myTable tbody tr').length;
             FieldCount++;
-            console.log(FieldCount);
+          //  console.log(FieldCount);
+
             $('#addTimes').click(function(e) {
             //max input box allowed
                 FieldCount++;
                 //add input box
-                $('#myTable > tbody').append('<tr> <td class="pr-3"></td><td></td><td><input class="datePicker form-control" id="date_' + FieldCount + '" data-toggle="datepicker" name="bookingtimesFrom[' + FieldCount + ']"  value=""></td><td><input type="text" class="clock form-control" name="timeStart[' + FieldCount + ']" id="timestartfield_' + FieldCount + '" value="Siia aeg"></td>  <td><input type="text" class="clock form-control" name="timeEnd[' + FieldCount + ']" id="timeendfield_' + FieldCount + '" value="siia aeg"></td></tr>');
-
+                $('#myTable > tbody').append('<tr> <td class="td-width-l"></td><td class="td-width-m"><span class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></span></td><td class="td-width-s pl-3"><input class="datePicker form-control p" id="date_' + FieldCount + '" data-toggle="datepicker" name="bookingtimesFrom[' + FieldCount + ']"  value=""></td><td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeStart[' + FieldCount + ']" id="timestartfield_' + FieldCount + '"value="<?php echo date("H:i"); ?>"></td>  <td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeEnd[' + FieldCount + ']" id="timeendfield_' + FieldCount + '"value="<?php echo date("H:i", strtotime('+90 minutes')); ?>"></td></tr>');
                 $(".datePicker").datepicker({
                     language: "et-EE", 
                     autoHide: true, 
@@ -139,9 +139,10 @@
           
             });
 
-            $("#timestamp").on("click", ".removeclass", function(e) { //user click on remove text
+        $("removeclass").click(function(e) { //user click on remove text
+            console.log("click");
            
-                $(this).parent('div').remove(); //remove text box
+                $(this).parent('tr').remove(); //remove text box
                
         });
 
@@ -203,9 +204,10 @@
                                
                                 var [ yyyy, MM,dd,  hh, mm ] = str.split(/[- :]/g);
                                 return new Date(`${MM}/${dd}/${yyyy} ${hh}:${mm}`);
-                                }
+                     };
 
-
+                    var datafrom = ['<?=implode("', '", $arr2)?>'];
+                    console.log(datafrom);
                     for (var i = 0, l = res.length; i < l; i++) {
                         var obj = res[i];
                        // console.log(obj);
@@ -251,7 +253,7 @@
 
 
 
-                        var datafrom = ['<?=implode("', '", $arr2)?>'];
+                        
                         var n = datafrom.includes(BTimesid);
                             console.log(n);
                         if(n){
