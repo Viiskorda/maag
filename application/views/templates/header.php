@@ -52,8 +52,10 @@
                         <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="#"><strong>Kõik saalid</strong></a></li>
                         <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="<?php echo base_url(); ?>fullcalendar?roomId=1"><strong>Broneeringud</strong> <span class="badge badge-danger">5</span></a></li>
                         <?php endif; ?>
-                        <?php if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'  || $this->session->userdata('roleID')==='1'):?>
+                        <?php if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='1'):?>
                         <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="<?php echo base_url(); ?>manageUsers">Kasutajad</a></li>
+                        <?php endif; ?>
+                        <?php if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'  || $this->session->userdata('roleID')==='1'):?>
                         <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="<?php echo base_url(); ?>building/view/1">Asutuse sätted</a></li>
                         <li class="nav-item"><a class="nav-link text-white py-0" href="#"><?php echo $this->session->userdata('userName');?> profiil</a></li>
                     </ul>
