@@ -123,7 +123,7 @@
 
   .txt-lg {
     font-size: 16px;
-    font-weight: 500;
+    /* font-weight: 500; */
   }
 
   .txt-xl {
@@ -153,15 +153,34 @@
   /* TEXT AND LINK */
 
   #myTable.table td.conflict {
-    /* margin-top: -10px; */
+    position: relative;
+    top: -3px;
+    padding: 0;
+    line-height: 10px;
     color: #9E3253;
+  }
+
+  #myTable td img {
+    position: relative;
+    top: -2px;
+    width: 20px !important;
+    /* height: 10px; */
+  }
+
+  #myTable.table th {
+    line-height: 12px;
   }
 
   #myTable.table td,.table th{
     padding:0;
-    padding-bottom: 9px;
     vertical-align: middle;
-    border: none;}
+    border: none;
+  }
+
+  #myTable.table {
+    border-collapse: separate;
+    border-spacing: 0 8px;
+  }
 
   .td-width-s {
     width: 15%;

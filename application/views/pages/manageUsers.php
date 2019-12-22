@@ -2,7 +2,7 @@
     <div class="table-container mt-3">
         <div class="mb-2 pb-5">
             <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" onclick="location.href='<?php echo base_url(); ?>createUser';">
-                <p class="m-0 txt-lg text-center">Lisa uus</p>
+                <p class="m-0 txt-lg txt-strong text-center">Lisa uus</p>
             </a>
         </div>
 

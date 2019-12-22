@@ -3,7 +3,7 @@
         <div id="nav-tabs" class="mt-5 pb-5 form-bg">
             <div class="d-flex mb-5">
                 <ul class="nav nav-tabs nav-justified col-12 bg-grey">
-                    <li class="nav-item"><a  class="nav-link link single-tab active" href="#" data-toggle="tab">Ühekordne borneering</a></li>
+                    <li class="nav-item"><a  class="nav-link link txt-lg single-tab active" href="#" data-toggle="tab">Ühekordne borneering</a></li>
                     <li class="nav-item"></li>
                 </ul>
             </div>
@@ -61,34 +61,37 @@
                 </div>
 
                 <h4 class="mt-5 txt-xl px-5 mx-5">Kuupäev ja kellaaeg</h4>
-                <div class="mt-4 px-5 mx-5">
+                <div class="mt-3 px-5 mx-5">
                     <div class="form-label-group pb-2 px-0">
                         <table id="myTable" class="table table-borderless">
                             <thead>
                                 <tr>
-                                    <th class="txt-regular txt-lg">Broneeritud aeg</th>
-                                    <th></th>
-                                    <th class="txt-regular txt-lg">Uus aeg</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th class="txt-regular txt-lg p-0">Broneeritud aeg</th>
+                                    <th class="p-0"></th>
+                                    <th class="txt-regular txt-lg p-0">Uus aeg</th>
+                                    <th class="p-0"></th>
+                                    <th class="p-0"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="bg-blue" style="vertical-align: middle">
-                                    <th id="month" class="text-white txt-regular td-width-l">Siia kuu nimetus</th>
-                                    <th id="blank" class="text-white txt-regular td-width-m"></th>
-                                    <th id="kp" class="text-white txt-regular td-width-s">Kuupäev</th>
-                                    <th id="alates" class="text-white txt-regular td-width-s">Alates</th>
-                                    <th id="kuni" class="text-white txt-regular td-width-s">Kuni</th>
-                                </tr>
+                                <tr class="bg-blue mb-5">
+                                    <td id="month" class="text-white txt-regular td-width-l p-1">Siia kuu nimetus</td>
+                                    <td id="blank" class="text-white txt-regular td-width-m p-1"></td>
+                                    <td id="kp" class="text-white txt-regular td-width-s p-1 pl-3">Kuupäev</td>
+                                    <td id="alates" class="text-white txt-regular td-width-s p-1 pl-3">Alates</td>
+                                    <td id="kuni" class="text-white txt-regular td-width-s p-1 pl-3">Kuni</td>
+                                </tr></br>
                                 <!-- Genereerib automaatselt -->
                             </tbody>
                         </table>
-                        <input type="button" id="addTimes" class="btn btn-secondary col-2 text-white" value="Lisa aeg">
+                        <!-- <div class="d-flex col-5 p-0">
+                            <a id="addTimes" class="btn btn-custom text-white text-center py-2 px-4 pluss"><p class="m-0 px-0 txt-lg text-center align-items-center">Lisa veel üks kuupäev</p></a>
+                        </div> -->
+                        
                     </div>
                 </div>
 
-                <h4 class="mt-5 txt-xl px-5 mx-5">Lisainfo (valikuline) </h4>
+                <h4 class="mt-4 txt-xl px-5 mx-5">Lisainfo (valikuline) </h4>
                 <div class="mt-4 px-5 mx-5">
                     <div class="form-label-group pb-2 px-0">
                         <label>Lisainfo</label>
@@ -101,7 +104,7 @@
 
                 <div class="d-flex justify-content-end mt-5 px-5 mx-5">
                     <a class="txt-xl link-deco align-self-center py-0 pr-5 mr-2" href="#">Katkesta</a>
-                    <input type="submit" id="changeTimes" class="btn btn-custom col-3 text-white txt-xl" value="Salvesta muudatused">
+                    <input type="submit" id="changeTimes" class="btn btn-custom col-4 text-white txt-xl" value="Salvesta muudatused">
                 </div>
 
             </form>
@@ -265,7 +268,7 @@
                             console.log(BTimesid);
                         if(n){
                             console.log(i);
-                            $('#myTable > tbody').append(' <tr id="'+BTimesid+'"> <td class="td-width-l">'+days[new Date(start).getDay()]+', '+moment(start).format("DD.MM.YYYY")+'</td><td class="td-width-m">'+moment(start).format("HH.mm")+'–'+moment(end).format("HH.mm")+'</td><td class="td-width-s pl-3"><input class="datePicker form-control p" id="time_'+BTimesid+'" data-toggle="datepicker" name="bookingtimesFrom['+counter+']"  value="'+moment(start).format("DD.MM.YYYY")+'"></td><td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeStart[]" id="timestartfield'+i+'" value="'+moment(start).format("HH.mm")+'"></td>  <td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeEnd[]" id="timeendfield_'+i+'" value="'+moment(end).format("HH.mm")+'"></td></tr>');
+                            $('#myTable > tbody').append(' <tr id="'+BTimesid+'"> <td class="td-width-l"><b>'+days[new Date(start).getDay()]+'</b>, '+moment(start).format("DD.MM.YYYY")+'</td><td class="td-width-m">'+moment(start).format("HH.mm")+'–'+moment(end).format("HH.mm")+'</td><td class="td-width-s pl-3"><input class="datePicker form-control p" id="time_'+BTimesid+'" data-toggle="datepicker" name="bookingtimesFrom['+counter+']"  value="'+moment(start).format("DD.MM.YYYY")+'"></td><td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeStart[]" id="timestartfield'+i+'" value="'+moment(start).format("HH.mm")+'"></td>  <td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeEnd[]" id="timeendfield_'+i+'" value="'+moment(end).format("HH.mm")+'"></td></tr>');
                             resConflicts.push(start.replace('T',' ').substring(0, 16));
                             res2Conflicts.push(end.replace('T',' ').substring(0, 16));
                             ConflictID.push(obj.timeID);
@@ -307,7 +310,7 @@
                                         if (isBetween(startDateTime,checkDateTime,checkDateTime2) || isBetween(endDateTime,checkDateTime,checkDateTime2) || isBetween(checkDateTime,startDateTime,endDateTime) || isBetween(checkDateTime2,startDateTime,endDateTime) ){
                                      //   console.log(checkDateTime +" - "+ checkDateTime2 + " nende vastu "+ startDateTime+ " " +endDateTime);// 
                                      //   console.log("tingumus on täidetud " + resConflicts[t] + " või "+res2Conflicts[t]);
-                                        $('#myTable #'+ConflictID[t]).after( "<tr class='m-0 p-0'><td colspan='5' class='conflict txt-regular'>Kattuvad ajad: "+moment(conflicts2.start).format('DD.MM.YYYY')+" "+moment(conflicts2.start).format('HH:mm')/*conflicts2.start.substring(0, 16) */+"–"+ moment(conflicts2.end).format('HH:mm')+" "/*conflicts2.end.substring(0, 16)*/ +titleIDofConflict + "</td></tr>");
+                                        $('#myTable #'+ConflictID[t]).after( "<tr class='m-0 p-0'><td colspan='5' class='conflict txt-regular'><img src='<?php echo base_url(); ?>assets/img/warning.svg'> Kattuv aeg: "+moment(conflicts2.start).format('HH:mm')/*conflicts2.start.substring(0, 16) */+"–"+ moment(conflicts2.end).format('HH:mm')+" "/*conflicts2.end.substring(0, 16)*/ +titleIDofConflict + "</td></tr>");
                                      //   console.log( ConflictID[t] +" ning " +timeIDofConflict);
                                      $('#myTable #'+ConflictID[t]).find('.clock.form-control, .datePicker.form-control').css('border', '2px solid #9E3253')
 

@@ -94,7 +94,7 @@
                                     </div>
                                 </div>
                                 <div id="AddMoreFileId" class="d-flex col-5 p-0">
-                                    <a href="#" id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 px-4 pluss"><p class="m-0 px-0 txt-lg text-center align-items-center">Lisa veel üks kuupäev</p></a>
+                                    <a id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 px-4 pluss"><p class="m-0 px-0 txt-lg txt-strong text-center align-items-center">Lisa veel üks kuupäev</p></a>
                                 </div>
                             </div>
                         </div>
@@ -210,7 +210,7 @@
                                 </div>
 
                                 <div id="AddMoreFileId1" class="flex col-5 p-0">
-                                    <a href="" id="AddMoreFileBoxPeriod" class="btn btn-custom text-white text-center py-2 px-4 pluss"><p class="m-0 px-0 txt-lg text-center align-items-center">Lisa veel üks päev</p></a>
+                                    <a id="AddMoreFileBoxPeriod" class="btn btn-custom text-white text-center py-2 px-4 pluss"><p class="m-0 px-0 txt-lg txt-strong text-center align-items-center">Lisa veel üks päev</p></a>
                                 </div>
                             </div>
                         </div>
@@ -297,7 +297,7 @@
                                 </div>
 
                                 <div id="AddMoreFileId2" class="flex">
-                                    <input type="button" id="AddMoreFileBoxClosed" value=" + Lisa nädalapäev" class="btn btn-custom text-white text-center py-2 px-5 pluss">
+                                    <a id="AddMoreFileBoxClosed" class="btn btn-custom text-white text-center py-2 px-4 pluss"><p class="m-0 px-0 txt-lg txt-strong text-center align-items-center">Lisa nädalapäev</p></a>
                                 </div>
                             </div>
                         </div>
@@ -392,7 +392,7 @@
             if (x <= MaxInputs) {
                 FieldCount++; //text box added ncrement
                 //add input box
-                $('#InputsWrapper').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="datePicker col-5 form-control" id="datefield_' + FieldCount + '" data-toggle="datepicker" name="workoutDate[]"><a href="#" class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></a><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="begin[]" id="timestartfield_' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="end[]" min="08:00" max="22:00" id="timeendfield_' + FieldCount + '" value="<?php echo date("H:i", strtotime('+90 minutes'));?>"></div></div>');
+                $('#InputsWrapper').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="datePicker col-5 form-control" id="datefield_' + FieldCount + '" data-toggle="datepicker" name="workoutDate[]"><a class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></a><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="begin[]" id="timestartfield_' + FieldCount + '" value="<?php echo date('H:i'); ?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="end[]" min="08:00" max="22:00" id="timeendfield_' + FieldCount + '" value="<?php echo date("H:i", strtotime('+90 minutes'));?>"></div></div>');
 
                 $(".datePicker").datepicker({
                     language: "et-EE", 

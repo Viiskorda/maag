@@ -48,7 +48,7 @@
 
         <div class="col-2 mr-auto p-0">
             <?php if($this->session->userdata('session_id')===TRUE):?>
-            <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" href="<?php echo base_url(); ?>booking/create/<?php echo ($this->input->get('roomId'));?>"><p class="m-0 txt-lg text-center">Uus broneering</p></a>
+            <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" href="<?php echo base_url(); ?>booking/create/<?php echo ($this->input->get('roomId'));?>"><p class="m-0 txt-lg txt-strong text-center">Uus broneering</p></a>
             <?php endif;?>
         </div>
     </div>
@@ -61,7 +61,7 @@
     </br>
 
     <!-- KALENDER CONTAINERIS END -->
-
+    </div>
     <!-- ****************** MODAL START ****************** -->
 
     <?php if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'):?>
