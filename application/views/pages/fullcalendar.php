@@ -1,8 +1,8 @@
 
 <div class="container">
-    <div class="d-flex pt-4 pb-2">
+    <div class="d-flex pt-4 pb-2" id="widthToggle">
         <form class="d-flex flex-row vol-md-11 col-lg-10 p-0" action="fullcalendar" method="get">
-            <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2" v-if="loggedIn">
+            <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2">
         
                 <label for="region">Piirkond</label>
                 <input id="region" list="regions" class="form-control arrow" type="text" value=" <?php foreach ($regions as $each) {
@@ -1116,8 +1116,13 @@ dayClick: function (date, jsEvent, view) {
         $('#countNr').text('Kõik ajad ('+counter+')');
     });
     
- 
-   
-
-    
+    $(window).on('click', function() {
+        if ($('body').hasClass('modal-open')) {
+            $('#calendar-container').css({'margin-left': '320px'});
+            $('#widthToggle').css({'margin-left': '320px'});
+        } else {
+            $('#calendar-container').css({'margin-left': '0'});
+            $('#widthToggle').css({'margin-left': '0'});
+        }
+    });
 </script>

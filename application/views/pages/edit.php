@@ -1,145 +1,134 @@
 <div class="container">
-     
-            <a class="btn btn-custom col-2 text-white mr-auto p-0 mb-4 text-center align-middle" href="<?php echo base_url(); ?>booking/create">Tee uus broneering</a>
+    <div id="forms" class="container-md pb-5">
+        <div id="nav-tabs" class="mt-5 pb-5 form-bg">
+            <div class="d-flex mb-5">
+                <ul class="nav nav-tabs nav-justified col-12 bg-grey">
+                    <li class="nav-item"><a  class="nav-link link single-tab active" href="#" data-toggle="tab">Ühekordne borneering</a></li>
+                    <li class="nav-item"></li>
+                </ul>
+            </div>
+            <form id="change" method="post" action="<?php echo base_url();?>edit/update">
 
-           </br>
+                <h4 class="pt-2 txt-xl px-5 mx-5">Kontakt</h4>
+                <div class="d-flex p-0 mt-4 px-5 mx-5">
+                    <div class="form-label-group col-6 py-0 pl-0 pr-5">
+                        <label for="contact">Klubi nimi*</label>
+                        <input type="text" class="form-control" name="publicInfo" value="" id="publicInfo" required>
                     </div>
-                   
-                    <div class="modal-body">
-                        <!-- <div>
-                     <p>   Päring:  <input type="text" class="form-control" name="created_at" id="created_at"> </p> <hr>
-                    </div> -->
-                      
-                     
-                    <form id="change" method="post" action="<?php echo base_url();?>edit/update">
-                    <div id="change"></div>
-
-                                <div class="form-group">
-                                    <h5>Kontakt</h5>
-                                    <label for="p-in" class="col-md-4 label-heading">Avalik info (kuvatakse kõigile)</label>
-                                    <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="publicInfo" value="" id="publicInfo">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">Kontaktisik</label>
-                                    <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="contactPerson" id="contactPerson">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">Korraldaja</label>
-                                    <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="organizer" id="organizer">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">Telefoni number</label>
-                                    <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="phone" id="phone">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">Email</label>
-                                    <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="email" id="email">
-                                    </div>
-                                </div>
-                                <h5>Asukoht ja treeningu tüüp</h5>
-
-                                <!-- <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">Asutus</label>
-                                    <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control"  id="building" disabled>
-                                    </div>
-                                </div> -->
-                                <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">Saal</label>
-                                    <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="selectedroom" id="selectedroom" value="">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">Treeningu tüüp</label>
-                                    <div class="col-md-8 ui-front">
-                                        <input type="text" class="form-control" name="workoutType" id="workoutType">
-                                    </div>
-                                </div>
-                                <h5>Kuupäev ja kellaajad</h5>
-                                <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">Hooaeg alates</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control"  id="eventIn" disabled>
-                                    </div>
-                                </div>
-                            
-                                <div class="form-group">
-                                    <label for="p-in" class="col-md-4 label-heading">Hooaeg kuni</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control"  id="eventOut" disabled>
-                                    </div>
-                                </div>
-                    
-                                    <hr>
-                    <h6>Kõik ajad</6>
-
-               
-                 
-                    <table id="myTable">
-                    <tbody>
-                       
-                 
-
-                  
-                    </tbody>
-                    </table>
-                    <br>
-                    <div class="form-label-group px-5 mx-5" id="timestamp">
-                    <div id="InputsWrapper" class="mb-3 p-0">
-                    </div>  </div>
-
-                    <input class="d-none" type="hidden" name="id" id="bookid" value="<?php print_r($_POST['timesIdArray'][0])?>">
-                    <input class="d-none" type="hidden" name="roomID" id="roomID" value="">
-
-                    <input type="button" id="addTimes" class="btn btn-green" value="Lisa aeg">
-                    <input type="submit" id="changeTimes" class="btn btn-blue" value="Muuda">
-                  
-                                    
-                                      
-                                            </form>
-
-                      
-                    
+                    <input class="d-none" type="checkbox" id="type" name="type" value="1" checked>
+                    <div class="form-label-group col-6 p-0 pl-5">
+                        <label>Kontaktisik</label>
+                        <input type="text" class="form-control" name="contactPerson" id="contactPerson">
+                    </div>
+                </div>
+                <div class="d-flex mt-2 px-5 mx-5">
+                    <div class="form-label-group col-6 py-0 pl-0 pr-5">
+                        <label>Telefoni number</label>
+                        <input type="number" class="form-control" name="phone" id="phone">
                     </div>
 
+                    <div class="form-label-group col-6 p-0 pl-5">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email" id="email">
+                    </div>
+                </div>
 
-                  
-                
+                <h4 class="mt-5 txt-xl px-5 mx-5">Asukoht ja treeningu tüüp</h4>
+                <div class="d-flex mt-4 px-5 mx-5">
+                    <div class="form-label-group col-6 py-0 pl-0 pr-5">
+                        <label for="sport_facility">Asutus</label>
+                        <input id="sport_facility" class="form-control" list="asutus" id="building" disabled>
+                            <datalist id="asutus">
+                            <?php foreach ($buildings as $each) {
+                                echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
+                            }
+                            ?>
+                            </datalist>
+                    </div>
 
-                  
+                    <div class="form-label-group col-6 p-0 pl-5">
+                        <label for="room">Saal</label>
+                        <input type="text" class="form-control" name="selectedroom" id="selectedroom" value="">
+                    </div>
+                </div>
+
+                <div class="d-flex mt-2 px-5 mx-5">
+                    <div class="form-label-group col-6 py-0 pl-0 pr-5">
+                        <label>Treeningu tüüp</label>
+                        <input type="text" class="form-control" name="workoutType" id="workoutType">
+                    </div>
+                    <div class="form-label-group col-6 p-0 pl-5"></div>
+                </div>
+
+                <h4 class="mt-5 txt-xl px-5 mx-5">Kuupäev ja kellaaeg</h4>
+                <div class="mt-4 px-5 mx-5">
+                    <div class="form-label-group pb-2 px-0">
+                        <table id="myTable" class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th class="txt-regular txt-lg">Broneeritud aeg</th>
+                                    <th></th>
+                                    <th class="txt-regular txt-lg">Uus aeg</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-blue" style="vertical-align: middle">
+                                    <th id="month" class="text-white txt-regular td-width-l">Siia kuu nimetus</th>
+                                    <th id="blank" class="text-white txt-regular td-width-m"></th>
+                                    <th id="kp" class="text-white txt-regular td-width-s">Kuupäev</th>
+                                    <th id="alates" class="text-white txt-regular td-width-s">Alates</th>
+                                    <th id="kuni" class="text-white txt-regular td-width-s">Kuni</th>
+                                </tr>
+                                <!-- Genereerib automaatselt -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <h4 class="mt-5 txt-xl px-5 mx-5">Lisainfo (valikuline) </h4>
+                <div class="mt-4 px-5 mx-5">
+                    <div class="form-label-group pb-2 px-0">
+                        <label>Lisainfo</label>
+                        <textarea class="form-control" id="additional" name="additionalComment" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <input class="d-none" type="hidden" name="id" id="bookid" value="<?php print_r($_POST['timesIdArray'][0])?>">
+                <input class="d-none" type="hidden" name="roomID" id="roomID" value="">
+
+                <div class="d-flex justify-content-end mt-5 px-5 mx-5">
+                    <!-- <input type="button" id="addTimes" class="btn btn-green" value="Lisa aeg"> -->
+                    <a class="txt-xl link-deco align-self-center py-0 pr-5 mr-2" href="#">Katkesta</a>
+                    <input type="submit" id="changeTimes" class="btn btn-custom col-3 text-white txt-xl" value="Salvesta muudatused">
+                </div>
+
+            </form>
+        </div>
     </div>
+</div>
 
-    
-
-    
-
-    </body>
 
   
-                        <?php $arr2 = array(); foreach (array_slice($_POST['timesIdArray'], 1) as $key=>$value) {   $arr2[] = $value; }?>
+<?php $arr2 = array(); foreach (array_slice($_POST['timesIdArray'], 1) as $key=>$value) {   $arr2[] = $value; }?>
    
 
-                        <script type="text/javascript" src="<?php echo base_url();?>assets/js/datepicker.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datepicker.js"></script>
     <script>
       
 
         $(document).ready(function() {
-            
+
+            var FieldCount = $('#myTable tbody tr').length;
+            FieldCount++;
+            console.log(FieldCount);
             $('#addTimes').click(function(e) {
             //max input box allowed
-           
+                FieldCount++;
                 //add input box
-                $('#InputsWrapper').append('<div class="d-flex align-items-center mb-3 justify-content-between"><input class="datePicker col-5 form-control" id="datefield_" data-toggle="datepicker" name="workoutDate[]"><span class="removeclass col-1 pl-1 pr-5"><span class="icon-cancel"></span></span><div class="col-2 p-0 ml-5"><input type="text" class="clock form-control" name="begin[]" id="timestartfield_" value="<?php echo date('H:i');?>"></div><div class="col-2 p-0"><input type="text" class="clock form-control" name="end[]" min="08:00" max="22:00" id="timeendfield_" value="<?php echo date("H:i", strtotime('+90 minutes'));?>"></div></div>');
+                $('#myTable > tbody').append('<tr> <td class="pr-3"></td><td></td><td><input class="datePicker form-control" id="date_' + FieldCount + '" data-toggle="datepicker" name="bookingtimesFrom[' + FieldCount + ']"  value=""></td><td><input type="text" class="clock form-control" name="timeStart[' + FieldCount + ']" id="timestartfield_' + FieldCount + '" value="Siia aeg"></td>  <td><input type="text" class="clock form-control" name="timeEnd[' + FieldCount + ']" id="timeendfield_' + FieldCount + '" value="siia aeg"></td></tr>');
+
                 $(".datePicker").datepicker({
                     language: "et-EE", 
                     autoHide: true, 
@@ -170,19 +159,19 @@
         };
        
 
-        $(".datepickerUntil").datepicker({
-            language: "et-EE",
-            autoHide: true,
-            date: dateToShow,
-            autoPick: true,
-        });
+        // $(".datepickerUntil").datepicker({
+        //     language: "et-EE",
+        //     autoHide: true,
+        //     date: dateToShow,
+        //     autoPick: true,
+        // });
 
-        $(".datePicker").datepicker({
-            language: "et-EE",
-            autoHide: true,
-            date: new Date(),
-            autoPick: true,
-        });
+        // $(".datePicker").datepicker({
+        //     language: "et-EE",
+        //     autoHide: true,
+        //     date: new Date(),
+        //     autoPick: true,
+        // });
 
          //   var eventToModificate = "<?php echo base_url(); ?>edit/load/<?php print_r($_POST['timesIdArray'][0])?>";
             var resConflicts =[];
@@ -199,7 +188,7 @@
                 {
                     var res =  $.parseJSON(data);
                    
-                    var days = ['Pühapäev', 'Esmaspäev', 'Teisipäev', 'Kolmapäev', 'Neljapäev', 'Reede', 'Laupäev'];
+                    var days = ['P', 'E', 'T', 'K', 'N', 'R', 'L'];
                     var conflicts = "";
                   
 
@@ -247,7 +236,8 @@
                         $('#workoutType').val(obj.workout);
                         document.getElementById("selectedroom").value = obj.roomID;
                         document.getElementById("roomID").value = obj.roomID;
-                        $('#start').val(obj.start);
+                        // $('#start').val(obj.start);
+                        // $('#timestartfield').val(obj.start);
                      //   $('#building').val(obj.building);
 
                         //$('#selectedroom').val(obj.roomName);
@@ -266,12 +256,29 @@
                             console.log(n);
                         if(n){
                             console.log(i);
-                            $('#myTable > tbody:last-child').append(' <tr id="'+BTimesid+'"> <td>'+days[new Date(start).getDay()]+'&nbsp;&nbsp;</td> <td><input id="'+BTimesid+'" type="datetime-local" name="bookingtimesFrom['+counter+']" value="'+start+'"> </td><td>  - </td>  <td>   <input id="'+BTimesid+'" type="datetime-local" name="bookingtimesTo['+counter+']" value="'+end+'"></td>  </td>   <td>&nbsp;&nbsp;&nbsp; </td>   </tr>');
-                        resConflicts.push(start.replace('T',' ').substring(0, 16));
-                        res2Conflicts.push(end.replace('T',' ').substring(0, 16));
-                        ConflictID.push(obj.timeID);
-                        publicInfo.push(obj.title);
-                        counter++;
+                            $('#myTable > tbody').append(' <tr id="'+BTimesid+'"> <td class="td-width-l">'+days[new Date(start).getDay()]+', '+moment(start).format("DD.MM.YYYY")+'</td><td class="td-width-m">'+moment(start).format("HH.mm")+'–'+moment(end).format("HH.mm")+'</td><td class="td-width-s pl-3"><input class="datePicker form-control p" id="time_'+BTimesid+'" data-toggle="datepicker" name="bookingtimesFrom['+counter+']"  value="'+moment(start).format("DD.MM.YYYY")+'"></td><td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeStart[]" id="timestartfield" value="'+moment(start).format("HH.mm")+'"></td>  <td class="td-width-s pl-3"><input type="text" class="clock form-control" name="timeEnd[]" id="timeendfield_1" value="'+moment(end).format("HH.mm")+'"></td></tr>');
+                            resConflicts.push(start.replace('T',' ').substring(0, 16));
+                            res2Conflicts.push(end.replace('T',' ').substring(0, 16));
+                            ConflictID.push(obj.timeID);
+                            publicInfo.push(obj.title);
+                            counter++;
+                            $(".datePicker").datepicker({
+                                language: "et-EE", 
+                                autoHide: true, 
+                                date: new Date(), 
+                                autoPick: false
+                            });
+                            $('.clock').clockTimePicker({
+                                duration: true,
+                                durationNegative: true,
+                                precision: 15,
+                                i18n: {
+                                    cancelButton: 'Abbrechen'
+                                },
+                                onAdjust: function(newVal, oldVal) {
+                                    //...
+                                }
+                            });
                         }
 
                        
@@ -306,8 +313,9 @@
                                         if (isBetween(startDateTime,checkDateTime,checkDateTime2) || isBetween(endDateTime,checkDateTime,checkDateTime2) || isBetween(checkDateTime,startDateTime,endDateTime) || isBetween(checkDateTime2,startDateTime,endDateTime) ){
                                      //   console.log(checkDateTime +" - "+ checkDateTime2 + " nende vastu "+ startDateTime+ " " +endDateTime);// 
                                      //   console.log("tingumus on täidetud " + resConflicts[t] + " või "+res2Conflicts[t]);
-                                        $('#myTable #'+ConflictID[t]).append( "Konflikt: "+titleIDofConflict + " ("+conflicts2.start.substring(0, 16) +" - "+ conflicts2.end.substring(0, 16) + "); ");
+                                        $('#myTable #'+ConflictID[t]).after( "<tr class='m-0 p-0'><td colspan='5' class='conflict txt-regular'>Kattuvad ajad: "+moment(conflicts2.start).format('DD.MM.YYYY')+" "+moment(conflicts2.start).format('HH:mm')/*conflicts2.start.substring(0, 16) */+"–"+ moment(conflicts2.end).format('HH:mm')+" "/*conflicts2.end.substring(0, 16)*/ +titleIDofConflict + "</td></tr>");
                                      //   console.log( ConflictID[t] +" ning " +timeIDofConflict);
+                                     $('#myTable #'+ConflictID[t]).find('.clock.form-control, .datePicker.form-control').css('border', '2px solid #9E3253')
 
                                         }}
 
