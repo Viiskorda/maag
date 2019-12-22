@@ -92,7 +92,8 @@ class Fullcalendar extends CI_Controller {
 		if($this->input->post('public_info'))
 		{
 				$data1 = array(
-					'public_info'		=>	$this->input->post('public_info')				
+					'typeID'		=>	$this->input->post('typeID'),
+					'public_info'		=>	$this->input->post('public_info')					
 				);
 		
 				$id= $this->fullcalendar_model->create_booking($data1);

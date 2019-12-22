@@ -333,6 +333,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                         type: "POST",
                         data: {
                             roomID: roomID,
+                            typeID: 1,
                             public_info: public_info,
                             start: start,
                             end: end
