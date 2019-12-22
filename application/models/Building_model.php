@@ -37,6 +37,12 @@
 			return true;
 		}
 
+		public function delete_room($id){
+			$this->db->where('id', $id);
+			$this->db->delete('rooms');
+			return true;
+		}
+
 
 		public function create_category(){
 			$data = array(

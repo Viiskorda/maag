@@ -44,10 +44,15 @@
 			redirect('building/view/');
 		}
 
-
-
-
-
+	
+		public function deleteRoom($id){
+			// Check login
+		
+			$this->building_model->delete_room($id);
+			// Set message
+			$this->session->set_flashdata('building_deleted', 'Your building has been deleted');
+			redirect('building/view/1');
+		}
 
 
 

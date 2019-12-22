@@ -66,14 +66,20 @@
                                   
                                   <div class="col-md-12 ui-front"  id="wrapper">
                                 <p>Saalid</p>
+                                </form>
+                            
                                 <?php foreach ($editBuildings as $value) {?>
+                                  <div class="row"> 
                                 <input type="text" class="col-md-3" name="rooms[]"  value="<?php echo $value['roomName'];?>"> 
-                              
-                                  <input type="button" id="active<?php echo $value['id'];?>" class="btn btn-primary" value="Aktiivne"> 
+                                  <input type="button" id="active<?php echo $value['id'];?>" class="btn btn-primary" value="<?php if( $value['activeRoom']==1){ echo "Aktiivne";} else {echo "Mitteakviivne";} ?>">
+                                 
                                
-                                  <form class="cat-delete pl-1" action="buildings/deleteRoom/<?php echo $value['id']; ?>" method="POST">
-                                   <input type="button" id="delete<?php echo $value['id'];?>" class="btn btn-danger" value="Kustuta"></button><br> <?php }; ?>
-                                   </form>
+                                  <form class="cat-delete pl-1" action="<?php echo base_url(); ?>building/deleteRoom/<?php echo $value['id']; ?>" method="POST">
+                                   <input type="submit" id="delete<?php echo $value['id'];?>" class="btn btn-danger" value="Kustuta"><br>   </div>   
+                             </form> 
+                                   <?php }; ?>  
+                               
+                                  
 
                                    <input type="text" class="btn btn-outline-secondary" name="addRoomForm" id="addRoomForm" value=""/>
                             
@@ -87,7 +93,7 @@
                                 <button type="submit" class="btn btn-primary">Muuda</button>
 
 
-</form>
+
 
 
 
