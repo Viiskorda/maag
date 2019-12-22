@@ -163,17 +163,29 @@ class Edit extends CI_Controller {
 					$start_data = $this->input->post('bookingtimesFrom');
 					$end_data = $this->input->post('bookingtimesTo');
 					
+					
+
 	
+			
 					for($i = 0; $i < count($start_data); $i++)
 					{
-					
-					$insert_data[] = array(
-					//'roomID' => $this->input->post('sportrooms'),
-					'startTime' => $start_data[$i], 
-					'endTime' => $end_data[$i],
-					
-					);
-					$this->edit_model->update_bookingTimes($insert_data[$i], $this->input->post('timesIdArray')[$i]);
+
+						$formated_startTime = date("H:i:s", strtotime($this->input->post('timeStart')[$i]));
+						$formated_endTime = date("H:i:s", strtotime($this->input->post('timeEnd')[$i]));
+						$formated_date = date("Y-m-d", strtotime($this->input->post('bookingtimesFrom')[$i]));
+				
+						$start_date = date('Y-m-d H:i:s', strtotime("$formated_date $formated_startTime"));
+						$end_date = date('Y-m-d H:i:s', strtotime("$formated_date $formated_endTime"));
+				
+						$insert_data[] = array(
+							//'roomID' => $this->input->post('sportrooms'),
+							'startTime' => $start_date, 
+							'endTime' => $end_date,
+							
+							);
+							$this->edit_model->update_bookingTimes($insert_data[$i], $this->input->post('timesIdArray')[$i]);
+						
+				
 				}
 				//var_dump($insert_data);
 			//	$this->edit_model->update_bookingTimes($insert_data, $this->input->post('timesIdArray'));
@@ -190,13 +202,13 @@ class Edit extends CI_Controller {
 		if($this->form_validation->run()===FALSE){
 			
 			$addtimes = array();
-			for($t = 0; $t <= count($this->input->post('workoutDate')); $t++) {
+			for($t = 0; $t <= count($this->input->post('additionalBookingDate')); $t++) {
 			
 
-				if(isset($this->input->post('end')[$t])){
-				$formated_startTime = date("H:i:s", strtotime($this->input->post('begin')[$t]));
-				$formated_endTime = date("H:i:s", strtotime($this->input->post('end')[$t]));
-				$formated_date = date("Y-m-d", strtotime($this->input->post('workoutDate')[$t]));
+				if(isset($this->input->post('additionalBookingDate')[$t])){
+				$formated_startTime = date("H:i:s", strtotime($this->input->post('additionalBookingtimeStart')[$t]));
+				$formated_endTime = date("H:i:s", strtotime($this->input->post('additionalBookingtimeEnd')[$t]));
+				$formated_date = date("Y-m-d", strtotime($this->input->post('additionalBookingDate')[$t]));
 		
 				$start_date = date('Y-m-d H:i:s', strtotime("$formated_date $formated_startTime"));
 				$end_date = date('Y-m-d H:i:s', strtotime("$formated_date $formated_endTime"));
