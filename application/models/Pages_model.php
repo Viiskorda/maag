@@ -33,6 +33,7 @@ class Pages_model extends CI_Model
         $query = $this->db->get('rooms');
         return $query->result();
     }
+
     function getAllBuildings()
     {
         $query = $this->db->get('buildings');

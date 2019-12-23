@@ -36,7 +36,7 @@
                 <input id="room" list="saal" class="form-control arrow" value="<?php  echo $rooms['roomName']; ?>">
                 <datalist id="saal" >
                 <?php foreach ($sportPlacesToChoose as $each) {
-                    if($this->session->userdata('roleID')!='2' or $this->session->userdata('roleID')!='3'){
+                    if($this->session->userdata('roleID')=='2' or $this->session->userdata('roleID')=='3'){
                         if($this->session->userdata('building')==$each->buildingID){
                             echo '<option data-value="' . $each->id . '" value="' . $each->roomName . '"></option>';
                         }  
@@ -352,7 +352,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                         },
                         success: function() {
                             calendar.fullCalendar('refetchEvents');
-                            alert("Added Successfully");
+                           // alert("Added Successfully");
                         }
                     })
                 }

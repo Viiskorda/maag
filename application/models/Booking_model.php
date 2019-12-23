@@ -42,6 +42,11 @@ public function getAllBuildings()
         return $query->result();
 	}
 
+    function getAllBookings()
+    {
+        $query = $this->db->get('bookings');
+        return $query->result_array();
+    }
 
 }
 
