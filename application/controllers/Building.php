@@ -10,14 +10,14 @@
 		
 
 		public function createRoom(){
-
+			
 			$this->building_model->createNewRoom();
 		}
 
 		public function edit($slug){
-	
+			
 			$data['editBuildings'] = $this->building_model->get_building($slug);
-		
+		//	var_dump($slug);
 			$this->load->view('templates/header');
 			$this->load->view('pages/editBuilding', $data);
 			$this->load->view('templates/footer');
@@ -28,6 +28,7 @@
 		public function view($slug){
 	
 			$data['editBuildings'] = $this->building_model->get_building($slug);
+		
 			$data['editAllBuildings'] = $this->building_model->get_building();
 			$data['editAllRooms'] = $this->building_model->get_rooms();
 			$this->load->view('templates/header');
@@ -51,7 +52,10 @@
 			$this->building_model->delete_room($id);
 			// Set message
 			$this->session->set_flashdata('building_deleted', 'Your building has been deleted');
-			redirect('building/view/1');
+			if ($this->session->userdata['building']==0){
+				redirect('building/view/'.$this->session->userdata['building']);
+			}else{
+			redirect('building/edit/'.$this->session->userdata['building']);}
 		}
 
 

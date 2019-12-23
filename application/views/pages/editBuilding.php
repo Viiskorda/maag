@@ -24,7 +24,7 @@
     Modal Login Form</a>
 </div>
 
-
+<?php // var_dump($editBuildings)?>
 
 <form id="change" method="post" action="<?php echo base_url(); ?>building/update">
                     <div id="change"></div>  <input type="hidden" name="id" value="<?php foreach ($editBuildings as $value) {echo $value['buildingID'];break;}?>">
@@ -89,14 +89,13 @@
                               
 
 
-                                <a class="btn btn-default pull-left" href="<?php echo base_url(); ?>building/view/<?php foreach ($editBuildings as $value) {echo $value['buildingID'];break;}?>">Katkesta</a>
+                                <a class="btn btn-default pull-left" href="<?php echo base_url(); ?>building/view/<?php  print_r($this->session->userdata['building']);?>">Katkesta</a>
                                 <button type="submit" class="btn btn-primary">Muuda</button>
 
 
 
-
-
-
+                            
+                             
 <script>
 
 $( "#openModal" ).click(function(e) {
@@ -111,8 +110,9 @@ $( "#openModal" ).click(function(e) {
         type: "POST",
         url: "<?php echo base_url(); ?>building/createRoom",
         data: { 
-            id: '<?php foreach ($editBuildings as $value) {echo $value['buildingID'];break;}?>',
-            roomName: $("#addRoomForm").val() 
+            id: '<?php echo $this->uri->segment(3);?>',
+            roomName: $("#addRoomForm").val(),
+            status: 1  
         },
         success: function(result) {
           $("#addRoomForm").before('<input type="button" class="btn btn-outline-secondary" value="'+ $("#addRoomForm").val() +'" /> ');
