@@ -18,7 +18,7 @@
             <div class="d-flex align-items-center">
                 <div class="col-7"  id="form-container">
                     <form action="fullcalendar" method="get">
-
+                    <?php if($this->session->userdata('roleID')!='2'&&$this->session->userdata('roleID')!='3'):?>
                         <div class="form-label-group">
                             <label for="region">Piirkond</label>
                             <input id="region" list="regions" class="form-control arrow" type="text">
@@ -40,13 +40,23 @@
                                 ?>
                             </datalist>
                         </div>
-
+                        <?php endif;?>
                         <div class="form-label-group">
                             <label for="room">Saal</label>
                             <input id="room" list="saal" class="form-control arrow" required> 
                             <datalist id="saal">
                                 <?php foreach ($rooms as $each) {
-                                    echo '<option data-value="' . $each->id . '">' . $each->roomName . '</option>';
+
+                                if($this->session->userdata('roleID')=='2' or $this->session->userdata('roleID')=='3'){
+                                    if($this->session->userdata('building')==$each->buildingID){
+                                        echo '<option data-value="' . $each->id . '">' . $each->roomName . '</option>';
+                                    }  
+
+                                }
+                                    else{
+                                        echo '<option data-value="' . $each->id . '">' . $each->roomName . '</option>';
+                                    } 
+
                                 }
                                 ?>
                             </datalist>
