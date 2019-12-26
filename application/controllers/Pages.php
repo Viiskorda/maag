@@ -19,7 +19,7 @@ class Pages extends CI_Controller
                 $data['rooms'] = $this->pages_model->getAllRooms($roomid);
                 $data['sportPlaces'] = $this->pages_model->getAllBuildings();
                 $data['sportPlacesToChoose'] = $this->pages_model->getAllBuildingRooms();
-                $data['allBookingInfo'] = $this->pages_model->getAllBookings();
+               // $data['allBookingInfo'] = $this->pages_model->getAllBookings();
                
                 foreach ( $data['sportPlacesToChoose'] as $each) {
                         if(($each->buildingID!=$this->session->userdata('building')&&$this->input->get('roomId')==$each->id&&($this->session->userdata('roleID')==='2' or $this->session->userdata('roleID')==='3'))){
