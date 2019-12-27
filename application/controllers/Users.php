@@ -119,7 +119,7 @@
 						$data  = $validate->row_array();
 						$name  = $data['userName'];
 						$phone  = $data['userPhone'];
-						$building  = $data['buidingID'];
+						$building  = $data['buildingID'];
 						$email = $data['email'];
 						$roleID = $data['roleID'];
 						$sesdata = array(

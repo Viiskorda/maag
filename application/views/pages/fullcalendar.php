@@ -1,7 +1,8 @@
-
 <div class="container">
     <div class="d-flex pt-4 pb-2" id="widthToggle">
         <form class="d-flex flex-row vol-md-11 col-lg-10 p-0" action="fullcalendar" method="get">
+      
+        <?php if($this->session->userdata('roleID')!='2'&&$this->session->userdata('roleID')!='3'):?>
             <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2">
   
                 <label for="region">Piirkond</label>
@@ -18,23 +19,32 @@
             <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2">
                 <label for="sport_facility">Asutus</label>
                 <input id="sport_facility" list="asutus" class="form-control arrow" value="<?php echo $rooms['name']; ?> ">
-                <datalist id="asutus">
-                    <?php foreach ($rooms as $each) {
+                <datalist id="asutus" >
+                    <?php foreach ($sportPlaces as $each) {
+                         if($rooms['regionID']==$each->regionID){
                         echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
-                    }
+                    }    }
                     ?>
                 </datalist>
                 <input type="hidden" id="roomId" name="roomId" value="roomId" />
             </div>
+        <?php endif;?>
+
 
             <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2">
                 <label for="room">Saal</label>
                 <input id="room" list="saal" class="form-control arrow" value="<?php  echo $rooms['roomName']; ?>">
-                <datalist id="saal">
-                    <?php foreach ($rooms as $each) {
-                        
-                        echo '<option data-value="' . $each->id . '">' . $each->roomName . ' </option>';
-                    }  
+                <datalist id="saal" >
+                <?php foreach ($sportPlacesToChoose as $each) {
+                    if($this->session->userdata('roleID')=='2' or $this->session->userdata('roleID')=='3'){
+                        if($this->session->userdata('building')==$each->buildingID){
+                            echo '<option data-value="' . $each->id . '" value="' . $each->roomName . '"></option>';
+                        }  
+
+                    }
+                        elseif($rooms['id']==$each->buildingID){
+                            echo '<option data-value="' . $each->id . '" value="' . $each->roomName . '"></option>';
+                        }       }
                     ?>
                 </datalist>
                 <input type="hidden" id="roomId" name="roomId" value="roomId" />
@@ -47,8 +57,10 @@
         </form>
 
         <div class="col-2 mr-auto p-0">
-            <?php if($this->session->userdata('session_id')===TRUE):?>
+            <?php if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'):?>
             <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" href="<?php echo base_url(); ?>booking/create/<?php echo ($this->input->get('roomId'));?>"><p class="m-0 txt-lg txt-strong text-center">Uus broneering</p></a>
+            <?php  elseif(  $this->session->userdata('session_id')===TRUE):?>
+            <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" href="<?php echo base_url(); ?>booking/create/<?php echo ($this->input->get('roomId'));?>"><p class="m-0 txt-lg txt-strong text-center">Esita päring</p></a>
             <?php endif;?>
         </div>
     </div>
@@ -340,7 +352,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                         },
                         success: function() {
                             calendar.fullCalendar('refetchEvents');
-                            alert("Added Successfully");
+                           // alert("Added Successfully");
                         }
                     })
                 }
@@ -994,7 +1006,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
 
         }
     });
-    $("#sport_facility").on('change keydown input paste', function(e) {
+    $("#sport_facility").on('load change keydown input paste', function(e) {
         var $input = $(this),
             val = $input.val();
         list = $input.attr('list'),
@@ -1013,9 +1025,10 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                     state_id: state_id
                 },
                 success: function(data) {
-                    console.log("data on " + data);
+                    console.log("data on " +  $("#region").val());
                     $('#room').val('');
                     $("#saal").empty();
+                 
                     //	$('#saal').html('<option value="">Vali asutus</option>');
                     $('#saal').html(data).appendTo("#saal");
                 }
@@ -1032,14 +1045,14 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
             match = $('#' + list + ' option').filter(function() {
                 return ($(this).val() === val);
             });
-            
+            console.log(match +"0"+ val);
 
-        if (match.length > 0) {
+        if (match.length > 0 && val.length > 0) {
             var val = $('#room').val();
             var xyz = $('#saal   option').filter(function() {
                 return this.value == val;
             }).data('value');
-        //       console.log(xyz);
+
             window.location.href =  '<?php echo base_url(); ?>fullcalendar?roomId='+xyz+'&date='+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY');
         } else {
         //    console.log("dismatch");

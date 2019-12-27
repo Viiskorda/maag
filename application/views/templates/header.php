@@ -54,14 +54,19 @@
                         <!-- <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="#"><strong>Kõik saalid</strong></a></li> -->
                         <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="<?php echo base_url(); ?>fullcalendar?roomId=1"><strong>Broneeringud</strong> <span class="badge badge-danger">5</span></a></li>
                         <?php endif; ?>
+                        <?php if($this->session->userdata('roleID')==='1'):?>
+                        <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="<?php echo base_url(); ?>building/view/<?php  print_r($this->session->userdata['building']);  ?>">Asutused</a></li>
+                        <?php endif; ?>
                         <?php if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='1'):?>
                         <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="<?php echo base_url(); ?>manageUsers">Kasutajad</a></li>
                         <?php endif; ?>
+                        <?php if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'):?>
+                        <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="<?php echo base_url(); ?>building/view/<?php  print_r($this->session->userdata['building']);  ?>">Asutuse sätted</a></li>
+                        <?php endif; ?>
                         <?php if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'  || $this->session->userdata('roleID')==='1'):?>
-                        <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="<?php echo base_url(); ?>building/view/1">Asutuse sätted</a></li>
                         <li class="nav-item"><a class="nav-link text-white py-0" href="#"><?php echo $this->session->userdata('userName');?> profiil</a></li>
+                        <?php endif; ?>
                     </ul>
-                    <?php endif; ?>
                     <?php if($this->session->userdata('session_id')) : ?>
                     <ul class="nav navbar-nav navbar-right p-0">
                   
@@ -76,6 +81,7 @@
 
             </div>
         </nav>
+  
     </header>
 <!-- Navigation -->
 <script>
@@ -126,3 +132,8 @@
       <?php if($this->session->flashdata('post_deleted')): ?>
         <?php echo '<p class="alert alert-success">'.$this->session->flashdata('post_deleted').'</p>'; ?>
       <?php endif; ?>
+
+      <?php if($this->session->flashdata('access_deniedToUrl')): ?>
+        <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('access_deniedToUrl').'</p>'; ?>
+      <?php endif; ?>
+      

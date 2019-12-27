@@ -27,13 +27,22 @@ class Pages_model extends CI_Model
 		$query = $this->db->get('rooms');
 		return $query->row_array();
       
-	}
+    }
+    function getAllBuildingRooms()
+    {
+        $query = $this->db->get('rooms');
+        return $query->result();
+    }
+
+    function getAllBuildings()
+    {
+        $query = $this->db->get('buildings');
+        return $query->result();
+    }
 
     function getAllRegions()
     {
-        // ennem tegin nagu allpool (allikas: https://stackoverflow.com/questions/19922143/display-data-from-database-to-dropdown-codeigniter)
-        // $query = $this->db->query('SELECT name FROM regions');
-        // return $query->result();
+      
         $this->db->order_by('regionID');
         $query = $this->db->get('regions');
         return $query->result();

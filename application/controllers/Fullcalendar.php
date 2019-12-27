@@ -89,6 +89,7 @@ class Fullcalendar extends CI_Controller {
 
 	public function createfromcalendar()
 	{
+		if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'){
 		if($this->input->post('public_info'))
 		{
 				$data1 = array(
@@ -111,6 +112,7 @@ class Fullcalendar extends CI_Controller {
 
 					$this->fullcalendar_model->create_bookingTimes($insert_data);
 				
+				}
 	
 	}
 	}

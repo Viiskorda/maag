@@ -3,6 +3,18 @@
 
 
 <?php echo validation_errors(); ?>
+
+
+<?php $stack = array(); foreach ($allBookingInfo as $each) {
+ 
+ array_push($stack,$each['public_info'] );
+
+ // echo $each['public_info']."<br>";
+                                    };
+   // print_r(array_unique($stack));
+                                    ?>
+                                  
+
 <div class="container">
     <div id="forms" class="container-md">
         <div id="nav-tabs" class="mt-5 pb-5 form-bg">
@@ -29,18 +41,18 @@
                             <input class="d-none" type="checkbox" id="type" name="type" value="1" checked>
                             <div class="form-label-group col-6 p-0 pl-5">
                                 <label>Kontaktisik</label>
-                                <input class="form-control" id="contact" name="contactPerson" value="<?php echo $this->session->userdata('userName');?>">
+                                <input class="form-control" id="contact" name="contactPerson" value="<?php if($this->session->userdata('roleID')!='2' && $this->session->userdata('roleID')!='3'){echo $this->session->userdata('userName');}; ?>">
                             </div>
                         </div>
                         <div class="d-flex mt-2 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label>Telefoni number</label>
-                                <input class="form-control" id="phone" name="phone" value="<?php echo $this->session->userdata('phone');?>">
+                                <input class="form-control" id="phone" name="phone" value="<?php if($this->session->userdata('roleID')!='2' && $this->session->userdata('roleID')!='3'){echo $this->session->userdata('phone');}; ?>">
                             </div>
 
                             <div class="form-label-group col-6 p-0 pl-5">
                                 <label>Email</label>
-                                <input class="form-control" id="email" name="email" value="<?php echo $this->session->userdata('email');?>">
+                                <input class="form-control" id="email" name="email" value="<?php if($this->session->userdata('roleID')!='2' && $this->session->userdata('roleID')!='3'){echo $this->session->userdata('email');}; ?>">
                             </div>
                         </div>
 
@@ -126,18 +138,18 @@
 
                             <div class="form-label-group col-6 p-0 pl-5">
                                 <label>Kontaktisik</label>
-                                <input class="form-control" id="contact" name="contactPerson">
+                                <input class="form-control" id="contact" name="contactPerson" value="<?php if($this->session->userdata('roleID')!='2' && $this->session->userdata('roleID')!='3'){echo $this->session->userdata('userName');}; ?>">
                             </div>
                         </div>
                         <div class="d-flex mt-2 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label>Telefoni number</label>
-                                <input class="form-control" id="phone" name="phone">
+                                <input class="form-control" id="phone" name="phone" value="<?php if($this->session->userdata('roleID')!='2' && $this->session->userdata('roleID')!='3'){echo $this->session->userdata('phone');}; ?>">
                             </div>
 
                             <div class="form-label-group col-6 p-0 pl-5">
                                 <label>Email</label>
-                                <input class="form-control" id="email" name="email">
+                                <input class="form-control" id="email" name="email" value="<?php if($this->session->userdata('roleID')!='2' && $this->session->userdata('roleID')!='3'){echo $this->session->userdata('email');}; ?>">
                             </div>
                         </div>
 

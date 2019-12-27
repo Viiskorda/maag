@@ -37,7 +37,7 @@
 
 				
 					<div class="d-flex justify-content-end mt-3 mb-5">
-						<a class="txt-xl link-deco align-self-center py-0 pr-5 mr-2" href="<?php echo base_url(); ?>manageUsers">Katkesta</a>
+						<a class="txt-xl link-deco align-self-center py-0 pr-5 mr-2" href="<?php echo base_url(); ?>building/view/<?php  print_r($this->session->userdata['building']);  ?>">Katkesta</a>
 						<button type="submit" class="btn btn-custom text-white txt-xl">Lisa asutus</button>
 					</div>
 

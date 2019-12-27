@@ -14,7 +14,7 @@
 			return $query->result_array();
 			}
 			$this->db->join('rooms', ' buildings.id = rooms.buildingID' , 'left');
-			$query = $this->db->get_where('buildings', array('.buildings.id' => $slug));
+			$query = $this->db->get_where('buildings', array('buildings.id' => $slug));
 			return $query->result_array();
 		
 		}
@@ -34,6 +34,12 @@
 		public function delete_building($id){
 			$this->db->where('id', $id);
 			$this->db->delete('buildings');
+			return true;
+		}
+
+		public function delete_room($id){
+			$this->db->where('id', $id);
+			$this->db->delete('rooms');
 			return true;
 		}
 
@@ -91,15 +97,18 @@
 
 
 		public function createNewRoom(){
-
-			$data = array(
-				'roomName' => $this->input->post('roomName'),
-				'buildingID' => $this->input->post('id'),
-		   );
+			
+				$data = array(
+					'roomName' => $this->input->post('roomName'),
+					'buildingID' =>$this->input->post('id'),
+					'activeRoom' => $this->input->post('status'),
+			   );
+		
+			
 			// Insert room
 			return $this->db->insert('rooms', $data);
+		
 		}
-
 
 
 	}
