@@ -15,7 +15,7 @@
     <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">  
     <link href="<?php echo base_url(); ?>assets/css/calendar.css" rel="stylesheet">
     
-    <script src="https://kit.fontawesome.com/7867c1b872.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/7867c1b872.js" crossorigin="anonymous"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" crossorigin="anonymous"></script>
     
 
@@ -51,7 +51,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto mt-lg-0 pl-lg-3 pl-md-2 pl-sm-1">
                     <?php if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'):?>
-                        <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="#"><strong>Kõik saalid</strong></a></li>
+                        <!-- <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="#"><strong>Kõik saalid</strong></a></li> -->
                         <li class="nav-item"><a class="nav-link text-white py-0 pr-lg-5 pr-md-2 pr-sm-1 mr-lg-0 mr-md-0 mr-sm-0" href="<?php echo base_url(); ?>fullcalendar?roomId=1"><strong>Broneeringud</strong> <span class="badge badge-danger">5</span></a></li>
                         <?php endif; ?>
                         <?php if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='1'):?>
