@@ -15,8 +15,7 @@
     <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">  
     <link href="<?php echo base_url(); ?>assets/css/calendar.css" rel="stylesheet">
     
-    <!-- <script src="https://kit.fontawesome.com/7867c1b872.js" crossorigin="anonymous"></script> -->
-    <script src="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/419da46f9e.js" crossorigin="anonymous"></script>
     
 
     <script src="<?php echo base_url(); ?>assets/js/vue.js"></script>

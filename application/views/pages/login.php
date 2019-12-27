@@ -20,7 +20,7 @@
 						<!-- <input type="password" id="password" name="password" class="form-control" data-toggle="password" required> -->
 
 						<input id="password-field" type="password" class="form-control" name="password">
-						<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+						<i id="login-icon" toggle="#password-field" class="far fa-eye-slash field-icon toggle-password"></i>
 					</div>
 
 					<div class="form-label-group pt-1 pb-4 pl-0 text-center">

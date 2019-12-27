@@ -145,12 +145,32 @@
     font-weight: 500;
   }
 
+  .txt-xl-xl {
+    font-size: 70px;
+  }
+
+  .txt-ultralg {
+    font-size: 180px;
+  }
+
   .txt-strong {
     font-weight: 500;
   }
 
+  .txt-bold {
+    font-weight: 700;
+  }
+
+  .txt-black {
+    font-weight: 900;
+  }
+
   .txt-regular {
     font-weight: 400 !important;
+  }
+
+  .txt-lh-black {
+    line-height: 200px;
   }
 
   .text-white {
@@ -163,6 +183,10 @@
 
   .text-darkblue {
     color: #0B3954 !important;
+  }
+
+  .text-blue {
+    color: #1A7AB7 !important;
   }
   /* TEXT AND LINK */
 
