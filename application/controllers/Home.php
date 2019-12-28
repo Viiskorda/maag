@@ -25,12 +25,10 @@ class Home extends CI_Controller
 
 	public function view($page = 'home') //pääseb ligi: https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/calendar/home
 	{
-		if (!file_exists(APPPATH . 'views/' . $page . '.php')) {
+		if (!file_exists(APPPATH . 'views/pages/' . $page . '.php')) {
 			// Whoops, we don't have a page for that!
-			// show_404();
-			$this->load->view('templates/header');
-			$this->load->view('404');
-			$this->load->view('templates/footer');
+			redirect('');
+		  //  show_404();
 		}
 
 		$data['title'] = ucfirst($page); // Capitalize the first letter
