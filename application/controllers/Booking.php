@@ -92,7 +92,7 @@ class Booking extends CI_Controller {
 
 	public function createClosed()
 	{
-		if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'){
+		if( $this->session->userdata('session_id')===TRUE){
 			$event_in = strtotime($this ->input->post('startingFrom'));
 			$event_in = date('Y-m-d H:i:s', $event_in);
 			$event_out = strtotime($this ->input->post('Ending'));
@@ -222,7 +222,7 @@ class Booking extends CI_Controller {
 
 	public function createOnce()
 	{
-		if($this->session->userdata('roleID')==='2' || $this->session->userdata('roleID')==='3'){
+		if( $this->session->userdata('session_id')===TRUE){
 
 		$data['rooms'] = $this->booking_model->getAllRooms();
 		$data['buildings'] = $this->booking_model->getAllBuildings();
