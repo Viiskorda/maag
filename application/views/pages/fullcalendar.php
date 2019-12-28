@@ -235,7 +235,7 @@
 <script>
   var counter=0;
     $(document).ready(function() {
-        var displayOrNot='<?php echo $this->session->userdata('session_id')?>';
+        var displayOrNot='<?php echo $this->session->userdata('roleID')?>';
 
         var monthNamesForModal= ['Jaanuar', 'Veebruar', 'Märts', 'Aprill', 'Mai', 'Juuni', 'Juuli', 'August', 'September', 'Oktoober', 'November', 'Detsember'];
       
@@ -312,7 +312,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
             selectHelper: true,
             eventRender: function (event, element) {
             
-                    if(displayOrNot==1 && (event.typeID == 1 || event.typeID == 2)) {
+                    if((displayOrNot==2 || displayOrNot==3) && (event.typeID == 1 || event.typeID == 2)) {
                         element.find('.fc-time').before("<span class='timequery'>Päring: "+moment(event.created_at).format("DD.MM.YYYY HH:mm")+"</span>"); // Päringu kirje broneeringu lahtris
 
                         if (event.approved == true) {
