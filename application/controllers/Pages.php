@@ -9,10 +9,13 @@ class Pages extends CI_Controller
 
         public function view($page = 'home')
         {
-                if (!file_exists(APPPATH . 'views/pages/' . $page . '.php')) {
-                        // Whoops, we don't have a page for that!
-                        show_404();
-                }
+		if (!file_exists(APPPATH . 'views/pages' . $page . '.php')) {
+			// Whoops, we don't have a page for that!
+                        // show_404();
+                        echo("i");
+                        $this->load->library('../controllers/Error_404');
+                        $this->Error_404->index();
+		}
               
                 $data['title'] = ucfirst($page); // Capitalize the first letter
                 $roomid=$this->input->get('roomId');

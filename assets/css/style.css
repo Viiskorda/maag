@@ -50,6 +50,8 @@
   }
 
   .container-sm {
+    margin-right: auto;
+    margin-left: auto;
     max-width: 460px !important;
     min-height: 95vh;
   }
@@ -70,6 +72,10 @@
   .m-15 {
     margin-right: 15%;
     margin-left: 15%;
+  }
+
+  .mt-50 {
+    padding-top: 50%;
   }
   /* CONTAINERS, OVERALL CHANGES */
 
@@ -169,8 +175,12 @@
     font-weight: 400 !important;
   }
 
+  .txt-lh-lg {
+    line-height: 10px;
+  }
+
   .txt-lh-black {
-    line-height: 200px;
+    line-height: 180px;
   }
 
   .text-white {

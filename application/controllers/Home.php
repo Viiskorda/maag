@@ -25,7 +25,7 @@ class Home extends CI_Controller
 
 	public function view($page = 'home') //pääseb ligi: https://tigu.hk.tlu.ee/~annemarii.hunt/codeigniter/calendar/home
 	{
-		if (!file_exists(APPPATH . 'views/pages/' . $page . '.php')) {
+		if (!file_exists(APPPATH . 'views/' . $page . '.php')) {
 			// Whoops, we don't have a page for that!
 			// show_404();
 			$this->load->view('templates/header');

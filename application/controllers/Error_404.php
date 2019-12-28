@@ -13,7 +13,7 @@ class Error_404 extends CI_Controller {
  
     $this->output->set_status_header('404'); 
     $this->load->view('templates/header');
-    $this->load->view('404');
+    $this->load->view('pages/404');
     $this->load->view('templates/footer');
  
   }
