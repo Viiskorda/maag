@@ -198,6 +198,10 @@
   .text-blue {
     color: #1A7AB7 !important;
   }
+
+  .cursor-pointer:hover {
+    cursor: pointer;
+  }
   /* TEXT AND LINK */
 
   #myTable.table td.conflict {
