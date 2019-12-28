@@ -61,9 +61,7 @@
 				'contact_email' => $this->input->post('email'),
 				'phone' => $this->input->post('phone'),
 				'notify_email' => $this->input->post('notifyEmail'),
-				'price_url' => $this->input->post('price_url'),
-				'roomActive' => $this->input->post('roomActive'),
-				
+				'price_url' => $this->input->post('price_url'),				
 			);
 		
 			return $this->db->insert('buildings', $data);

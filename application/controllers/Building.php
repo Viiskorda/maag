@@ -42,7 +42,7 @@
 			$this->building_model->delete_building($id);
 			// Set message
 			$this->session->set_flashdata('building_deleted', 'Your building has been deleted');
-			redirect('building/view/');
+			redirect('building/view/'.$this->session->userdata['building']);
 		}
 
 	
@@ -91,7 +91,7 @@
 			$this->building_model->update_building();
 			// Set message
 			$this->session->set_flashdata('post_updated', 'Uuendasid asutuse infot');
-			redirect('building/view/'.$this->input->post('id'));
+			redirect('building/view/'.$this->session->userdata['building']);
 		}
 
 
@@ -111,7 +111,7 @@
 				
 				$this->building_model->registerBuilding();
 				$this->session->set_flashdata('user_registered', 'Asutus lisatud');
-				redirect('viewBuilding');
+				redirect('building/view/'.$this->session->userdata['building']);
 			}
 		}
 
