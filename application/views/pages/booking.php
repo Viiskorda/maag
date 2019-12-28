@@ -36,7 +36,7 @@
                         <div class="d-flex p-0 mt-4 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label for="contact">Klubi nimi (Avalik info)</label>
-                                <input class="form-control" id="clubname" type="text" name="clubname">
+                                <input class="form-control" id="clubname" type="text" name="clubname" required>
                             </div>
                             <input class="d-none" type="checkbox" id="type" name="type" value="1" checked>
                             <div class="form-label-group col-6 p-0 pl-5">
@@ -133,7 +133,7 @@
                         <div class="d-flex px-5 mx-5 mt-4">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label for="contact">Klubi nimi (Avalik info)</label>
-                                <input class="form-control" id="clubname" type="text" name="clubname">
+                                <input class="form-control" id="clubname" type="text" name="clubname" required>
                             </div>
 
                             <div class="form-label-group col-6 p-0 pl-5">
