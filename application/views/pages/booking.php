@@ -1,18 +1,8 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
-<!-- <h2><?= $title; ?></h2> -->
-
-
 <?php echo validation_errors(); ?>
-
-
-<?php $stack = array(); foreach ($allBookingInfo as $each) {
- 
- array_push($stack,$each['public_info'] );
-
- // echo $each['public_info']."<br>";
-                                    };
-   // print_r(array_unique($stack));
-                                    ?>
+<?php $stack = array(); foreach ($allBookingInfo as $each) { 
+    array_push($stack, $each['public_info'] );
+ };?>
                                   
 
 <div class="container">
@@ -28,14 +18,14 @@
                 </ul>
             </div>
 
-            <div class="tab-content">
+            <div class="tab-content ">
                 <div id="mitmekordne" class="tab-pane center active">
                     <?php echo form_open('booking/createOnce'); ?>
 
                         <h4 class="pt-2 txt-xl px-5 mx-5">Kontakt</h4>
                         <div class="d-flex p-0 mt-4 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
-                                <label for="contact">Klubi nimi (Avalik info)*</label>
+                                <label for="contact">Klubi nimi (avalik info)*</label>
                                 <input class="form-control" id="clubname" type="text" name="clubname" required>
                             </div>
                             <input class="d-none" type="checkbox" id="type" name="type" value="1" checked>
@@ -60,18 +50,12 @@
                         <div class="d-flex mt-4 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label for="sport_facility">Asutus</label>
-                                <input id="sport_facility" class="form-control" list="asutus" id="building" disabled value="<?php echo $selectedRoom[0]->name;?>">
-                                    <datalist id="asutus">
-                                    <?php foreach ($buildings as $each) {
-                                        echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
-                                    }
-                                    ?>
-                                    </datalist>
+                                <input id="sport_facility" class="form-control" list="asutus" id="building" disabled value="<?php $test = $this->session->userdata('building'); foreach ($buildings as $each) { $id = $each->id; $name = $each->name; if ($id == $test) {echo $each->name;}};?>">
                             </div>
 
                             <div class="form-label-group col-6 p-0 pl-5">
-                                <label for="room">Saal</label>
-                                <select id="room" list="saal" name="sportrooms" class="form-control arrow" value="<?php echo $selectedRoom[0]->roomName;?>">
+                                <label for="room">Saal*</label>
+                                <select id="room" list="saal" name="sportrooms" class="form-control arrow" value="<?php echo $selectedRoom[0]->roomName;?>" required>
                                     <?php foreach ($rooms as $each) {
                                                 echo '<option value="' . $each->id . '">' . $each->roomName . '</option>';
                                             } ?>
@@ -81,7 +65,7 @@
                         <div class="d-flex mt-2 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label>Treeningu tüüp</label>
-                                <input class="form-control" id="type" name="workoutType">
+                                <input class="form-control" id="type" name="workoutType" placeholder="nt iluvõimlemine">
                             </div>
                             <div class="form-label-group col-6 p-0 pl-5"></div>
                         </div>
@@ -105,8 +89,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="AddMoreFileId" class="d-flex col-5 p-0">
-                                    <a id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 px-4 pluss"><p class="m-0 px-0 txt-lg txt-strong text-center align-items-center">Lisa veel üks kuupäev</p></a>
+                                <div id="AddMoreFileId" class="d-flex p-0">
+                                    <a id="AddMoreFileBox" class="btn btn-custom text-white text-center py-2 pluss" style="width: 279px"><p class="m-0 px-0 txt-lg txt-strong text-center align-items-center">Lisa veel üks kuupäev</p></a>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +99,7 @@
                         <div class="mt-4 px-5 mx-5">
                             <div class="form-label-group pb-2 px-0">
                                 <label>Lisainfo</label>
-                                <textarea class="form-control" id="additional" name="additionalComment" rows="3"></textarea>
+                                <textarea class="form-control" id="additional" name="additionalComment" rows="3" placeholder="nt palun võrkpalli trenni jaoks eelnevalt üles seada võrk"></textarea>
                             </div>
                         </div>
 
@@ -132,7 +116,7 @@
                         <h4 class="pt-2 txt-xl px-5 mx-5">Kontakt</h4>
                         <div class="d-flex px-5 mx-5 mt-4">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
-                                <label for="contact">Klubi nimi (Avalik info)*</label>
+                                <label for="contact">Klubi nimi (avalik info)*</label>
                                 <input class="form-control" id="clubname" type="text" name="clubname" required>
                             </div>
 
@@ -153,22 +137,17 @@
                             </div>
                         </div>
 
+
                         <h4 class="mt-5 txt-xl px-5 mx-5">Asukoht ja treeningu tüüp</h4>
                         <div class="d-flex mt-4 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
                                 <label for="sport_facility">Asutus</label>
-                                <input id="sport_facility" class="form-control" list="asutus" id="building" disabled>
-                                    <datalist id="asutus">
-                                    <?php foreach ($buildings as $each) {
-                                        echo '<option data-value="' . $each->id . '" value="' . $each->name . '"></option>';
-                                    }
-                                    ?>
-                                    </datalist>
+                                <input id="sport_facility" class="form-control" list="asutus" id="building" value="<?php $test = $this->session->userdata('building'); foreach ($buildings as $each) { $id = $each->id; $name = $each->name; if ($id == $test) {echo $each->name;}};?>" disabled>
                             </div>
 
                             <div class="form-label-group col-6 p-0 pl-5">
-                                <label for="room">Saal</label>
-                                <select id="room" list="saal" name="sportrooms" class="form-control arrow">
+                                <label for="room">Saal*</label>
+                                <select id="room" list="saal" name="sportrooms" class="form-control arrow" required>
                                     <?php foreach ($rooms as $each) {
                                                 echo '<option value="' . $each->id . '">' . $each->roomName . '</option>';
                                             } ?>
@@ -178,8 +157,8 @@
 
                         <div class="d-flex mt-2 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
-                                <label>Treeningu tüüp</label>
-                                <input class="form-control" id="type" name="workoutType">
+                                <label for="type">Treeningu tüüp</label>
+                                <input class="form-control" id="type" name="workoutType" placeholder="nt iluvõimlemine">
                             </div>
                             <div class="form-label-group col-6 p-0 pl-5">
                                 <input class="d-none" type="checkbox" name="type" value="2" checked>
@@ -243,7 +222,7 @@
                         <div class="mt-4 px-5 mx-5">
                             <div class="form-label-group pb-2 px-0">
                                 <label>Lisainfo</label>
-                                <textarea class="form-control" id="comment2" name="comment2" rows="3"></textarea>
+                                <textarea class="form-control" id="comment2" name="comment2" rows="3" placeholder="nt palun võrkpalli trenni jaoks eelnevalt üles seada võrk"></textarea>
                             </div>
                         </div>
 
