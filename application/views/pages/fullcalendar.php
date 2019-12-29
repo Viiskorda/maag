@@ -76,7 +76,6 @@
     </div>
 
     <!-- KALENDER CONTAINERIS START -->
-
     <div id="calendar-container">
         <div id='calendar'></div>
     </div>
@@ -118,59 +117,59 @@
                     <div class="accordion px-4">
                         <div class="accordion-item">
                             <a class="txt-xl text-darkblue active py-2">Broneeringu info</a>
-                            <div id="contact" class="content active p-0 m-0">                            
+                            <div id="contact" class="content active p-0 m-0">                         <div class="remove">   
                                 <p class="pt-2 txt-regular">Kontakt</p>
-                                <div class="d-flex justify-content-between p-0 m-0">
+                                <div class="d-flex justify-content-between p-0 m-0  remove">
                                     <div class="col-6 p-0 m-0"><p>Kontaktisik</p></div>
                                     <div class="col-6 p-0 m-0">
                                         <p id="c_name"></p>
                                         <input type="text" class="d-none" name="clubname" id="clubname">
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-between p-0 m-0">
+                                <div class="d-flex justify-content-between p-0 m-0 remove">
                                     <div class="col-6 p-0 m-0"><p>Klubi nimi</p></div>
                                     <div class="col-6 p-0 m-0">
                                         <p id="c_name"></p>
                                         <input type="text" class="d-none" name="c_name" id="c_name">
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-between p-0 m-0">
+                                <div class="d-flex justify-content-between p-0 m-0 remove">
                                     <div class="col-6 p-0 m-0"><p>Telefoni number</p></div>
                                     <div class="col-6 p-0 m-0">
                                         <p id="phone"></p>
                                         <input type="text" class="d-none" name="phone" id="phone">
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-between remove">
                                     <div class="col-6 p-0 m-0"><p>Email</p></div>
                                     <div class="col-6 p-0 m-0">
                                         <p id="email"></p>
                                         <input type="text" class="d-none" name="email" id="email">
                                     </div>
-                                </div>
+                                </div></div>
 
-                                <p class="pt-3 txt-regular">Asukoht ja treeningu tüüp</p>
-                                <div class="d-flex justify-content-between">
+                                <p id="saal" class="pt-3 txt-regular">Asukoht ja treeningu tüüp</p><div class="remove">
+                                <div class="d-flex justify-content-between remove2">
                                     <div class="col-6 p-0 m-0"><p>Asutus</p></div>
                                     <div class="col-6 p-0 m-0">
                                         <p id="building"></p>
                                         <input type="text" class="d-none" name="building" id="building">
                                     </div>
-                                </div>
+                                </div></div>
                                 <div class="d-flex justify-content-between">
                                     <div class="col-6 p-0 m-0"><p>Saal</p></div>
                                     <div class="col-6 p-0 m-0">
                                         <p id="selectedroom"></p>
                                         <input type="text" class="d-none" name="selectedroom" id="selectedroom">
                                     </div>
-                                </div>
+                                </div><div class="remove">
                                 <div class="d-flex">
                                     <div class="col-6 p-0 m-0"><p>Treeningu tüüp</p></div>
                                     <div class="col-6 p-0 m-0">
                                         <p id="workout"></p>
                                         <input type="text" class="d-none" name="workout" id="workout">
                                     </div>
-                                </div>
+                                </div></div>
 
                                 <div id="ajad">
                                     <p  class="pt-3 txt-regular">Kuupäev ja kellaajad</p>
@@ -332,7 +331,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                         element.find('.fc-content').after('<span class="notice notice-error">Kinnitamata</span>');
                         element.css({ 'background': 'repeating-linear-gradient(-45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1) 10px, rgba(245, 245, 245, 1) 10px, rgba(245, 245, 245, 1) 20px)'});
                     }
-                    
+
                     if (event.takesPlace == false) {
                         element.find('.fc-content').after('<span class="notice notice-error">Ei toimu</span>')
                     }
@@ -446,7 +445,16 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                 $("#lefty #time").text(moment(event.created_at).format('DD.MM.YYYY HH:mm:ss'));
               //  $('.modal-dialog').draggable();
                 $('#c_name').val(event.title);
-                $('#clubname').val(event.clubname);
+                if (event.typeID == 4 ){
+                    $('p#saal').text("Asukoht");
+                    $('.remove').each(function() {
+                        $(this).hide();
+                    })
+                } else {
+                    $('.remove').each(function() {
+                        $(this).show();})};
+                        
+                $('#clubname').val(event.clubname); 
                 $("#contact #c_name").text(event.clubname);
                 $('#event_in').val(event.event_in);
                 if( !$('#event_in').val() ) {
