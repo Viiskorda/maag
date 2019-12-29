@@ -109,6 +109,7 @@ class Booking extends CI_Controller {
 			'c_email' => $this ->input->post('email'),
 			'comment' => $this ->input->post('additionalComment'),
 			'workout' => $this ->input->post('workoutType'),
+			
 
 		);
 
@@ -159,6 +160,7 @@ class Booking extends CI_Controller {
 
 				$insert_data2[] = array(
 					'roomID' => $this->input->post('sportrooms'),
+					'approved' => $this ->input->post('approved'),
 					'startTime' => $start_data,
 					'endTime' => $end_data,
 					'bookingID' => $id

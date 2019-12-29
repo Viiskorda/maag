@@ -35,7 +35,7 @@
                         <h4 class="pt-2 txt-xl px-5 mx-5">Kontakt</h4>
                         <div class="d-flex p-0 mt-4 px-5 mx-5">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
-                                <label for="contact">Klubi nimi (Avalik info)</label>
+                                <label for="contact">Klubi nimi (Avalik info)*</label>
                                 <input class="form-control" id="clubname" type="text" name="clubname" required>
                             </div>
                             <input class="d-none" type="checkbox" id="type" name="type" value="1" checked>
@@ -132,7 +132,7 @@
                         <h4 class="pt-2 txt-xl px-5 mx-5">Kontakt</h4>
                         <div class="d-flex px-5 mx-5 mt-4">
                             <div class="form-label-group col-6 py-0 pl-0 pr-5">
-                                <label for="contact">Klubi nimi (Avalik info)</label>
+                                <label for="contact">Klubi nimi (Avalik info)*</label>
                                 <input class="form-control" id="clubname" type="text" name="clubname" required>
                             </div>
 
@@ -183,6 +183,7 @@
                             </div>
                             <div class="form-label-group col-6 p-0 pl-5">
                                 <input class="d-none" type="checkbox" name="type" value="2" checked>
+                                <input class="d-none" type="checkbox" name="approved" value="0" checked>
                             </div>
                         </div>                        
                            
@@ -270,6 +271,7 @@
                             <div class="d-flex mt-2 px-5 mx-5">
                                 <input class="d-none" type="checkbox" name="type" value="4" checked> <!-- Suletud (See tuleb ära peita ehk panna hidden)<br> -->
                                 <input class="d-none" type="checkbox" name="clubname" value="Suletud" checked> <!-- Suletud Title (See tuleb ära peita ehk panna hidden)<br> -->
+                                <input class="d-none" type="checkbox" name="approved" value="1" checked>
                             </div>
                         </div>
 

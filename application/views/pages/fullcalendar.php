@@ -324,14 +324,15 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
             
                     if((displayOrNot==2 || displayOrNot==3) && (event.typeID == 1 || event.typeID == 2)) {
                         element.find('.fc-time').before("<span class='timequery'>Päring: "+moment(event.created_at).format("DD.MM.YYYY HH:mm")+"</span>"); // Päringu kirje broneeringu lahtris
-
-                        if (event.approved == true) {
-                            element.css('border-left', '7px solid #1A7AB7');
-                        } else {
-                            element.find('.fc-content').after('<span class="notice notice-error">Kinnitamata</span>');
-                            element.css({ 'background': 'repeating-linear-gradient(-45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1) 10px, rgba(245, 245, 245, 1) 10px, rgba(245, 245, 245, 1) 20px)'});
-                        }
                     }
+
+                    if (event.approved == true) {
+                        element.css('border-left', '7px solid #1A7AB7');
+                    } else {
+                        element.find('.fc-content').after('<span class="notice notice-error">Kinnitamata</span>');
+                        element.css({ 'background': 'repeating-linear-gradient(-45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1) 10px, rgba(245, 245, 245, 1) 10px, rgba(245, 245, 245, 1) 20px)'});
+                    }
+                    
                     if (event.takesPlace == false) {
                         element.find('.fc-content').after('<span class="notice notice-error">Ei toimu</span>')
                     }
