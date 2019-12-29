@@ -390,11 +390,6 @@
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
 }
 
- .btn-delete {
-  background: #9E3253;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
- }
-
  .btn-second {
   background: #0B3954;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
@@ -405,9 +400,22 @@
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
  }
 
+ .btn-inactive {
+  background: #8693AB;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+ }
+
  .btn-width {
    width: 76px;
  }
+
+ .btn-width-92 {
+  width: 92px;
+}
+
+.btn-width-md {
+  width: 100px;
+}
 
  .btn-width-lg {
   width: 168px;
