@@ -1,6 +1,6 @@
 <div class="container">
     <div class="d-flex pt-4" id="widthToggle">
-        <form class="d-flex flex-row vol-md-11 col-lg-10 p-0" action="fullcalendar" method="get">
+        <form class="d-flex flex-row col-md-11 col-lg-10 p-0" action="fullcalendar" method="get">
       
         <?php if($this->session->userdata('roleID')!='2'&&$this->session->userdata('roleID')!='3'):?>
             <div class="form-label-group col-md-3 col-lg-2 p-0 mr-2">
@@ -74,7 +74,6 @@
         
         
     </div>
-
     <!-- KALENDER CONTAINERIS START -->
     <div id="calendar-container">
         <div id='calendar'></div>
@@ -212,25 +211,24 @@
                 <input type="hidden" name="eventid" id="event_id" value="0" /> 
             </div>
 
-            <div class="modal-footer d-block m-0 py-2 float-center">
-                <form id="approveCheck">
-                    <input type="submit" class="btn btn-custom text-white txt-strong btn-width" value="Kinnita">
+            <div class="modal-footer d-block m-0 py-2 text-center">
+                <form id="approveCheck"  class="m-0">
+                    <input type="submit" class="btn btn-custom text-white txt-strong btn-width-lg example1" value="Kinnita">
                 </form >
 
                 <form id="change" method="post" action="<?php echo base_url(); ?>fullcalendar/edit" class="m-0 pt-2">
-                    <input type="submit" id="changeTimes" class="btn btn-second text-white txt-strong btn-width" value="Muuda">
+                    <input type="submit" id="changeTimes" class="btn btn-second text-white txt-strong btn-width-lg" value="Muuda">
                 </form >  
 
-                <form id="delete" class=" m-0 py-2 btn-width">
-                    <input type="submit" class="btn btn-delete text-white txt-strong btn-width" value="Kustuta" id="deleteChecked" name="deleteChecked">
+                <form id="delete" class="m-0 pt-2">
+                    <input type="submit" class="btn btn-delete text-white txt-strong btn-width-lg" value="Kustuta" id="deleteChecked" name="deleteChecked">
                 </form >
 
-                <form id="takesPlaceCheck" class=" m-0">
-                    <input type="submit"  class="btn btn-second text-white txt-strong btn-width" value="Ei toimu">
+                <form id="takesPlaceCheck" class="m-0 pt-2">
+                    <input type="submit"  class="btn btn-second text-white txt-strong btn-width-lg" value="Ei toimu">
                 </form >
-                  
-                </div>
-                <br>  <br>
+            </div>
+            <br>  <br>
             <!-- </div> -->
 
         </div>
@@ -239,7 +237,7 @@
     <!-- ****************** MODAL END ****************** -->
 
 </div><!-- container -->
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datepicker.js"></script>
 <script>
   var counter=0;
@@ -815,7 +813,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                         });
                     }
             else{
-                alert("Sa ei valinud midagi mida kinnitada");
+                swal("Sa ei valinud midagi mida kinnitada");
                 event.preventDefault(); 
             };
 
@@ -1103,6 +1101,9 @@ dayClick: function (date, jsEvent, view) {
         // $('#calendar').fullCalendar( 'gotoDate', e.target.value )
         //  window.location.href = '<?php echo site_url('');?>fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date='+ e.target.value;
         // window.history.replaceState("", "", "fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date="+ e.target.value);
+        $('.fc-slats tr').css('height', rowHeight+'px');
+        $(window).trigger('resize');
+        $(".fc-body").trigger('reload');
     });
 
     
@@ -1110,27 +1111,24 @@ dayClick: function (date, jsEvent, view) {
         window.history.replaceState("", "", "fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date="+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
         //kas alumist on vaja? see muudab input datepickeri väärtust vastavalt kuupäevadele
     //    $('#datepicker').val($('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
-        var calHeight = $( ".fc-body" ).height();
-        var calRows = $( ".fc-slats tr" ).length;
-        var rowHeightRaw = calHeight / calRows;
-        var rowHeight = rowHeightRaw.toString().match(/^-?\d+(?:\.\d{0,1})?/)[0];
+
         $('.fc-slats tr').css('height', rowHeight+'px');
-        $(window).trigger('resize');
-        $(".fc-body").trigger('reload');
+        $(window).trigger('resize');;
     });
 
     $('body').on('click', 'button.fc-next-button', function() {
         window.history.replaceState("", "", "fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date="+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
-        var calHeight = $( ".fc-body" ).height();
-        var calRows = $( ".fc-slats tr" ).length;
-        var rowHeightRaw = calHeight / calRows;
-        var rowHeight = rowHeightRaw.toString().match(/^-?\d+(?:\.\d{0,1})?/)[0];
+
         $('.fc-slats tr').css('height', rowHeight+'px');
         $(window).trigger('resize');
-        $(".fc-body").trigger('reload');
         //$('#datepicker').val($('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
         
     });
+
+    $(window).load(function() {
+        $('.fc-slats tr').css('height', rowHeight+'px');
+        $(window).trigger('resize');
+    })
 
     date = moment('<?php echo ($this->input->get('date')); ?>', "DD-MM-YYYY");
     
@@ -1162,4 +1160,7 @@ dayClick: function (date, jsEvent, view) {
             $('#widthToggle').css({'margin-left': '0'});
         }
     });
+
+
+                            
 </script>
