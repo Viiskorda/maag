@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="d-flex pt-4 pb-2" id="widthToggle">
+    <div class="d-flex pt-4" id="widthToggle">
         <form class="d-flex flex-row vol-md-11 col-lg-10 p-0" action="fullcalendar" method="get">
       
         <?php if($this->session->userdata('roleID')!='2'&&$this->session->userdata('roleID')!='3'):?>
@@ -56,13 +56,23 @@
             </div>
         </form>
 
+        
+        <?php if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'){?>
         <div class="col-2 mr-auto p-0">
-            <?php if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'):?>
             <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" href="<?php echo base_url(); ?>booking/create/<?php echo ($this->input->get('roomId'));?>"><p class="m-0 txt-lg txt-strong text-center">Uus broneering</p></a>
-            <?php  elseif(  $this->session->userdata('session_id')===TRUE):?>
+            <?php  }elseif(  $this->session->userdata('session_id')===TRUE){?>
             <a class="btn btn-custom text-white text-center py-2 px-sm-2 px-lg-5 px-md-4 float-right pluss" href="<?php echo base_url(); ?>booking/create/<?php echo ($this->input->get('roomId'));?>"><p class="m-0 txt-lg txt-strong text-center">Esita päring</p></a>
-            <?php endif;?>
+        <?php };?>
+
+        <?php  if( !$this->session->userdata('session_id')){?>
+        <div class="col-2 p-0 bg-blue info-label text-white px-3 py-2">
+            <p class="txt-strong">Broneerimiseks helista või kirjuta:</p>
+            <p><?php echo $rooms['notify_email']; ?></p>
+            <p><?php echo $rooms['phone']; ?></p>
+        <?php }; ?>
         </div>
+        
+        
     </div>
 
     <!-- KALENDER CONTAINERIS START -->

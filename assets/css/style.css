@@ -856,3 +856,7 @@
 .rooms:last-child {
   border-right: none;
 }
+
+.info-label {
+  border-radius: 5px 5px 5px 0px;
+}
