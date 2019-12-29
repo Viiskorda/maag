@@ -55,7 +55,8 @@
 			if ($this->session->userdata['building']==0){
 				redirect('building/view/'.$this->session->userdata['building']);
 			}else{
-			redirect('building/edit/'.$this->session->userdata['building']);}
+			redirect('building/edit/'.$this->session->userdata['building']);
+			}
 		}
 
 

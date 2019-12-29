@@ -1,3 +1,4 @@
+<?php if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'){?>
  <div class="container">
 	<div class="container-md mx-auto mt-5">
 		<div class="form-bg">
@@ -64,7 +65,7 @@
         </div>
     </div>
 </div>
-
+                    <?php } else { redirect(''); }?>
  <!-- seda modalit siin oleks vaja selleks, et kujundada alerti juhul, kui saali kustutamisel peaks olema aktiivseid broneeringuid. Kahjuks ma ei saanud seda tööle :(  ) -->
  <!-- <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -133,7 +134,7 @@
 //   }
    // $( this ).parent().append('<input type="text" class="btn btn-outline-secondary" name="addRoomForm" id="addRoomForm" value="" /> ');
 
-});
+// });
 
 
 

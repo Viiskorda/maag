@@ -22,10 +22,12 @@ class Login extends CI_Controller{
         $name  = $data['name'];
         $email = $data['email'];
         $roleID = $data['roleID'];
+        $building = $data['buildingID'];
         $sesdata = array(
             'username'  => $name,
             'email'     => $email,
             'roleID'     => $roleID,
+            'buildingID' => $building,
             'session_id' => TRUE
         );
         $this->session->set_userdata($sesdata);
