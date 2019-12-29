@@ -1110,11 +1110,24 @@ dayClick: function (date, jsEvent, view) {
         window.history.replaceState("", "", "fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date="+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
         //kas alumist on vaja? see muudab input datepickeri väärtust vastavalt kuupäevadele
     //    $('#datepicker').val($('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
+        var calHeight = $( ".fc-body" ).height();
+        var calRows = $( ".fc-slats tr" ).length;
+        var rowHeightRaw = calHeight / calRows;
+        var rowHeight = rowHeightRaw.toString().match(/^-?\d+(?:\.\d{0,1})?/)[0];
+        $('.fc-slats tr').css('height', rowHeight+'px');
+        $(window).trigger('resize');
+        $(".fc-body").trigger('reload');
     });
 
     $('body').on('click', 'button.fc-next-button', function() {
         window.history.replaceState("", "", "fullcalendar?roomId=<?php echo ($this->input->get('roomId'));?>&date="+ $('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
-        
+        var calHeight = $( ".fc-body" ).height();
+        var calRows = $( ".fc-slats tr" ).length;
+        var rowHeightRaw = calHeight / calRows;
+        var rowHeight = rowHeightRaw.toString().match(/^-?\d+(?:\.\d{0,1})?/)[0];
+        $('.fc-slats tr').css('height', rowHeight+'px');
+        $(window).trigger('resize');
+        $(".fc-body").trigger('reload');
         //$('#datepicker').val($('#calendar').fullCalendar('getDate').format('DD.MM.YYYY'));
         
     });
