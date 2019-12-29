@@ -56,12 +56,19 @@
     min-height: 95vh;
   }
 
+  .container-s {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 460px !important;
+    min-height: 75vh;
+  }
+
   .table-container {
     min-height: 89vh;
   }
 
   .vert-center {
-    margin-top: 50%;
+    margin-top: 40%;
   }
 
   #form-container {
