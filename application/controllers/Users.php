@@ -121,11 +121,15 @@
 						$phone  = $data['userPhone'];
 						$building  = $data['buildingID'];
 						$email = $data['email'];
+						$userID = $data['userID'];
 						$roleID = $data['roleID'];
+						$room = $data['id'];
 						$sesdata = array(
 							'userName'  => $name,
 							'phone'  => $phone,
+							'room'  => $room,
 							'email'     => $email,
+							'userID'  => $userID,
 							'building'     => $building,
 							'roleID'     => $roleID,
 							'session_id' => TRUE

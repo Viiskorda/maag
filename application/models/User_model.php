@@ -43,6 +43,7 @@
 		function validate($email,$password){
 			$this->db->where('email',$email);
 			$this->db->where('pw_hash',$password);
+			$this->db->join('rooms', 'users.buildingID = rooms.buildingID' , 'left');
 			$result = $this->db->get('users',1);
 			return $result;
 		  }

@@ -80,29 +80,29 @@
             </tr>
             </thead>
             <tbody class="">
-            <?php foreach($editAllBuildings as $singleUser) : 
+            <?php foreach($editAllBuildings as $singleBuilding) : 
         
              
                 ?>
                 <tr>
-                    <td class="pl-3 p-1 text-darkblue border-bottom-light"><?php echo $singleUser['name']; ?></td>
-                    <td class="p-1 text-darkblue border-bottom-light"><?php echo $singleUser['contact_email']; ?></td>
-                    <td class="p-1 text-darkblue border-bottom-light"><?php echo $singleUser['notify_email']; ?></td>
-                    <td class="p-1 text-darkblue border-bottom-light"><?php echo $singleUser['phone']; ?></td>
+                    <td class="pl-3 p-1 text-darkblue border-bottom-light"><?php echo $singleBuilding['name']; ?></td>
+                    <td class="p-1 text-darkblue border-bottom-light"><?php echo $singleBuilding['contact_email']; ?></td>
+                    <td class="p-1 text-darkblue border-bottom-light"><?php echo $singleBuilding['notify_email']; ?></td>
+                    <td class="p-1 text-darkblue border-bottom-light"><?php echo $singleBuilding['phone']; ?></td>
                     <td class="p-1 text-darkblue border-bottom-light"> <?php 
                       foreach ($editAllRooms as $value) {
-                          if ($value['buildingID']==$singleUser['id']){
+                          if ($value['buildingID']==$singleBuilding['id']){
                         echo  '<p class="rooms">'. $value['roomName'].'</p> ';}
                           }
                     
-                 //   echo $singleUser['roomName']; ?> &nbsp; &nbsp;</td>
+                 //   echo $singleBuilding['roomName']; ?> &nbsp; &nbsp;</td>
                 
                  
                     <td class="d-flex justify-content-end p-1 pr-3">
-                        <form class="cat-delete" action="<?php echo base_url(); ?>building/edit/<?php echo $singleUser['id']; ?>" method="POST">
+                        <form class="cat-delete" action="<?php echo base_url(); ?>building/edit/<?php echo $singleBuilding['id']; ?>" method="POST">
                             <button type="submit" class="btn btn-second btn-width text-white text-center py-1 px-2 txt-strong ">Muuda</button>
                         </form>
-                        <form class="cat-delete pl-1" action="<?php echo base_url(); ?>building/delete/<?php echo $singleUser['id']; ?>" method="POST">
+                        <form class="cat-delete pl-1" action="<?php echo base_url(); ?>building/delete/<?php echo $singleBuilding['id']; ?>" method="POST">
                             <!-- <input type="submit" class="" value="Kustuta"> -->
                             <button type="submit" class="btn btn-delete btn-width text-white text-center py-1 px-2 txt-strong ">Kustuta</button>
                         </form>

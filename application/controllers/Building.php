@@ -15,18 +15,25 @@
 		}
 
 		public function edit($slug){
-			
+			if ($this->session->userdata['building']!=$slug){
+
+				redirect('building/view/'.$this->session->userdata['building']);
+			}else{
+
 			$data['editBuildings'] = $this->building_model->get_building($slug);
 		//	var_dump($slug);
 			$this->load->view('templates/header');
 			$this->load->view('pages/editBuilding', $data);
 			$this->load->view('templates/footer');
-		}
+		}	}
 
 
 		
 		public function view($slug){
-	
+	if ($this->session->userdata['building']!=$slug){
+				
+				redirect('building/view/'.$this->session->userdata['building']);
+			}else{
 			$data['editBuildings'] = $this->building_model->get_building($slug);
 		
 			$data['editAllBuildings'] = $this->building_model->get_building();
@@ -34,7 +41,7 @@
 			$this->load->view('templates/header');
 			$this->load->view('pages/viewBuilding', $data);
 			$this->load->view('templates/footer');
-		}
+		}	}
 
 		public function delete($id){
 			// Check login

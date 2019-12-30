@@ -11,35 +11,46 @@
 					</ul>
 				</div>
 				<form id="change" method="post" action="<?php echo base_url(); ?>profile/updateProfile">
-
+				<?php foreach ($editProfile as $value) {?>
 					<h4 class="pt-2 txt-xl px-5 mx-5">Konto info</h4>
 
 					<div class="d-flex p-0 mt-4 px-5 mx-5">
 						<div class="form-label-group col-6 py-0 pl-0 pr-5">
 							<label>E-mail*</label>
-							<input type="email" class="form-control" name="email" value="" disabled>
+							<input type="email" class="form-control"  value="<?php echo $value['email'];?>" disabled>
 						</div>
 						<div class="form-label-group col-6 p-0 pl-5">
 							<label>Asutus</label>
-							<input type="text" class="form-control" name="buildingID" id="buildingID" value="" disabled>
+							<input type="text" class="form-control"  id="buildingName" value="<?php echo $value['name'];?>" disabled>
 						</div>
 					</div>
 
 					<div class="d-flex p-0 mt-4 px-5 mx-5">
 						<div class="form-label-group col-6 py-0 pl-0 pr-5">
+							<?php if($value['roleID']=='2' || $value['roleID']=='3'  || $value['roleID']=='1'):?>
 							<label>Roll*</label>
-							<select id="role" name="role" class="form-control arrow" disabled>
-								<option value="1">Admin</option>
-								<option value="2" selected>Juht</option>
-								<option value="3">Haldur</option>
-							</select>
+                                <select id="roleID" name="roleID" class="form-control arrow" disabled>
+                                    <option value="2" <?php if ($value['roleID']==1) echo ' selected'?>>Admin</option>
+                                    <option value="3" <?php if ($value['roleID']==2) echo ' selected'?>>Juht</option>
+                                    <option value="4" <?php if ($value['roleID']==3) echo ' selected'?>>Haldur</option>
+                                    </select>
+                             <?php endif;?>
+
+
 						</div>
 						<div class="form-label-group col-6 p-0 pl-5">
-							<label>Staatus*</label>
-							<select id="status" name="status" class="form-control arrow" disabled>
-								<option value="1" selected>Aktiivne</option>
-								<option value="0">Mitteaktiivne</option>
-							</select>
+						
+						
+							<?php if($value['roleID']=='2' || $value['roleID']=='3'  || $value['roleID']=='1'):?>
+								<label>Staatus*</label>
+								<select id="status" name="status" class="form-control arrow" disabled>
+                                    <option value="1" <?php if ($value['status']==1) echo ' selected'?>>Aktiivne</option>
+                                    <option value="0" <?php if ($value['status']==0) echo ' selected'?>>Mitteaktiivne</option>
+                                   
+                                    </select>
+                             <?php endif;?>
+
+
 						</div>
 					</div>
 
@@ -47,11 +58,11 @@
 					<div class="d-flex p-0 mt-4 px-5 mx-5">
 						<div class="form-label-group col-6 py-0 pl-0 pr-5">
 							<label>Nimi*</label>
-							<input type="text" class="form-control" name="name" value="">
+							<input type="text" class="form-control" name="name" value="<?php echo $value['userName'];?>">
 						</div>
 						<div class="form-label-group col-6 p-0 pl-5">
 							<label>Telefoni number*</label>
-							<input type="number" class="form-control" name="phone" value="">
+							<input type="number" class="form-control" name="phone" value="<?php echo $value['userPhone'];?>">
 						</div>
 					</div>
 
@@ -71,7 +82,7 @@
                         <a class="txt-xl link-deco align-self-center py-0 pr-5 mr-2" href="<?php echo base_url(); ?>profile">Katkesta</a>
                         <button type="submit" class="btn btn-custom col-5 text-white txt-xl">Salvesta muudatused</button>
                     </div>
-
+					<?php }?>
 				</form>
 			</div>
 		</div>
