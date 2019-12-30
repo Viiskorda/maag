@@ -1,4 +1,4 @@
-<?php if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'){?>
+<?php if($this->session->userdata('roleID')==='2'||$this->session->userdata('roleID')==='3'||$this->session->userdata('roleID')==='1'){?>
  <div class="container">
 	<div class="container-md mx-auto mt-5">
 		<div class="form-bg">
@@ -39,16 +39,16 @@
                 <h4 class="mt-5 txt-xl px-5 mx-5 pb-3">Saalid</h4>
                 <div class="form-label-group py-0 px-5 mx-5" id="saalid">
                     <label class="txt-regular txt-lg">Aktiivsed saalid</label>
-                    <?php foreach ($editBuildings as &$value) { 
+                    <?php foreach ($editBuildings as $value) { 
                       if ($value['roomActive'] == 1) { 
-                        echo('<div class="d-flex mb-3 p-0 justify-content-between"><input class="form-control col-8" id="activeRoom[]" type="text" name="room" value="' . $value['roomName'] .'"><input type="button" id="active' . $value['id']. '" class="btn btn-custom btn-width-md text-white text-center py-1 px-2 txt-strong" value="Aktiivne"><a class="btn btn-delete btn-width-92 text-white text-center py-1 px-2 txt-strong" href="' . base_url() . 'building/deleteRoom/' . $value['id'] . '">Kustuta</a></div>'); 
+                        echo('<div class="d-flex mb-3 p-0 justify-content-between"> <input class="d-none" type="hidden" name="roomID" value="'.$value['id'].'"> <input class="form-control col-8" id="activeRoom[]" type="text" name="room[]" value="' . $value['roomName'] .'"><input type="button" id="active' . $value['id']. '" class="btn btn-custom btn-width-md text-white text-center py-1 px-2 txt-strong" value="Aktiivne"><a class="btn btn-delete btn-width-92 text-white text-center py-1 px-2 txt-strong" href="' . base_url() . 'building/deleteRoom/' . $value['id'] . '">Kustuta</a></div>'); 
                       }}; ?>
                 </div>
                 <div class="form-label-group py-0 px-5 mx-5">
                     <label class="txt-regular txt-lg">Mitteaktiivsed saalid</label>
                     <?php foreach ($editBuildings as $key => &$value) { 
                       if ($value['roomActive'] == 0) { 
-                        echo('<div class="d-flex mb-3 p-0 justify-content-between"><input class="form-control col-8" id="inactiveRoom[]" type="text" name="room" value="' . $value['roomName'] .'"><input type="button" id="inactive' . $value['id']. '" class="btn btn-inactive btn-width-md text-white text-center py-1 px-2 txt-strong" value="Mitteaktiivne"><a class="btn btn-delete btn-width-92 text-white text-center py-1 px-2 txt-strong" href="' . base_url() . 'building/deleteRoom/' . $value['id'] . '">Kustuta</a></div>');
+                        echo('<div class="d-flex mb-3 p-0 justify-content-between"><input class="form-control col-8" id="inactiveRoom[]" type="text" name="room[]" value="' . $value['roomName'] .'"><input type="button" id="inactive' . $value['id']. '" class="btn btn-inactive btn-width-md text-white text-center py-1 px-2 txt-strong" value="Mitteaktiivne"><a class="btn btn-delete btn-width-92 text-white text-center py-1 px-2 txt-strong" href="' . base_url() . 'building/deleteRoom/' . $value['id'] . '">Kustuta</a></div>');
                       }}; ?>
                 </div>
 
@@ -99,7 +99,7 @@
 <script>
 
   $('#lisaSaal').on('click', function() {
-    $('#saalid').append('<div class="d-flex mb-3 p-0 justify-content-between"><input class="form-control col-8" id="activeRoom[]" type="text" name="room" value=""><input type="button" id="active<?php echo($value["id"]); ?>" class="btn btn-second btn-width-md text-white text-center py-1 px-2 txt-strong" value="Aktiivne"><a class="btn btn-delete btn-width-92 text-white text-center py-1 px-2 txt-strong" href="<?php echo(base_url()); ?>building/deleteRoom/<?php echo($value["id"]); ?>">Kustuta</a></div>');
+    $('#saalid').append('<div class="d-flex mb-3 p-0 justify-content-between"><input class="form-control col-8" id="activeRoom[]" type="text" name="additionalRoom[]" value=""><input type="button" id="active<?php echo($value["id"]); ?>" class="btn btn-second btn-width-md text-white text-center py-1 px-2 txt-strong" value="Aktiivne"><a class="btn btn-delete btn-width-92 text-white text-center py-1 px-2 txt-strong" href="<?php echo(base_url()); ?>building/deleteRoom/<?php echo($value["id"]); ?>">Kustuta</a></div>');
   });
 
 // $( "#openModal" ).click(function(e) {

@@ -136,3 +136,7 @@
         <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('access_deniedToUrl').'</p>'; ?>
       <?php endif; ?>
       
+      <?php if($this->session->flashdata('building_deleted')): ?>
+        <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('building_deleted').'</p>'; ?>
+      <?php endif; ?>
+      

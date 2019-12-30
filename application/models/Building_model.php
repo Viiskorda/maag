@@ -33,11 +33,25 @@
 
 		public function delete_building($id){
 			$this->db->where('id', $id);
-			$this->db->delete('buildings');
+		//	$this->db->delete('buildings');
 			return true;
 		}
 
 		public function delete_room($id){
+			$query1 = $this->db->get_where('bookingTimes', array('roomID' => $id));
+			foreach ($query1->result() as $row)
+				{
+					
+					$today = strtotime('today UTC');
+					if (strtotime($row->endTime)>$today ){
+						return false;
+						echo $row->endTime;
+					}
+				
+					
+				}
+		
+			
 			$this->db->where('id', $id);
 			$this->db->delete('rooms');
 			return true;
@@ -61,7 +75,7 @@
 				'contact_email' => $this->input->post('email'),
 				'phone' => $this->input->post('phone'),
 				'notify_email' => $this->input->post('notifyEmail'),
-				'price_url' => $this->input->post('price_url'),				
+			//	'price_url' => $this->input->post('price_url'),				
 			);
 		
 			return $this->db->insert('buildings', $data);
@@ -74,36 +88,25 @@
 		public function update_building(){
 			// $slug = url_title($this->input->post('title'));
 			$data = array(
-				'name' => $this->input->post('building'),
+			//	'name' => $this->input->post('building'),
+
 				'contact_email' => $this->input->post('email'),
 				'phone' => $this->input->post('phone'),
 				'notify_email' => $this->input->post('notifyEmail'),
+				'price_url' => $this->input->post('price_url'),
 				
 			);
 			$this->db->where('id', $this->input->post('id'));
 
-			$data2 = array(
-				'name' => $this->input->post('building'),
-				'contact_email' => $this->input->post('email'),
-				'phone' => $this->input->post('phone'),
-				'notify_email' => $this->input->post('notifyEmail'),
-				
-			);
+
+		
+			
 
 			return $this->db->update('buildings', $data);
 		}
 
 
-
-
-		public function createNewRoom(){
-			
-				$data = array(
-					'roomName' => $this->input->post('roomName'),
-					'buildingID' =>$this->input->post('id'),
-					'activeRoom' => $this->input->post('status'),
-			   );
-		
+		public function createNewRoom($data){
 			
 			// Insert room
 			return $this->db->insert('rooms', $data);

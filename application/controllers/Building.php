@@ -9,19 +9,27 @@
 		}
 		
 
-		public function createRoom(){
+		// public function createRoom(){
 			
-			$this->building_model->createNewRoom();
-		}
+		// 	$this->building_model->createNewRoom();
+		// }
 
 		public function edit($slug){
-			if ($this->session->userdata['building']!=$slug){
+
+			if ($this->session->userdata('roleID')==='1'){
+
+				$data['editBuildings'] = $this->building_model->get_building($slug);
+				$this->load->view('templates/header');
+				$this->load->view('pages/editBuilding', $data);
+				$this->load->view('templates/footer');
+			}
+
+			else if ($this->session->userdata['building']!=$slug){
 
 				redirect('building/view/'.$this->session->userdata['building']);
 			}else{
 
 			$data['editBuildings'] = $this->building_model->get_building($slug);
-		//	var_dump($slug);
 			$this->load->view('templates/header');
 			$this->load->view('pages/editBuilding', $data);
 			$this->load->view('templates/footer');
@@ -29,8 +37,8 @@
 
 
 		
-		public function view($slug){
-	if ($this->session->userdata['building']!=$slug){
+		public function view($slug=FALSE){
+			if ($this->session->userdata['building']!=$slug){
 				
 				redirect('building/view/'.$this->session->userdata['building']);
 			}else{
@@ -56,8 +64,12 @@
 		public function deleteRoom($id){
 			// Check login
 		
-			$this->building_model->delete_room($id);
+			$deletequery=$this->building_model->delete_room($id);
 			// Set message
+			if($deletequery===FALSE){
+				$this->session->set_flashdata('building_deleted', 'Ei saa saali kustutada kuna selles on kehtivad broneeringud. Palun kustuta kõik broneeringud ära ja seejärel proovi uuesti.');	
+				redirect('building/view/'.$this->session->userdata['building']);
+			}
 			$this->session->set_flashdata('building_deleted', 'Your building has been deleted');
 			if ($this->session->userdata['building']==0){
 				redirect('building/view/'.$this->session->userdata['building']);
@@ -92,11 +104,27 @@
 
 
 		public function update(){
-			// Check login
+			//Check login
 			// if(!$this->session->buildingdata('logged_in')){
 			// 	redirect('buildings/login');
 			// }
 			$this->building_model->update_building();
+
+			
+			for($t = 0; $t <= count($this->input->post('additionalRoom')); $t++)
+			{
+				if( $this->input->post('additionalRoom')[$t]!==null){
+				
+				$data2[] = array(
+						'roomName' => $this->input->post('additionalRoom')[$t],
+						'buildingID' =>$this->input->post('id'),
+						'activeRoom' => 1,
+								
+				);
+				$this->building_model->createNewRoom($data2[$t]);
+			}
+		}
+			
 			// Set message
 			$this->session->set_flashdata('post_updated', 'Uuendasid asutuse infot');
 			redirect('building/view/'.$this->session->userdata['building']);
