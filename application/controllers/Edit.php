@@ -253,9 +253,9 @@ class Edit extends CI_Controller {
 
 
 
-					redirect(base_url('fullcalendar?roomId=1'));
+					redirect(base_url('fullcalendar?roomId='.$this->input->post('roomID')));
 					$this->load->view('templates/header');
-					$this->load->view('pages/fullcalendar?roomId=1');//see leht laeb vajalikku vaadet. ehk saab teha controllerit ka mujale, mis laeb õiget lehte
+					$this->load->view('pages/fullcalendar?roomId='.$this->input->post('roomID'));//see leht laeb vajalikku vaadet. ehk saab teha controllerit ka mujale, mis laeb õiget lehte
 					echo "success!";
 					$this->load->view('templates/footer');
 
@@ -267,7 +267,7 @@ class Edit extends CI_Controller {
 
 		}else{
 		//	$this->booking_model->create_booking();
-			$this->load->view('fullcalendar?roomId=1');//redirectib sinna peale väljade korrektselt sisestamist
+			$this->load->view('fullcalendar?roomId='.$this->input->post('roomID'));//redirectib sinna peale väljade korrektselt sisestamist
 		}
 	}else{
 		redirect('');}

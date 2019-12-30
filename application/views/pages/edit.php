@@ -250,6 +250,11 @@
                         document.getElementById("selectedroom").value = obj.roomName;
                    //     document.getElementById("building").value = obj.roomName;
                         $('#sport_facility').val(obj.building);
+                      
+                        for(var property in obj) {
+                            console.log(property + "=" + obj[property]);
+                      
+                    };
                         document.getElementById("roomID").value = obj.roomID;
                         
                         // $('#start').val(obj.start);

@@ -52,12 +52,16 @@
                                 <label for="sport_facility">Asutus</label>
                                 <input id="sport_facility" class="form-control" list="asutus" id="building" disabled value="<?php $test = $this->session->userdata('building'); foreach ($buildings as $each) { $id = $each->id; $name = $each->name; if ($id == $test) {echo $each->name;}};?>">
                             </div>
-
+                           <?php echo $this->input->get('roomId');?>
                             <div class="form-label-group col-6 p-0 pl-5">
                                 <label for="room">Saal*</label>
-                                <select id="room" list="saal" name="sportrooms" class="form-control arrow" value="<?php echo $selectedRoom[0]->roomName;?>" required>
+                                <select id="room" list="saal" name="sportrooms" class="form-control arrow" >
                                     <?php foreach ($rooms as $each) {
-                                                echo '<option value="' . $each->id . '">' . $each->roomName . '</option>';
+                                        echo $each->id;
+                                               if( $this->uri->segment(3)== $each->id){
+                                                    echo '<option selected value="' . $each->id . '">' . $each->roomName . '</option>';
+                                                }else{
+                                                echo '<option value="' . $each->id . '">' . $each->roomName . '</option>';}
                                             } ?>
                                 </select>
                             </div>
@@ -147,9 +151,13 @@
 
                             <div class="form-label-group col-6 p-0 pl-5">
                                 <label for="room">Saal*</label>
-                                <select id="room" list="saal" name="sportrooms" class="form-control arrow" required>
-                                    <?php foreach ($rooms as $each) {
-                                                echo '<option value="' . $each->id . '">' . $each->roomName . '</option>';
+                                <select id="room" list="saal" name="sportrooms" class="form-control arrow" >
+                                <?php foreach ($rooms as $each) {
+                                        echo $each->id;
+                                               if( $this->uri->segment(3)== $each->id){
+                                                    echo '<option selected value="' . $each->id . '">' . $each->roomName . '</option>';
+                                                }else{
+                                                echo '<option value="' . $each->id . '">' . $each->roomName . '</option>';}
                                             } ?>
                                 </select>
                             </div>
@@ -177,7 +185,7 @@
                                 </div>
                                 <div id="dateContainer">
                                     <div class="d-flex align-items-center mb-3 justify-content-between">
-                                        <input class="form-control col-5 arrow" id="sport_facility2" list="weekdays" name="weekday[]">
+                                        <input class="form-control col-5 arrow" id="sport_facility2" list="weekdays" name="weekday[]" required>
 
                                             <datalist id="weekdays">
                                                 <option data-value="1" value="Esmaspäev"></option>
@@ -240,9 +248,13 @@
                         <div class="d-flex px-5 mx-5">
                             <div class="form-label-group col-6 pl-0">
                                 <label for="contact">Saal</label>
-                                <select name="sportrooms"  class="form-control arrow" id="room2">
-                                    <?php foreach ($rooms as $each) {
-                                                echo '<option value="' . $each->id . '">' . $each->roomName . '</option>';
+                                <select name="sportrooms"  class="form-control arrow" id="room2" >
+                                <?php foreach ($rooms as $each) {
+                                        echo $each->id;
+                                               if( $this->uri->segment(3)== $each->id){
+                                                    echo '<option selected value="' . $each->id . '">' . $each->roomName . '</option>';
+                                                }else{
+                                                echo '<option value="' . $each->id . '">' . $each->roomName . '</option>';}
                                             } ?>
                                 </select>                                
                             </div>
@@ -265,7 +277,7 @@
                                 </div>
                                 <div id="closeContainer">
                                     <div class="d-flex align-items-center mb-3 justify-content-between">
-                                        <input class="form-control col-5 arrow" id="sport_facility2" list="weekdays" name="weekday[]">
+                                        <input class="form-control col-5 arrow" id="sport_facility2" list="weekdays" name="weekday[]" required>
 
                                             <datalist id="weekdays">
                                                 <option data-value="1" value="Esmaspäev"></option>
