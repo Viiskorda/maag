@@ -11,7 +11,7 @@
             </div>
 
             <form id="change" method="post" action="<?php echo base_url(); ?>building/update">
-            <input class="d-none" type="hidden" name="id" value="<?php foreach ($editBuildings as $value) {echo $value['buildingID'];break;}?>">
+            <input class="d-none" type="hidden" name="id" value="<?php echo $this->uri->segment(3);?>">
 
                 <h4 class="pt-2 txt-xl px-5 mx-5">Asutuse info</h4>
                 <div class="d-flex p-0 mt-4 px-5 mx-5">
