@@ -206,7 +206,7 @@
              
                     function isBetween(checkDateTime, startDateTime, endDateTime) {
 
-                        return (checkDateTime >= startDateTime && checkDateTime <= endDateTime);
+                        return (checkDateTime > startDateTime && checkDateTime < endDateTime);
 
                         }
 

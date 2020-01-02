@@ -512,7 +512,7 @@ url:  "<?php echo base_url(); ?>fullcalendar/load/<?php echo ($this->input->get(
                 // console.log(endDateTime);
                 function isBetween(checkDateTime, startDateTime, endDateTime) {
 
-                return (checkDateTime >= startDateTime && checkDateTime <= endDateTime);
+                return (checkDateTime > startDateTime && checkDateTime < endDateTime);
 
                 }
 
