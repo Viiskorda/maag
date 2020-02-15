@@ -1,14 +1,10 @@
 # MAAG
-Merilin, Annemarii, Annelise, Gerli. Aka MAAG.
+Maagi nimetus tuleneb autorite eesnime esitähtedest Merilin, Annemarii, Annelise, Gerli. 
 
-Tallinna Ülikooli Haapsalu kolledži 3 kursuse rakendusinformaatika üliõpilased.
+Tallinna Ülikooli Haapsalu kolledži kolmanda kursuse rakendusinformaatika üliõpilased tegid valikpraktika aine raames spordiruumide e-kalendrit Pärnu Linnavalituse spordiga seotud allasutuste näitel. Rakendus vastab MVP põhimõtetele ja pole mõeldud kasutamiseks.
 
-Spordiobjektide portaal ja nende ruumide broneeringud Pärnu Linnavalituse spordiga seotud allasutuste näitel. 
-
-<<<<<<< HEAD
-Valikpraktika aine raames tehtud projekt.
-
-test
-=======
-Valikpraktika aine raames tehtud projekt.
->>>>>>> 5866e85f5d70b333bfc884f2e909d3eb67a287d8
+Autorid:
+Gerli Liiv - läbi klikitava prototüübi looja
+Annelise Randmaa - UI disainer
+Merilin Sellik - Front-End programmeerija
+Annemarii Hunt - Back-End programmeerija
