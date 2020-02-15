@@ -8,5 +8,5 @@ Tallinna Ülikooli Haapsalu kolledži kolmanda kursuse rakendusinformaatika üli
 Gerli Liiv - läbi klikitava prototüübi looja\
 Annelise Randmaa - UI disainer\
 Merilin Sellik - Front-End programmeerija\
-Annemarii Hunt - Back-End programmeerija\
+Annemarii Hunt - Back-End programmeerija
 
